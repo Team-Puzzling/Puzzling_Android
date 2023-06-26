@@ -1,7 +1,8 @@
-package com.puzzling.puzzlingaos
+package com.puzzling.puzzlingaos.presentation.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.puzzling.puzzlingaos.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
