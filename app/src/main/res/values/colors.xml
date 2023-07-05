@@ -1,10 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+<!--    <color name="purple_200">#FFBB86FC</color>-->
+<!--    <color name="purple_500">#FF6200EE</color>-->
+<!--    <color name="purple_700">#FF3700B3</color>-->
+<!--    <color name="teal_200">#FF03DAC5</color>-->
+<!--    <color name="teal_700">#FF018786</color>-->
+<!--    <color name="black">#FF000000</color>-->
+<!--    <color name="white">#FFFFFFFF</color>-->
+
+    <!-- Blue Variations -->
+    <color name="blue_700">#1D366D</color>
+    <color name="blue_600">#3258B0</color>
+    <color name="blue_500">#3C6EE0</color>
+    <!-- Main Blue Color -->
+    <color name="blue_400">#5085FF</color>
+    <color name="blue_300">#83B4FF</color>
+    <color name="blue_200">#B4D2FF</color>
+    <color name="blue_100">#DDEBFF</color>
+
+    <!-- Yellow Variations -->
+    <color name="yellow_500">#FF9F10</color>
+    <!-- Main Yellow Color -->
+    <color name="yellow_400">#FFCD6B</color>
+    <color name="yellow_200">#FFEBA5</color>
+    <color name="yellow_100">#FFF6D6</color>
+
+    <!-- Red Variations -->
+    <color name="red_600">#D00000</color>
+    <!-- Main Red Color -->
+    <color name="red_400">#ff4f4f</color>
+    <color name="red_200">#FF9F9F</color>
+
+    <!-- Gray Variations -->
+    <color name="gray_700">#353638</color>
+    <color name="gray_600">#5C5E62</color>
+    <color name="gray_500">#83858A</color>
+    <color name="gray_400">#ABADB2</color>
+    <color name="gray_300">#D1D3D9</color>
+    <color name="gray_200">#EAECF0</color>
+    <color name="gray_100">#F2F4F5</color>
+
+    <!-- Black -->
+    <color name="black_000">#151515</color>
+
+    <!-- White -->
+    <color name="white_000">#FFFFFF</color>
+
+
+
+
 </resources>
