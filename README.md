@@ -1,6 +1,14 @@
 <h1>🧩 PUZZLING 🧩</h1>
+<br>
+
+<p align="center">
+<img width="700px" height="250px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/ee3e0528-b70c-4f64-ac16-3bd41b4e7c2c" />
+</p>
+
 
  **팀과 함께 나만의 회고를 작성하며 퍼즐을 완성하고, 그 과정에서 시각적 성취감과 회고의 동기부여를 이끌어내는 서비스 퍼즐링**
+
+
 <br><br>
 
 ### CONTRIBUTORS ✨
