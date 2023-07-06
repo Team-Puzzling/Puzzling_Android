@@ -8,4 +8,5 @@ plugins {
 ext {
     coroutineVersion = '1.6.4'
     lifecycleVersion = '2.6.1'
+    coilVersion = "2.2.2"
 }
