@@ -1,9 +1,7 @@
 name: Puzzling PR Builder
 on:
   pull_request:
-    branches: [ develop, main ]
-  issue_comment:
-    types: [ created ]
+    branches: [ "develop" ]
 
 jobs:
   build:
@@ -28,41 +26,21 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      #      - name: Create Local Properties
-      #        run: touch local.properties
-      #
-      #      - name: Access Local Properties
-      #        env:
-      #          base_url: ${{ secrets.base_url }}
-      #        run: |
-      #          echo base_url=\"$base_url\" >> local.properties
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Lint Check
         run: ./gradlew ktlintCheck
 
-      - name: Build with Gradle
-        run: ./gradlew buildeRelease
+      #      - name: Build with Gradle
+      #        run: ./gradlew buildeRelease
 
-      - name: On Success!! Congratulations
-          if: ${{ success() }}
-          uses: rtCamp/action-slack-notify@v2
-          env:
-            SLACK_COLOR: '#5085FF'
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_TITLE: 'SUCCESS 🎉🎉🎉'
-            MSG_MINIMAL: true
-            SLACK_USERNAME: PUZZLING-AOS
-            SLACK_MESSAGE: 'PR Check 성공 🧩'
-
-          - name: On Failed, Notify in Slack
-            if: ${{ failure() }}
-            uses: rtCamp/action-slack-notify@v2
-            env:
-              SLACK_COLOR: '#D00000'
-              SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-              SLACK_TITLE: 'Build Failed❌'
-              MSG_MINIMAL: true
-              SLACK_USERNAME: PUZZLING-AOS
-              SLACK_MESSAGE: 'PR Check 에러 발생 ❌'
+#      - name: Slack Notification on Failure
+#        uses: rtCamp/action-slack-notify@master
+#        if: failure()
+#        env:
+#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+#          SLACK_TITLE: 'Puzzling Android CI checks have failed 🚫'
+#          SLACK_USERNAME: 짱즐링
+#          SLACK_MESSAGE: 'WHAT THE BUG 🗯'
+#          SLACK_COLOR: danger
