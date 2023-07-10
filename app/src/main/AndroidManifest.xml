@@ -14,6 +14,10 @@
         android:theme="@style/Theme.PuzzlingAOS"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.register.RegisterActivity"
+            android:exported="false"
+            />
+        <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
