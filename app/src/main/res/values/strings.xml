@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Puzzling AOS</string>
     <string name="tv_write_title">프로젝트 이름</string>
-    <string name="tv_write_register">등록</string>
+    <string name="tv_write_register">저장</string>
     <string name="tv_write_chip">TIL</string>
+    <string name="tv_write_question2">아쉬운 점은 무엇인가요?</string>
+    <string name="tv_write_question3">배운 점은 무엇인가요?</string>
+    <string name="tv_write_question1">잘한 점은 무엇인가요?</string>
 </resources>
