@@ -33,19 +33,18 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:src="@drawable/ic_back"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_write_title"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:text="프로젝트 이름"
                     android:layout_marginHorizontal="72dp"
-                    android:includeFontPadding="false"
                     android:layout_marginVertical="11dp"
+                    android:includeFontPadding="false"
+                    android:text="@string/tv_write_title"
                     android:textAppearance="@style/Kor.Heading4"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tv_write_register"
@@ -56,23 +55,68 @@
                     android:id="@+id/tv_write_register"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="등록"
-                    android:textColor="@color/gray_400"
                     android:layout_marginEnd="8dp"
+                    android:includeFontPadding="false"
                     android:paddingVertical="12dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="8dp"
-                    android:includeFontPadding="false"
+                    android:text="@string/tv_write_register"
                     android:textAppearance="@style/Kor.Body1.Bold"
+                    android:textColor="@color/gray_400"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_write_title"
-                    />
+                    app:layout_constraintTop_toTopOf="@id/tv_write_title" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_write_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_write_retrospective">
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_write_chip"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rec_bg50_fill_radius_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_write_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="6dp"
+                    android:layout_marginStart="18dp"
+                    android:includeFontPadding="false"
+                    android:text="@string/tv_write_chip"
+                    android:textAppearance="@style/Kor.Body1.Bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_down"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
