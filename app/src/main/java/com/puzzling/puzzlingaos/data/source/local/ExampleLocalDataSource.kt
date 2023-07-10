@@ -5,7 +5,7 @@ import com.puzzling.puzzlingaos.data.model.response.ExampleResponse
 import com.puzzling.puzzlingaos.data.service.ExampleService
 
 class ExampleLocalDataSource(
-    private val exampleService: ExampleService
+    private val exampleService: ExampleService,
 ) {
     suspend fun postExample(exampleRequestDto: ExampleRequest): ExampleResponse =
         exampleService.postExample(exampleRequestDto)
