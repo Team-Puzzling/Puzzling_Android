@@ -9,13 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".presentation.writeRetrospective.WriteRetrospectiveActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_write_retrospective"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="48dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp"
@@ -70,23 +70,24 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_write_main"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_write_retrospective">
+            app:layout_constraintTop_toBottomOf="@id/tb_write_retrospective"
+            app:layout_constraintVertical_bias="0">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_write_chip"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/rec_bg50_fill_radius_16"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="258dp"
                 app:layout_constraintHorizontal_bias="0"
+                android:background="@drawable/rec_bg50_fill_radius_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -96,24 +97,113 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="6dp"
                     android:layout_marginStart="18dp"
+                    android:layout_marginEnd="2dp"
                     android:includeFontPadding="false"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintHorizontal_bias="0"
                     android:text="@string/tv_write_chip"
                     android:textAppearance="@style/Kor.Body1.Bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
+                    android:id="@+id/iv_write_down"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_down"
+                    android:layout_marginEnd="6dp"
+                    app:layout_constraintStart_toEndOf="@id/tv_write_chip"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                android:id="@+id/tv_write_question1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="159dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_write_question1"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                app:layout_constraintStart_toStartOf="@+id/cl_write_main"
+                app:layout_constraintTop_toBottomOf="@id/cl_write_chip" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_write_question1"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:scrollbars = "vertical"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rec_bg50_fill_radius_16"
+                android:padding="16dp"
+                android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_write_question1" />
+
+            <TextView
+                android:id="@+id/tv_write_question2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="142dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_write_question2"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                app:layout_constraintStart_toStartOf="@+id/cl_write_main"
+                app:layout_constraintTop_toBottomOf="@id/edt_write_question1" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_write_question2"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:scrollbars = "vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/rec_bg50_fill_radius_16"
+                android:padding="16dp"
+                android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_write_question2" />
+
+            <TextView
+                android:id="@+id/tv_write_question3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="159dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_write_question3"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                app:layout_constraintStart_toStartOf="@+id/cl_write_main"
+                app:layout_constraintTop_toBottomOf="@id/edt_write_question2" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_write_question3"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:scrollbars = "vertical"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="102dp"
+                android:background="@drawable/rec_bg50_fill_radius_16"
+                android:gravity="top"
+                android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_write_question3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
