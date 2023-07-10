@@ -6,4 +6,6 @@
     <string name="tv_write_question2">아쉬운 점은 무엇인가요?</string>
     <string name="tv_write_question3">배운 점은 무엇인가요?</string>
     <string name="tv_write_question1">잘한 점은 무엇인가요?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

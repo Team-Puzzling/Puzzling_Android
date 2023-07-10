@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:background="@drawable/rect_white_fill_top16"
+        style="@style/CustomBottomSheet"
+        tools:context=".presentation.writeRetrospective.ChooseRetrospectiveFragment">
+
+        <RadioGroup
+            android:id="@+id/rg_choose_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="85dp"
+            android:layout_marginTop="53dp"
+            app:layout_constraintVertical_bias="0"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/rbtn_choose_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="TIL"
+                android:textAppearance="@style/Eng.Body1.Bold" />
+
+
+            <RadioButton
+                android:id="@+id/rbtn_choose_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="5F"
+                android:textAppearance="@style/Eng.Body1.Bold" />
+
+            <RadioButton
+                android:id="@+id/rbtn_choose_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="AAR"
+                android:textAppearance="@style/Eng.Body1.Bold" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/tv_choose_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="20dp"
+            android:text="학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!"
+            app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_choose_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="111dp"
+            android:layout_marginEnd="20dp"
+            android:text="다양한 측면을 고려하여 개인과 프로젝트 전\n체적인 관점을 보여주는 회고 방식이에요!"
+            app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_choose_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="30dp"
+            android:text="목표 달성에 대한 책임감과 함께, 개선에 중\n점을 두는 회고 방식이에요!"
+            app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
+            app:layout_constraintTop_toBottomOf="@+id/tv_choose_second" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
