@@ -12,5 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!-- BottomSheet Dialog -->
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheet</item>
     </style>
 </resources>
