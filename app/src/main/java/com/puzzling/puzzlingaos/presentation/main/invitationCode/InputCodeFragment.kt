@@ -2,23 +2,32 @@ package com.puzzling.puzzlingaos.presentation.main.invitationCode
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputCodeBinding
 
 class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragment_input_code) {
 
-    private val viewModel by viewModels<InvitationCodeViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    lateinit var viewModel: InvitationCodeViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(requireActivity())[InvitationCodeViewModel::class.java]
+
         binding.vm = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
+        isCodeSuccess()
+    }
+
+    private fun isCodeSuccess() {
+        viewModel.isCodeSuccess.observe(viewLifecycleOwner) {
+            if (it) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fc_invitation, InputProfileFragment())
+                    .commit()
+            }
+        }
     }
 }
