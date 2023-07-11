@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Puzzling AOS</string>
     <string name="inputCode_length">%s/13</string>
+    <string name="inputCode_title">초대코드 입력하기</string>
+    <string name="inputProfile_title">프로젝트: %s</string>
 </resources>
