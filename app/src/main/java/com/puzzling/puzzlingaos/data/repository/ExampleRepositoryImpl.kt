@@ -6,7 +6,7 @@ import com.puzzling.puzzlingaos.data.source.remote.ExampleRemoteDataSource
 import com.puzzling.puzzlingaos.domain.repository.ExampleRepository
 
 class ExampleRepositoryImpl(
-    private val exampleDataSource: ExampleRemoteDataSource
+    private val exampleDataSource: ExampleRemoteDataSource,
 ) : ExampleRepository {
     override suspend fun postExample(exampleRequest: ExampleRequest): Result<ExampleResponse> =
         kotlin.runCatching { exampleDataSource.postExample(exampleRequest) }
