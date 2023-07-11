@@ -10,4 +10,10 @@
     <style name="BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="backgroundTint">@android:color/transparent</item>
     </style>
+
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#FAFAFA</item>
+        <item name="background">@drawable/selector_custom_edittext</item>
+        <item name="strokeColor">#FAFAFA</item>
+    </style>
 </resources>
