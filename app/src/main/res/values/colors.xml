@@ -46,7 +46,7 @@
     <!-- White -->
     <color name="white_000">#FFFFFF</color>
 
-
-
+    <!-- Background -->
+    <color name="bg_050">#FAFAFA</color>
 
 </resources>
