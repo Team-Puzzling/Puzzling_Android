@@ -2,6 +2,7 @@ package com.puzzling.puzzlingaos.presentation.register
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
@@ -19,13 +20,15 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         dayCycleAdapter = DayCycleAdapter(this)
         binding.viewModel = viewModel
 
         clickDatePicker()
         clickDayCyclePicker()
-        isDateSelected()
+        textBoxListener(viewModel.projectName)
+        textBoxListener(viewModel.projectExplanation)
+        textBoxListener(viewModel.role)
+        textBoxListener(viewModel.nickName)
     }
 
     private fun clickDatePicker() {
@@ -55,10 +58,30 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         binding.rvDayCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
-
+            viewModel.isDateCycleSelected = dayCycleAdapter.selectedDayArray
         }
     }
 
-    private fun isDateSelected() {
+    private fun textBoxListener(textBox: MutableLiveData<String>) {
+        // val textBoxString: String = textBox.value ?: "Null Value"
+        textBox.observe(this) { textBoxString ->
+            viewModel.let { viewModel ->
+                if (!viewModel.valid(textBoxString)) {
+                    when (textBox) {
+                        viewModel.projectName -> binding.textLayoutProjectName.error = "특수문자, 이모지를 사용할 수 없어요"
+                        viewModel.projectExplanation -> binding.textLayoutIntroduction.error = "특수문자, 이모지를 사용할 수 없어요"
+                        viewModel.role -> binding.textLayoutRole.error = "특수문자, 이모지를 사용할 수 없어요"
+                        viewModel.nickName -> binding.textLayoutNickName.error = "특수문자, 이모지를 사용할 수 없어요"
+                    }
+                } else {
+                    when (textBox) {
+                        viewModel.projectName -> binding.textLayoutProjectName.error = null
+                        viewModel.projectExplanation -> binding.textLayoutIntroduction.error = null
+                        viewModel.role -> binding.textLayoutRole.error = null
+                        viewModel.nickName -> binding.textLayoutNickName.error = null
+                    }
+                }
+            }
+        }
     }
 }

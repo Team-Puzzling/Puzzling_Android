@@ -50,12 +50,16 @@ class DayCycleAdapter(context: Context) : RecyclerView.Adapter<DayCycleAdapter.D
     }
 
     var selectedDayCycle = arrayListOf<DayCycle>()
+    var selectedDayArray = arrayListOf<String>()
+
     private fun daySelection(binding: ItemRegisterDayCycleBinding, dayCycle: DayCycle) {
         if (selectedDayCycle.contains(dayCycle)) {
             selectedDayCycle.remove(dayCycle)
+            selectedDayArray.remove(dayCycle.day)
             changeBackground(binding, false)
         } else {
             selectedDayCycle.add(dayCycle)
+            selectedDayArray.add(dayCycle.day)
             changeBackground(binding, true)
         }
     }
@@ -68,5 +72,5 @@ class DayCycleAdapter(context: Context) : RecyclerView.Adapter<DayCycleAdapter.D
             }
     }
 
-    // fun getSelectedDayCycle() : selectedDayCycle
+    fun getSelectedDayCycleNum(): Int = selectedDayCycle.size
 }
