@@ -9,6 +9,6 @@ interface ExampleService {
     // 예시 API
     @POST("api/example")
     suspend fun postExample(
-        @Body request: ExampleRequest
+        @Body request: ExampleRequest,
     ): ExampleResponse
 }

@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class ExampleRequest(
     val id: Int,
     val title: String,
-    val content: String
+    val content: String,
 )

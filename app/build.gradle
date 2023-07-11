@@ -6,6 +6,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
     // serialization
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.0'
+    // ktlint
+    id 'org.jlleitschuh.gradle.ktlint'
 }
 
 android {
@@ -90,4 +92,12 @@ dependencies {
 // hilt dependency와 함께 추가
 kapt {
     correctErrorTypes true
+}
+
+ktlint {
+    android = true
+    debug = true
+    coloredOutput = true
+    verbose = true
+    outputToConsole = true
 }
