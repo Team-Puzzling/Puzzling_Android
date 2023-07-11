@@ -16,8 +16,8 @@ class InvitationCodeViewModel : ViewModel() {
         inputCode.length.toString()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
 
-    private val _codeResponse = MutableLiveData<ResponseInvitationCodeDto.InvitationCodeData>()
-    val codeResponse: LiveData<ResponseInvitationCodeDto.InvitationCodeData> get() = _codeResponse
+    private val _codeResponse = MutableLiveData<ResponseInvitationCodeDto.InvitationCodeData?>(null)
+    val codeResponse: LiveData<ResponseInvitationCodeDto.InvitationCodeData?> get() = _codeResponse
 
     private val _isCodeSucces = MutableLiveData<Boolean>()
     val isCodeSuccess: LiveData<Boolean> get() = _isCodeSucces

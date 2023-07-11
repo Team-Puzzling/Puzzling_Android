@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -50,15 +51,19 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="64dp"
-                android:background="@drawable/rect_gray050_fill_16"
+                android:background="@{!vm.isCodeSuccess==true &amp; vm.isCodeSuccess!=null ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext }"
+                android:gravity="center|left"
                 android:hint="초대코드를 입력해주세요."
+                android:maxLength="13"
                 android:paddingStart="16dp"
                 android:text="@={vm.inputCode}"
                 android:textAppearance="@style/Kor.Body2.Regular"
                 android:textColorHint="@color/gray_400"
+                app:flow_verticalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_invitation_code" />
+                app:layout_constraintTop_toBottomOf="@id/tv_invitation_code"
+                tools:background="@drawable/rect_red200_line_16" />
 
             <TextView
                 android:id="@+id/tv_code_length"
