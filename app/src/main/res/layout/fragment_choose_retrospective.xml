@@ -11,9 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:background="@drawable/rect_white_fill_top16"
+        android:background="@drawable/rect_white_fill_top16"
         style="@style/CustomBottomSheet"
         tools:context=".presentation.writeRetrospective.ChooseRetrospectiveFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_choose_top"
+            android:layout_width="40dp"
+            android:layout_height="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/rect_gray300_fill"
+            android:layout_marginHorizontal="160dp"
+            android:layout_marginTop="18dp"
+            />
 
         <RadioGroup
             android:id="@+id/rg_choose_main"
@@ -34,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:text="TIL"
-                android:textAppearance="@style/Eng.Body1.Bold" />
+                android:textAppearance="@style/Kor.Body1.Bold" />
 
 
             <RadioButton
@@ -44,7 +55,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="5F"
-                android:textAppearance="@style/Eng.Body1.Bold" />
+                android:textAppearance="@style/Kor.Body1.Bold" />
 
             <RadioButton
                 android:id="@+id/rbtn_choose_third"
@@ -53,7 +64,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="AAR"
-                android:textAppearance="@style/Eng.Body1.Bold" />
+                android:textAppearance="@style/Kor.Body1.Bold" />
 
         </RadioGroup>
 
