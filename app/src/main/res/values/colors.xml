@@ -46,6 +46,7 @@
 
     <!-- White -->
     <color name="white_000">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 
 
 

@@ -15,18 +15,22 @@ class WriteRetrospectiveActivity :
 
     private fun clickBtn() {
         binding.clWriteChip.setOnClickListener {
-            Log.d("write", "회고 선택 바텀시트 생겨야함")
             val chooseRetrospectiveFragment = ChooseRetrospectiveFragment()
             chooseRetrospectiveFragment.show(supportFragmentManager, "show")
-
-//            val bottomSheetView =
-//                layoutInflater.inflate(R.layout.fragment_choose_retrospective, null)
-//            val bottomSheetDialog = BottomSheetDialog(this)
-//            bottomSheetDialog.setContentView(bottomSheetView)
         }
 
         binding.tvWriteRegister.setOnClickListener {
             Log.d("write", "저장 다이얼로그 표시함")
+            showDialog()
         }
+    }
+
+    private fun showDialog() {
+        val registerDialog by lazy { RegisterDialogFragment() }
+        registerDialog.show(supportFragmentManager, TAG_REGISTER_DIALOG)
+    }
+
+    companion object {
+        const val TAG_REGISTER_DIALOG = "REGISTER_DIALOG"
     }
 }
