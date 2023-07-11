@@ -17,6 +17,7 @@
     <color name="blue_300">#83B4FF</color>
     <color name="blue_200">#B4D2FF</color>
     <color name="blue_100">#DDEBFF</color>
+    <color name="blue_50">#EEF5FF</color>
 
     <!-- Yellow Variations -->
     <color name="yellow_500">#FF9F10</color>

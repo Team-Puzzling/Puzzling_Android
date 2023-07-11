@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Puzzling AOS</string>
+    <string name="tb_home_personal">개인 대시보드</string>
+    <string name="tb_home_team">팀 대시보드</string>
+    <string name="menu_home">홈</string>
+    <string name="menu_mypage">마이페이지</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
