@@ -14,4 +14,10 @@
     <string name="tv_write_question1">잘한 점은 무엇인가요?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rbtn_choose_first">TIL</string>
+    <string name="rbtn_choose_second">5F</string>
+    <string name="rbtn_choose_third">AAR</string>
+    <string name="tv_choose_second">다양한 측면을 고려하여 개인과 프로젝트 전\n체적인 관점을 보여주는 회고 방식이에요!</string>
+    <string name="tv_choose_third">목표 달성에 대한 책임감과 함께, 개선에 중\n점을 두는 회고 방식이에요!</string>
+    <string name="tv_choose_first">학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!</string>
 </resources>

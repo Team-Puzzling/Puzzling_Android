@@ -8,62 +8,64 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/CustomBottomSheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:background="@drawable/rect_white_fill_top16"
-        style="@style/CustomBottomSheet"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:context=".presentation.writeRetrospective.ChooseRetrospectiveFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_choose_top"
             android:layout_width="40dp"
             android:layout_height="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/rect_gray300_fill"
             android:layout_marginHorizontal="160dp"
             android:layout_marginTop="18dp"
-            />
+            android:background="@drawable/rect_gray300_fill"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
             android:id="@+id/rg_choose_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="85dp"
             android:layout_marginTop="53dp"
-            app:layout_constraintVertical_bias="0"
+            android:layout_marginBottom="85dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0">
 
-            <RadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rbtn_choose_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@drawable/ic_custom_button"
                 android:paddingHorizontal="20dp"
-                android:text="TIL"
+                android:text="@string/rbtn_choose_first"
                 android:textAppearance="@style/Kor.Body1.Bold" />
 
 
-            <RadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rbtn_choose_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@drawable/ic_custom_button"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="5F"
+                android:text="@string/rbtn_choose_second"
                 android:textAppearance="@style/Kor.Body1.Bold" />
 
-            <RadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/rbtn_choose_third"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@drawable/ic_custom_button"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="AAR"
+                android:text="@string/rbtn_choose_third"
                 android:textAppearance="@style/Kor.Body1.Bold" />
 
         </RadioGroup>
@@ -75,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             android:layout_marginEnd="20dp"
-            android:text="학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!"
+            android:text="@string/tv_choose_first"
             app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="111dp"
             android:layout_marginEnd="20dp"
-            android:text="다양한 측면을 고려하여 개인과 프로젝트 전\n체적인 관점을 보여주는 회고 방식이에요!"
+            android:text="@string/tv_choose_second"
             app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="30dp"
-            android:text="목표 달성에 대한 책임감과 함께, 개선에 중\n점을 두는 회고 방식이에요!"
+            android:text="@string/tv_choose_third"
             app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
             app:layout_constraintTop_toBottomOf="@+id/tv_choose_second" />
 
