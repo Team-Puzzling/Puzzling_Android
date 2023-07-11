@@ -2,6 +2,7 @@ package com.puzzling.puzzlingaos.presentation.register
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
@@ -12,13 +13,19 @@ import java.util.*
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
 
     private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(this) }
+
+    private lateinit var dayCycleAdapter: DayCycleAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        dayCycleAdapter = DayCycleAdapter(this)
         binding.viewModel = viewModel
 
         clickDatePicker()
-        isDateSeleceted()
+        clickDayCyclePicker()
+        isDateSelected()
     }
 
     private fun clickDatePicker() {
@@ -36,13 +43,22 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 selectedDate.set(year, month, dayOfMonth)
                 val formattedDate = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
                 binding.tvDateDropDown.text = formattedDate
-
+                viewModel.projectStartDate = formattedDate
             }
         })
 
         bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
     }
 
-    private fun isDateSeleceted() {
+    private fun clickDayCyclePicker() {
+        binding.rvDayCycle.adapter = DayCycleAdapter(this)
+        binding.rvDayCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        dayCycleAdapter.setOnDayClickListener { response ->
+
+        }
+    }
+
+    private fun isDateSelected() {
     }
 }
