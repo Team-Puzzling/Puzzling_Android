@@ -60,7 +60,7 @@
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="174dp"
                     android:background="@drawable/rect_blue400_fill_radius_16"
-                    android:text="저장하기"
+                    android:text="@string/btn_register_dialog_top"
                     android:textAppearance="@style/Kor.Body1.Bold"
                     android:textColor="@color/white" />
 
@@ -72,7 +72,7 @@
                     android:layout_marginTop="232dp"
                     android:layout_marginBottom="28dp"
                     android:background="@drawable/rect_bg50_fill_radius_16"
-                    android:text="취소"
+                    android:text="@string/btn_register_dialog_bottom"
                     android:textAppearance="@style/Kor.Body1.Regular"
                     android:textColor="@color/gray_600" />
 
@@ -82,8 +82,9 @@
 
         <ImageView
             android:layout_width="65dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="97dp"
+            android:layout_height="65dp"
+            android:scaleType="fitXY"
+            android:layout_marginStart="171dp"
             android:contentDescription="@null"
             android:src="@drawable/img_dialog_puzzle" />
     </FrameLayout>
