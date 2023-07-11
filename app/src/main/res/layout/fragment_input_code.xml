@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
             type="com.puzzling.puzzlingaos.presentation.main.invitationCode.InvitationCodeViewModel" />
@@ -26,8 +27,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_puzzling_logo">
@@ -63,22 +64,24 @@
                 android:id="@+id/tv_code_length"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
+                android:layout_marginEnd="8dp"
                 android:text="@{@string/inputCode_length(vm.inputCodeLength)}"
                 android:textColor="@color/gray_400"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_invitation_code" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_input_success"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="64dp"
             android:background="@drawable/rect_gray400_fill_16"
+            android:onClick="@{() -> vm.isCodeValid()}"
             android:text="입력 완료"
             android:textAppearance="@style/Kor.Heading4"
             android:textColor="@color/white_000"
