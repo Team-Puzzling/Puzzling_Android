@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.main.invitationCode.InvitationCodeActivity"
+        <activity android:name=".presentation.invitationCode.InvitationCodeActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true"/>
     </application>
