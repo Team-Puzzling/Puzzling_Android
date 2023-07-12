@@ -132,6 +132,7 @@
                 android:hint="역할을 입력하세요.(ex. iOS 개발)"
                 android:maxLength="20"
                 android:paddingStart="16dp"
+                android:text="@={vm.inputRole}"
                 android:textAppearance="@style/Kor.Body2.Regular"
                 android:textColorHint="@color/gray_400"
                 app:layout_constraintEnd_toEndOf="parent"
