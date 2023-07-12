@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.main.invitationCode.InvitationCodeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_puzzling_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:src="@drawable/ic_puzzling_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_puzzling_logo">
+
+            <TextView
+                android:id="@+id/tv_invitation_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="초대코드 입력"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/et_invitation_code"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="64dp"
+                android:background="@{!vm.isValidCode() &amp; !vm.inputCode.empty ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
+                android:hint="초대코드를 입력해주세요."
+                android:maxLength="13"
+                android:paddingStart="16dp"
+                android:text="@={vm.inputCode}"
+                android:textAppearance="@style/Kor.Body2.Regular"
+                android:textColorHint="@color/gray_400"
+                app:flow_verticalAlign="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_invitation_code"
+                tools:background="@drawable/rect_red200_line_16" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/red_400"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
+                android:text="@{vm.codeErrorMessage}"
+                android:visibility="@{!vm.isValidCode() &amp; !vm.inputCode.empty ? View.VISIBLE:View.GONE, default=gone}"
+                />
+
+            <TextView
+                android:id="@+id/tv_code_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{@string/inputCode_length(vm.inputCodeLength)}"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/gray_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
+                tools:text="5/13" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_input_success"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="64dp"
+            android:background="@{vm.inputCode.empty ? @drawable/rect_gray400_fill_16 : @drawable/rect_blue400_fill_16, default = @drawable/rect_gray400_fill_16}"
+            android:enabled="@{vm.inputCode.empty ? false : true}"
+            android:onClick="@{() -> vm.isCodeValid()}"
+            android:text="입력 완료"
+            android:textAppearance="@style/Kor.Heading4"
+            android:textColor="@color/white_000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
