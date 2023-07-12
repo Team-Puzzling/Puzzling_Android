@@ -26,37 +26,39 @@
     <style name="Kor.Body1.Bold" parent="">
         <item name="android:textSize">16dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
-        <item name="lineHeight">24dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
     </style>
 
     <style name="Kor.Body1.Regular" parent="">
         <item name="android:textSize">16dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="lineHeight">24dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
     </style>
 
     <style name="Kor.Body2.Bold" parent="">
         <item name="android:textSize">15dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="lineHeight">22dp</item>
+        <item name="android:lineSpacingExtra">7dp</item>
     </style>
 
     <style name="Kor.Body2.Regular" parent="">
         <item name="android:textSize">15dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
-        <item name="lineHeight">22dp</item>
+        <item name="android:lineSpacingExtra">7dp</item>
     </style>
 
     <style name="Kor.Body3.Bold" parent="">
         <item name="android:textSize">14dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
-        <item name="lineHeight">21dp</item>
+        <item name="android:lineSpacingExtra">7dp</item>
     </style>
 
     <style name="Kor.Body3.Regular" parent="">
         <item name="android:textSize">14dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
-        <item name="lineHeight">21dp</item>
+        <item name="android:lineSpacingExtra">7dp</item>
     </style>
 
 
@@ -64,31 +66,31 @@
     <style name="Kor.Detail1.Bold" parent="">
         <item name="android:textSize">13dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
-        <item name="lineHeight">19dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
     </style>
 
     <style name="Kor.Detail1.Regular" parent="">
         <item name="android:textSize">13dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
-        <item name="lineHeight">19dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
     </style>
 
     <style name="Kor.Detail2.Bold" parent="">
         <item name="android:textSize">12dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
-        <item name="lineHeight">18dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
     </style>
 
     <style name="Kor.Detail2.Regular" parent="">
         <item name="android:textSize">12dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
-        <item name="lineHeight">18dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
     </style>
 
     <style name="Kor.Detail3.Regular" parent="">
         <item name="android:textSize">11dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
-        <item name="lineHeight">16dp</item>
+        <item name="android:lineSpacingExtra">5dp</item>
     </style>
 
 
