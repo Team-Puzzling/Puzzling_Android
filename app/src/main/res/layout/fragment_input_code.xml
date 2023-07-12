@@ -54,7 +54,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="64dp"
-                android:background="@{!vm.isCodeSuccess==true &amp; vm.isCodeSuccess!=null ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
+                android:background="@{!vm.isValidCode() &amp; !vm.inputCode.empty ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
                 android:hint="초대코드를 입력해주세요."
                 android:maxLength="13"
                 android:paddingStart="16dp"
@@ -75,10 +75,11 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/red_400"
-                android:visibility="@{!vm.isCodeSuccess==true &amp; vm.isCodeSuccess!=null ? View.VISIBLE:View.GONE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
-                tools:text="@string/inputCode_error" />
+                android:text="@{vm.errorMessage}"
+                android:visibility="@{!vm.isValidCode() &amp; !vm.inputCode.empty ? View.VISIBLE:View.GONE, default=gone}"
+                />
 
             <TextView
                 android:id="@+id/tv_code_length"
