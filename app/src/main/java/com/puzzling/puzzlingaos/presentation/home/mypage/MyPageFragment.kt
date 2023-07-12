@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home
+package com.puzzling.puzzlingaos.presentation.home.mypage
 
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
