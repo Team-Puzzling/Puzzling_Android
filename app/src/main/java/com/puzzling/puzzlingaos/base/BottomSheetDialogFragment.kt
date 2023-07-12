@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding>(@LayoutRes private val layoutResId: Int) :
+abstract class BottomSheetDialogFragment<B : ViewDataBinding>(@LayoutRes private val layoutResId: Int) :
     BottomSheetDialogFragment() {
     private var _binding: B? = null
     val binding get() = requireNotNull(_binding) { "${this::class.java.simpleName}에서 에러가 발생했습니다." }
