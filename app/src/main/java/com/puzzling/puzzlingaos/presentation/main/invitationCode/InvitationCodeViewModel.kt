@@ -45,19 +45,19 @@ class InvitationCodeViewModel : ViewModel() {
     private val _isProfileSucces = MutableStateFlow(true)
     val isProfileSuccess = _isProfileSucces.asStateFlow()
 
-    val errorMessage = MutableStateFlow<String>("")
+    val codeErrorMessage = MutableStateFlow<String>("")
 
     val isValidCode: StateFlow<Boolean> =
         combine(isCodeSuccess, isCodeInEmoji) { isCodeSuccess, isCodeInEmoji ->
             when {
                 isCodeInEmoji.not() -> {
-                    errorMessage.value = EMOJI_ERROR
+                    codeErrorMessage.value = EMOJI_ERROR
                     return@combine false
                 }
                 isCodeSuccess == null -> true
                 isCodeInEmoji && isCodeSuccess -> true
                 isCodeSuccess.not() -> {
-                    errorMessage.value = INPUT_CODE_ERROR
+                    codeErrorMessage.value = INPUT_CODE_ERROR
                     return@combine false
                 }
                 else -> true
