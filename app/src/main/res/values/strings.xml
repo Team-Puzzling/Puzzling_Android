@@ -7,4 +7,6 @@
     <string name="inputCode_error">유효하지 않은 초대코드에요. 코드를 확인해주세요.</string>
     <string name="emoji_error">특수문자, 이모지를 사용할 수 없어요.</string>
     <string name="nickName_already_use">이미 사용 중인 닉네임이에요.</string>
+    <string name="inputNickName_length">%s/10</string>
+    <string name="inputRole_length">%s/20</string>
 </resources>
