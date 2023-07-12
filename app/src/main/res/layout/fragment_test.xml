@@ -6,16 +6,16 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.PersonalBoardFragment">
+        tools:context=".presentation.home.TestFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="개인 대시보드!!" />
+            android:text="마이페이지 fragment" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>
