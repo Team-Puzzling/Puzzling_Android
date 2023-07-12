@@ -2,5 +2,9 @@
     <string name="app_name">Puzzling AOS</string>
     <string name="inputCode_length">%s/13</string>
     <string name="inputCode_title">초대코드 입력하기</string>
-    <string name="inputProfile_title">프로젝트: %s</string>
+    <string name="inputProfile_title">프로필 작성하기</string>
+    <string name="inputProfile_projectName">프로젝트: %s</string>
+    <string name="inputCode_error">유효하지 않은 초대코드에요. 코드를 확인해주세요.</string>
+    <string name="emoji_error">특수문자, 이모지를 사용할 수 없어요.</string>
+    <string name="nickName_already_use">이미 사용 중인 닉네임이에요.</string>
 </resources>
