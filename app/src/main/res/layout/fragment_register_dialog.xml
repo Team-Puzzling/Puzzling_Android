@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_register_dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="70dp"
+                    android:text="회고를 저장할까요?"
+                    android:includeFontPadding="false"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Kor.Heading4" />
+
+                <TextView
+                    android:id="@+id/tv_register_dialog_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="65dp"
+                    android:layout_marginTop="104dp"
+                    android:text="수정이 어려우니 신중하게 작성해 주세요!"
+                    android:textColor="@color/gray_600"
+                    android:includeFontPadding="false"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Kor.Body3.Regular"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register_dialog_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stateListAnimator="@null"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="174dp"
+                    android:background="@drawable/rect_blue400_fill_radius_16"
+                    android:text="@string/btn_register_dialog_top"
+                    android:textAppearance="@style/Kor.Body1.Bold"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register_dialog_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stateListAnimator="@null"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="232dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="@drawable/rect_bg50_fill_radius_16"
+                    android:text="@string/btn_register_dialog_bottom"
+                    android:textAppearance="@style/Kor.Body1.Regular"
+                    android:textColor="@color/gray_600" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:scaleType="fitXY"
+            android:layout_marginStart="171dp"
+            android:contentDescription="@null"
+            android:src="@drawable/img_dialog_puzzle" />
+    </FrameLayout>
+</layout>
