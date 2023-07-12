@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="6dp"
+        android:background="@drawable/rect_blue100_fill_16">
+
+        <TextView
+            android:id="@+id/tv_myPage_projectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="낫투두"
+            android:textAppearance="@style/Kor.Body1.Bold"
+            android:textColor="@color/black_000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D + 320"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAppearance="@style/Kor.Detail1.Regular"
+            android:textColor="@color/black_000" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_myPage_dashboard"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rect_white_fill_16"
+            android:text="대시보드 보기"
+            android:textAppearance="@style/Kor.Body3.Bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_myPage_allRetrospect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_myPage_projectName" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_myPage_allRetrospect"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rect_white_fill_16"
+            android:text="내 회고 모음"
+            android:textAppearance="@style/Kor.Body3.Bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_myPage_dashboard"
+            app:layout_constraintTop_toBottomOf="@id/tv_myPage_projectName" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
