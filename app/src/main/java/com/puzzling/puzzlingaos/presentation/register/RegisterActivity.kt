@@ -70,17 +70,37 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             viewModel.let { viewModel ->
                 if (!viewModel.validTextBox(textBoxString)) {
                     when (textBox) {
-                        viewModel.projectName -> binding.textLayoutProjectName.error = "특수문자, 이모지를 사용할 수 없어요"
-                        viewModel.projectExplanation -> binding.textLayoutIntroduction.error = "특수문자, 이모지를 사용할 수 없어요"
-                        viewModel.role -> binding.textLayoutRole.error = "특수문자, 이모지를 사용할 수 없어요"
-                        viewModel.nickName -> binding.textLayoutNickName.error = "특수문자, 이모지를 사용할 수 없어요"
+                        viewModel.projectName -> {
+                            binding.textLayoutProjectName.error = "특수문자, 이모지를 사용할 수 없어요"
+                            viewModel.isValidProjectName.value = false }
+                        viewModel.projectExplanation -> {
+                            binding.textLayoutIntroduction.error = "특수문자, 이모지를 사용할 수 없어요"
+                            viewModel.isValidProjectExplanation.value = false }
+                        viewModel.role -> {
+                            binding.textLayoutRole.error = "특수문자, 이모지를 사용할 수 없어요"
+                            viewModel.isValidRole.value = false }
+                        viewModel.nickName -> {
+                            binding.textLayoutNickName.error = "특수문자, 이모지를 사용할 수 없어요"
+                            viewModel.isValidNickName.value = false }
                     }
                 } else {
                     when (textBox) {
-                        viewModel.projectName -> binding.textLayoutProjectName.error = null
-                        viewModel.projectExplanation -> binding.textLayoutIntroduction.error = null
-                        viewModel.role -> binding.textLayoutRole.error = null
-                        viewModel.nickName -> binding.textLayoutNickName.error = null
+                        viewModel.projectName -> {
+                            binding.textLayoutProjectName.error = null
+                            viewModel.isValidProjectName.value = true
+                        }
+                        viewModel.projectExplanation -> {
+                            binding.textLayoutIntroduction.error = null
+                            viewModel.isValidProjectExplanation.value = true
+                        }
+                        viewModel.role -> {
+                            binding.textLayoutRole.error = null
+                            viewModel.isValidRole.value = true
+                        }
+                        viewModel.nickName -> {
+                            binding.textLayoutNickName.error = null
+                            viewModel.isValidNickName.value = true
+                        }
                     }
                 }
             }

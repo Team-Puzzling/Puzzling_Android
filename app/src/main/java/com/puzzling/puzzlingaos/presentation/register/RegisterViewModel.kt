@@ -38,8 +38,10 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
     fun validTextBox(textBox: String): Boolean {
         return textBox.matches(registerRegex)
     }
-
-    val isValidProjectName: Boolean = projectName.value.orEmpty().matches(registerRegex) || projectName.value.isNullOrBlank()
+    var isValidProjectName: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isValidProjectExplanation: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isValidRole: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isValidNickName: MutableLiveData<Boolean> = MutableLiveData(true)
 
     companion object {
         const val REGISTER_REGEX = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\\\\s]{0,}$"
