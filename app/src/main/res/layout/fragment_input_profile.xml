@@ -64,7 +64,7 @@
                 android:id="@+id/et_nickName"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:background="@{!vm.isProfileSuccess==true &amp; vm.isCodeSuccess!=null ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
+                android:background="@{!vm.isValidNickName() &amp; !vm.inputNickName.empty ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
                 android:hint="닉네임을 입력하세요"
                 android:maxLength="10"
                 android:paddingStart="16dp"
@@ -82,7 +82,8 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/red_400"
-                android:visibility="@{!vm.isProfileSuccess==true &amp; vm.isProfileSuccess!=null ? View.VISIBLE:View.GONE}"
+                android:text="@{vm.nickNameErrorMessage}"
+                android:visibility="@{!vm.isValidNickName() &amp; !vm.inputNickName.empty ? View.VISIBLE:View.GONE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_nickName"
                 tools:text="@string/nickName_already_use" />
@@ -128,7 +129,7 @@
                 android:id="@+id/et_role"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:background="@drawable/rect_gray050_fill_16"
+                android:background="@{!vm.isValidRole() &amp; !vm.inputRole.empty ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
                 android:hint="역할을 입력하세요.(ex. iOS 개발)"
                 android:maxLength="20"
                 android:paddingStart="16dp"
@@ -146,10 +147,10 @@
                 android:layout_marginTop="4dp"
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/red_400"
-                android:visibility="@{!vm.isProfileSuccess==true &amp; vm.isProfileSuccess!=null ? View.VISIBLE:View.GONE}"
+                android:visibility="@{!vm.isValidRole() &amp; !vm.inputRole.empty ? View.VISIBLE:View.GONE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_role"
-                tools:text="@string/emoji_error" />
+                tools:text="@{vm.roleErrorMessage}" />
 
             <TextView
                 android:id="@+id/tv_role_length"
@@ -174,8 +175,8 @@
             android:layout_height="56dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="64dp"
-            android:background="@{vm.inputCode.empty ? @drawable/rect_gray400_fill_16 : @drawable/rect_blue400_fill_16, default = @drawable/rect_gray400_fill_16}"
-            android:enabled="@{vm.inputCode.empty ? false : true}"
+            android:background="@{vm.inputNickName.empty || vm.inputRole.empty ? @drawable/rect_gray400_fill_16 : @drawable/rect_blue400_fill_16, default = @drawable/rect_gray400_fill_16}"
+            android:enabled="@{vm.inputNickName.empty || vm.inputRole.empty ? false : true}"
             android:onClick="@{() -> vm.joinProject()}"
             android:text="프로젝트 참여하기"
             android:textAppearance="@style/Kor.Heading4"

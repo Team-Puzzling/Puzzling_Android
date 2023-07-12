@@ -45,7 +45,9 @@ class InvitationCodeViewModel : ViewModel() {
     private val _isProfileSucces = MutableStateFlow(true)
     val isProfileSuccess = _isProfileSucces.asStateFlow()
 
-    val codeErrorMessage = MutableStateFlow<String>("")
+    val codeErrorMessage = MutableStateFlow("")
+    val nickNameErrorMessage = MutableStateFlow<String>("")
+    val roleErrorMessage = MutableStateFlow<String>("")
 
     val isValidCode: StateFlow<Boolean> =
         combine(isCodeSuccess, isCodeInEmoji) { isCodeSuccess, isCodeInEmoji ->
@@ -64,10 +66,44 @@ class InvitationCodeViewModel : ViewModel() {
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
 
+    val isValidNickName: StateFlow<Boolean> =
+        combine(isProfileSuccess, isNickNameInEmoji) { isProfileSuccess, isNickNameInEmoji ->
+            when {
+                isNickNameInEmoji.not() -> {
+                    nickNameErrorMessage.value = EMOJI_ERROR
+                    return@combine false
+                }
+                isProfileSuccess == null -> true
+                isNickNameInEmoji && isProfileSuccess -> true
+                isProfileSuccess.not() -> {
+                    nickNameErrorMessage.value = INPUT_CODE_ERROR
+                    return@combine false
+                }
+                else -> true
+            }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
+
+    val isValidRole: StateFlow<Boolean> =
+        combine(isProfileSuccess, isRoleInEmoji) { isProfileSuccess, isRoleInEmoji ->
+            when {
+                isRoleInEmoji.not() -> {
+                    roleErrorMessage.value = EMOJI_ERROR
+                    return@combine false
+                }
+                isProfileSuccess == null -> true
+                isRoleInEmoji && isProfileSuccess -> true
+                isProfileSuccess.not() -> {
+                    roleErrorMessage.value = INPUT_CODE_ERROR
+                    return@combine false
+                }
+                else -> true
+            }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
+
     fun isCodeValid() = viewModelScope.launch {
         // 서버 통신 추가 예정
         _codeResponse.value = ResponseInvitationCodeDto.InvitationCodeData(4, "pickle")
-        _isCodeSucces.value = false
+        _isCodeSucces.value = true
     }
 
     fun joinProject() = viewModelScope.launch {
