@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.puzzling.puzzlingaos.presentation.main.invitationCode.InvitationCodeViewModel" />
@@ -38,54 +40,132 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_project_name" />
 
-        <TextView
-            android:id="@+id/tv_nickName"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_nickName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:text="닉네임"
-            android:textAppearance="@style/Kor.Body1.Bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line" />
-
-        <EditText
-            android:id="@+id/et_nickName"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/rect_gray050_fill_16"
-            android:hint="닉네임을 입력하세요"
-            android:paddingStart="16dp"
-            android:textAppearance="@style/Kor.Body2.Regular"
-            android:textColorHint="@color/gray_400"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_nickName" />
+            app:layout_constraintTop_toBottomOf="@id/line">
 
-        <TextView
-            android:id="@+id/tv_role"
+            <TextView
+                android:id="@+id/tv_nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="닉네임"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_nickName"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@{!vm.isProfileSuccess==true &amp; vm.isCodeSuccess!=null ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
+                android:hint="닉네임을 입력하세요"
+                android:maxLength="10"
+                android:paddingStart="16dp"
+                android:text="@={vm.inputNickName}"
+                android:textAppearance="@style/Kor.Body2.Regular"
+                android:textColorHint="@color/gray_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_nickName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/red_400"
+                android:visibility="@{!vm.isProfileSuccess==true &amp; vm.isProfileSuccess!=null ? View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_nickName"
+                tools:text="@string/nickName_already_use" />
+
+
+            <TextView
+                android:id="@+id/tv_nickName_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:switchTextAppearance="@style/Kor.Detail1.Regular"
+                android:text="@{@string/inputNickName_length(vm.inputNickNameLength)}"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/gray_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_nickName"
+                tools:text="5/10" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:text="내 역할"
-            android:textAppearance="@style/Kor.Body1.Bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_nickName" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="50dp"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/rect_gray050_fill_16"
-            android:hint="역할을 입력하세요.(ex. iOS 개발)"
-            android:paddingStart="16dp"
-            android:textAppearance="@style/Kor.Body2.Regular"
-            android:textColorHint="@color/gray_400"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_role" />
+            app:layout_constraintTop_toBottomOf="@id/layout_nickName">
+
+            <TextView
+                android:id="@+id/tv_role"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="내 역할"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_role"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rect_gray050_fill_16"
+                android:hint="역할을 입력하세요.(ex. iOS 개발)"
+                android:maxLength="20"
+                android:paddingStart="16dp"
+                android:textAppearance="@style/Kor.Body2.Regular"
+                android:textColorHint="@color/gray_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_role" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/red_400"
+                android:visibility="@{!vm.isProfileSuccess==true &amp; vm.isProfileSuccess!=null ? View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_role"
+                tools:text="@string/emoji_error" />
+
+            <TextView
+                android:id="@+id/tv_role_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{@string/inputRole_length(vm.inputRoleLength)}"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/gray_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_role"
+                tools:text="10/20" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_join_project"
@@ -93,8 +173,9 @@
             android:layout_height="56dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/rect_gray400_fill_16"
-            android:onClick="@{()-> vm.joinProject()}"
+            android:background="@{vm.inputCode.empty ? @drawable/rect_gray400_fill_16 : @drawable/rect_blue400_fill_16, default = @drawable/rect_gray400_fill_16}"
+            android:enabled="@{vm.inputCode.empty ? false : true}"
+            android:onClick="@{() -> vm.joinProject()}"
             android:text="프로젝트 참여하기"
             android:textAppearance="@style/Kor.Heading4"
             android:textColor="@color/white_000"

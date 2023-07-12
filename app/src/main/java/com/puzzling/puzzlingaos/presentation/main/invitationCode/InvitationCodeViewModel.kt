@@ -16,11 +16,24 @@ class InvitationCodeViewModel : ViewModel() {
         inputCode.length.toString()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
 
+    val inputNickName = MutableStateFlow("")
+    val inputNickNameLength = inputNickName.map { inputNickName ->
+        inputNickName.length.toString()
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
+
+    val inputRole = MutableStateFlow("")
+    val inputRoleLength = inputRole.map { inputRole ->
+        inputRole.length.toString()
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
+
     private val _codeResponse = MutableLiveData<ResponseInvitationCodeDto.InvitationCodeData?>(null)
     val codeResponse: LiveData<ResponseInvitationCodeDto.InvitationCodeData?> get() = _codeResponse
 
     private val _isCodeSucces = MutableLiveData<Boolean>()
     val isCodeSuccess: LiveData<Boolean> get() = _isCodeSucces
+
+    private val _isProfileSucces = MutableLiveData<Boolean>()
+    val isProfileSuccess: LiveData<Boolean> get() = _isProfileSucces
 
     fun isCodeValid() = viewModelScope.launch {
         // 서버 통신 추가 예정
@@ -30,6 +43,7 @@ class InvitationCodeViewModel : ViewModel() {
 
     fun joinProject() = viewModelScope.launch {
         // 서버 통신 추가 예정
+        _isProfileSucces.value = true
         Log.d("프로젝트 참여하기", "프로젝트 참여하기 ${_codeResponse.value?.projectName}")
     }
 }

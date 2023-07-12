@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="vm"
@@ -70,23 +71,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/red_400"
+                android:visibility="@{!vm.isCodeSuccess==true &amp; vm.isCodeSuccess!=null ? View.VISIBLE:View.GONE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
-                tools:text="@string/inputCode_error"
-                android:layout_marginStart="8dp"
-                android:visibility="@{!vm.isCodeSuccess==true &amp; vm.isCodeSuccess!=null ? View.VISIBLE:View.GONE}"
-                android:textColor="@color/red_400"
-                android:textAppearance="@style/Kor.Detail1.Regular"/>
+                tools:text="@string/inputCode_error" />
 
             <TextView
                 android:id="@+id/tv_code_length"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:text="@{@string/inputCode_length(vm.inputCodeLength)}"
+                android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/gray_400"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_invitation_code" />
+                app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
+                tools:text="5/13" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
