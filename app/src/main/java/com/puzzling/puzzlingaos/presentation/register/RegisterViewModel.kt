@@ -19,21 +19,29 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
     var isDateCycleSelected = ArrayList<String>()
 
     fun isValid(): Boolean {
-        return valid(projectName.value.orEmpty()) &&
-            valid(projectExplanation.value.orEmpty()) &&
-            valid(role.value.orEmpty()) &&
-            valid(nickName.value.orEmpty()) &&
+        return validRegister(projectName.value.orEmpty()) &&
+            validRegister(projectExplanation.value.orEmpty()) &&
+            validRegister(role.value.orEmpty()) &&
+            validRegister(nickName.value.orEmpty()) &&
             projectStartDate.isNotBlank() &&
             isDateCycleSelected.size > 0
     }
 
     val isEnabledRegister = MutableLiveData<Boolean>().apply { isValid() }
 
-    fun valid(textBox: String): Boolean {
+    // 등록용
+    fun validRegister(textBox: String): Boolean {
         return textBox.matches(registerRegex) && textBox.isNotBlank()
     }
 
+    // editText 확인용
+    fun validTextBox(textBox: String): Boolean {
+        return textBox.matches(registerRegex)
+    }
+
+    val isValidProjectName: Boolean = projectName.value.orEmpty().matches(registerRegex) || projectName.value.isNullOrBlank()
+
     companion object {
-        const val REGISTER_REGEX = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\\\\s]{1,}$"
+        const val REGISTER_REGEX = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\\\\s]{0,}$"
     }
 }
