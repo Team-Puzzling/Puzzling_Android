@@ -30,4 +30,5 @@
     <string name="tv_choose_first">학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!</string>
     <string name="btn_register_dialog_top">저장하기</string>
     <string name="btn_register_dialog_bottom">취소</string>
+    <string name="btn_logout"><u>로그아웃 하기</u></string>
 </resources>
