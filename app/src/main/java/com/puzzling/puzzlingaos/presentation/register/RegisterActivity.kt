@@ -33,6 +33,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private fun clickDatePicker() {
         binding.btnDateDropDown.setOnClickListener {
+            // binding.layoutRegisterDate.setBackgroundResource(R.drawable.rect_blue_line_16)
             pickedDate()
         }
     }
@@ -44,9 +45,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             override fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, month, dayOfMonth)
-                val formattedDate = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
-                binding.tvDateDropDown.text = formattedDate
-                viewModel.projectStartDate = formattedDate
+                val formattedDateTextBox = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
+                val formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
+                binding.tvDateDropDown.text = formattedDateTextBox
+                viewModel.projectStartDate = formattedDateRegister
             }
         })
 
@@ -66,7 +68,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         // val textBoxString: String = textBox.value ?: "Null Value"
         textBox.observe(this) { textBoxString ->
             viewModel.let { viewModel ->
-                if (!viewModel.valid(textBoxString)) {
+                if (!viewModel.validTextBox(textBoxString)) {
                     when (textBox) {
                         viewModel.projectName -> binding.textLayoutProjectName.error = "특수문자, 이모지를 사용할 수 없어요"
                         viewModel.projectExplanation -> binding.textLayoutIntroduction.error = "특수문자, 이모지를 사용할 수 없어요"
