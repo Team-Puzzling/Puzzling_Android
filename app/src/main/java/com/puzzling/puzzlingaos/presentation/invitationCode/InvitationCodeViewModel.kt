@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.main.invitationCode
+package com.puzzling.puzzlingaos.presentation.invitationCode
 
 import android.util.Log
 import androidx.lifecycle.*
