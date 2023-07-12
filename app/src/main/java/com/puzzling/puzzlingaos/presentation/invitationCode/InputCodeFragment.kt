@@ -29,7 +29,7 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
             viewModel.isCodeSuccess.collect {
                 if (it != null && it) {
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.fc_invitation, InputProfileFragment())
+                        .replace(R.id.fcv_invitation_main, InputProfileFragment())
                         .commit()
                 }
             }

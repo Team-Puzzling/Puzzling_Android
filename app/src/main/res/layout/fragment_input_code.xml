@@ -64,8 +64,7 @@
                 app:flow_verticalAlign="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_invitation_code"
-                tools:background="@drawable/rect_red200_line_16" />
+                app:layout_constraintTop_toBottomOf="@id/tv_invitation_code" />
 
 
             <TextView
