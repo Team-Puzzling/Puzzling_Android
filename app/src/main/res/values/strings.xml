@@ -13,7 +13,6 @@
     <string name="tv_write_question3">배운 점은 무엇인가요?</string>
     <string name="tv_write_question1">잘한 점은 무엇인가요?</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rbtn_choose_first">TIL</string>
     <string name="rbtn_choose_second">5F</string>
     <string name="rbtn_choose_third">AAR</string>
@@ -22,9 +21,5 @@
     <string name="tv_choose_first">학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!</string>
     <string name="btn_register_dialog_top">저장하기</string>
     <string name="btn_register_dialog_bottom">취소</string>
-    <string name="tb_home_personal">개인 대시보드</string>
-    <string name="tb_home_team">팀 대시보드</string>
-    <string name="menu_home">홈</string>
-    <string name="menu_mypage">마이페이지</string>
 
 </resources>
