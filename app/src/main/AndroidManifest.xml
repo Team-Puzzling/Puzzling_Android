@@ -32,7 +32,6 @@
             android:name=".presentation.register.RegisterActivity"
             android:windowSoftInputMode="adjustNothing"
             android:exported="true"/>
-
     </application>
 
 </manifest>
