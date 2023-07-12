@@ -48,7 +48,7 @@
 
 
             <EditText
-                android:id="@+id/et_invitation_code"
+                android:id="@+id/edt_invitation_code"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -76,7 +76,7 @@
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/red_400"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
+                app:layout_constraintTop_toBottomOf="@id/edt_invitation_code"
                 android:text="@{vm.codeErrorMessage}"
                 android:visibility="@{!vm.isValidCode() &amp; !vm.inputCode.empty ? View.VISIBLE:View.GONE, default=gone}"
                 />
@@ -91,7 +91,7 @@
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/gray_400"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_invitation_code"
+                app:layout_constraintTop_toBottomOf="@id/edt_invitation_code"
                 tools:text="5/13" />
 
 
