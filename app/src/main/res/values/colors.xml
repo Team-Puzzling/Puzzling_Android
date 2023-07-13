@@ -25,6 +25,8 @@
     <color name="yellow_400">#FFCD6B</color>
     <color name="yellow_200">#FFEBA5</color>
     <color name="yellow_100">#FFF6D6</color>
+    <color name="yellow_50">#FFFBEB</color>
+
 
     <!-- Red Variations -->
     <color name="red_600">#D00000</color>
