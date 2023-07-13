@@ -24,7 +24,7 @@ class TopAdapter(private val nickName: String) : RecyclerView.Adapter<TopAdapter
     class TopViewHolder(private val binding: ItemMypageNicknameBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(nickName: String) {
-            binding.tvMyPageNickName.text = nickName+"님 안녕하세요 :)"
+            binding.tvMyPageNickName.text = nickName + "님 안녕하세요 :)"
         }
     }
 }
