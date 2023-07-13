@@ -1,19 +1,14 @@
 package com.puzzling.puzzlingaos.presentation.register
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.puzzling.puzzlingaos.R
+import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentDatePickerBinding
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 
-class DatePickerFragment : BottomSheetDialogFragment() {
-
-    private var _binding: FragmentDatePickerBinding? = null
-    private val binding: FragmentDatePickerBinding
-        get() = requireNotNull(_binding) { "앗! binding이 NUll이 아니다" }
+class DatePickerFragment : BottomSheetDialogFragment<FragmentDatePickerBinding>(R.layout.fragment_date_picker) {
 
     private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(requireActivity()) }
 
@@ -21,15 +16,6 @@ class DatePickerFragment : BottomSheetDialogFragment() {
 
     interface OnDateSelectedListener {
         fun onDateSelected(year: Int, month: Int, dayOfMonth: Int)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentDatePickerBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,10 +42,5 @@ class DatePickerFragment : BottomSheetDialogFragment() {
 
     fun setOnDateSelectedListener(listener: OnDateSelectedListener) {
         onDateSelectedListener = listener
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
