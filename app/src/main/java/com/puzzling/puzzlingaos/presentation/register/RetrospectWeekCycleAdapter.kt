@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.R
-import com.puzzling.puzzlingaos.databinding.ItemRegisterDayCycleBinding
+import com.puzzling.puzzlingaos.databinding.ItemRegisterRetrospectWeekCycleBinding
 import com.puzzling.puzzlingaos.domain.entity.RetrospectWeekCycle
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
@@ -28,7 +28,7 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
         RetrospectWeekCycle("일"),
     )
 
-    inner class RetrospectWeekCycleViewHolder(private val binding: ItemRegisterDayCycleBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class RetrospectWeekCycleViewHolder(private val binding: ItemRegisterRetrospectWeekCycleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(dayCycle: RetrospectWeekCycle) {
             binding.tvRegisterDayCycle.text = dayCycle.day
             binding.root.setOnClickListener {
@@ -39,7 +39,7 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrospectWeekCycleViewHolder {
-        val binding = ItemRegisterDayCycleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRegisterRetrospectWeekCycleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RetrospectWeekCycleViewHolder(binding)
     }
 
@@ -56,7 +56,7 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
 
     var selectedRetrospectDayArray = arrayListOf<String>()
 
-    private fun daySelection(binding: ItemRegisterDayCycleBinding, retrospectWeekCycle: RetrospectWeekCycle) {
+    private fun daySelection(binding: ItemRegisterRetrospectWeekCycleBinding, retrospectWeekCycle: RetrospectWeekCycle) {
         if (selectedRetrospectDayArray.contains(retrospectWeekCycle.day)) {
             selectedRetrospectDayArray.remove(retrospectWeekCycle.day)
             changeBackground(binding, false)
@@ -67,7 +67,7 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
         viewmodel.isDateCycleSelected.value = selectedRetrospectDayArray
     }
 
-    private fun changeBackground(binding: ItemRegisterDayCycleBinding, bool: Boolean) {
+    private fun changeBackground(binding: ItemRegisterRetrospectWeekCycleBinding, bool: Boolean) {
         binding.root.backgroundTintList =
             when (bool) {
                 true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.blue_400))
