@@ -113,8 +113,8 @@ class InvitationCodeViewModel : ViewModel() {
     }
 
     companion object {
-        const val EMOJI_PATTERN =
-            "^[ㄱ-ㅣ가-힣a-zA-Z0-9\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$"
+        const val EMOJI_PATTERN: String =
+            "^[ㄱ-ㅣ가-힣a-zA-Z0-9 \\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$"
         const val INPUT_CODE_ERROR = "유효하지 않은 초대코드에요. 코드를 확인해주세요."
         const val EMOJI_ERROR = "특수문자, 이모지를 사용할 수 없어요."
         const val NICKNAME_ALREADY_INUSE = "이미 사용 중인 닉네임이에요."
