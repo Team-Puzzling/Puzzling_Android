@@ -51,6 +51,6 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
     var isValidNickName: MutableLiveData<Boolean> = MutableLiveData(true)
 
     companion object {
-        const val REGISTER_REGEX = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\\\\s]{0,}$"
+        const val REGISTER_REGEX = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9 \\\\s]*$"
     }
 }
