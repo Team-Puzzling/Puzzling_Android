@@ -25,7 +25,7 @@
 
 
             <TextView
-                android:id="@+id/toolBarTitle"
+                android:id="@+id/tv_myPage_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -35,7 +35,46 @@
                 tools:ignore="NotSibling" />
 
 
+
         </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:id="@+id/container_myPage_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_myRetrospect_main"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rect_gray050_fill_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="낫투두"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                android:textColor="@color/gray_700"
+                android:layout_marginStart="18dp"/>
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="6dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_down"
+                android:layout_marginStart="2dp"/>
+
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_myPage_project"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
