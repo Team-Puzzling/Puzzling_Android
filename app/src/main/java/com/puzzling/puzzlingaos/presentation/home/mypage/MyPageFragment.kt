@@ -28,7 +28,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun initAdapter() {
         val myProjectAdapter = MyProjectAdapter()
-        val concatAdapter = ConcatAdapter(TopAdapter("지니"), myProjectAdapter)
+        val concatAdapter = ConcatAdapter(TopAdapter("지니"), myProjectAdapter, BottomAdapter())
 
         with(binding) {
             rcvMyPageMain.adapter = concatAdapter
