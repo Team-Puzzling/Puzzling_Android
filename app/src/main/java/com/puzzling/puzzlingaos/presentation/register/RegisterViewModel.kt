@@ -1,37 +1,44 @@
 package com.puzzling.puzzlingaos.presentation.register
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puzzling.puzzlingaos.data.repository.RegisterRepositoryImpl
 
 class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryImpl) : ViewModel() {
 
-//    private val _isEnabledRegister: MutableLiveData<Boolean> = MutableLiveData(false)
-//    var isEnabledRegister: LiveData<Boolean> = _isEnabledRegister
-
     private val registerRegex = REGISTER_REGEX.toRegex()
 
     val projectName = MutableLiveData<String>()
     val projectExplanation = MutableLiveData<String>()
-    var projectStartDate = String()
+    val projectStartDate = MutableLiveData<String>()
     val role = MutableLiveData<String>()
     val nickName = MutableLiveData<String>()
-    var isDateCycleSelected = ArrayList<String>()
+    var dayArray = ArrayList<String>()
+    val isDateCycleSelected = MutableLiveData<ArrayList<String>>()
 
     fun isValid(): Boolean {
         return validRegister(projectName.value.orEmpty()) &&
             validRegister(projectExplanation.value.orEmpty()) &&
             validRegister(role.value.orEmpty()) &&
             validRegister(nickName.value.orEmpty()) &&
-            projectStartDate.isNotBlank() &&
-            isDateCycleSelected.size > 0
+            !projectStartDate.value.isNullOrBlank() &&
+            isDateCycleSelected.value.orEmpty().isNotEmpty()
     }
 
-    val isEnabledRegister = MutableLiveData<Boolean>().apply { isValid() }
+    val isEnabledRegister = MediatorLiveData<Boolean>().apply {
+        addSource(projectName) { value = isValid() }
+        addSource(projectExplanation) { value = isValid() }
+        addSource(role) { value = isValid() }
+        addSource(nickName) { value = isValid() }
+        addSource(projectStartDate) { value = isValid() }
+        addSource(isDateCycleSelected) { value = isValid() }
+    }
+    var isBtnEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
 
     // 등록용
     fun validRegister(textBox: String): Boolean {
-        return textBox.matches(registerRegex) && textBox.isNotBlank()
+        return textBox.matches(registerRegex) && !textBox.isNullOrBlank()
     }
 
     // editText 확인용

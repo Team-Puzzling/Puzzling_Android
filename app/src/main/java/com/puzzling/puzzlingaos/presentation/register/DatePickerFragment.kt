@@ -9,7 +9,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentDatePickerBinding
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 
-
 class DatePickerFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentDatePickerBinding? = null
@@ -52,7 +51,7 @@ class DatePickerFragment : BottomSheetDialogFragment() {
         val month = datePicker.month
         val dayOfMonth = datePicker.dayOfMonth
         onDateSelectedListener.onDateSelected(year, month, dayOfMonth)
-        viewModel.projectStartDate = "$year/${month + 1}/$dayOfMonth"
+        viewModel.projectStartDate.value = "$year-${month + 1}-$dayOfMonth"
     }
 
     fun setOnDateSelectedListener(listener: OnDateSelectedListener) {
