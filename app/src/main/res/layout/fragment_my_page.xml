@@ -68,15 +68,6 @@
             app:layout_constraintTop_toBottomOf="@id/tb_myPage"
             tools:listitem="@layout/item_my_project" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="31dp"
-            android:text="@string/btn_logout"
-            android:textColor="@color/gray_400"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rcv_myPage_main" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
