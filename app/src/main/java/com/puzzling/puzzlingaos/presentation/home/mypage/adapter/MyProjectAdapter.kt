@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage
+package com.puzzling.puzzlingaos.presentation.home.mypage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.ItemMyProjectBinding
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
-import java.lang.Math.abs
 import java.text.SimpleDateFormat
 import java.util.*
 
