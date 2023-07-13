@@ -1,21 +1,633 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.home.PersonalDashboardFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_personal_puzzleview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="개인 대시보드!!" />
+            android:layout_height="240dp"
+            android:background="@drawable/rect_blue50_fill_bottom16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/tv_personal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="20dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_personal_title"
+                android:textAppearance="@style/Kor.Heading4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_personal_puzzle_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="105dp"
+                android:layout_marginEnd="4dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_personal_puzzle_current"
+                android:textAppearance="@style/Kor.Heading4"
+                android:textColor="@color/blue_400"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_personal_title"
+                app:layout_constraintEnd_toStartOf="@id/tv_personal_puzzle_total"
+                app:layout_constraintTop_toTopOf="@+id/tv_personal_title" />
+
+            <TextView
+                android:id="@+id/tv_personal_puzzle_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="29dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_personal_puzzle_total"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@color/gray_500"
+                app:layout_constraintBottom_toBottomOf="@id/tv_personal_puzzle_current"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toTopOf="@id/tv_personal_puzzle_current" />
+
+            <HorizontalScrollView
+                android:id="@+id/sv_personal_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none"
+                android:fillViewport="true"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_personal_title">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_personal_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle1"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle1"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle1"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle1"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle1" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main1"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main1"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main1">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle2"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle2"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle2"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle2"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main2"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main2"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main2">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle3"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle3"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle3"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle3"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle3" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main3"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main3"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main3">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle4"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle4"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle4"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle4"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle4" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main4"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main4"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main4">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle5"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle5"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle5"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle5"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle5" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main5"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main5"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main5">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle6"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle5"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle6"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle6"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle6" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main6"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main6"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main6">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle7"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle7"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle7"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle7"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle7" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main7"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main7"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main7">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle8"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle8"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle8"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle8"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle8" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main8"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main8"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main8">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle9"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle9"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle9"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle9"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle9" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main9"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main9"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main9">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle10"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle10"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle10"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle10"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle10" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main10"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main10"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main10">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle11"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle11"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle11"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle11"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle11" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main11"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main11"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main11">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle12"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle12"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle12"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle12"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle12" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main12"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main12"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main12">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle13"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle13"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle13"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle13"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle13" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main13"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main13"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main13">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle14"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle14"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle14"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle14"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle14" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main14"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main14"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main14">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_puzzle15"
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/img_puzzle15"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_personal_date15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_personal_date"
+                            android:textAppearance="@style/Kor.Detail2.Regular"
+                            android:textColor="@color/blue_500"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_personal_puzzle15"
+                            app:layout_constraintStart_toStartOf="@+id/iv_personal_puzzle15"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_personal_puzzle15" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </HorizontalScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
