@@ -32,6 +32,10 @@
             android:name=".presentation.register.RegisterActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
+        <activity
+            android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" />
     </application>
 
 </manifest>
