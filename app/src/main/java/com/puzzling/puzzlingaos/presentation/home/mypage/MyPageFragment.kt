@@ -8,8 +8,8 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectBottomAdapter
 import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectAdapter
+import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectBottomAdapter
 import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectTopAdapter
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
@@ -31,12 +31,21 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun initAdapter() {
         val myProjectAdapter = MyProjectAdapter()
-        val concatAdapter = ConcatAdapter(MyProjectTopAdapter("지니"), myProjectAdapter, MyProjectBottomAdapter())
+        val concatAdapter =
+            ConcatAdapter(MyProjectTopAdapter("지니"), myProjectAdapter, MyProjectBottomAdapter())
 
         with(binding) {
             rcvMyPageMain.adapter = concatAdapter
             rcvMyPageMain.layoutManager = LinearLayoutManager(activity)
         }
         myProjectAdapter.submitList(dummyItemList)
+
+        myProjectAdapter.setOnItemClickListener(object : MyProjectAdapter.OnItemClickListener {
+            override fun onItemClick(v: View, data: ResponseMyPageProjectDto, pos: Int) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fcv_main_container, MyRetrospectFragment()).addToBackStack(null)
+                    .commit()
+            }
+        })
     }
 }
