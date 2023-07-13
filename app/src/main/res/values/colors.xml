@@ -48,7 +48,7 @@
     <color name="white_000">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
 
-
-
+    <!-- Background -->
+    <color name="bg_050">#FAFAFA</color>
 
 </resources>
