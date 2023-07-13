@@ -30,4 +30,12 @@
     <string name="tv_choose_first">학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!</string>
     <string name="btn_register_dialog_top">저장하기</string>
     <string name="btn_register_dialog_bottom">취소</string>
+    <string name="tv_personal_date">08/01</string>
+    <string name="tv_personal_title">이솝트 님이 모은 퍼즐</string>
+    <string name="tv_personal_puzzle_current">n 조각</string>
+    <string name="tv_personal_puzzle_total">/15</string>
+    <string name="tv_personal_current_puzzle_board">n 판</string>
+    <string name="tv_personal_top_button">퍼즐판 보러가기</string>
+    <string name="tv_team_top_button">팀 퍼즐판 보러가기</string>
+
 </resources>
