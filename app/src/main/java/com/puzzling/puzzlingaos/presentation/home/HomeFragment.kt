@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentHomeBinding
+import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardFragment
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
