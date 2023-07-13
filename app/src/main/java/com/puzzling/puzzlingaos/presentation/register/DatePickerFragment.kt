@@ -25,7 +25,7 @@ class DatePickerFragment : BottomSheetDialogFragment<FragmentDatePickerBinding>(
     }
 
     private fun clickDatePicker() {
-        binding.btDatePicker.setOnClickListener {
+        binding.btnDatePicker.setOnClickListener {
             sendDate()
             dialog?.dismiss()
         }

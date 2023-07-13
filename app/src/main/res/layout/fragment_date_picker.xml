@@ -30,7 +30,7 @@
                 android:layout_gravity="center" />
 
             <Button
-                android:id="@+id/bt_date_picker"
+                android:id="@+id/btn_date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="확인"

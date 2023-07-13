@@ -53,8 +53,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     private fun clickDayCyclePicker() {
-        binding.rvDayCycle.adapter = RetrospectWeekCycleAdapter(viewModel)
-        binding.rvDayCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rcvRetrospectWeekCycle.adapter = RetrospectWeekCycleAdapter(viewModel)
+        binding.rcvRetrospectWeekCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
             viewModel.dayArray = dayCycleAdapter.selectedRetrospectDayArray
@@ -71,34 +71,34 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 if (!viewModel.validTextBox(textBoxString)) {
                     when (textBox) {
                         viewModel.projectName -> {
-                            binding.textLayoutProjectName.error = ERROR_MESSAGE
+                            binding.layoutProjectName.error = ERROR_MESSAGE
                             viewModel.isValidProjectName.value = false }
                         viewModel.projectExplanation -> {
-                            binding.textLayoutIntroduction.error = ERROR_MESSAGE
+                            binding.layoutExplanation.error = ERROR_MESSAGE
                             viewModel.isValidProjectExplanation.value = false }
                         viewModel.role -> {
-                            binding.textLayoutRole.error = ERROR_MESSAGE
+                            binding.layoutRole.error = ERROR_MESSAGE
                             viewModel.isValidRole.value = false }
                         viewModel.nickName -> {
-                            binding.textLayoutNickName.error = ERROR_MESSAGE
+                            binding.layoutNickName.error = ERROR_MESSAGE
                             viewModel.isValidNickName.value = false }
                     }
                 } else {
                     when (textBox) {
                         viewModel.projectName -> {
-                            binding.textLayoutProjectName.error = null
+                            binding.layoutProjectName.error = null
                             viewModel.isValidProjectName.value = true
                         }
                         viewModel.projectExplanation -> {
-                            binding.textLayoutIntroduction.error = null
+                            binding.layoutExplanation.error = null
                             viewModel.isValidProjectExplanation.value = true
                         }
                         viewModel.role -> {
-                            binding.textLayoutRole.error = null
+                            binding.layoutRole.error = null
                             viewModel.isValidRole.value = true
                         }
                         viewModel.nickName -> {
-                            binding.textLayoutNickName.error = null
+                            binding.layoutNickName.error = null
                             viewModel.isValidNickName.value = true
                         }
                     }
