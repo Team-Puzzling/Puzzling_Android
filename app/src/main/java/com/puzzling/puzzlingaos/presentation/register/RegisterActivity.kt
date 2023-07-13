@@ -15,12 +15,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(this) }
 
-    private lateinit var dayCycleAdapter: DayCycleAdapter
+    private lateinit var dayCycleAdapter: RetrospectWeekCycleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dayCycleAdapter = DayCycleAdapter(viewModel)
+        dayCycleAdapter = RetrospectWeekCycleAdapter(viewModel)
         binding.viewModel = viewModel
 
         clickDatePicker()
@@ -57,11 +57,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     private fun clickDayCyclePicker() {
-        binding.rvDayCycle.adapter = DayCycleAdapter(viewModel)
+        binding.rvDayCycle.adapter = RetrospectWeekCycleAdapter(viewModel)
         binding.rvDayCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
-            viewModel.dayArray = dayCycleAdapter.selectedDayArray
+            viewModel.dayArray = dayCycleAdapter.selectedRetrospectDayArray
         }
     }
 
