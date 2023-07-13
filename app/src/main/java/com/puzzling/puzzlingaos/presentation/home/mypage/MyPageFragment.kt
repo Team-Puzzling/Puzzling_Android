@@ -2,6 +2,7 @@ package com.puzzling.puzzlingaos.presentation.home.mypage
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -27,8 +28,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun initAdapter() {
         val myProjectAdapter = MyProjectAdapter()
+        val concatAdapter = ConcatAdapter(TopAdapter("지니"), myProjectAdapter)
+
         with(binding) {
-            rcvMyPageMain.adapter = myProjectAdapter
+            rcvMyPageMain.adapter = concatAdapter
             rcvMyPageMain.layoutManager = LinearLayoutManager(activity)
         }
         myProjectAdapter.submitList(dummyItemList)
