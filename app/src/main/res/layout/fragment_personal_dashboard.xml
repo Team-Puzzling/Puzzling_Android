@@ -619,6 +619,17 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_personal_main16"
+                        android:layout_width="32dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cl_personal_main15"
+                        app:layout_constraintStart_toEndOf="@+id/cl_personal_main15"
+                        app:layout_constraintTop_toTopOf="@+id/cl_personal_main15">
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
