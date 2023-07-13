@@ -18,7 +18,6 @@ class InvitationCodeActivity :
         initFragment()
 
         binding.vm = viewModel
-        binding.lifecycleOwner = this@InvitationCodeActivity
     }
 
     private fun initFragment() {
