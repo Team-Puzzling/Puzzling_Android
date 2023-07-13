@@ -419,8 +419,8 @@
                 android:textAppearance="@style/Kor.Heading4"
                 android:textColor="@color/white_000"
                 android:includeFontPadding="false"
-                android:enabled="@{viewModel.isEnabledRegister}"
-                android:background="@{viewModel.isEnabledRegister ? @drawable/bg_register_registerbutton_select : @drawable/sel_register_drawable_enabled_btn}"
+                android:enabled="@{viewModel.isBtnEnabled}"
+                android:background="@{viewModel.isBtnEnabled ? @drawable/bg_register_registerbutton_select : @drawable/bg_register_registerbutton_deselect}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />

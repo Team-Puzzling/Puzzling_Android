@@ -20,20 +20,21 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dayCycleAdapter = DayCycleAdapter(this)
+        dayCycleAdapter = DayCycleAdapter(viewModel)
         binding.viewModel = viewModel
 
         clickDatePicker()
         clickDayCyclePicker()
+        getDay()
         textBoxListener(viewModel.projectName)
         textBoxListener(viewModel.projectExplanation)
         textBoxListener(viewModel.role)
         textBoxListener(viewModel.nickName)
+        canBtnClick()
     }
 
     private fun clickDatePicker() {
         binding.btnDateDropDown.setOnClickListener {
-            // binding.layoutRegisterDate.setBackgroundResource(R.drawable.rect_blue_line_16)
             pickedDate()
         }
     }
@@ -46,9 +47,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, month, dayOfMonth)
                 val formattedDateTextBox = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
-                val formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
+                var formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
                 binding.tvDateDropDown.text = formattedDateTextBox
-                viewModel.projectStartDate = formattedDateRegister
+                viewModel.projectStartDate.value = formattedDateRegister
             }
         })
 
@@ -56,16 +57,19 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     private fun clickDayCyclePicker() {
-        binding.rvDayCycle.adapter = DayCycleAdapter(this)
+        binding.rvDayCycle.adapter = DayCycleAdapter(viewModel)
         binding.rvDayCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
-            viewModel.isDateCycleSelected = dayCycleAdapter.selectedDayArray
+            viewModel.dayArray = dayCycleAdapter.selectedDayArray
         }
     }
 
+    private fun getDay() {
+        viewModel.isDateCycleSelected.value = viewModel.dayArray
+    }
+
     private fun textBoxListener(textBox: MutableLiveData<String>) {
-        // val textBoxString: String = textBox.value ?: "Null Value"
         textBox.observe(this) { textBoxString ->
             viewModel.let { viewModel ->
                 if (!viewModel.validTextBox(textBoxString)) {
@@ -103,6 +107,14 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun canBtnClick() {
+        viewModel.isEnabledRegister.observe(this@RegisterActivity) {
+            viewModel.let { viewModel ->
+                viewModel.isBtnEnabled.value = viewModel.isValid()
             }
         }
     }
