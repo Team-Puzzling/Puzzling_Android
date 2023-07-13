@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_myPage_startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="D + 320"
@@ -47,6 +48,7 @@
             android:background="@drawable/rect_white_fill_16"
             android:text="대시보드 보기"
             android:textAppearance="@style/Kor.Body3.Bold"
+            android:outlineProvider="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_myPage_allRetrospect"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +61,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
+            android:outlineProvider="none"
             android:background="@drawable/rect_white_fill_16"
             android:text="내 회고 모음"
             android:textAppearance="@style/Kor.Body3.Bold"
