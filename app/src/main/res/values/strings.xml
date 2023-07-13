@@ -27,5 +27,6 @@
     <string name="tv_personal_puzzle_total">/15</string>
     <string name="tv_personal_current_puzzle_board">n 판</string>
     <string name="tv_personal_top_button">퍼즐판 보러가기</string>
+    <string name="tv_team_top_button">팀 퍼즐판 보러가기</string>
 
 </resources>

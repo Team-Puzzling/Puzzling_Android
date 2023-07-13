@@ -68,7 +68,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="14dp"
                 android:fillViewport="true"
-                android:orientation="horizontal"
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -634,7 +633,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="17dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/rect_white_fill_radius_16"
+                android:background="@drawable/img_home_puzzle_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -668,12 +667,12 @@
                     android:textAppearance="@style/Kor.Heading4"
                     android:textColor="@color/blue_400"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_personal_puzzle_next"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btn_personal_puzzle_next"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginVertical="8dp"
