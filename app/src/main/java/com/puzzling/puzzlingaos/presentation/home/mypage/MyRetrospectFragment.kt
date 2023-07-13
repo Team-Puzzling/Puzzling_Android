@@ -1,7 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.home.mypage
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ConcatAdapter
@@ -39,18 +38,9 @@ class MyRetrospectFragment :
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowTitleEnabled(false)
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fcv_main_container, MyPageFragment())
-                    .commit()
-            }
+        binding.tbMyRetrospectMain.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
-
-        return super.onOptionsItemSelected(item)
     }
 
     private fun initAdapter() {
