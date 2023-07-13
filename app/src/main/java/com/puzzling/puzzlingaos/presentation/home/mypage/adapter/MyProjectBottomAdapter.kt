@@ -1,13 +1,12 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage
+package com.puzzling.puzzlingaos.presentation.home.mypage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.databinding.ItemBottomLogoutBinding
-import com.puzzling.puzzlingaos.databinding.ItemMypageNicknameBinding
 
-class BottomAdapter() :
-    RecyclerView.Adapter<BottomAdapter.BottomViewHolder>() {
+class MyProjectBottomAdapter() :
+    RecyclerView.Adapter<MyProjectBottomAdapter.BottomViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomViewHolder {
         val binding: ItemBottomLogoutBinding =

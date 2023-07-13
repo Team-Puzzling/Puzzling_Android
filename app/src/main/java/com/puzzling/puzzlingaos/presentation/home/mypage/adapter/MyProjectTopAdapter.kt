@@ -1,11 +1,11 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage
+package com.puzzling.puzzlingaos.presentation.home.mypage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.databinding.ItemMypageNicknameBinding
 
-class TopAdapter(private val nickName: String) : RecyclerView.Adapter<TopAdapter.TopViewHolder>() {
+class MyProjectTopAdapter(private val nickName: String) : RecyclerView.Adapter<MyProjectTopAdapter.TopViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopViewHolder {
         val binding: ItemMypageNicknameBinding =
