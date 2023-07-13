@@ -21,10 +21,10 @@ class DatePickerFragment : BottomSheetDialogFragment<FragmentDatePickerBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        clickButton()
+        clickDatePicker()
     }
 
-    private fun clickButton() {
+    private fun clickDatePicker() {
         binding.btDatePicker.setOnClickListener {
             sendDate()
             dialog?.dismiss()
