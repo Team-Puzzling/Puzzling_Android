@@ -31,6 +31,9 @@
         <activity android:name=".presentation.invitationCode.InvitationCodeActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true"/>
+        <activity android:name=".presentation.home.mypage.MyRetrospectActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
