@@ -23,7 +23,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         dayCycleAdapter = RetrospectWeekCycleAdapter(viewModel)
         binding.viewModel = viewModel
 
-        clickDatePicker()
+        pickedDate()
         clickDayCyclePicker()
         getDay()
         textBoxListener(viewModel.projectName)
@@ -33,27 +33,23 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         canBtnClick()
     }
 
-    private fun clickDatePicker() {
-        binding.btnDateDropDown.setOnClickListener {
-            pickedDate()
-        }
-    }
-
     private fun pickedDate() {
-        val bottomSheetFragment = DatePickerFragment()
-        bottomSheetFragment.setOnDateSelectedListener(object :
-            DatePickerFragment.OnDateSelectedListener {
-            override fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(year, month, dayOfMonth)
-                val formattedDateTextBox = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
-                var formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
-                binding.tvDateDropDown.text = formattedDateTextBox
-                viewModel.projectStartDate.value = formattedDateRegister
-            }
-        })
+        binding.btnDateDropDown.setOnClickListener {
+            val bottomSheetFragment = DatePickerFragment()
+            bottomSheetFragment.setOnDateSelectedListener(object :
+                DatePickerFragment.OnDateSelectedListener {
+                override fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
+                    val selectedDate = Calendar.getInstance()
+                    selectedDate.set(year, month, dayOfMonth)
+                    val formattedDateTextBox = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
+                    var formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
+                    binding.tvDateDropDown.text = formattedDateTextBox
+                    viewModel.projectStartDate.value = formattedDateRegister
+                }
+            })
 
-        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        }
     }
 
     private fun clickDayCyclePicker() {
@@ -75,16 +71,16 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 if (!viewModel.validTextBox(textBoxString)) {
                     when (textBox) {
                         viewModel.projectName -> {
-                            binding.textLayoutProjectName.error = "특수문자, 이모지를 사용할 수 없어요"
+                            binding.textLayoutProjectName.error = ERROR_MESSAGE
                             viewModel.isValidProjectName.value = false }
                         viewModel.projectExplanation -> {
-                            binding.textLayoutIntroduction.error = "특수문자, 이모지를 사용할 수 없어요"
+                            binding.textLayoutIntroduction.error = ERROR_MESSAGE
                             viewModel.isValidProjectExplanation.value = false }
                         viewModel.role -> {
-                            binding.textLayoutRole.error = "특수문자, 이모지를 사용할 수 없어요"
+                            binding.textLayoutRole.error = ERROR_MESSAGE
                             viewModel.isValidRole.value = false }
                         viewModel.nickName -> {
-                            binding.textLayoutNickName.error = "특수문자, 이모지를 사용할 수 없어요"
+                            binding.textLayoutNickName.error = ERROR_MESSAGE
                             viewModel.isValidNickName.value = false }
                     }
                 } else {
@@ -117,5 +113,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 viewModel.isBtnEnabled.value = viewModel.isValid()
             }
         }
+    }
+
+    companion object {
+        const val ERROR_MESSAGE = "특수문자, 이모지를 사용할 수 없어요"
     }
 }
