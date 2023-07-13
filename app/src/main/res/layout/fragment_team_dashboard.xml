@@ -10,12 +10,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.JyTeamDashboardFragment">
+        tools:context=".presentation.home.team.TeamDashboardFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_team_puzzleview"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_blue50_fill_bottom16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -453,7 +453,7 @@
                             android:layout_width="64dp"
                             android:layout_height="0dp"
                             android:contentDescription="@null"
-                            android:src="@drawable/img_puzzle11"
+                            android:src="@drawable/img_puzzle1"
                             app:layout_constraintDimensionRatio="1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -638,8 +638,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_team_top_background"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="17dp"
@@ -697,6 +697,285 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_team_ranking_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_team_puzzleview">
+
+            <TextView
+                android:id="@+id/tv_team_ranking_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:includeFontPadding="false"
+                android:text="@string/tv_team_ranking_title"
+                android:textAppearance="@style/Kor.Heading4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_team_ranking_topranking_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_team_ranking_title">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_team_second_ranking_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="44dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_team_second_ranking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginEnd="13dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_second_rank"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_team_second_ranking_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/rect_lightblue_fill_radius_14_gradient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_team_second_ranking">
+
+                        <TextView
+                            android:id="@+id/tv_team_second_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginTop="10dp"
+                            android:includeFontPadding="false"
+                            android:text="김솝트"
+                            android:textAppearance="@style/Kor.Body3.Bold"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_team_second_ranking_part"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:includeFontPadding="false"
+                            android:text="서버"
+                            android:textAppearance="@style/Kor.Detail3.Regular"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_team_second_name"
+                            app:layout_constraintStart_toStartOf="@+id/tv_team_second_name"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_team_second_name" />
+
+                        <TextView
+                            android:id="@+id/tv_team_second_ranking_puzzle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="9dp"
+                            android:includeFontPadding="false"
+                            android:text="5조각"
+                            android:textAppearance="@style/Kor.Body3.Bold"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_team_second_ranking_part"
+                            app:layout_constraintStart_toStartOf="@+id/tv_team_second_ranking_part"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_team_second_ranking_part" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_team_first_ranking_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cl_team_second_ranking_background"
+                    app:layout_constraintStart_toEndOf="@+id/cl_team_second_ranking_background">
+
+                    <ImageView
+                        android:id="@+id/iv_team_first_ranking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="25dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_first_rank"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_team_first_ranking_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/rect_blue_fill_radius_16_gradient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_team_first_ranking">
+
+                        <TextView
+                            android:id="@+id/tv_team_first_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginTop="14dp"
+                            android:includeFontPadding="false"
+                            android:text="박솝트"
+                            android:textAppearance="@style/Kor.Body1.Bold"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_team_first_ranking_part"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:includeFontPadding="false"
+                            android:text="디자인"
+                            android:textAppearance="@style/Kor.Body3.Regular"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_team_first_name"
+                            app:layout_constraintStart_toStartOf="@+id/tv_team_first_name"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_team_first_name" />
+
+                        <TextView
+                            android:id="@+id/tv_team_first_ranking_puzzle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="14dp"
+                            android:includeFontPadding="false"
+                            android:text="13조각"
+                            android:textAppearance="@style/Kor.Body3.Bold"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_team_first_ranking_part"
+                            app:layout_constraintStart_toStartOf="@+id/tv_team_first_ranking_part"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_team_first_ranking_part" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_team_third_ranking_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="31dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cl_team_first_ranking_background"
+                    app:layout_constraintStart_toEndOf="@+id/cl_team_first_ranking_background">
+
+
+                    <ImageView
+                        android:id="@+id/iv_team_third_ranking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginEnd="13dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_third_rank"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_team_third_ranking_box"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/rect_lightblue_fill_radius_14_gradient"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_team_third_ranking">
+
+                        <TextView
+                            android:id="@+id/tv_team_third_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="15dp"
+                            android:layout_marginTop="10dp"
+                            android:includeFontPadding="false"
+                            android:text="김솝트"
+                            android:textAppearance="@style/Kor.Body3.Bold"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_team_third_ranking_part"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:includeFontPadding="false"
+                            android:text="서버"
+                            android:textAppearance="@style/Kor.Detail3.Regular"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_team_third_name"
+                            app:layout_constraintStart_toStartOf="@+id/tv_team_third_name"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_team_third_name" />
+
+                        <TextView
+                            android:id="@+id/tv_team_third_ranking_puzzle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="9dp"
+                            android:includeFontPadding="false"
+                            android:text="7조각"
+                            android:textAppearance="@style/Kor.Body3.Bold"
+                            android:textColor="@color/white_000"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_team_third_ranking_part"
+                            app:layout_constraintStart_toStartOf="@+id/tv_team_third_ranking_part"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_team_third_ranking_part" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_team_ranking"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                tools:itemCount="5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_team_ranking_topranking_main"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

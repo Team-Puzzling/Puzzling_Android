@@ -9,6 +9,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentHomeBinding
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardFragment
+import com.puzzling.puzzlingaos.presentation.home.team.TeamDashboardFragment
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -29,7 +30,7 @@ class HomeFragment :
             override fun onTabSelected(tab: TabLayout.Tab) {
                 val fragment: Fragment = when (tab.position) {
                     0 -> PersonalDashboardFragment()
-                    1 -> JyTeamDashboardFragment()
+                    1 -> TeamDashboardFragment()
                     else -> PersonalDashboardFragment()
                 }
                 parentFragmentManager.commit {
@@ -46,10 +47,4 @@ class HomeFragment :
             }
         })
     }
-
-//    private inline fun <reified T : Fragment> navigateTo() {
-//        supportFragmentManager.commit {
-//            replace(R.id.fcv_main_container, T::class.java.newInstance())
-//        }
-//    }
 }
