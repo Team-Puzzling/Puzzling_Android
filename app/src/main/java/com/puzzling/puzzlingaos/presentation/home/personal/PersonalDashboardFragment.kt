@@ -1,11 +1,13 @@
 package com.puzzling.puzzlingaos.presentation.home.personal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
+import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
 
 class PersonalDashboardFragment :
     BaseFragment<FragmentPersonalDashboardBinding>(R.layout.fragment_personal_dashboard) {
@@ -18,6 +20,7 @@ class PersonalDashboardFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setActionPlanAdapter()
+        clickBottomBtn()
     }
 
     private fun setActionPlanAdapter() {
@@ -25,6 +28,15 @@ class PersonalDashboardFragment :
         _actionPlanAdapter?.submitList(viewModel.actionPlanList)
         binding.rcvPersonalView.also {
             it.adapter = _actionPlanAdapter
+        }
+    }
+
+    private fun clickBottomBtn() {
+        binding.clPersonalBottomBtn.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
