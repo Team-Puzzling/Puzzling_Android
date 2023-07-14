@@ -1,12 +1,13 @@
 package com.puzzling.puzzlingaos.presentation.invitationCode
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class InvitationCodeViewModel : ViewModel() {
+class InvitationCodeViewModel(context: Context) : ViewModel() {
 
     // inputCode 관련
     val inputCode = MutableStateFlow("")
