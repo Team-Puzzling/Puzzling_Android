@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.main.invitationCode
+package com.puzzling.puzzlingaos.presentation.invitationCode
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -15,13 +15,16 @@ class InvitationCodeActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.fc_invitation)
-        if (currentFragment == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fc_invitation, InputCodeFragment()).commit()
-        }
+        initFragment()
 
         binding.vm = viewModel
-        binding.lifecycleOwner = this@InvitationCodeActivity
+    }
+
+    private fun initFragment() {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_invitation_main)
+        if (currentFragment == null) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fcv_invitation_main, InputCodeFragment()).commit()
+        }
     }
 }

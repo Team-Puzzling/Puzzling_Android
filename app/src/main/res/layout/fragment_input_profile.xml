@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.puzzling.puzzlingaos.presentation.main.invitationCode.InvitationCodeViewModel" />
+            type="com.puzzling.puzzlingaos.presentation.invitationCode.InvitationCodeViewModel" />
 
     </data>
 
@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/et_nickName"
+                android:id="@+id/edt_nickName"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:background="@{!vm.isValidNickName() &amp; !vm.inputNickName.empty ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
@@ -85,7 +85,7 @@
                 android:text="@{vm.nickNameErrorMessage}"
                 android:visibility="@{!vm.isValidNickName() &amp; !vm.inputNickName.empty ? View.VISIBLE:View.GONE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_nickName"
+                app:layout_constraintTop_toBottomOf="@id/edt_nickName"
                 tools:text="@string/nickName_already_use" />
 
 
@@ -100,7 +100,7 @@
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/gray_400"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_nickName"
+                app:layout_constraintTop_toBottomOf="@id/edt_nickName"
                 tools:text="5/10" />
 
 
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/et_role"
+                android:id="@+id/edt_role"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:background="@{!vm.isValidRole() &amp; !vm.inputRole.empty ?@drawable/rect_red200_line_16 : @drawable/sel_invitation_background_edittext, default=@drawable/sel_invitation_background_edittext}"
@@ -149,7 +149,7 @@
                 android:textColor="@color/red_400"
                 android:visibility="@{!vm.isValidRole() &amp; !vm.inputRole.empty ? View.VISIBLE:View.GONE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_role"
+                app:layout_constraintTop_toBottomOf="@id/edt_role"
                 tools:text="@{vm.roleErrorMessage}" />
 
             <TextView
@@ -162,7 +162,7 @@
                 android:textAppearance="@style/Kor.Detail1.Regular"
                 android:textColor="@color/gray_400"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_role"
+                app:layout_constraintTop_toBottomOf="@id/edt_role"
                 tools:text="10/20" />
 
 

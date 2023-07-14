@@ -7,7 +7,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityMainBinding
 import com.puzzling.puzzlingaos.presentation.home.HomeFragment
-import com.puzzling.puzzlingaos.presentation.home.TestFragment
+import com.puzzling.puzzlingaos.presentation.home.mypage.MyPageFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.bnvMain.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.menu_home -> navigateTo<HomeFragment>()
-                R.id.menu_mypage -> navigateTo<TestFragment>()
+                R.id.menu_mypage -> navigateTo<MyPageFragment>()
             }
             true
         }
