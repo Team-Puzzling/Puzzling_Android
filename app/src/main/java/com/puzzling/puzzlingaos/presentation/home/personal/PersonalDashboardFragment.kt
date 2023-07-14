@@ -43,13 +43,10 @@ class PersonalDashboardFragment :
 
     private fun clickPuzzleBoardBtn() {
         binding.clPersonalTopBackground.setOnClickListener {
-            // 내 퍼즐판 보러가기
-            val fragment = MyPuzzleBoardFragment()
-            val fragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fcv_home_container, fragment)
-            fragmentTransaction.addToBackStack(null) // Optional: Add to back stack for fragment navigation
-            fragmentTransaction.commit()
+            activity?.let {
+                val intent = Intent(context, MyPuzzleBoardActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
