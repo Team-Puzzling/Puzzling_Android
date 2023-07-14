@@ -21,6 +21,7 @@ abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes private val layoutRe
         savedInstanceState: Bundle?,
     ): View {
         _binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.puzzling.puzzlingaos.presentation.register.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.register.RegisterActivity">
+
+        <Toolbar
+            android:id="@+id/tb_register"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:contentInsetStart="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/tv_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_toolbar"
+                    android:textAppearance="@style/Kor.Heading4"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="112dp"
+                    android:includeFontPadding="false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_toolbar_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_register_toolbar_close"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_toolbar_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tb_register"
+            app:layout_constraintBottom_toTopOf="@id/layout_registerButton"
+            >
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_registerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_projectName"
+                        android:textAppearance="@style/Kor.Body1.Bold"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="32dp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_projectName"
+                        style="@style/CustomTextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#FAFAFA"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxStrokeColor="@color/blue_200"
+                        app:boxStrokeErrorColor="@color/red_200"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        app:errorEnabled="false"
+                        app:helperText="@null"
+                        app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
+                        app:helperTextTextColor="@color/red_400"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_registerName">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_projectName"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@{!viewModel.isValidProjectName ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
+                            android:gravity="center_vertical"
+                            android:hint="@string/register_projectName_hint"
+                            android:includeFontPadding="false"
+                            android:selectAllOnFocus="false"
+                            android:text="@={viewModel.projectName}"
+                            android:textAppearance="@style/Kor.Body2.Regular" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_introduction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_projectIntroduce"
+                        android:textAppearance="@style/Kor.Body1.Bold"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@id/layout_projectName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_explanation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:backgroundTint="#FAFAFA"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="50"
+                        app:layout_constraintTop_toBottomOf="@id/tv_introduction"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:helperText="@null"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="@color/blue_200"
+                        app:boxStrokeErrorColor="@color/red_200"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:helperTextTextColor="@color/red_400"
+                        app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_projectExplanation"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:hint="@string/register_projectIntroduce_hint"
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:includeFontPadding="false"
+                            android:selectAllOnFocus="false"
+                            android:background="@{!viewModel.isValidProjectExplanation ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
+                            android:gravity="center_vertical"
+                            android:text="@={viewModel.projectExplanation}"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_startDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/layout_explanation"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_startDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/register_projectStartDate"
+                            android:textAppearance="@style/Kor.Body1.Bold"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginVertical="13dp"
+                            android:includeFontPadding="false"
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/layout_registerDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:orientation="horizontal"
+                            android:layout_marginStart="18dp"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="#FAFAFA"
+                            android:background="@drawable/bg_register_date_background"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxStrokeColor="@color/blue_200"
+                            app:boxStrokeWidthFocused="2dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            >
+
+                            <TextView
+                                android:id="@+id/tv_dateDropDown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginVertical="13dp"
+                                android:textAppearance="@style/Kor.Body2.Regular"
+                                android:includeFontPadding="false"
+                                android:hint="@string/register_date_hint"
+                                />
+
+                            <ImageButton
+                                android:id="@+id/btn_dateDropDown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="13dp"
+                                android:layout_marginStart="40dp"
+                                android:src="@drawable/ic_register_day_dropdown"
+                                android:background="@android:color/transparent" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_projectRole"
+                        android:textAppearance="@style/Kor.Body1.Bold"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="40dp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@id/layout_startDate"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:backgroundTint="#FAFAFA"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="20"
+                        app:layout_constraintTop_toBottomOf="@id/tv_role"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:helperText="@null"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="@color/blue_200"
+                        app:boxStrokeErrorColor="@color/red_200"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:helperTextTextColor="@color/red_400"
+                        app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_role"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:hint="@string/register_projectRole_hint"
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:includeFontPadding="false"
+                            android:selectAllOnFocus="false"
+                            android:background="@{!viewModel.isValidRole ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
+                            android:gravity="center_vertical"
+                            android:text="@={viewModel.role}"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_nickName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_nickname"
+                        android:textAppearance="@style/Kor.Body1.Bold"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@id/layout_role"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_nickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:backgroundTint="#FAFAFA"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        app:layout_constraintTop_toBottomOf="@id/tv_nickName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:helperText="@null"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="@color/blue_200"
+                        app:boxStrokeErrorColor="@color/red_200"
+                        app:boxStrokeWidthFocused="2dp"
+                        app:helperTextTextColor="@color/red_400"
+                        app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_nickName"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:hint="@string/register_nickname_hint"
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:includeFontPadding="false"
+                            android:selectAllOnFocus="false"
+                            android:background="@{!viewModel.isValidNickName ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
+                            android:gravity="center_vertical"
+                            android:text="@={viewModel.nickName}"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_dateCycle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_dateCycle"
+                        android:textAppearance="@style/Kor.Body1.Bold"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@id/layout_nickName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_dateCycleExplanation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_dateCycle_hint"
+                        android:textAppearance="@style/Kor.Detail2.Regular"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="4dp"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@id/tv_dateCycle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_retrospectWeekCycle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@id/tv_dateCycleExplanation"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_register_retrospect_week_cycle"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="프로젝트 등록하기"
+                android:textAppearance="@style/Kor.Heading4"
+                android:textColor="@color/white_000"
+                android:includeFontPadding="false"
+                android:enabled="@{viewModel.isBtnEnabled}"
+                android:background="@{viewModel.isBtnEnabled ? @drawable/bg_register_registerbutton_select : @drawable/bg_register_registerbutton_deselect}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
