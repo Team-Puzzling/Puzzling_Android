@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage
+package com.puzzling.puzzlingaos.presentation.mypage
 
 import android.os.Bundle
 import android.view.View
@@ -8,9 +8,9 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectAdapter
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectBottomAdapter
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyProjectTopAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectBottomAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectTopAdapter
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 

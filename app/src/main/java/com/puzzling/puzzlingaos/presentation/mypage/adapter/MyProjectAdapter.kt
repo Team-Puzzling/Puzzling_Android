@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage.adapter
+package com.puzzling.puzzlingaos.presentation.mypage.adapter
 
 import android.view.LayoutInflater
 import android.view.View

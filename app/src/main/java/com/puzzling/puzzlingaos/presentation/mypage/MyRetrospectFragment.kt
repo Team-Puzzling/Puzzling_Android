@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage
+package com.puzzling.puzzlingaos.presentation.mypage
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,8 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyRetrospectBinding
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyRetroAdapter
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.MyRetroTopAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroTopAdapter
 
 class MyRetrospectFragment :
     BaseFragment<FragmentMyRetrospectBinding>(R.layout.fragment_my_retrospect) {
