@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.main.invitationCode
+package com.puzzling.puzzlingaos.presentation.invitationCode
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputCodeBinding
+import com.puzzling.puzzlingaos.util.ViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,7 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[InvitationCodeViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(requireContext()))[InvitationCodeViewModel::class.java]
 
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -29,7 +30,7 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
             viewModel.isCodeSuccess.collect {
                 if (it != null && it) {
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.fc_invitation, InputProfileFragment())
+                        .replace(R.id.fcv_invitation_main, InputProfileFragment())
                         .commit()
                 }
             }
