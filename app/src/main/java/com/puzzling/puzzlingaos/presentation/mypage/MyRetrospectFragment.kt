@@ -57,9 +57,9 @@ class MyRetrospectFragment :
         })
         val concatAdapter = ConcatAdapter(myRetroTitleAdapter, myRetroContentAdapter)
 
-        with(binding) {
-            rcvMyRetroMain.adapter = concatAdapter
-            rcvMyRetroMain.layoutManager = LinearLayoutManager(activity)
+        with(binding.rcvMyRetroMain) {
+            adapter = concatAdapter
+            layoutManager = LinearLayoutManager(activity)
         }
     }
 }
