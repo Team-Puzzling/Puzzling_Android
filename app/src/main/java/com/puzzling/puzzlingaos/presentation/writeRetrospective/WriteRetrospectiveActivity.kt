@@ -14,14 +14,18 @@ class WriteRetrospectiveActivity :
     }
 
     private fun clickBtn() {
-        binding.clWriteChip.setOnClickListener {
-            val chooseRetrospectiveFragment = ChooseRetrospectiveFragment()
-            chooseRetrospectiveFragment.show(supportFragmentManager, "show")
-        }
-
-        binding.tvWriteRegister.setOnClickListener {
-            Log.d("write", "저장 다이얼로그 표시함")
-            showDialog()
+        with(binding) {
+            clWriteChip.setOnClickListener {
+                val chooseRetrospectiveFragment = ChooseRetrospectiveFragment()
+                chooseRetrospectiveFragment.show(supportFragmentManager, "show")
+            }
+            tvWriteRegister.setOnClickListener {
+                Log.d("write", "저장 다이얼로그 표시함")
+                showDialog()
+            }
+            btnWriteBack.setOnClickListener {
+                // 뒤로 가기 로직
+            }
         }
     }
 
