@@ -22,20 +22,22 @@
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.register.RegisterActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
         <activity
-            android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
+            android:name=".presentation.team.currentSituation.MjTestActivity"
             android:windowSoftInputMode="adjustPan"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
