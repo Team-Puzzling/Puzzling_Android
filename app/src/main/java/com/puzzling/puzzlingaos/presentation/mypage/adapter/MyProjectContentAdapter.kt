@@ -12,23 +12,23 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MyProjectContentAdapter() :
-    ListAdapter<ResponseMyPageProjectDto, MyProjectContentAdapter.MyProjectViewHolder>(
+    ListAdapter<ResponseMyPageProjectDto, MyProjectContentAdapter.MyProjectContentViewHolder>(
         diffCallback,
     ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyProjectViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyProjectContentViewHolder {
         val binding: ItemMyProjectBinding =
             ItemMyProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyProjectViewHolder(binding)
+        return MyProjectContentViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyProjectViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyProjectContentViewHolder, position: Int) {
         return holder.onBind(currentList[position])
     }
 
     private var listener: OnItemClickListener? = null
 
-    inner class MyProjectViewHolder(private val binding: ItemMyProjectBinding) :
+    inner class MyProjectContentViewHolder(private val binding: ItemMyProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(item: ResponseMyPageProjectDto) {
