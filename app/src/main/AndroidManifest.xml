@@ -19,10 +19,6 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".presentation.register.RegisterActivity"
-            android:exported="false"
-            />
-        <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
@@ -32,9 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.main.invitationCode.InvitationCodeActivity"
+        <activity
+            android:name=".presentation.register.RegisterActivity"
             android:windowSoftInputMode="adjustPan"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
             android:windowSoftInputMode="adjustPan"

@@ -1,5 +1,34 @@
 <resources>
     <string name="app_name">Puzzling AOS</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="register_toolbar">프로젝트 등록하기</string>
+    <string name="register_projectName">프로젝트 이름</string>
+    <string name="register_projectName_hint">프로젝트 이름을 설정해주세요</string>
+    <string name="register_projectIntroduce">프로젝트 한줄소개</string>
+    <string name="register_projectIntroduce_hint">프로젝트에 대해 간단히 소개해 주세요</string>
+    <string name="register_projectStartDate">프로젝트 시작날짜</string>
+    <string name="register_date_hint">0000/00/00</string>
+    <string name="register_projectRole">내 역할</string>
+    <string name="register_projectRole_hint">역할을 입력해 주세요(ex. ios 개발자)</string>
+    <string name="register_nickname">닉네임 입력</string>
+    <string name="register_nickname_hint">닉네임을 입력해 주세요</string>
+    <string name="register_dateCycle">회고 주기</string>
+    <string name="register_dateCycle_hint">회고는 매주 반복되며, 중복 체크가 가능해요</string>
+    <string name="register_day_sun">일</string>
+    <string name="register_day_mon">월</string>
+    <string name="register_day_tue">화</string>
+    <string name="register_day_wed">수</string>
+    <string name="register_day_thu">목</string>
+    <string name="register_day_fri">금</string>
+    <string name="register_day_sat">토</string>
     <string name="inputCode_length">%s/13</string>
     <string name="inputCode_title">초대코드 입력하기</string>
     <string name="inputProfile_title">프로필 작성하기</string>
@@ -30,6 +59,7 @@
     <string name="tv_choose_first">학습과 자기 반성을 통해 향후 더 나은 결정을\n내릴 수 있게 해 주는 회고 방식이에요!</string>
     <string name="btn_register_dialog_top">저장하기</string>
     <string name="btn_register_dialog_bottom">취소</string>
+
     <string name="tv_personal_date">08/01</string>
     <string name="tv_personal_title">이솝트 님이 모은 퍼즐</string>
     <string name="tv_personal_puzzle_current">n 조각</string>
