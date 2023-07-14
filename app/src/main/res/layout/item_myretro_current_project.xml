@@ -18,6 +18,7 @@
             android:layout_marginVertical="18dp"
             android:layout_marginStart="16dp"
             android:text="프로젝트"
+            android:includeFontPadding="false"
             android:textAppearance="@style/Kor.Body1.Bold"
             android:textColor="@color/gray_600"
             app:layout_constraintBottom_toBottomOf="parent"
