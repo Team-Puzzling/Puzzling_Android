@@ -109,9 +109,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private fun canBtnClick() {
         viewModel.isEnabledRegister.observe(this@RegisterActivity) {
-            viewModel.let { viewModel ->
-                viewModel.isBtnEnabled.value = viewModel.isValid()
-            }
+            viewModel.checkBtnEnabled()
         }
     }
 
