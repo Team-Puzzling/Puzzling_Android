@@ -21,7 +21,7 @@ class PersonalDashboardFragment :
         super.onViewCreated(view, savedInstanceState)
         setActionPlanAdapter()
         clickBottomBtn()
-        clickPuzzleBoardBtn()
+        clickMyPuzzleBoardBtn()
     }
 
     private fun setActionPlanAdapter() {
@@ -41,7 +41,7 @@ class PersonalDashboardFragment :
         }
     }
 
-    private fun clickPuzzleBoardBtn() {
+    private fun clickMyPuzzleBoardBtn() {
         binding.clPersonalTopBackground.setOnClickListener {
             activity?.let {
                 val intent = Intent(context, MyPuzzleBoardActivity::class.java)
