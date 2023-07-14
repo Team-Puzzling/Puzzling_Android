@@ -17,6 +17,20 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
     var dayArray = ArrayList<String>()
     val isDateCycleSelected = MutableLiveData<ArrayList<String>>()
 
+    // editText 확인용
+    fun validTextBox(textBox: String): Boolean {
+        return textBox.matches(registerRegex)
+    }
+    var isValidProjectName: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isValidProjectExplanation: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isValidRole: MutableLiveData<Boolean> = MutableLiveData(true)
+    var isValidNickName: MutableLiveData<Boolean> = MutableLiveData(true)
+
+    // 등록용
+    fun validRegister(textBox: String): Boolean {
+        return textBox.matches(registerRegex) && !textBox.isNullOrBlank()
+    }
+
     fun isValid(): Boolean {
         return validRegister(projectName.value.orEmpty()) &&
             validRegister(projectExplanation.value.orEmpty()) &&
@@ -36,19 +50,9 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
     }
     var isBtnEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    // 등록용
-    fun validRegister(textBox: String): Boolean {
-        return textBox.matches(registerRegex) && !textBox.isNullOrBlank()
+    fun checkBtnEnabled() {
+        isBtnEnabled.value = isValid()
     }
-
-    // editText 확인용
-    fun validTextBox(textBox: String): Boolean {
-        return textBox.matches(registerRegex)
-    }
-    var isValidProjectName: MutableLiveData<Boolean> = MutableLiveData(true)
-    var isValidProjectExplanation: MutableLiveData<Boolean> = MutableLiveData(true)
-    var isValidRole: MutableLiveData<Boolean> = MutableLiveData(true)
-    var isValidNickName: MutableLiveData<Boolean> = MutableLiveData(true)
 
     companion object {
         const val REGISTER_REGEX = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9 \\\\s]*$"
