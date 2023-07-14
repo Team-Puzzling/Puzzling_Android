@@ -28,9 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.main.invitationCode.InvitationCodeActivity"
+        <activity
+            android:name=".presentation.register.RegisterActivity"
             android:windowSoftInputMode="adjustPan"
-            android:exported="true"/>
+            android:exported="true" />
+        <activity
+            android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" />
     </application>
 
 </manifest>
