@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.databinding.ItemMypageNicknameBinding
 
-class MyProjectTopAdapter(private val nickName: String) : RecyclerView.Adapter<MyProjectTopAdapter.TopViewHolder>() {
+class MyProjectTitleAdapter(private val nickName: String) : RecyclerView.Adapter<MyProjectTitleAdapter.TopViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopViewHolder {
         val binding: ItemMypageNicknameBinding =

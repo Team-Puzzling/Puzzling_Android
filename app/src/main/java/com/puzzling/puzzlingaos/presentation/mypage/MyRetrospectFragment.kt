@@ -9,8 +9,8 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyRetrospectBinding
-import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroAdapter
-import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroTopAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroContentAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroTitleAdapter
 
 class MyRetrospectFragment :
     BaseFragment<FragmentMyRetrospectBinding>(R.layout.fragment_my_retrospect) {
@@ -44,18 +44,18 @@ class MyRetrospectFragment :
     }
 
     private fun initAdapter() {
-        val myRetroAdapter = MyRetroAdapter()
-        val myRetroTopAdapter = MyRetroTopAdapter("Piickle")
+        val myRetroContentAdapter = MyRetroContentAdapter()
+        val myRetroTitleAdapter = MyRetroTitleAdapter("Piickle")
 
-        myRetroAdapter.submitList(dummyItemList)
+        myRetroContentAdapter.submitList(dummyItemList)
 
-        myRetroTopAdapter.setOnItemClickListener(object : MyRetroTopAdapter.OnItemClickListener {
+        myRetroTitleAdapter.setOnItemClickListener(object : MyRetroTitleAdapter.OnItemClickListener {
             override fun onItemClick(v: View, data: String, pos: Int) {
                 val chooseProjectBottomFragment = ChooseProjectBottomFragment()
                 chooseProjectBottomFragment.show(requireActivity().supportFragmentManager, "show")
             }
         })
-        val concatAdapter = ConcatAdapter(myRetroTopAdapter, myRetroAdapter)
+        val concatAdapter = ConcatAdapter(myRetroTitleAdapter, myRetroContentAdapter)
 
         with(binding) {
             rcvMyRetroMain.adapter = concatAdapter

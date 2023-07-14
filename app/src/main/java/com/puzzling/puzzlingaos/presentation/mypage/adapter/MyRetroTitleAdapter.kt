@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.databinding.ItemMyretroProjectBinding
 
-class MyRetroTopAdapter(private val projectName: String) :
-    RecyclerView.Adapter<MyRetroTopAdapter.MyRetroTopViewHolder>() {
+class MyRetroTitleAdapter(private val projectName: String) :
+    RecyclerView.Adapter<MyRetroTitleAdapter.MyRetroTopViewHolder>() {
 
     private var listener: OnItemClickListener? = null
 

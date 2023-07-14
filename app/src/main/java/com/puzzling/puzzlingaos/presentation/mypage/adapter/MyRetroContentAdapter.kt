@@ -8,7 +8,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroRetroBinding
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
-class MyRetroAdapter() : ListAdapter<ResponseMyRetroListDto, MyRetroAdapter.MyRetroViewHolder>(
+class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto, MyRetroContentAdapter.MyRetroViewHolder>(
     diffCallback,
 ) {
 

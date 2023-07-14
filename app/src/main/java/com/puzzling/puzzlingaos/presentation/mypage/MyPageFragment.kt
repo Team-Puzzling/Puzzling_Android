@@ -8,9 +8,9 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
-import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectContentAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectBottomAdapter
-import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectTopAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectTitleAdapter
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
@@ -30,17 +30,17 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun initAdapter() {
-        val myProjectAdapter = MyProjectAdapter()
+        val myProjectContentAdapter = MyProjectContentAdapter()
         val concatAdapter =
-            ConcatAdapter(MyProjectTopAdapter("지니"), myProjectAdapter, MyProjectBottomAdapter())
+            ConcatAdapter(MyProjectTitleAdapter("지니"), myProjectContentAdapter, MyProjectBottomAdapter())
 
         with(binding) {
             rcvMyPageMain.adapter = concatAdapter
             rcvMyPageMain.layoutManager = LinearLayoutManager(activity)
         }
-        myProjectAdapter.submitList(dummyItemList)
+        myProjectContentAdapter.submitList(dummyItemList)
 
-        myProjectAdapter.setOnItemClickListener(object : MyProjectAdapter.OnItemClickListener {
+        myProjectContentAdapter.setOnItemClickListener(object : MyProjectContentAdapter.OnItemClickListener {
             override fun onItemClick(v: View, data: ResponseMyPageProjectDto, pos: Int) {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.fcv_main_container, MyRetrospectFragment()).addToBackStack(null)

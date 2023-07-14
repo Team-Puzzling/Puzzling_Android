@@ -11,8 +11,8 @@ import com.puzzling.puzzlingaos.util.ItemDiffCallback
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MyProjectAdapter() :
-    ListAdapter<ResponseMyPageProjectDto, MyProjectAdapter.MyProjectViewHolder>(
+class MyProjectContentAdapter() :
+    ListAdapter<ResponseMyPageProjectDto, MyProjectContentAdapter.MyProjectViewHolder>(
         diffCallback,
     ) {
 
