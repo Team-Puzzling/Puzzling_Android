@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputCodeBinding
+import com.puzzling.puzzlingaos.util.ViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -17,7 +18,7 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[InvitationCodeViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(requireContext()))[InvitationCodeViewModel::class.java]
 
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
