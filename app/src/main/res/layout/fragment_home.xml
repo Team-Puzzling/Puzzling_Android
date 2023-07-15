@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.puzzling.puzzlingaos.presentation.home.HomeViewModel" />
@@ -83,7 +83,6 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-
         <FrameLayout
             android:id="@+id/fl_home_main"
             android:layout_width="match_parent"
@@ -134,8 +133,8 @@
                 android:layout_height="120dp"
                 android:layout_marginStart="220dp"
                 android:layout_marginTop="-10dp"
-                android:visibility="invisible"
                 android:elevation="0dp"
+                android:visibility="invisible"
                 app:cardBackgroundColor="@color/white_000"
                 app:cardCornerRadius="16dp">
 
@@ -148,14 +147,13 @@
                         android:id="@+id/tv_home_popup_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:includeFontPadding="false"
                         android:text="@string/tv_home_popup_title"
                         android:textAppearance="@style/Kor.Heading4"
-                        android:includeFontPadding="false"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="20dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_home_popup_content"
@@ -163,91 +161,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/tv_home_popup_content"
                         android:textAppearance="@style/Kor.Body3.Regular"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_home_popup_title"
                         app:layout_constraintStart_toStartOf="@+id/tv_home_popup_title"
-                        />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_home_popup_title" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
-
-<!--            <com.google.android.material.tabs.TabLayout-->
-<!--                android:id="@+id/tl_home_dashboard"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/shape_tablayout_background"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/tb_home_dashboard"-->
-<!--                app:tabIndicatorColor="#5085FF"-->
-<!--                app:tabSelectedTextColor="#5085FF"-->
-<!--                app:tabTextAppearance="@style/Kor.Body1.Bold"-->
-<!--                app:tabTextColor="#ABADB2">-->
-
-<!--                <com.google.android.material.tabs.TabItem-->
-<!--                    android:id="@+id/tb_home_personal"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/tb_home_personal" />-->
-
-<!--                <com.google.android.material.tabs.TabItem-->
-<!--                    android:id="@+id/tb_home_team"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/tb_home_team" />-->
-
-<!--            </com.google.android.material.tabs.TabLayout>-->
-
-<!--            <androidx.fragment.app.FragmentContainerView-->
-<!--                android:id="@+id/fcv_home_container"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/tl_home_dashboard"-->
-<!--                tools:layout="@layout/fragment_personal_dashboard" />-->
-
-<!--&lt;!&ndash;            <androidx.cardview.widget.CardView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/cv_home_popup"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="170dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="120dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_marginStart="220dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_marginTop="-10dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:visibility="visible"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:cardBackgroundColor="@color/white_000"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:cardCornerRadius="16dp">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                <androidx.constraintlayout.widget.ConstraintLayout&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:id="@+id/cl_home_popup"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="match_parent">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:id="@+id/tv_home_popup_title"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:text="프로젝트 이름"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textAppearance="@style/Kor.Heading4"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:includeFontPadding="false"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_marginTop="20dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_marginStart="20dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                        app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                        />&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:id="@+id/tv_home_popup_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:text="매주 월,수,금에\n회고를 작성해주세요!"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:textAppearance="@style/Kor.Body3.Regular"&ndash;&gt;-->
-<!--&lt;!&ndash;                        app:layout_constraintTop_toBottomOf="@+id/tv_home_popup_title"&ndash;&gt;-->
-<!--&lt;!&ndash;                        app:layout_constraintStart_toStartOf="@+id/tv_home_popup_title"&ndash;&gt;-->
-<!--&lt;!&ndash;                        />&ndash;&gt;-->
-
-<!--&lt;!&ndash;                </androidx.constraintlayout.widget.ConstraintLayout>&ndash;&gt;-->
-
-<!--&lt;!&ndash;            </androidx.cardview.widget.CardView>&ndash;&gt;-->
 
         </FrameLayout>
 
