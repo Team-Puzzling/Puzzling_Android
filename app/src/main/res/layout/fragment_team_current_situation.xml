@@ -61,10 +61,11 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_team_title_date"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="130dp"
             app:layout_constraintTop_toBottomOf="@id/tb_team_current"
-            app:layout_constraintBottom_toBottomOf="parent">
+            >
 
             <TextView
                 android:id="@+id/tv_team_current_yearmonth"
@@ -184,7 +185,7 @@
                     android:layout_marginHorizontal="7dp"
                     android:src="@drawable/round_white_fill"
                     />
-<!--                android:src="@{viewModel.weekTeamCurrentRound}"-->
+                <!--                android:src="@{viewModel.weekTeamCurrentRound}"-->
 
                 <ImageView
                     android:id="@+id/iv_week_tue"
@@ -248,23 +249,22 @@
                 tools:listitem="@layout/item_team_this_week"
                 />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/layout_team_title_date"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_team_retrospect_list"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintTop_toBottomOf="@id/rcv_team_this_week"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_team_retrospect_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
