@@ -1,14 +1,32 @@
 package com.puzzling.puzzlingaos.domain.entity
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class TeamRetrospectList(
-    var type: Int,
-    var titleText: String?,
-    var memberNickname: String?,
-    var memberRole: String?,
+    @SerialName("reviewDay")
+    val reviewDay: String,
+    @SerialName("reviewDate")
+    val reviewDate: String,
+    @SerialName("reviewWriters")
+    val reviewWriters: ArrayList<ReviewWriterList>,
+    @SerialName("nonReviewWriters")
+    val nonReviewWriters: ArrayList<NonReviewWriterList>,
 ) {
-    companion object {
-        const val DO_RETROSPECT_TEXT = 0
-        const val DONT_RETROSPECT_TEXT = 1
-        const val RETROSPECT_LIST = 2
-    }
+    @Serializable
+    data class ReviewWriterList(
+        @SerialName("memberNickname")
+        val memberNickname: String,
+        @SerialName("memberRole")
+        val memberRole: String,
+    )
+
+    @Serializable
+    data class NonReviewWriterList(
+        @SerialName("memberNickname")
+        val memberNickname: String,
+        @SerialName("memberRole")
+        val memberRole: String,
+    )
 }
