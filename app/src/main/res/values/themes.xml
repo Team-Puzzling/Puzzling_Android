@@ -14,5 +14,6 @@
         <!-- Customize your theme here. -->
         <!-- BottomSheet Dialog -->
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheet</item>
+
     </style>
 </resources>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputProfileBinding
+import com.puzzling.puzzlingaos.util.ViewModelFactory
 
 class InputProfileFragment :
     BaseFragment<FragmentInputProfileBinding>(R.layout.fragment_input_profile) {
@@ -14,7 +15,11 @@ class InputProfileFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[InvitationCodeViewModel::class.java]
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelFactory(requireContext()),
+        )[InvitationCodeViewModel::class.java]
+
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
     }
