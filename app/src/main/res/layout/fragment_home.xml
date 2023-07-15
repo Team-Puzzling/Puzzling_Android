@@ -17,9 +17,9 @@
             android:id="@+id/tb_home_dashboard"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="24dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
-            android:layout_marginTop="24dp"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,29 +29,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tv_home_project_name"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_home_project_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="7dp"
-                    android:includeFontPadding="false"
-                    android:text="프로젝트 이름"
-                    android:textAppearance="@style/Kor.Heading1"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_home_project_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="7dp"
+                        android:includeFontPadding="false"
+                        android:text="프로젝트 이름"
+                        android:textAppearance="@style/Kor.Heading1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_home_dropdown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:src="@drawable/ic_down"
-                    app:layout_constraintStart_toEndOf="@+id/tv_home_project_name"
-                    app:layout_constraintTop_toTopOf="@id/tv_home_project_name" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_home_dropdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_down"
+                        app:layout_constraintStart_toEndOf="@+id/tv_home_project_name"
+                        app:layout_constraintTop_toTopOf="@id/tv_home_project_name" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btn_home_notification"

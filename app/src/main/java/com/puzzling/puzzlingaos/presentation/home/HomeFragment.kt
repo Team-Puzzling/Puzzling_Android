@@ -1,6 +1,7 @@
 package com.puzzling.puzzlingaos.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -10,12 +11,14 @@ import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentHomeBinding
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardFragment
 import com.puzzling.puzzlingaos.presentation.home.team.TeamDashboardFragment
+import com.puzzling.puzzlingaos.presentation.main.HomeChooseProjectFragment
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initTabItem()
+        projectNameBtn()
         clickTabItem()
     }
 
@@ -46,5 +49,13 @@ class HomeFragment :
                 // Not used
             }
         })
+    }
+
+    private fun projectNameBtn() {
+        binding.clHomeProjectMain.setOnClickListener {
+            Log.d("home", "프로젝트 이름 바텀시트 올라가야함!")
+            val chooseProjectFragment = HomeChooseProjectFragment()
+            chooseProjectFragment.show(parentFragmentManager, "show")
+        }
     }
 }
