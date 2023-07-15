@@ -69,34 +69,4 @@
     <string name="tv_personal_top_button">퍼즐판 보러가기</string>
     <string name="tv_team_top_button">팀 퍼즐판 보러가기</string>
     <string name="tv_team_ranking_title">프로젝트 이름의 랭킹</string>
-
-    <string name="title_activity_register">RegisterActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="register_toolbar">프로젝트 등록하기</string>
-    <string name="register_projectName">프로젝트 이름</string>
-    <string name="register_projectName_hint">프로젝트 이름을 설정해주세요</string>
-    <string name="register_projectIntroduce">프로젝트 한줄소개</string>
-    <string name="register_projectIntroduce_hint">프로젝트에 대해 간단히 소개해 주세요</string>
-    <string name="register_projectStartDate">프로젝트 시작날짜</string>
-    <string name="register_date_hint">0000/00/00</string>
-    <string name="register_projectRole">내 역할</string>
-    <string name="register_projectRole_hint">역할을 입력해 주세요(ex. ios 개발자)</string>
-    <string name="register_nickname">닉네임 입력</string>
-    <string name="register_nickname_hint">닉네임을 입력해 주세요</string>
-    <string name="register_dateCycle">회고 주기</string>
-    <string name="register_dateCycle_hint">회고는 매주 반복되며, 중복 체크가 가능해요</string>
-    <string name="register_day_sun">일</string>
-    <string name="register_day_mon">월</string>
-    <string name="register_day_tue">화</string>
-    <string name="register_day_wed">수</string>
-    <string name="register_day_thu">목</string>
-    <string name="register_day_fri">금</string>
-    <string name="register_day_sat">토</string>
 </resources>
