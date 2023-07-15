@@ -8,5 +8,5 @@ data class ActionPlan(
     @SerialName("actionPlanContent")
     val actionPlanContent: String,
     @SerialName("actionPlanDate")
-    val actionPlanDate: String?,
+    val actionPlanDate: String,
 )

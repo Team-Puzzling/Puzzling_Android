@@ -24,9 +24,8 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_main"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             app:elevation="0dp"
-            android:paddingBottom="12dp"
             android:background="@drawable/shape_bottomnavi_background"
             app:itemHorizontalTranslationEnabled="false"
             app:itemIconTint="@drawable/selector_bottom_navigation"
