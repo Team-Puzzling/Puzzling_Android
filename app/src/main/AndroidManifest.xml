@@ -13,16 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PuzzlingAOS"
         tools:targetApi="31">
-        <activity
-            android:name=".presentation.home.team.TeamPuzzleBoardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.home.personal.MyPuzzleBoardActivity"
-            android:exported="false" />
+
         <activity
             android:name=".presentation.writeRetrospective.WriteRetrospectiveActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
@@ -37,17 +32,13 @@
             android:windowSoftInputMode="adjustPan"
             android:exported="true"/>
         <activity
-            android:name=".presentation.invitationCode.InvitationCodeActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".presentation.register.RegisterActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" />
         <activity
             android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" />
     </application>
 
 </manifest>

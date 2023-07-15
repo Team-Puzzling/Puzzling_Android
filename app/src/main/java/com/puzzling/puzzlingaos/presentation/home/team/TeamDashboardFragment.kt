@@ -1,6 +1,5 @@
 package com.puzzling.puzzlingaos.presentation.home.team
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -14,15 +13,5 @@ class TeamDashboardFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        clickTeamPuzzleBoardBtn()
-    }
-
-    private fun clickTeamPuzzleBoardBtn() {
-        binding.clTeamTopBackground.setOnClickListener {
-            activity?.let {
-                val intent = Intent(context, TeamPuzzleBoardActivity::class.java)
-                startActivity(intent)
-            }
-        }
     }
 }

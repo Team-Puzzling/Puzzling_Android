@@ -12,8 +12,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="156dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="156:140"
+            android:layout_height="wrap_content"
             android:background="@drawable/rect_bg50_fill_radius_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

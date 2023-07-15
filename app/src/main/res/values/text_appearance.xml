@@ -2,67 +2,66 @@
 <resources>
     <!-- NotoSans KOR -->
     <!-- Heading -->
-    <style name="Kor.Heading1" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Heading1" parent="">
         <item name="android:textSize">24dp</item>
         <item name="fontFamily">@font/notosans_black</item>
-        <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Heading2" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Heading2" parent="">
         <item name="android:textSize">22dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Heading3" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Heading3" parent="">
         <item name="android:textSize">20dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Heading4" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Heading4" parent="">
         <item name="android:textSize">18dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
     <!-- Body -->
-    <style name="Kor.Body1.Bold" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Body1.Bold" parent="">
         <item name="android:textSize">16dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:lineSpacingExtra">8dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Body1.Regular" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Body1.Regular" parent="">
         <item name="android:textSize">16dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="android:lineSpacingExtra">8dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Body2.Bold" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Body2.Bold" parent="">
         <item name="android:textSize">15dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:lineSpacingExtra">7dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Body2.Regular" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Body2.Regular" parent="">
         <item name="android:textSize">15dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="android:lineSpacingExtra">7dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Body3.Bold" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Body3.Bold" parent="">
         <item name="android:textSize">14dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:lineSpacingExtra">7dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Body3.Regular" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Body3.Regular" parent="">
         <item name="android:textSize">14dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="android:lineSpacingExtra">7dp</item>
@@ -71,35 +70,35 @@
 
 
     <!-- Detail -->
-    <style name="Kor.Detail1.Bold" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Detail1.Bold" parent="">
         <item name="android:textSize">13dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:lineSpacingExtra">6dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Detail1.Regular" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Detail1.Regular" parent="">
         <item name="android:textSize">13dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="android:lineSpacingExtra">6dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Detail2.Bold" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Detail2.Bold" parent="">
         <item name="android:textSize">12dp</item>
         <item name="fontFamily">@font/notosans_bold</item>
         <item name="android:lineSpacingExtra">6dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Detail2.Regular" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Detail2.Regular" parent="">
         <item name="android:textSize">12dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="android:lineSpacingExtra">6dp</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Kor.Detail3.Regular" parent="Widget.AppCompat.TextView">
+    <style name="Kor.Detail3.Regular" parent="">
         <item name="android:textSize">11dp</item>
         <item name="fontFamily">@font/notosans_regular</item>
         <item name="android:lineSpacingExtra">5dp</item>
