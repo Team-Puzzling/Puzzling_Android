@@ -1,11 +1,7 @@
 package com.puzzling.puzzlingaos.presentation.detailRetrospect
 
-import android.app.ActionBar.LayoutParams
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
@@ -34,7 +30,8 @@ class DetailRetroActivity :
         }.attach()
 
         for (i in 0..7) {
-            val textView = LayoutInflater.from(this).inflate(R.layout.tab_title, null) as ConstraintLayout
+            val textView =
+                LayoutInflater.from(this).inflate(R.layout.tab_title, null) as ConstraintLayout
             // textView.layoutParams = ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             binding.tlDetailRetroDate.getTabAt(i)?.customView = textView
         }
