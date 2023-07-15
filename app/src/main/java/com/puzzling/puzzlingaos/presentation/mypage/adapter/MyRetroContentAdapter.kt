@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage.adapter
+package com.puzzling.puzzlingaos.presentation.mypage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,21 +8,21 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroRetroBinding
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
-class MyRetroAdapter() : ListAdapter<ResponseMyRetroListDto, MyRetroAdapter.MyRetroViewHolder>(
+class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto, MyRetroContentAdapter.MyRetroContenViewHolder>(
     diffCallback,
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRetroViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRetroContenViewHolder {
         val binding: ItemMyretroRetroBinding =
             ItemMyretroRetroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyRetroViewHolder(binding)
+        return MyRetroContenViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyRetroViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyRetroContenViewHolder, position: Int) {
         return holder.onBind(currentList[position])
     }
 
-    class MyRetroViewHolder(private val binding: ItemMyretroRetroBinding) :
+    class MyRetroContenViewHolder(private val binding: ItemMyretroRetroBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: ResponseMyRetroListDto) {
             binding.tvMyretroDate.text = item.reviewDate

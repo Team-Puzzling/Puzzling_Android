@@ -18,7 +18,10 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity(), ViewModelFactory(requireContext()))[InvitationCodeViewModel::class.java]
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelFactory(requireContext()),
+        )[InvitationCodeViewModel::class.java]
 
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

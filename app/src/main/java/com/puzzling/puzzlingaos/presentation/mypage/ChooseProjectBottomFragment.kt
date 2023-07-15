@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.presentation.home.mypage
+package com.puzzling.puzzlingaos.presentation.mypage
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentBottomChooseProjectBinding
-import com.puzzling.puzzlingaos.presentation.home.mypage.adapter.ChooseProjectAdapter
+import com.puzzling.puzzlingaos.presentation.mypage.adapter.ChooseProjectAdapter
 
 class ChooseProjectBottomFragment :
     BottomSheetDialogFragment<FragmentBottomChooseProjectBinding>(R.layout.fragment_bottom_choose_project) {
