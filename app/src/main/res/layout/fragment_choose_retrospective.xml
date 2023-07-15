@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/CustomBottomSheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="274dp"
         android:background="@drawable/rect_white_fill_top16"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:context=".presentation.writeRetrospective.ChooseRetrospectiveFragment">

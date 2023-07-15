@@ -33,9 +33,3 @@
     </item>
 
 </selector>
-<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
-<!--    <item android:drawable="@drawable/rect_bg50_fill_radius_16" android:state_focused="true" />-->
-<!--    <item android:drawable="@drawable/rect_bg50_fill_radius_16" android:state_pressed="true" />-->
-<!--    <item android:drawable="@drawable/rect_bg50_fill_radius_16" android:state_activated="true" />-->
-<!--    <item android:drawable="@drawable/rect_bg50_fill_radius_16" />-->
-<!--</selector>-->
