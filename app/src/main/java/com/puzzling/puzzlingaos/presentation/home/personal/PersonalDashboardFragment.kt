@@ -22,6 +22,7 @@ class PersonalDashboardFragment :
         setActionPlanAdapter()
         clickBottomBtn()
         clickMyPuzzleBoardBtn()
+        clickPuzzlePiece()
     }
 
     private fun setActionPlanAdapter() {
@@ -46,6 +47,14 @@ class PersonalDashboardFragment :
             activity?.let {
                 val intent = Intent(context, MyPuzzleBoardActivity::class.java)
                 startActivity(intent)
+            }
+        }
+    }
+
+    private fun clickPuzzlePiece() {
+        with(binding) {
+            // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
+            clPersonalMain1.setOnClickListener {
             }
         }
     }

@@ -1,11 +1,12 @@
 package com.puzzling.puzzlingaos.presentation.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -16,13 +17,15 @@ import com.puzzling.puzzlingaos.presentation.main.HomeChooseProjectFragment
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by activityViewModels<HomeViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
         initTabItem()
-        projectNameBtn()
+        showProjectBottomSheet()
         clickTabItem()
-        clickNotiIcon()
+        showPopupMessage()
+        handleSelectedProject()
     }
 
     private fun initTabItem() {
@@ -54,17 +57,28 @@ class HomeFragment :
         })
     }
 
-    private fun projectNameBtn() {
+    private fun showProjectBottomSheet() {
         binding.clHomeProjectMain.setOnClickListener {
             val chooseProjectFragment = HomeChooseProjectFragment()
             chooseProjectFragment.show(parentFragmentManager, "show")
         }
     }
 
-    private fun clickNotiIcon() {
+    private fun showPopupMessage() {
         binding.btnHomeNotification.setOnClickListener {
             val isCardVisible = binding.cvHomePopup.isVisible
             binding.cvHomePopup.isVisible = !isCardVisible
+        }
+    }
+
+    private fun handleSelectedProject() {
+        viewModel.isProjectNameSelected.observe(viewLifecycleOwner) {
+            Log.d("home", "isProjectSelected: ${viewModel.isProjectNameSelected.value}")
+            if (viewModel.isProjectNameSelected.value == true) {
+                val projectName = viewModel.selectedProjectName.value
+                binding.tvHomeProjectName.text = projectName.toString()
+                Log.d("home", "tvHomeProjectName: ${binding.tvHomeProjectName.text}")
+            }
         }
     }
 }

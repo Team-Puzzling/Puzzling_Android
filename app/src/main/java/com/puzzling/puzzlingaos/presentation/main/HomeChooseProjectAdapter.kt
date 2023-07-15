@@ -1,80 +1,61 @@
 package com.puzzling.puzzlingaos.presentation.main
 
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
-import com.puzzling.puzzlingaos.databinding.ItemMyretroAllProjectsBinding
-import com.puzzling.puzzlingaos.databinding.ItemMyretroCurrentProjectBinding
+import com.puzzling.puzzlingaos.databinding.ItemHomeProjectBinding
+import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
-class HomeChooseProjectAdapter(private val currentProject: String) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private var itemList = mutableListOf<ResponseMyPageProjectDto>()
-
-    override fun getItemViewType(position: Int): Int {
-        return when (itemList[position].projectName) {
-            currentProject -> CURRENT_PROJECT
-            else -> CHOOSE_PROJECT
-        }
+class HomeChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
+    ListAdapter<ResponseMyPageProjectDto, HomeChooseProjectAdapter.HomeChooseProjectViewHolder>(
+        ItemDiffCallback<ResponseMyPageProjectDto>(
+            onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old == new },
+        ),
+    ) {
+    private var selectedItemPosition = RecyclerView.NO_POSITION
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): HomeChooseProjectViewHolder {
+        val binding =
+            ItemHomeProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HomeChooseProjectViewHolder(binding, selectedItem)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        when (viewType) {
-            CURRENT_PROJECT -> {
-                val binding: ItemMyretroCurrentProjectBinding =
-                    ItemMyretroCurrentProjectBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false,
-                    )
-                return CurrentProjectViewHolder(binding)
-            }
-            else -> {
-                val binding: ItemMyretroAllProjectsBinding = ItemMyretroAllProjectsBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false,
-                )
-                return ChooseProjectViewHolder(binding)
-            }
-        }
+    override fun onBindViewHolder(holder: HomeChooseProjectViewHolder, position: Int) {
+        holder.onBind(
+            getItem(position) as ResponseMyPageProjectDto,
+        )
     }
 
-    override fun getItemCount() = itemList.size
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is CurrentProjectViewHolder -> {
-                holder.onBind(itemList[position])
-            }
-            is ChooseProjectViewHolder -> {
-                holder.onBind(itemList[position])
-            }
-        }
-    }
-
-    class CurrentProjectViewHolder(private val binding: ItemMyretroCurrentProjectBinding) :
+    inner class HomeChooseProjectViewHolder(
+        private val binding: ItemHomeProjectBinding,
+        private val selectedItem: (String) -> Unit,
+    ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyPageProjectDto) {
-            binding.tvMyRetroProjectName.text = item.projectName
+        private var isItemSelected = false
+        fun onBind(data: ResponseMyPageProjectDto) = with(binding) {
+            tvHomeProjectName.text = data.projectName
+            clHomeProject.setOnClickListener {
+                isItemSelected = !isItemSelected
+                selectedItemPosition = bindingAdapterPosition
+                val selectedProject = getItem(selectedItemPosition)
+                Log.d("home", "selectedProject.projectName: ${selectedProject.projectName}")
+                if (isItemSelected) {
+                    binding.clHomeProject.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                    binding.ivHomeChooseProject.visibility = View.VISIBLE
+                    selectedItem(selectedProject.projectName)
+                } else {
+                    binding.clHomeProject.setBackgroundColor(Color.parseColor("#FAFAFA"))
+                    binding.ivHomeChooseProject.visibility = View.INVISIBLE
+                }
+            }
         }
-    }
-
-    class ChooseProjectViewHolder(private val binding: ItemMyretroAllProjectsBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyPageProjectDto) {
-            binding.tvMyRetroProjectName.text = item.projectName
-        }
-    }
-
-    fun setItemList(newItemList: MutableList<ResponseMyPageProjectDto>) {
-        itemList = newItemList
-        notifyDataSetChanged()
-    }
-
-    companion object {
-        const val CURRENT_PROJECT = 0
-        const val CHOOSE_PROJECT = 1
     }
 }
