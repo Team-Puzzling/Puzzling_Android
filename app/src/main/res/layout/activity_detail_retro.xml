@@ -53,12 +53,14 @@
             android:layout_height="22dp"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="3dp"
-            android:background="@drawable/tab_background_week_selector"
+            android:theme="@style/TabTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_detailRetro_date"
+            app:tabIconTint="@color/black"
             app:tabIndicatorColor="@color/white_000"
-            app:tabRippleColor="@android:color/transparent">
+            app:tabRippleColor="@android:color/transparent"
+            app:tabTextAppearance="@style/Kor.Body2.Bold">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -101,8 +103,8 @@
             android:id="@+id/tl_detailRetro_date"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="3dp"
             android:background="@drawable/tab_background"
+            android:includeFontPadding="false"
             app:layout_constraintDimensionRatio="7:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
