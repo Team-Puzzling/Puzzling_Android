@@ -16,14 +16,14 @@ class HomeChooseProjectFragment :
         ResponseMyPageProjectDto("낫투두", "2023-07-12", 4),
         ResponseMyPageProjectDto("PEEKABOOK", "2023-07-20", 5),
         ResponseMyPageProjectDto("ZOOC", "2023-06-25", 9),
-        ResponseMyPageProjectDto("킵고잇", "2023-06-25", 8),
-        ResponseMyPageProjectDto("하", "2023-06-25", 8),
-        ResponseMyPageProjectDto(
-            "흠",
-            "2023-06-25",
-            8,
-
-        ),
+//        ResponseMyPageProjectDto("킵고잇", "2023-06-25", 8),
+//        ResponseMyPageProjectDto("하", "2023-06-25", 8),
+//        ResponseMyPageProjectDto(
+//            "흠",
+//            "2023-06-25",
+//            8,
+//
+//        ),
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class HomeChooseProjectFragment :
     }
 
     private fun setBottomSheetAdapter() {
-        val chooseProjectAdapter = HomeChooseProjectAdapter("ZOOC")
+        val chooseProjectAdapter = HomeChooseProjectAdapter("PEEKABOOK")
         binding.rcvHomeChooseProject.adapter = chooseProjectAdapter
         chooseProjectAdapter.setItemList(dummyItemList)
     }

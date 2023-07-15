@@ -68,4 +68,6 @@
     <string name="tv_personal_top_button">퍼즐판 보러가기</string>
     <string name="tv_team_top_button">팀 퍼즐판 보러가기</string>
     <string name="tv_team_ranking_title">프로젝트 이름의 랭킹</string>
+    <string name="tv_home_popup_content">매주 월,수,금에\n회고를 작성해주세요!</string>
+    <string name="tv_home_popup_title">프로젝트 이름</string>
 </resources>

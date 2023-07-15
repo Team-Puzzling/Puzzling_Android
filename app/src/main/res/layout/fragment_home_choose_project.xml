@@ -23,6 +23,7 @@
             android:layout_marginTop="18dp"
             android:background="@drawable/rect_gray300_fill"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -31,49 +32,49 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:orientation="vertical"
-            tools:itemCount="4"
+            app:layout_constraintBottom_toTopOf="@+id/cl_home_choose_project"
+            app:layout_constraintVertical_bias="0"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_home_choose_top"
+            tools:itemCount="4"
             tools:listitem="@layout/item_myretro_all_projects" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_home_choose_project"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/rcv_home_choose_project"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cl_home_join_project"
             >
 
             <ImageButton
                 android:id="@+id/btn_home_choose_project"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:contentDescription="@null"
                 android:layout_marginVertical="16dp"
                 android:layout_marginStart="20dp"
+                android:background="@null"
+                android:contentDescription="@null"
                 android:src="@drawable/ic_plus"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_home_choose_project"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="18dp"
+                android:layout_marginStart="16dp"
+                android:includeFontPadding="false"
                 android:text="프로젝트 등록하기"
                 android:textAppearance="@style/Kor.Body1.Bold"
                 android:textColor="@color/gray_600"
-                android:includeFontPadding="false"
-                android:layout_marginVertical="18dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toEndOf="@+id/btn_home_choose_project"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@+id/btn_home_choose_project"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,41 +82,37 @@
             android:id="@+id/cl_home_join_project"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/cl_home_choose_project"
             app:layout_constraintStart_toStartOf="parent"
-            >
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageButton
                 android:id="@+id/btn_home_join_project"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:contentDescription="@null"
                 android:layout_marginVertical="16dp"
                 android:layout_marginStart="20dp"
+                android:background="@null"
+                android:contentDescription="@null"
                 android:src="@drawable/ic_plus"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_home_join_project"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="18dp"
+                android:layout_marginStart="16dp"
+                android:includeFontPadding="false"
                 android:text="프로젝트 참여하기"
                 android:textAppearance="@style/Kor.Body1.Bold"
                 android:textColor="@color/gray_600"
-                android:includeFontPadding="false"
-                android:layout_marginVertical="18dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintStart_toEndOf="@+id/btn_home_join_project"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@+id/btn_home_join_project"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

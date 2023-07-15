@@ -1,10 +1,11 @@
 package com.puzzling.puzzlingaos.presentation.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -15,11 +16,13 @@ import com.puzzling.puzzlingaos.presentation.main.HomeChooseProjectFragment
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+    private val viewModel by viewModels<HomeViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initTabItem()
         projectNameBtn()
         clickTabItem()
+        clickNotiIcon()
     }
 
     private fun initTabItem() {
@@ -53,9 +56,15 @@ class HomeFragment :
 
     private fun projectNameBtn() {
         binding.clHomeProjectMain.setOnClickListener {
-            Log.d("home", "프로젝트 이름 바텀시트 올라가야함!")
             val chooseProjectFragment = HomeChooseProjectFragment()
             chooseProjectFragment.show(parentFragmentManager, "show")
+        }
+    }
+
+    private fun clickNotiIcon() {
+        binding.btnHomeNotification.setOnClickListener {
+            val isCardVisible = binding.cvHomePopup.isVisible
+            binding.cvHomePopup.isVisible = !isCardVisible
         }
     }
 }
