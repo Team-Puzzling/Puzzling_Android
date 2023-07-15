@@ -47,18 +47,68 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_detailRetro_main" />
 
-
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tablayout"
+            android:id="@+id/tl_detailRetro_week"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            app:tabIndicatorColor="@color/white_000"
-            android:background="@drawable/tab_background"
+            android:layout_height="22dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/tab_background_week_selector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_detailRetro_date">
+            app:layout_constraintTop_toBottomOf="@id/tv_detailRetro_date"
+            app:tabIndicatorColor="@color/white_000"
+            app:tabRippleColor="@android:color/transparent">
 
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_monday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_thuesday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_monday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_thuesday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_monday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_thuesday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_monday" />
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_detailRetro_date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/tab_background"
+            app:layout_constraintDimensionRatio="7:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tl_detailRetro_week"
+            app:tabIndicatorColor="@color/white_000"
+            app:tabTextAppearance="@style/Kor.Body2.Bold">
 
 
         </com.google.android.material.tabs.TabLayout>
