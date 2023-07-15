@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentHomeChooseProjectBinding
 import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
 import com.puzzling.puzzlingaos.presentation.invitationCode.InvitationCodeActivity
 import com.puzzling.puzzlingaos.presentation.register.RegisterActivity
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeChooseProjectFragment :
     BottomSheetDialogFragment<FragmentHomeChooseProjectBinding>(R.layout.fragment_home_choose_project) {
@@ -35,16 +38,23 @@ class HomeChooseProjectFragment :
                     val intent = Intent(context, RegisterActivity::class.java)
                     startActivity(intent)
                 }
+                dismiss()
             }
             clHomeJoinProject.setOnClickListener {
                 activity?.let {
                     val intent = Intent(context, InvitationCodeActivity::class.java)
                     startActivity(intent)
                 }
+                dismiss()
             }
         }
     }
 
-    private fun clickProjectItem(projectName: String) =
+    private fun clickProjectItem(projectName: String) {
         viewModel.setSelectedProjectText(projectName)
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(100)
+            dismiss()
+        }
+    }
 }
