@@ -11,6 +11,7 @@
         android:background="@drawable/tab_background_selector"
         android:gravity="center"
         android:text="Title"
+        android:textColor="@drawable/sel_detailretro_tablayer_textcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
