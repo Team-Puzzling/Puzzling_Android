@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
-import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 import java.time.DayOfWeek
@@ -34,11 +33,6 @@ class DetailRetroActivity :
 
         viewModel.getDetailRetroList()
 
-        binding.viewPager.adapter = WeekTapAdapter(this)
-        TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
-            tab.text = tabTitle[position]
-        }.attach()
-
         viewModel.detailRetroList.observe(this) { contents ->
 
             Log.d("오류", "contents : $contents")
@@ -52,6 +46,11 @@ class DetailRetroActivity :
             }
             setItemBg()
         }
+
+        binding.viewPager.adapter = WeekTapAdapter(this, num)
+        TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
+            tab.text = tabTitle[position]
+        }.attach()
     }
 
     private fun setItemBg() {
@@ -80,7 +79,6 @@ class DetailRetroActivity :
             }
         }
     }
-
 
     private fun getWeekDatesWithToday(): List<String> {
         val today = LocalDate.now()
