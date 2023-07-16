@@ -63,11 +63,22 @@ class DetailRetroActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        onBindTabandViewPager()
+
+        checkTabItemBg()
+
+        setTabItemBg()
+    }
+
+    private fun onBindTabandViewPager() {
         binding.viewPager.adapter = WeekTapAdapter(this)
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
+    }
 
+
+    private fun checkTabItemBg() {
         for (day in dummyList) {
             if (day.reviewId != null) {
                 num[week.indexOf(day.reviewDay)] = BG_BLUE_100
@@ -78,7 +89,9 @@ class DetailRetroActivity :
                 num[week.indexOf(day.reviewDay)] = BLACK_TEXT
             }
         }
+    }
 
+    private fun setTabItemBg() {
         for (i in 0..6) {
             when (num[i]) {
                 BG_BLUE_100 -> {
@@ -104,7 +117,7 @@ class DetailRetroActivity :
         }
     }
 
-    fun getWeekDatesWithToday(): List<String> {
+    private fun getWeekDatesWithToday(): List<String> {
         val today = LocalDate.now()
         val startOfWeek = today.with(DayOfWeek.MONDAY) // 해당 주의 시작일
         val endOfWeek = today.with(DayOfWeek.SUNDAY) // 해당 주의 종료일
