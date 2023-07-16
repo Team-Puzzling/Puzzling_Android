@@ -259,11 +259,13 @@
                     android:id="@+id/edt_write_question2"
                     android:layout_width="match_parent"
                     android:layout_height="118dp"
-                    android:background="@drawable/selector_custom_edittext"
+                    android:background="@{!vm.isValidquestion2 ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
                     android:gravity="start"
                     android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                     android:scrollbars="vertical"
-                    android:selectAllOnFocus="false" />
+                    android:selectAllOnFocus="false"
+                    android:text="@={vm.question2}"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -311,11 +313,13 @@
                     android:id="@+id/edt_write_question3"
                     android:layout_width="match_parent"
                     android:layout_height="118dp"
-                    android:background="@drawable/selector_custom_edittext"
+                    android:background="@{!vm.isValidquestion3 ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
                     android:gravity="start"
                     android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                     android:scrollbars="vertical"
-                    android:selectAllOnFocus="false" />
+                    android:selectAllOnFocus="false"
+                    android:text="@={vm.question3}"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

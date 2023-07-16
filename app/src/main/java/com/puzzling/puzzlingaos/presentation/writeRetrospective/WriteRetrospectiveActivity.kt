@@ -80,8 +80,8 @@ class WriteRetrospectiveActivity :
                             viewModel.isValidquestion2.value = true
                         }
                         viewModel.question3 -> {
-                            binding.edtWriteSecondMain.error = null
-                            viewModel.isValidquestion2.value = true
+                            binding.edtWriteThirdMain.error = null
+                            viewModel.isValidquestion3.value = true
                         }
                     }
                 }
