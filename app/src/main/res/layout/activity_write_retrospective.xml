@@ -66,7 +66,7 @@
                     android:paddingEnd="8dp"
                     android:text="@string/tv_write_register"
                     android:textAppearance="@style/Kor.Body1.Bold"
-                    android:textColor="@color/gray_400"
+                    android:textColor="@{vm.isInputEnabled ?  @color/blue_400 : @color/gray_400}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_write_title" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -158,7 +158,6 @@
                 app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
                 app:helperTextTextColor="@color/design_default_color_error"
                 app:hintEnabled="false"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"

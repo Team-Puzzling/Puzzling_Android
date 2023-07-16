@@ -44,10 +44,10 @@ class WriteRetrospectiveViewModel : ViewModel() {
         addSource(question2) { value = isValid() }
         addSource(question3) { value = isValid() }
     }
-    var isBtnEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
+    var isInputEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkBtnEnabled() {
-        isBtnEnabled.value = isValid()
+        isInputEnabled.value = isValid()
     }
 
     fun setSelectedReviewTypeText(reviewType: String) {
