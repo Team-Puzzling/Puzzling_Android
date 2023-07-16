@@ -3,50 +3,44 @@ package com.puzzling.puzzlingaos.presentation.team.currentSituation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puzzling.puzzlingaos.databinding.ItemTeamDoDontRetrospectListBinding
+import com.puzzling.puzzlingaos.databinding.ItemTeamDoRetrospectListBinding
 import com.puzzling.puzzlingaos.databinding.ItemTeamDoRetrospectTextBinding
+import com.puzzling.puzzlingaos.databinding.ItemTeamDontRetrospectListBinding
 import com.puzzling.puzzlingaos.databinding.ItemTeamDontRetrospectTextBinding
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList.Companion.DONT_RETROSPECT_TEXT
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList.Companion.DO_RETROSPECT_TEXT
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList.Companion.RETROSPECT_LIST
+import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList
+import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DONT_RETROSPECT_LIST
+import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DONT_RETROSPECT_TEXT
+import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DO_RETROSPECT_LIST
+import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DO_RETROSPECT_TEXT
 
 class RetrospectListAdapter(private val viewModel: TeamCurrentSituationViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-
     private lateinit var doRetrospectTextBinding: ItemTeamDoRetrospectTextBinding
     private lateinit var dontRetrospectTextBinding: ItemTeamDontRetrospectTextBinding
-    private lateinit var retrospectListBinding: ItemTeamDoDontRetrospectListBinding
+    private lateinit var doRetrospectListBinding: ItemTeamDoRetrospectListBinding
+    private lateinit var dontRetrospectListBinding: ItemTeamDontRetrospectListBinding
 
-    // private var itemList = mutableListOf<TeamRetrospectList>()
-
-    private val itemList = mutableListOf<TeamRetrospectList>(
-        TeamRetrospectList(0, null, null, null),
-        TeamRetrospectList(2, null, "닉네임최대10자보이...", "역할도최대10자고이후.."),
-        TeamRetrospectList(2, null, "이솝트", "안드로이드개발자"),
-        TeamRetrospectList(2, null, "김솝트", "디자이너"),
-        TeamRetrospectList(2, null, "한솝트", "기획자"),
-        TeamRetrospectList(1, null, null, null),
-        TeamRetrospectList(2, null, "닉네임최대10자보이...", "역할도최대10자고이후.."),
-        TeamRetrospectList(2, null, "이솝트", "안드로이드개발자"),
-        TeamRetrospectList(2, null, "김솝트", "디자이너"),
-        TeamRetrospectList(2, null, "한솝트", "기획자"),
-    )
+    var adapterItemList = mutableListOf<TeamRetrospectMultiList>()
 
     inner class DoRetrospectTextViewHolder(val binding: ItemTeamDoRetrospectTextBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectList) {
-            // binding.tvItemRetrospectText.text = item.titleText
+        fun bind(item: TeamRetrospectMultiList) {
             binding.tvItemRetrospectText.text
         }
     }
     inner class DontRetrospectTextViewHolder(val binding: ItemTeamDontRetrospectTextBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectList) {
-            // binding.tvItemRetrospectText.text = item.titleText
+        fun bind(item: TeamRetrospectMultiList) {
             binding.tvItemRetrospectText.text
         }
     }
-    inner class RetrospectListViewHolder(val binding: ItemTeamDoDontRetrospectListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectList) {
+    inner class DoRetrospectListViewHolder(val binding: ItemTeamDoRetrospectListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: TeamRetrospectMultiList) {
+            binding.tvItemRetrospectNickName.text = item.memberNickname
+            binding.tvItemRetrospectRole.text = item.memberRole
+        }
+    }
+
+    inner class DontRetrospectListViewHolder(val binding: ItemTeamDontRetrospectListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: TeamRetrospectMultiList) {
             binding.tvItemRetrospectNickName.text = item.memberNickname
             binding.tvItemRetrospectRole.text = item.memberRole
         }
@@ -62,41 +56,41 @@ class RetrospectListAdapter(private val viewModel: TeamCurrentSituationViewModel
                 dontRetrospectTextBinding = ItemTeamDontRetrospectTextBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return DontRetrospectTextViewHolder(dontRetrospectTextBinding)
             }
-            RETROSPECT_LIST -> {
-                retrospectListBinding = ItemTeamDoDontRetrospectListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return RetrospectListViewHolder(retrospectListBinding)
+            DO_RETROSPECT_LIST -> {
+                doRetrospectListBinding = ItemTeamDoRetrospectListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return DoRetrospectListViewHolder(doRetrospectListBinding)
             }
             else -> {
-                retrospectListBinding = ItemTeamDoDontRetrospectListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return RetrospectListViewHolder(retrospectListBinding)
+                dontRetrospectListBinding = ItemTeamDontRetrospectListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return DontRetrospectListViewHolder(dontRetrospectListBinding)
             }
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (itemList[position].type) {
+        when (adapterItemList[position].type) {
             DO_RETROSPECT_TEXT -> {
-                (holder as DoRetrospectTextViewHolder).bind(itemList[position])
+                (holder as DoRetrospectTextViewHolder).bind(adapterItemList[position])
                 holder.setIsRecyclable(false)
             }
             DONT_RETROSPECT_TEXT -> {
-                (holder as DontRetrospectTextViewHolder).bind(itemList[position])
+                (holder as DontRetrospectTextViewHolder).bind(adapterItemList[position])
                 holder.setIsRecyclable(false)
             }
-            RETROSPECT_LIST -> {
-                (holder as RetrospectListViewHolder).bind(itemList[position])
+            DO_RETROSPECT_LIST -> {
+                (holder as DoRetrospectListViewHolder).bind(adapterItemList[position])
+                holder.setIsRecyclable(false)
+            }
+            DONT_RETROSPECT_LIST -> {
+                (holder as DontRetrospectListViewHolder).bind(adapterItemList[position])
                 holder.setIsRecyclable(false)
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return itemList[position].type
+        return adapterItemList[position].type
     }
 
-    override fun getItemCount(): Int = itemList.size
-
-//    fun setItemList(newItemList: MutableList<TeamRetrospectList>) {
-//        itemList = newItemList
-//    }
+    override fun getItemCount(): Int = adapterItemList.size
 }

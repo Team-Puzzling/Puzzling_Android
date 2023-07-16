@@ -10,4 +10,6 @@ class TeamCurrentSituationViewModel(private val teamCurrentSituationRepositoryIm
     var doRetrospectNull: MutableLiveData<Boolean> = MutableLiveData(true)
 
     fun weekTeamCurrentRound() {}
+
+
 }

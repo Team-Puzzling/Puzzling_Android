@@ -2,13 +2,14 @@ package com.puzzling.puzzlingaos.domain.entity
 
 data class TeamRetrospectMultiList(
     var type: Int,
-    var titleText: String?,
     var memberNickname: String?,
-    var memberRole: String?,
+    var memberRole: String?
 ) {
+
     companion object {
         const val DO_RETROSPECT_TEXT = 0
-        const val DONT_RETROSPECT_TEXT = 1
-        const val RETROSPECT_LIST = 2
+        const val DO_RETROSPECT_LIST = 1
+        const val DONT_RETROSPECT_TEXT = 2
+        const val DONT_RETROSPECT_LIST = 3
     }
 }

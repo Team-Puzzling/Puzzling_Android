@@ -10,9 +10,9 @@ data class TeamRetrospectList(
     @SerialName("reviewDate")
     val reviewDate: String,
     @SerialName("reviewWriters")
-    val reviewWriters: ArrayList<ReviewWriterList>,
+    val reviewWriters: ArrayList<ReviewWriterList>?,
     @SerialName("nonReviewWriters")
-    val nonReviewWriters: ArrayList<NonReviewWriterList>,
+    val nonReviewWriters: ArrayList<NonReviewWriterList>?,
 ) {
     @Serializable
     data class ReviewWriterList(
