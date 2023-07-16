@@ -21,6 +21,7 @@ class WriteRetrospectiveActivity :
         textInputListener(viewModel.question2)
         textInputListener(viewModel.question3)
         validBtnEnabled()
+        handleSelectedReviewType()
     }
 
     private fun clickBtn() {
@@ -36,6 +37,12 @@ class WriteRetrospectiveActivity :
             btnWriteBack.setOnClickListener {
                 // 뒤로 가기 로직
             }
+        }
+    }
+
+    private fun handleSelectedReviewType() {
+        viewModel.selectedReviewType.observe(this) { reviewType ->
+            binding.tvWriteChip.text = reviewType
         }
     }
 
