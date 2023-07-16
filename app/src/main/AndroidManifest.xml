@@ -39,6 +39,8 @@
             android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
+        <activity android:name=".presentation.detailRetrospect.DetailRetroActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
