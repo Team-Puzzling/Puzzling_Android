@@ -5,10 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puzzling.puzzlingaos.presentation.register.RegisterViewModel
 
 class WriteRetrospectiveViewModel : ViewModel() {
-    private val registerRegex = RegisterViewModel.REGISTER_REGEX.toRegex()
+    private val registerRegex = WRITE_REGEX.toRegex()
 
     val question1 = MutableLiveData<String>()
     val question2 = MutableLiveData<String>()
@@ -59,7 +58,7 @@ class WriteRetrospectiveViewModel : ViewModel() {
 
     companion object {
         const val WRITE_REGEX =
-            "/([\\u2700-\\u27BF]|[\\uE000-\\uF8FF]|\\uD83C[\\uDC00-\\uDFFF]|\\uD83D[\\uDC00-\\uDFFF]|[\\u2011-\\u26FF]|\\uD83E[\\uDD10-\\uDDFF])/g"
+            "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9 \\\\\\\\s!@#\$%^&*()-_=+\\\\[{\\\\]}\\\\|;:'\",.<>/?]*\$"
     }
 }
 // 특수 문자 가능
