@@ -7,19 +7,21 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
 
 class WeekTapAdapter(
     fragmentActivity: FragmentActivity,
-    private val dataList: List<ResponseDetailRetroDto>,
-    private val num: MutableList<Int>,
 ) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
         return 7
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when (num[position]) {
+        return when (position) {
             0 -> NoDetailRetroFragment()
             1 -> NoDetailRetroFragment()
-            2 -> DetailRetroFragment(position)
-            else -> DetailRetroFragment(position)
+            2 -> NoDetailRetroFragment()
+            3 -> NoDetailRetroFragment()
+            4 -> NoDetailRetroFragment()
+            5 -> NoDetailRetroFragment()
+            6 -> NoDetailRetroFragment()
+            else -> NoDetailRetroFragment()
         }
     }
 }

@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
@@ -33,33 +32,29 @@ class DetailRetroActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        onBindTabandViewPager()
-        setTabItemBg()
         viewModel.getDetailRetroList()
-    }
 
-    private fun onBindTabandViewPager() {
+        binding.viewPager.adapter = WeekTapAdapter(this)
+        TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
+            tab.text = tabTitle[position]
+        }.attach()
+
         viewModel.detailRetroList.observe(this) { contents ->
-            binding.viewPager.adapter = WeekTapAdapter(this, contents, num)
-            TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
-                tab.text = tabTitle[position]
-            }.attach()
-            checkTabItemBg(contents)
-        }
-    }
 
-    private fun checkTabItemBg(responseList: List<ResponseDetailRetroDto>) {
-        Log.d("오류", "$responseList")
-        for (day in responseList) {
-            if (day.reviewId != null) {
-                num[viewModel.week.indexOf(day.reviewDay)] = BG_BLUE_100
-            } else {
-                num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+            Log.d("오류", "contents : $contents")
+
+            for (day in contents) {
+                if (day.reviewId != null) {
+                    num[viewModel.week.indexOf(day.reviewDay)] = BG_BLUE_100
+                } else {
+                    num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+                }
             }
+            setItemBg()
         }
     }
 
-    private fun setTabItemBg() {
+    private fun setItemBg() {
         for (i in 0..6) {
             Log.d("오류", "$num")
             when (num[i]) {
@@ -85,6 +80,7 @@ class DetailRetroActivity :
             }
         }
     }
+
 
     private fun getWeekDatesWithToday(): List<String> {
         val today = LocalDate.now()
