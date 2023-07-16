@@ -38,4 +38,7 @@ class ChooseRetrospectiveFragment :
             clickReviewItem(selectedReviewType)
         }
     }
+
+    // 선택한 아이템을 액티비티로 넘긴다. ( 뷰모뎀로 넘겨주면 될듯?)
+    // 그럼 액티비티는 프래그먼트를 교체해야겠지?
 }
