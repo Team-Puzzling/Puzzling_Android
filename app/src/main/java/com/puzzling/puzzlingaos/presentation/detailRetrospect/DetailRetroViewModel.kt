@@ -23,11 +23,11 @@ class DetailRetroViewModel(context: Context) : ViewModel() {
     )
 
     private val dummyList = arrayListOf<ResponseDetailRetroDto>(
-        ResponseDetailRetroDto(null, "월", "2023-07-10", null),
+        ResponseDetailRetroDto(null, "월", "2023-07-17", null),
         ResponseDetailRetroDto(
             4,
             "화",
-            "2023-07-11",
+            "2023-07-18",
             listOf(
                 ResponseDetailRetroDto.Content("잘한점...", "잘한점 어쩌구...."),
                 ResponseDetailRetroDto.Content("아쉬운점...", "아쉬운점 어쩌구...."),
@@ -37,14 +37,14 @@ class DetailRetroViewModel(context: Context) : ViewModel() {
         ResponseDetailRetroDto(
             9,
             "목",
-            "2023-07-13",
+            "2023-07-20",
             listOf(
                 ResponseDetailRetroDto.Content("잘한점...", "잘한점 어쩌구...."),
                 ResponseDetailRetroDto.Content("아쉬운점...", "아쉬운점 어쩌구...."),
                 ResponseDetailRetroDto.Content("배운점...", "배운점 어쩌구...."),
             ),
         ),
-        ResponseDetailRetroDto(null, "금", "2023-07-10", null),
+        ResponseDetailRetroDto(null, "금", "2023-07-21", null),
     )
 
     fun getDetailRetroList() = viewModelScope.launch {
