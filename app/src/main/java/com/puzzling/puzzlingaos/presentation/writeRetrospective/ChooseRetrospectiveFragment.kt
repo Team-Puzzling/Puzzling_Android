@@ -1,7 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -37,10 +36,6 @@ class ChooseRetrospectiveFragment :
                 else -> "TIL"
             }
             clickReviewItem(selectedReviewType)
-            Log.d(
-                "write",
-                "selectedReviewType :: $selectedReviewType",
-            )
         }
     }
 }

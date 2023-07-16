@@ -1,7 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.puzzling.puzzlingaos.R
@@ -31,8 +30,9 @@ class WriteRetrospectiveActivity :
                 chooseRetrospectiveFragment.show(supportFragmentManager, "show")
             }
             tvWriteRegister.setOnClickListener {
-                Log.d("write", "저장 다이얼로그 표시함")
-                showDialog()
+                if (viewModel.isInputEnabled.value == true) {
+                    showDialog()
+                }
             }
             btnWriteBack.setOnClickListener {
                 // 뒤로 가기 로직
