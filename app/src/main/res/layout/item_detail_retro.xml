@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_detailRetro_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Kor.Body1.Bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="잘한점" />
+
+        <TextView
+            android:id="@+id/tv_detailRetro_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="placeholder 위치, 텍스트박스는 이 사이즈가 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. 회고를 길게길게 작성하여 내용이 더욱 길어지면 다음과 같이 작성한 회고 길이에 맞게 길어지게 됩니다. 길어지고 길어지고 빙빙 돌아가는 회전목마처럼 어쩌고 "
+            app:layout_constraintTop_toBottomOf="@id/tv_detailRetro_title"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
