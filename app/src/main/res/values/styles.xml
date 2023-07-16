@@ -16,4 +16,14 @@
         <item name="background">@drawable/selector_custom_edittext</item>
         <item name="strokeColor">#FAFAFA</item>
     </style>
+
+    <style name="TabTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/black</item>                                <!-- 배경 -->
+
+        <item name="android:textColorPrimary">@android:color/white</item>       <!-- 탭바 선택된 텍스트 -->
+        <item name="android:textColorSecondary">@android:color/black</item>     <!-- 탭바 텍스트 -->
+        <item name="android:textAppearance">@style/Kor.Body2.Bold</item>
+
+        <item name="colorAccent">@android:color/white</item>                    <!-- 하단 움직이는 바 색-->
+    </style>
 </resources>
