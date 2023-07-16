@@ -54,13 +54,13 @@ class WriteRetrospectiveViewModel : ViewModel() {
         return textBox.matches(registerRegex) && !textBox.isNullOrBlank()
     }
 
-    private fun isTilValid(): Boolean {
+    fun isTilValid(): Boolean {
         return validRegister(tilQuestion1.value.orEmpty()) &&
             validRegister(tilQuestion2.value.orEmpty()) &&
             validRegister(tilQuestion3.value.orEmpty())
     }
 
-    private fun is5fValid(): Boolean {
+    fun is5fValid(): Boolean {
         return validRegister(question5f1.value.orEmpty()) &&
             validRegister(question5f2.value.orEmpty()) &&
             validRegister(question5f3.value.orEmpty()) &&
@@ -68,7 +68,7 @@ class WriteRetrospectiveViewModel : ViewModel() {
             validRegister(question5f5.value.orEmpty())
     }
 
-    private fun isAarValid(): Boolean {
+    fun isAarValid(): Boolean {
         return validRegister(aarQuestion1.value.orEmpty()) &&
             validRegister(aarQuestion2.value.orEmpty()) &&
             validRegister(aarQuestion3.value.orEmpty()) &&
@@ -101,7 +101,12 @@ class WriteRetrospectiveViewModel : ViewModel() {
     var isInputEnabled: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkBtnEnabled() {
-        isInputEnabled.value = isTilValid() || is5fValid() || isAarValid()
+        isInputEnabled.value = when (_selectedReviewType.value) {
+            "TIL" -> isTilValid()
+            "5F" -> is5fValid()
+            "AAR" -> isAarValid()
+            else -> false
+        }
     }
 
     fun setSelectedReviewTypeText(reviewType: String) {
