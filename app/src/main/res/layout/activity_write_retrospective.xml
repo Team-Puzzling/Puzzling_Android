@@ -133,53 +133,13 @@
                 app:layout_constraintStart_toStartOf="@+id/cl_write_main"
                 app:layout_constraintTop_toBottomOf="@id/cl_write_chip" />
 
-            <!--
-                                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layout_projectName"
-                        style="@style/CustomTextInputLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="8dp"
-                        android:backgroundTint="#FAFAFA"
-                        app:boxCornerRadiusBottomEnd="16dp"
-                        app:boxCornerRadiusBottomStart="16dp"
-                        app:boxCornerRadiusTopEnd="16dp"
-                        app:boxCornerRadiusTopStart="16dp"
-                        app:boxStrokeColor="@color/blue_200"
-                        app:boxStrokeErrorColor="@color/red_200"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="10"
-                        app:errorEnabled="false"
-                        app:helperText="@null"
-                        app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
-                        app:helperTextTextColor="@color/red_400"
-                        app:hintEnabled="false"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_registerName">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_projectName"
-                            android:layout_width="match_parent"
-                            android:layout_height="54dp"
-                            android:background="@{!viewModel.isValidProjectName ? @drawable/rect_red_line_16 : @drawable/sel_register_drawable_custom_edittext, default = @drawable/sel_register_drawable_custom_edittext}"
-                            android:gravity="center_vertical"
-                            android:hint="@string/register_projectName_hint"
-                            android:includeFontPadding="false"
-                            android:selectAllOnFocus="false"
-                            android:text="@={viewModel.projectName}"
-                            android:textAppearance="@style/Kor.Body2.Regular" />
-            -->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_write_first_main"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                style="@style/CustomTextInputLayout"
                 android:backgroundTint="#FAFAFA"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -190,28 +150,27 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="200"
                 app:errorEnabled="false"
-                app:hintEnabled="false"
                 app:helperText="@null"
                 app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
-                app:layout_constraintVertical_bias="0"
                 app:helperTextTextColor="@color/design_default_color_error"
+                app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_write_question1">
+                app:layout_constraintTop_toBottomOf="@+id/tv_write_question1"
+                app:layout_constraintVertical_bias="0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_write_question1"
                     android:layout_width="match_parent"
                     android:layout_height="118dp"
-                    android:selectAllOnFocus="false"
-                    android:scrollbars="vertical"
-                    android:gravity="start"
-                    android:textAppearance="@style/Kor.Body2.Regular"
-                    android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                     android:background="@drawable/selector_custom_edittext"
-                    />
+                    android:gravity="start"
+                    android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
+                    android:scrollbars="vertical"
+                    android:selectAllOnFocus="false"
+                    android:textAppearance="@style/Kor.Body2.Regular" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -228,13 +187,49 @@
                 app:layout_constraintStart_toStartOf="@+id/cl_write_main"
                 app:layout_constraintTop_toBottomOf="@id/edt_write_first_main" />
 
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/edt_write_second_main"-->
+            <!--                style="@style/CustomTextInputLayout"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="16dp"-->
+            <!--                android:layout_marginTop="8dp"-->
+            <!--                android:backgroundTint="#FAFAFA"-->
+            <!--                app:boxCornerRadiusBottomEnd="10dp"-->
+            <!--                app:boxCornerRadiusBottomStart="10dp"-->
+            <!--                app:boxCornerRadiusTopEnd="10dp"-->
+            <!--                app:boxCornerRadiusTopStart="10dp"-->
+            <!--                app:boxStrokeColor="@color/blue_200"-->
+            <!--                app:boxStrokeWidthFocused="2dp"-->
+            <!--                app:errorEnabled="false"-->
+            <!--                app:helperText="@null"-->
+            <!--                app:helperTextTextColor="@color/design_default_color_error"-->
+            <!--                app:hintEnabled="false"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/tv_write_question2"-->
+            <!--                app:layout_constraintVertical_bias="0">-->
+
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/edt_write_question2"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="118dp"-->
+            <!--                    android:background="@drawable/selector_custom_edittext"-->
+            <!--                    android:gravity="start"-->
+            <!--                    android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "-->
+            <!--                    android:scrollbars="vertical"-->
+            <!--                    android:selectAllOnFocus="false" />-->
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_write_second_main"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                style="@style/CustomTextInputLayout"
                 android:backgroundTint="#FAFAFA"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -242,27 +237,30 @@
                 app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeColor="@color/blue_200"
                 app:boxStrokeWidthFocused="2dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="200"
                 app:errorEnabled="false"
-                app:hintEnabled="false"
                 app:helperText="@null"
-                app:layout_constraintVertical_bias="0"
+                app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
                 app:helperTextTextColor="@color/design_default_color_error"
+                app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_write_question2">
+                app:layout_constraintTop_toBottomOf="@+id/tv_write_question2"
+                app:layout_constraintVertical_bias="0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_write_question2"
                     android:layout_width="match_parent"
                     android:layout_height="118dp"
-                    android:selectAllOnFocus="false"
-                    android:scrollbars="vertical"
+                    android:background="@drawable/selector_custom_edittext"
                     android:gravity="start"
                     android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
-                    android:background="@drawable/selector_custom_edittext"
-                    />
+                    android:scrollbars="vertical"
+                    android:selectAllOnFocus="false"
+                    android:textAppearance="@style/Kor.Body2.Regular" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -280,11 +278,11 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_write_third_main"
+                style="@style/CustomTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                style="@style/CustomTextInputLayout"
                 android:backgroundTint="#FAFAFA"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -292,27 +290,30 @@
                 app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeColor="@color/blue_200"
                 app:boxStrokeWidthFocused="2dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="200"
                 app:errorEnabled="false"
-                app:hintEnabled="false"
                 app:helperText="@null"
-                app:layout_constraintVertical_bias="0"
+                app:helperTextTextAppearance="@style/Kor.Detail1.Regular"
                 app:helperTextTextColor="@color/design_default_color_error"
+                app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_write_question3">
+                app:layout_constraintTop_toBottomOf="@+id/tv_write_question3"
+                app:layout_constraintVertical_bias="0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_write_question3"
                     android:layout_width="match_parent"
                     android:layout_height="118dp"
-                    android:selectAllOnFocus="false"
-                    android:scrollbars="vertical"
+                    android:background="@drawable/selector_custom_edittext"
                     android:gravity="start"
                     android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
-                    android:background="@drawable/selector_custom_edittext"
-                    />
+                    android:scrollbars="vertical"
+                    android:selectAllOnFocus="false"
+                    android:textAppearance="@style/Kor.Body2.Regular" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
