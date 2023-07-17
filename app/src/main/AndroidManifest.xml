@@ -32,6 +32,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao${NATIVE_APP_KEY}" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.invitationCode.InvitationCodeActivity"
@@ -45,6 +54,8 @@
             android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".presentation.detailRetrospect.DetailRetroActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
