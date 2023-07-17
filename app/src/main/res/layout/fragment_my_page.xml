@@ -15,9 +15,9 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_myPage"
             android:layout_width="match_parent"
-            android:layout_marginBottom="21dp"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="48dp"
+            android:layout_marginBottom="21dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp"
@@ -77,7 +77,7 @@
                 android:id="@+id/cv_mypage_popup"
                 android:layout_width="170dp"
                 android:layout_height="120dp"
-                android:layout_marginStart="220dp"
+                android:layout_marginStart="194dp"
                 android:layout_marginTop="-10dp"
                 android:elevation="0dp"
                 android:visibility="invisible"
@@ -114,13 +114,7 @@
 
             </androidx.cardview.widget.CardView>
 
-
         </FrameLayout>
-
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
