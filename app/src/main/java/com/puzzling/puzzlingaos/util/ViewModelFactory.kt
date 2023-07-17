@@ -20,6 +20,13 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             modelClass.isAssignableFrom(InvitationCodeViewModel::class.java) -> {
                 InvitationCodeViewModel(context) as T
             }
+//            modelClass.isAssignableFrom(TeamCurrentSituationViewModel::class.java) -> {
+//                TeamCurrentSituationViewModel(
+//                    TeamCurrentSituationRepositoryImpl(
+//                        TeamCurrentSituationRemoteDataSource(),
+//                    ),
+//                ) as T
+//            }
             modelClass.isAssignableFrom(TeamCurrentSituationViewModel::class.java) -> {
                 TeamCurrentSituationViewModel(
                     TeamCurrentSituationRepositoryImpl(
