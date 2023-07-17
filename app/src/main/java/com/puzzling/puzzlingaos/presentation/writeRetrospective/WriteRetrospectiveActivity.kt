@@ -74,6 +74,8 @@ class WriteRetrospectiveActivity :
         }
     }
 
+
+
     private fun clearTilQuestionText() {
         viewModel.tilQuestion1.value = ""
         viewModel.tilQuestion2.value = ""

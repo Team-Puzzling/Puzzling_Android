@@ -1,6 +1,7 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +18,7 @@ class ChooseRetrospectiveFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clickRadioButton()
-//        setupCheckedRadioButton()
+        setupCheckedRadioButton()
     }
 
     private fun clickReviewItem(reviewType: String) {
@@ -26,6 +27,7 @@ class ChooseRetrospectiveFragment :
             delay(100)
             dismiss()
         }
+//        dismiss()
     }
 
     private fun clickRadioButton() {
@@ -36,18 +38,21 @@ class ChooseRetrospectiveFragment :
                 R.id.rbtn_choose_third -> "AAR"
                 else -> "TIL"
             }
+            Log.d("write", "selectedReviewType:: $selectedReviewType")
+            Log.d("write", "checkedId:: $checkedId")
+
             clickReviewItem(selectedReviewType)
         }
     }
 
     private fun setupCheckedRadioButton() {
-        val selectedReviewType = viewModel.selectedReviewType.value
-        val checkedId = when (selectedReviewType) {
+        val checkedId = when (viewModel.selectedReviewType.value.toString()) {
             "TIL" -> R.id.rbtn_choose_first
             "5F" -> R.id.rbtn_choose_second
             "AAR" -> R.id.rbtn_choose_third
             else -> R.id.rbtn_choose_first
         }
+        Log.d("write", "checkedId:: $checkedId")
         binding.rgChooseMain.check(checkedId)
     }
 }
