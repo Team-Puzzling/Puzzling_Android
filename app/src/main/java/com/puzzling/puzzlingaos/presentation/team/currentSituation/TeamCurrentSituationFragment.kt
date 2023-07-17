@@ -32,7 +32,6 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
         binding.viewModel = viewModel
 
         viewModel.getTeamRetrospectList()
-        // viewModel.testItemList(viewModel.teamRetrospectList, LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
 
         viewModel.teamRetrospectList.observe(this) { contents ->
             Log.d("오류", "contents : $contents")
