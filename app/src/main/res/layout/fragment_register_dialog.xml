@@ -17,7 +17,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             >
 
             <androidx.cardview.widget.CardView
@@ -83,11 +82,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:scaleType="fitXY"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
             android:layout_marginStart="171dp"
             android:contentDescription="@null"
-            android:src="@drawable/img_dialog_puzzle" />
+            android:src="@drawable/img_dialog_puzzle1" />
     </FrameLayout>
 </layout>
