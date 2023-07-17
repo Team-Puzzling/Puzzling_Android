@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel" />
 
     </data>
 
@@ -33,6 +36,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="85dp"
             android:orientation="vertical"
+            android:checkedButton="@id/rbtn_choose_first"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
