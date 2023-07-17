@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -46,6 +47,19 @@
             android:windowSoftInputMode="adjustPan"
             android:exported="true" >
         </activity>
+        <activity android:name=".presentation.detailRetrospect.DetailRetroActivity"
+            android:exported="true"/>
+        <activity android:name=".presentation.onboarding.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao${NATIVE_APP_KEY}" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.onboarding.ChooseJoinRegisterActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

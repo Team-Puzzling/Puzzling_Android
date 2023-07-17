@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.puzzling.puzzlingaos.data.repository.RegisterRepositoryImpl
 import com.puzzling.puzzlingaos.data.repository.TeamCurrentSituationRepositoryImpl
+import com.puzzling.puzzlingaos.data.service.KakaoLoginService
 import com.puzzling.puzzlingaos.data.source.remote.RegisterRemoteDataSource
 import com.puzzling.puzzlingaos.data.source.remote.TeamCurrentSituationRemoteDataSource
 import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroViewModel
 import com.puzzling.puzzlingaos.presentation.invitationCode.InvitationCodeViewModel
+import com.puzzling.puzzlingaos.presentation.onboarding.LoginViewModel
 import com.puzzling.puzzlingaos.presentation.register.RegisterViewModel
 import com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamCurrentSituationViewModel
 
@@ -38,6 +40,11 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
 
             modelClass.isAssignableFrom(DetailRetroViewModel::class.java) -> {
                 DetailRetroViewModel(context) as T
+            }
+
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                val repository = KakaoLoginService(context)
+                LoginViewModel(repository) as T
             }
 
             else -> {
