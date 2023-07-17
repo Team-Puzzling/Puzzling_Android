@@ -13,14 +13,12 @@ import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DO_RETROSPECT_LIST
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DO_RETROSPECT_TEXT
 
-class RetrospectListAdapter(private val viewModel: TeamCurrentSituationViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RetrospectListAdapter(var adapterItemList: ArrayList<TeamRetrospectMultiList> = ArrayList<TeamRetrospectMultiList>()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var doRetrospectTextBinding: ItemTeamDoRetrospectTextBinding
     private lateinit var dontRetrospectTextBinding: ItemTeamDontRetrospectTextBinding
     private lateinit var doRetrospectListBinding: ItemTeamDoRetrospectListBinding
     private lateinit var dontRetrospectListBinding: ItemTeamDontRetrospectListBinding
-
-    var adapterItemList = mutableListOf<TeamRetrospectMultiList>()
 
     inner class DoRetrospectTextViewHolder(val binding: ItemTeamDoRetrospectTextBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TeamRetrospectMultiList) {

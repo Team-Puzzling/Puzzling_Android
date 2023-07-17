@@ -60,215 +60,215 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_team_title_date"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/layout_team_title_date"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="130dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tb_team_current"-->
+<!--            >-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <TextView
+            android:id="@+id/tv_team_current_yearmonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="23dp"
+            android:textAppearance="@style/Kor.Heading2"
+            android:textColor="@color/black_000"
+            android:includeFontPadding="false"
+            android:text="2023년 7월"
             app:layout_constraintTop_toBottomOf="@id/tb_team_current"
-            >
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="2023년 7월"
+            />
+
+        <LinearLayout
+            android:id="@+id/layout_week_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tv_team_current_yearmonth"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/tv_team_current_yearmonth"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_week_mon"
+                android:layout_width="46dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="23dp"
-                android:textAppearance="@style/Kor.Heading2"
-                android:textColor="@color/black_000"
+                android:text="월"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="2023년 7월"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="2023년 7월"
                 />
 
-            <LinearLayout
-                android:id="@+id/layout_week_day"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_week_tue"
+                android:layout_width="46dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:layout_marginHorizontal="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/tv_team_current_yearmonth"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_week_mon"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="월"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_week_tue"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="화"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_week_wed"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="수"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_week_thu"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="목"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_week_fri"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="금"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_week_sat"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="토"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_week_sun"
-                    android:layout_width="46dp"
-                    android:layout_height="wrap_content"
-                    android:text="일"
-                    android:textAppearance="@style/Kor.Detail1.Regular"
-                    android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    />
-
-            </LinearLayout>
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="17dp"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/layout_week_day"-->
-<!--                app:layout_constraintStart_toStartOf="parent">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_mon"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_white_fill"-->
-<!--                    />-->
-<!--                &lt;!&ndash;                android:src="@{viewModel.weekTeamCurrentRound}"&ndash;&gt;-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_tue"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_blue100_fill"-->
-<!--                    />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_wed"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_white_fill"-->
-<!--                    />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_thu"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_blue100_fill"-->
-<!--                    />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_fri"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_blue400_fill"-->
-<!--                    />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_sat"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_white_fill"-->
-<!--                    />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_week_sun"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginHorizontal="7dp"-->
-<!--                    android:src="@drawable/round_white_fill"-->
-<!--                    />-->
-
-<!--            </LinearLayout>-->
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/layout_team_tab_date"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="16dp"
-                android:background="@drawable/tab_background"
-                android:theme="@style/TabTheme"
+                android:text="화"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
                 android:includeFontPadding="false"
-                app:tabTextColor="@color/gray_400"
-                app:tabSelectedTextColor="@color/white_000"
-                app:layout_constraintTop_toBottomOf="@id/layout_week_day"
-                app:layout_constraintStart_toStartOf="parent"
-                app:tabIndicatorColor="@color/white_000"
-                app:tabTextAppearance="@style/Kor.Body2.Bold"
                 />
-            
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/rcv_team_this_week"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_marginHorizontal="17dp"-->
-<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/layout_week_day"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                tools:listitem="@layout/item_team_this_week"-->
-<!--                />-->
+
+            <TextView
+                android:id="@+id/tv_week_wed"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="수"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                />
+
+            <TextView
+                android:id="@+id/tv_week_thu"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="목"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                />
+
+            <TextView
+                android:id="@+id/tv_week_fri"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="금"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                />
+
+            <TextView
+                android:id="@+id/tv_week_sat"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="토"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                />
+
+            <TextView
+                android:id="@+id/tv_week_sun"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:textAppearance="@style/Kor.Detail1.Regular"
+                android:textColor="@{viewModel.isWeekRetrospectColor ? @color/black_000 : @color/gray_400}"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                />
+
+        </LinearLayout>
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginHorizontal="17dp"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/layout_week_day"-->
+        <!--                app:layout_constraintStart_toStartOf="parent">-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_mon"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_white_fill"-->
+        <!--                    />-->
+        <!--                &lt;!&ndash;                android:src="@{viewModel.weekTeamCurrentRound}"&ndash;&gt;-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_tue"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_blue100_fill"-->
+        <!--                    />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_wed"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_white_fill"-->
+        <!--                    />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_thu"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_blue100_fill"-->
+        <!--                    />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_fri"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_blue400_fill"-->
+        <!--                    />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_sat"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_white_fill"-->
+        <!--                    />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_week_sun"-->
+        <!--                    android:layout_width="32dp"-->
+        <!--                    android:layout_height="32dp"-->
+        <!--                    android:layout_marginHorizontal="7dp"-->
+        <!--                    android:src="@drawable/round_white_fill"-->
+        <!--                    />-->
+
+        <!--            </LinearLayout>-->
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/layout_team_tab_date"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/tab_background"
+            android:theme="@style/TabTheme"
+            android:includeFontPadding="false"
+            app:tabTextColor="@color/gray_400"
+            app:tabSelectedTextColor="@color/white_000"
+            app:layout_constraintTop_toBottomOf="@id/layout_week_day"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabIndicatorColor="@color/white_000"
+            app:tabTextAppearance="@style/Kor.Body2.Bold"
+            />
+
+        <!--            <androidx.recyclerview.widget.RecyclerView-->
+        <!--                android:id="@+id/rcv_team_this_week"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="horizontal"-->
+        <!--                android:layout_marginHorizontal="17dp"-->
+        <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/layout_week_day"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                tools:listitem="@layout/item_team_this_week"-->
+        <!--                />-->
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="0dp"-->
 <!--            app:layout_constraintTop_toBottomOf="@id/layout_team_title_date"-->
@@ -285,12 +285,13 @@
 <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/fcv_team_retrospect_list"
+            android:id="@+id/viewPager_team_retrospect_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/layout_team_title_date"
+            app:layout_constraintTop_toBottomOf="@id/layout_team_tab_date"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout="@layout/fragment_item_team_retrospect_list"/>
+            />
+<!--        tools:layout="@layout/fragment_item_team_retrospect_list"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

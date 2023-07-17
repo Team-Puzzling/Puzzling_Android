@@ -1,97 +1,112 @@
 package com.puzzling.puzzlingaos.presentation.team.currentSituation
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentItemTeamRetrospectListBinding
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList
+import com.puzzling.puzzlingaos.util.DividerItemDecoration
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 
-class ItemTeamRetrospectListFragment : BaseFragment<FragmentItemTeamRetrospectListBinding>(R.layout.fragment_item_team_retrospect_list) {
+class ItemTeamRetrospectListFragment(
+    private val dayPosition: Int,
+) : BaseFragment<FragmentItemTeamRetrospectListBinding>(R.layout.fragment_item_team_retrospect_list) {
 
-
-    private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
-    private lateinit var retrospectThisWeekAdapter: RetrospectThisWeekAdapter
-    private lateinit var retrospectListAdapter: RetrospectListAdapter
+    private lateinit var viewModel: TeamCurrentSituationViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        retrospectThisWeekAdapter = RetrospectThisWeekAdapter(viewModel)
-        retrospectListAdapter = RetrospectListAdapter(viewModel)
-        binding.viewModel = viewModel
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            ViewModelFactory(requireContext()),
+        )[TeamCurrentSituationViewModel::class.java]
 
-        // makeRetrospectThisWeekAdapter()
-        makeRetrospectListAdapter()
-    }
+        val day = viewModel.week[dayPosition]
 
-    private fun makeRetrospectListAdapter() {
-        val itemList = mutableListOf<TeamRetrospectList>(
-            TeamRetrospectList(
-                "일요일",
-                "2023-07-16",
-                arrayListOf(TeamRetrospectList.ReviewWriterList("박솝트", "ios"), TeamRetrospectList.ReviewWriterList("김솝트", "서버"), TeamRetrospectList.ReviewWriterList("한솝트", "서버")),
-                arrayListOf(TeamRetrospectList.NonReviewWriterList("한솝트", "디자인"), TeamRetrospectList.NonReviewWriterList("이솝트", "안드로이드")),
-            ),
-//            TeamRetrospectList(
-//                "일요일",
-//                "2023-07-16",
-//                null,
-//                arrayListOf(TeamRetrospectList.NonReviewWriterList("한솝트", "디자인"), TeamRetrospectList.NonReviewWriterList("이솝트", "안드로이드")),
-//            ),
-//            TeamRetrospectList(
-//                "일요일",
-//                "2023-07-16",
-//                arrayListOf(TeamRetrospectList.ReviewWriterList("박솝트", "ios"), TeamRetrospectList.ReviewWriterList("김솝트", "서버"), TeamRetrospectList.ReviewWriterList("한솝트", "서버")),
-//                null,
-//            ),
+        viewModel.getTeamRetrospectList()
+
+        val retroItem = viewModel.teamRetrospectList.value
+
+        binding.rcvTeamRetrospectList.addItemDecoration(
+            DividerItemDecoration(R.color.gray_300, 32),
         )
 
-        setItemList(itemList)
-
-        binding.rcvTeamRetrospectList.adapter = retrospectListAdapter
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setItemList(itemList: MutableList<TeamRetrospectList>) {
-        retrospectListAdapter.adapterItemList.clear()
-
-        if (itemList.isNotEmpty()) {
-            if (itemList[0].reviewWriters?.isNotEmpty() == true) {
-                retrospectListAdapter.adapterItemList.add(TeamRetrospectMultiList(0, null, null))
-                for (i: Int in 0 until (itemList[0].reviewWriters?.size ?: 0)) {
-                    retrospectListAdapter.adapterItemList.add(
-                        TeamRetrospectMultiList(
-                            1,
-                            itemList[0].reviewWriters?.get(i)?.memberNickname,
-                            itemList[0].reviewWriters?.get(i)?.memberRole,
-                        ),
-                    )
+        if (retroItem != null) {
+            for (item in retroItem) {
+                if (day == item.reviewDay) {
+                    testItemList(viewModel.teamRetrospectList, day)
                 }
             }
-
-            if (itemList[0].nonReviewWriters?.isNotEmpty() == true) {
-                retrospectListAdapter.adapterItemList.add(TeamRetrospectMultiList(2, null, null))
-                for (i: Int in 0 until (itemList[0].nonReviewWriters?.size ?: 0)) {
-                    retrospectListAdapter.adapterItemList.add(
-                        TeamRetrospectMultiList(
-                            3,
-                            itemList[0].nonReviewWriters?.get(i)?.memberNickname,
-                            itemList[0].nonReviewWriters?.get(i)?.memberRole,
-                        ),
-                    )
+        }
+        if (retroItem != null) {
+            for (item in retroItem) {
+                if (day == item.reviewDay) {
+                    binding.rcvTeamRetrospectList.adapter = viewModel.teamRetrospectMultiList.value?.let {
+                        RetrospectListAdapter(
+                            it,
+                        )
+                    }
                 }
             }
-
-            retrospectListAdapter.notifyDataSetChanged()
         }
     }
 
-//    private fun makeRetrospectThisWeekAdapter() {
-//        binding.rcvTeamThisWeek.adapter = RetrospectThisWeekAdapter(viewModel)
-//    }
+    fun testItemList(itemList: LiveData<ArrayList<TeamRetrospectList>>, day: String) {
+        var intDay: Int = viewModel.itemRetroList.indexOfFirst { it.reviewDay == day }
+
+        viewModel.teamRetrospectMultiList.value?.clear()
+
+        if (itemList.value?.isNotEmpty() == true) {
+            if (itemList.value?.get(intDay)?.reviewWriters?.isNotEmpty() == true) {
+                viewModel.teamRetrospectMultiList.value?.add(
+                    TeamRetrospectMultiList(
+                        0,
+                        null,
+                        null,
+                        null,
+                        null,
+                    ),
+                )
+                for (i in 0 until (itemList.value?.get(intDay)?.reviewWriters!!.size ?: 0)) {
+                    viewModel.teamRetrospectMultiList.value?.add(
+                        TeamRetrospectMultiList(
+                            1,
+                            itemList.value?.get(intDay)?.reviewDay,
+                            itemList.value?.get(intDay)?.reviewDate,
+                            itemList.value?.get(intDay)?.reviewWriters?.get(i)?.memberNickname,
+                            itemList.value?.get(intDay)?.reviewWriters?.get(i)?.memberRole,
+                        ),
+                    )
+                }
+            }
+
+            if (itemList.value?.get(intDay)?.nonReviewWriters?.isNotEmpty() == true) {
+                viewModel.teamRetrospectMultiList.value?.add(
+                    TeamRetrospectMultiList(
+                        2,
+                        null,
+                        null,
+                        null,
+                        null,
+                    ),
+                )
+                for (i: Int in 0 until (itemList.value?.get(intDay)?.nonReviewWriters?.size ?: 0)) {
+                    viewModel.teamRetrospectMultiList.value?.add(
+                        TeamRetrospectMultiList(
+                            3,
+                            itemList.value?.get(intDay)?.reviewDay,
+                            itemList.value?.get(intDay)?.reviewDate,
+                            itemList.value?.get(intDay)?.nonReviewWriters?.get(i)?.memberNickname,
+                            itemList.value?.get(intDay)?.nonReviewWriters?.get(i)?.memberRole,
+                        ),
+                    )
+                }
+            }
+        }
+    }
 }

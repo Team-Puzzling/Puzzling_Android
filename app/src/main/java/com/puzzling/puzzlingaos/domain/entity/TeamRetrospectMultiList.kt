@@ -2,6 +2,8 @@ package com.puzzling.puzzlingaos.domain.entity
 
 data class TeamRetrospectMultiList(
     var type: Int,
+    var reviewDay: String?,
+    var reviewDate: String?,
     var memberNickname: String?,
     var memberRole: String?
 ) {

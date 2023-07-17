@@ -13,5 +13,5 @@ data class ResponseTeamRetrospectListDto(
     @SerialName("message")
     val message: String,
     @SerialName("date")
-    val data: List<TeamRetrospectList>
+    val data: List<TeamRetrospectList>?
 )
