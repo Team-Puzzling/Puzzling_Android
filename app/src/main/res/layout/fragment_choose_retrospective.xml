@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/CustomBottomSheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="274dp"
         android:background="@drawable/rect_white_fill_top16"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:context=".presentation.writeRetrospective.ChooseRetrospectiveFragment">
@@ -33,6 +36,7 @@
             android:layout_marginTop="53dp"
             android:layout_marginBottom="85dp"
             android:orientation="vertical"
+            android:checkedButton="@id/rbtn_choose_first"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

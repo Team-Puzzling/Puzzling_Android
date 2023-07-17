@@ -13,33 +13,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PuzzlingAOS"
         tools:targetApi="31">
-
+        <activity
+            android:name=".presentation.home.team.TeamPuzzleBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.home.personal.MyPuzzleBoardActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.writeRetrospective.WriteRetrospectiveActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
-
-        </activity>
-        <activity android:name=".presentation.invitationCode.InvitationCodeActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true"/>
-        <activity
-            android:name=".presentation.register.RegisterActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.team.currentSituation.MjTestActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.invitationCode.InvitationCodeActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.register.RegisterActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".presentation.team.currentSituation.MjTestActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" >
         </activity>
     </application>
 
