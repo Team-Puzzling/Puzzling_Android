@@ -1,13 +1,13 @@
 package com.puzzling.puzzlingaos.presentation.detailRetrospect
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+// import androidx.recyclerview.widget.DividerItemDecoration
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
-import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
 import com.puzzling.puzzlingaos.databinding.FragmentDetailRetroBinding
+import com.puzzling.puzzlingaos.util.DividerItemDecoration
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 
 class DetailRetroFragment(
@@ -29,6 +29,13 @@ class DetailRetroFragment(
         val dataList = viewModel.detailRetroList.value
 
         val detailRetroAdapter = DetailRetroAdapter()
+        // binding.rcvDetailRetroMain.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+        binding.rcvDetailRetroMain.addItemDecoration(
+            com.puzzling.puzzlingaos.util.DividerItemDecoration(
+                R.color.gray_300,
+                32,
+            ),
+        )
 
         if (dataList != null) {
             for (data in dataList) {
