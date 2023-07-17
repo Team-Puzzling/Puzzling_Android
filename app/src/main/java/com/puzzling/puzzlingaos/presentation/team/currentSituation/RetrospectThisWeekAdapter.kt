@@ -14,7 +14,7 @@ class RetrospectThisWeekAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (num[position]) {
             0 -> NoItemTeamRetrospectListFragment()
-            1 -> NoItemTeamRetrospectListFragment()
+            1 -> ItemTeamRetrospectListFragment(position)
             2 -> ItemTeamRetrospectListFragment(position)
             else -> ItemTeamRetrospectListFragment(position)
         }
