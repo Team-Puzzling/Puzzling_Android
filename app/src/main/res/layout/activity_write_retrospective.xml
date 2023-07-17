@@ -5,17 +5,24 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel" />
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.writeRetrospective.WriteRetrospectiveActivity">
+        tools:context=".presentation.writeRetrospective.ExWriteReviewActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_write_retrospective"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="48dp"
+            android:background="@color/white_000"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp"
@@ -62,217 +69,88 @@
                     android:paddingEnd="8dp"
                     android:text="@string/tv_write_register"
                     android:textAppearance="@style/Kor.Body1.Bold"
-                    android:textColor="@color/gray_400"
+                    android:textColor="@{vm.isInputEnabled ?  @color/blue_400 : @color/gray_400}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_write_title" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_write_main"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_write_retrospective">
+            app:layout_constraintTop_toBottomOf="@+id/tb_write_retrospective">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_write_chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="258dp"
-                android:background="@drawable/rect_bg50_fill_radius_16"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_write_chip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="6dp"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="2dp"
-                    android:includeFontPadding="false"
-                    android:text="@string/tv_write_chip"
-                    android:textAppearance="@style/Kor.Body1.Bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0" />
-
-                <ImageView
-                    android:id="@+id/iv_write_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_down"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_write_chip"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/tv_write_question1"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsv_write_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="159dp"
-                android:includeFontPadding="false"
-                android:text="@string/tv_write_question1"
-                android:textAppearance="@style/Kor.Body1.Bold"
-                app:layout_constraintStart_toStartOf="@+id/cl_write_main"
-                app:layout_constraintTop_toBottomOf="@id/cl_write_chip" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_write_first_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                style="@style/CustomTextInputLayout"
-                android:backgroundTint="#FAFAFA"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/blue_200"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="false"
-                app:hintEnabled="false"
-                app:helperText="@null"
-                app:layout_constraintVertical_bias="0"
-                app:helperTextTextColor="@color/design_default_color_error"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_write_question1">
+                app:layout_constraintStart_toStartOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_write_question1"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="118dp"
-                    android:selectAllOnFocus="false"
-                    android:scrollbars="vertical"
-                    android:gravity="start"
-                    android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
-                    android:background="@drawable/selector_custom_edittext"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_write_chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="258dp"
+                        android:background="@drawable/rect_bg50_fill_radius_16"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_write_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="6dp"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="2dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/tv_write_chip"
+                            android:textAppearance="@style/Kor.Body1.Bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0" />
+
+                        <ImageView
+                            android:id="@+id/iv_write_down"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_down"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_write_chip"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/tv_write_question2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="142dp"
-                android:includeFontPadding="false"
-                android:text="@string/tv_write_question2"
-                android:textAppearance="@style/Kor.Body1.Bold"
-                app:layout_constraintStart_toStartOf="@+id/cl_write_main"
-                app:layout_constraintTop_toBottomOf="@id/edt_write_first_main" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_write_second_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                style="@style/CustomTextInputLayout"
-                android:backgroundTint="#FAFAFA"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/blue_200"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="false"
-                app:hintEnabled="false"
-                app:helperText="@null"
-                app:layout_constraintVertical_bias="0"
-                app:helperTextTextColor="@color/design_default_color_error"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_write_question2">
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fcv_write_container"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cl_write_chip"
+                        tools:layout="@layout/fragment_write_til" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_write_question2"
-                    android:layout_width="match_parent"
-                    android:layout_height="118dp"
-                    android:selectAllOnFocus="false"
-                    android:scrollbars="vertical"
-                    android:gravity="start"
-                    android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
-                    android:background="@drawable/selector_custom_edittext"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tv_write_question3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="159dp"
-                android:includeFontPadding="false"
-                android:text="@string/tv_write_question3"
-                android:textAppearance="@style/Kor.Body1.Bold"
-                app:layout_constraintStart_toStartOf="@+id/cl_write_main"
-                app:layout_constraintTop_toBottomOf="@id/edt_write_second_main" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_write_third_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                style="@style/CustomTextInputLayout"
-                android:backgroundTint="#FAFAFA"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxStrokeColor="@color/blue_200"
-                app:boxStrokeWidthFocused="2dp"
-                app:errorEnabled="false"
-                app:hintEnabled="false"
-                app:helperText="@null"
-                app:layout_constraintVertical_bias="0"
-                app:helperTextTextColor="@color/design_default_color_error"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_write_question3">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_write_question3"
-                    android:layout_width="match_parent"
-                    android:layout_height="118dp"
-                    android:selectAllOnFocus="false"
-                    android:scrollbars="vertical"
-                    android:gravity="start"
-                    android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
-                    android:background="@drawable/selector_custom_edittext"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

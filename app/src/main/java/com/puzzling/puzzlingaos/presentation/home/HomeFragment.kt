@@ -74,11 +74,9 @@ class HomeFragment :
     private fun handleSelectedProject() {
         viewModel.isProjectNameSelected.observe(viewLifecycleOwner) {
             Log.d("home", "isProjectSelected: ${viewModel.isProjectNameSelected.value}")
-            if (viewModel.isProjectNameSelected.value == true) {
-                val projectName = viewModel.selectedProjectName.value
-                binding.tvHomeProjectName.text = projectName.toString()
-                Log.d("home", "tvHomeProjectName: ${binding.tvHomeProjectName.text}")
-            }
+            val projectName = viewModel.selectedProjectName.value
+            binding.tvHomeProjectName.text = projectName.toString()
+            Log.d("home", "tvHomeProjectName: ${binding.tvHomeProjectName.text}")
         }
     }
 }
