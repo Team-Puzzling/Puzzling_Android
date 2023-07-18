@@ -29,4 +29,8 @@ class ProjectCodeDialogFragment : BaseDialogFragment<FragmentProjectcodeDialogBi
             }
         }
     }
+
+    companion object {
+        const val TAG_REGISTER_DIALOG = "Register dialog"
+    }
 }
