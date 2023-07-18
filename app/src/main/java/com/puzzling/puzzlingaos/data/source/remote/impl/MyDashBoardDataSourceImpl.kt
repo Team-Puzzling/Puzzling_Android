@@ -10,12 +10,12 @@ import javax.inject.Inject
 class MyDashBoardDataSourceImpl @Inject constructor(
     private val apiService: PersonalReviewService,
 ) : MyDashBoardDataSource {
-    override suspend fun getMyPuzzleBoard(
+    override suspend fun getUserPuzzle(
         memberId: Int,
         projectId: Int,
         today: String,
     ): ResponseMyPuzzleBoardDto =
-        apiService.getMyPuzzleBoard(memberId, projectId, today).data!!
+        apiService.getMyPuzzleBoard(memberId, projectId, today)
 
     override suspend fun getActionPlan(
         memberId: Int,

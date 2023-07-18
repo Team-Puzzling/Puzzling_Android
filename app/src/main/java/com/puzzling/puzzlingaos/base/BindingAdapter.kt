@@ -17,3 +17,36 @@ fun setTextColor(view: TextView, inputText: String?) {
     view.setTextColor(if (isConditionMet) Color.BLUE else Color.BLACK)
 }
 // TODO span color 이용해서 텍스트 컬러 처리
+
+// @BindingAdapter("imageName", "defaultImage, requireAll = false")
+// fun setImageResourceByImageName(
+//    imageView: ImageView,
+//    imageName: String?,
+//    defaultImage: Int?,
+// ) {
+//    val imageResource = if (imageName != null) {
+//        val context = imageView.context
+//        val resourceId = context.resources.getIdentifier(
+//            imageName,
+//            "drawable",
+//            context.packageName,
+//        )
+//        resourceId
+//    } else {
+//        defaultImage ?: 0
+//    }
+//
+//    imageView.setImageResource(imageResource)
+// }
+
+@BindingAdapter("imageName")
+fun setImageResourceByName(view: ImageView, fileName: String?) {
+    if (fileName != null) {
+        val resourceId = view.context.resources.getIdentifier(
+            fileName,
+            "drawable",
+            view.context.packageName,
+        )
+        view.setImageResource(resourceId)
+    }
+}
