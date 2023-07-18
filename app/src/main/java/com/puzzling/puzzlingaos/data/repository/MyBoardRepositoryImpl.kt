@@ -1,9 +1,9 @@
 package com.puzzling.puzzlingaos.data.repository
 
-import com.puzzling.puzzlingaos.data.model.response.ResponseActionPlanDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPuzzleBoardDto
-import com.puzzling.puzzlingaos.data.model.response.ResponseProceedingProjectDto
 import com.puzzling.puzzlingaos.data.source.remote.MyDashBoardDataSource
+import com.puzzling.puzzlingaos.domain.entity.ActionPlan
+import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import javax.inject.Inject
 
@@ -15,18 +15,18 @@ class MyBoardRepositoryImpl @Inject constructor(
         projectId: Int,
         today: String,
     ): Result<ResponseMyPuzzleBoardDto> = runCatching {
-        myDashBoardDataSource.getMyPuzzleBoard(memberId, projectId, today).data!!
+        myDashBoardDataSource.getMyPuzzleBoard(memberId, projectId, today)
     }
 
     override suspend fun getActionPlan(
         memberId: Int,
         projectId: Int,
-    ): Result<ResponseActionPlanDto> = runCatching {
-        myDashBoardDataSource.getActionPlan(memberId, projectId).data!!
+    ): Result<List<ActionPlan>> = runCatching {
+        myDashBoardDataSource.getActionPlan(memberId, projectId).toActionPlan()
     }
 
-    override suspend fun getProceedingProject(memberId: Int): Result<ResponseProceedingProjectDto> =
+    override suspend fun getProceedingProject(memberId: Int): Result<List<Project>> =
         runCatching {
-            myDashBoardDataSource.getProceedingProject(memberId).data!!
+            myDashBoardDataSource.getProceedingProject(memberId).toProject()
         }
 }

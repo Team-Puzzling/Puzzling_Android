@@ -29,7 +29,7 @@ class PersonalDashboardFragment :
 
     private fun setActionPlanAdapter() {
         _actionPlanAdapter = ActionPlanListAdapter()
-        _actionPlanAdapter?.submitList(viewModel.actionPlanList)
+        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
         binding.rcvPersonalView.also {
             it.adapter = _actionPlanAdapter
         }

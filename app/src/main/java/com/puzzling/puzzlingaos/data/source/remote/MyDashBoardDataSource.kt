@@ -1,6 +1,5 @@
 package com.puzzling.puzzlingaos.data.source.remote
 
-import com.puzzling.puzzlingaos.data.model.response.BaseResponse
 import com.puzzling.puzzlingaos.data.model.response.ResponseActionPlanDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProceedingProjectDto
@@ -10,14 +9,14 @@ interface MyDashBoardDataSource {
         memberId: Int,
         projectId: Int,
         today: String,
-    ): BaseResponse<ResponseMyPuzzleBoardDto>
+    ): ResponseMyPuzzleBoardDto
 
     suspend fun getActionPlan(
         memberId: Int,
         projectId: Int,
-    ): BaseResponse<ResponseActionPlanDto>
+    ): ResponseActionPlanDto
 
     suspend fun getProceedingProject(
         memberId: Int,
-    ): BaseResponse<ResponseProceedingProjectDto>
+    ): ResponseProceedingProjectDto
 }

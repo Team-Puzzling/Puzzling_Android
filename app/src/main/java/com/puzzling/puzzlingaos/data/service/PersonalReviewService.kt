@@ -14,9 +14,9 @@ import retrofit2.http.Query
 interface PersonalReviewService {
     /*
     [개인 대시보드 퍼즐 조회 API]
-    ~/api/v1/member/3/project/4/puzzle?today=2023-07-05
+    ~/api/v1/member/1/project/3/puzzle?today=2023-07-05
      */
-    @GET("api/v1/member/{memberId}/project/{projectId}/puzzle?today={today}")
+    @GET("api/v1/member/{memberId}/project/{projectId}/puzzle?")
     suspend fun getMyPuzzleBoard(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
@@ -31,7 +31,7 @@ interface PersonalReviewService {
     suspend fun getMyActionPlan(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
-    ): BaseResponse<ResponseActionPlanDto>
+    ): ResponseActionPlanDto
 
     /*
     [진행 중인 프로젝트 리스트 조회 API]
@@ -40,5 +40,5 @@ interface PersonalReviewService {
     @GET("api/v1/member/{memberId}/project/all")
     suspend fun getProceedingProjects(
         @Path("memberId") memberId: Int,
-    ): BaseResponse<ResponseProceedingProjectDto>
+    ): ResponseProceedingProjectDto
 }

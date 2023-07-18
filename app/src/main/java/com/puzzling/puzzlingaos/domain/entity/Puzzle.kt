@@ -1,6 +1,6 @@
 package com.puzzling.puzzlingaos.domain.entity
 
-data class MyPuzzle(
+data class Puzzle(
     val nickname: String,
     val puzzleCount: Int,
 )
