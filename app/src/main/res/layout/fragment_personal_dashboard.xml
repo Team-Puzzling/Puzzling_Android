@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel" />
@@ -42,7 +43,7 @@
                 android:layout_marginStart="105dp"
                 android:layout_marginEnd="4dp"
                 android:includeFontPadding="false"
-                android:text="@{@string/tv_personal_puzzle_current(vm.mypuzzleCount)}"
+                android:text="@{@string/tv_personal_puzzle_current(vm.myPuzzleCount)}"
                 android:textAppearance="@style/Kor.Heading4"
                 android:textColor="@color/blue_400"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_personal_title"
@@ -95,11 +96,12 @@
                             android:layout_width="64dp"
                             android:layout_height="0dp"
                             android:contentDescription="@null"
-                            android:src="@drawable/img_puzzle1"
+                            app:imageName="@{vm.myPuzzleImage[0]}"
                             app:layout_constraintDimensionRatio="1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/img_puzzle1" />
 
                         <TextView
                             android:id="@+id/tv_personal_date1"
@@ -747,7 +749,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="9dp"
-            android:background="@drawable/rect_blue400_fill_radius_16"
+            android:background="@{vm.isReviewDay ? @drawable/rect_blue400_fill_radius_16 : @drawable/rect_gray400_fill_16}"
+            android:clickable="@{vm.isReviewDay ? true : false}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_personal_actionplan"
