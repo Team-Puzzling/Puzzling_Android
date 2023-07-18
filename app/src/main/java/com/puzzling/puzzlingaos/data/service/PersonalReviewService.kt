@@ -1,6 +1,5 @@
 package com.puzzling.puzzlingaos.data.service
 
-import com.puzzling.puzzlingaos.data.model.response.BaseResponse
 import com.puzzling.puzzlingaos.data.model.response.ResponseActionPlanDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProceedingProjectDto
@@ -21,7 +20,7 @@ interface PersonalReviewService {
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
         @Query("today") today: String,
-    ): BaseResponse<ResponseMyPuzzleBoardDto>
+    ): ResponseMyPuzzleBoardDto
 
     /*
     [ACTIONPLAN 내용 조회 API]
