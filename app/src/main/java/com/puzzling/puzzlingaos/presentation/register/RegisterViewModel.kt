@@ -1,16 +1,25 @@
 package com.puzzling.puzzlingaos.presentation.register
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 import com.puzzling.puzzlingaos.data.repository.ProjectRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val projectRepositoryImpl: ProjectRepositoryImpl,
 ) : ViewModel() {
+
+    private val _registerResult: MutableLiveData<ResponseProjectRegisterDto> = MutableLiveData()
+    val registerResult: LiveData<ResponseProjectRegisterDto> = _registerResult
 
     private val registerRegex = REGISTER_REGEX.toRegex()
 
@@ -57,6 +66,27 @@ class RegisterViewModel @Inject constructor(
 
     fun checkBtnEnabled() {
         isBtnEnabled.value = isValid()
+    }
+
+    fun doProjectRegister(
+        id: Int,
+        projectName: String,
+        projectIntro: String,
+        startDate: String,
+        role: String,
+        nickName: String,
+        dateCycle: ArrayList<String>,
+    ) {
+        viewModelScope.launch {
+            projectRepositoryImpl.projectRegister(id, RequestProjectRegisterDto(projectName, projectIntro, startDate, role, nickName, dateCycle)).onSuccess { response ->
+                _registerResult.value = response
+            }.onFailure { error ->
+                Log.d("register: ", "register 실패")
+            }
+        }
+    }
+
+    fun checkNickname(nickName: String) {
     }
 
     companion object {

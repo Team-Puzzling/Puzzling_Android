@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
-import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
-import com.puzzling.puzzlingaos.util.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -123,14 +121,25 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private fun clickRegisterBtn() {
         binding.btnRegister.setOnClickListener {
+            viewModel.isDateCycleSelected.value?.let { it1 ->
+                viewModel.doProjectRegister(
+                    2,
+                    viewModel.projectName.value.toString(),
+                    viewModel.projectExplanation.value.toString(),
+                    viewModel.projectStartDate.value.toString(),
+                    viewModel.role.value.toString(),
+                    viewModel.nickName.value.toString(),
+                    it1,
+                )
+            }
+        }
+        viewModel.registerResult.observe(this) {
             Log.d("projectName: ", "${viewModel.projectName.value}")
             Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
             Log.d("projectStartDate: ", "${viewModel.projectStartDate.value}")
             Log.d("role: ", "${viewModel.role.value}")
             Log.d("nickName: ", "${viewModel.nickName.value}")
             Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
-
-
         }
     }
 
