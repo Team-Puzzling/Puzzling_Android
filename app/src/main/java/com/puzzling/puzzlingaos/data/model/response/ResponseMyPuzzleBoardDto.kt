@@ -1,6 +1,5 @@
 package com.puzzling.puzzlingaos.data.model.response
 
-import com.puzzling.puzzlingaos.domain.entity.MyPuzzle
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

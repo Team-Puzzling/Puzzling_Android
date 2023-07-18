@@ -1,14 +1,18 @@
 package com.puzzling.puzzlingaos.di
 
+import com.puzzling.puzzlingaos.data.service.PersonalReviewService
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-//    @Provides
-//    @Singleton
-//    fun provideBookMarkService(@PuzzlingRetrofit retrofit: Retrofit): PersonalReviewApiService =
-//        retrofit.create(PersonalReviewApiService::class.java)
+    @Provides
+    @Singleton
+    fun provideMyDashBoardService(@PuzzlingRetrofit retrofit: Retrofit): PersonalReviewService =
+        retrofit.create(PersonalReviewService::class.java)
 }

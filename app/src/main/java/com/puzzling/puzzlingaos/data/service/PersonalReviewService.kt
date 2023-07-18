@@ -8,6 +8,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/*
+개인 회고
+ */
 interface PersonalReviewService {
     /*
     [개인 대시보드 퍼즐 조회 API]
@@ -28,7 +31,7 @@ interface PersonalReviewService {
     suspend fun getMyActionPlan(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
-    ): BaseResponse<List<ResponseActionPlanDto>>
+    ): BaseResponse<ResponseActionPlanDto>
 
     /*
     [진행 중인 프로젝트 리스트 조회 API]
@@ -37,5 +40,5 @@ interface PersonalReviewService {
     @GET("api/v1/member/{memberId}/project/all")
     suspend fun getProceedingProjects(
         @Path("memberId") memberId: Int,
-    ): BaseResponse<List<ResponseProceedingProjectDto>>
+    ): BaseResponse<ResponseProceedingProjectDto>
 }

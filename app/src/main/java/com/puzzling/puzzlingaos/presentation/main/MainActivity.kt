@@ -8,7 +8,9 @@ import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityMainBinding
 import com.puzzling.puzzlingaos.presentation.home.HomeFragment
 import com.puzzling.puzzlingaos.presentation.mypage.MyPageFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
