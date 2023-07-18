@@ -14,5 +14,5 @@ class ProjectDataSourceImpl @Inject constructor(
         memberId: Int,
         request: RequestProjectRegisterDto,
     ): ResponseProjectRegisterDto =
-        apiService.projectRegister(memberId, request).data!!
+        apiService.projectRegister2(memberId, request)
 }

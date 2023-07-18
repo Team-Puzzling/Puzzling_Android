@@ -24,6 +24,9 @@ class RegisterViewModel @Inject constructor(
     private val _registerResultBool: MutableLiveData<Boolean> = MutableLiveData()
     val registerResultBool: LiveData<Boolean> = _registerResultBool
 
+    // private var _projectCode = MutableLiveData<String>()
+    // val projectCode = LiveData<String>()
+
     private val registerRegex = REGISTER_REGEX.toRegex()
 
     val projectName = MutableLiveData<String>()
@@ -32,7 +35,8 @@ class RegisterViewModel @Inject constructor(
     val role = MutableLiveData<String>()
     val nickName = MutableLiveData<String>()
     var dayArray = ArrayList<String>()
-    val isDateCycleSelected = MutableLiveData<ArrayList<String>>()
+    var isDateCycleSelected = MutableLiveData<ArrayList<String>>()
+    var projectCode = MutableLiveData<String>()
 
     // editText 확인용
     fun validTextBox(textBox: String): Boolean {
@@ -82,9 +86,17 @@ class RegisterViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             projectRepositoryImpl.projectRegister(id, RequestProjectRegisterDto(projectName, projectIntro, startDate, role, nickName, dateCycle)).onSuccess { response ->
+//                _registerResult.value = response
+//                _registerResultBool.value = true
+                projectCode.value = response.getProjectCode().projectCode
+                Log.d("response: ", "${_registerResultBool.value}")
+                Log.d("register: ", "register 성공")
+                Log.d("response: ", "$response")
+                Log.d("response: ", "${response.getProjectCode().projectCode}")
+                Log.d("response: ", "${projectCode.value}")
                 _registerResult.value = response
                 _registerResultBool.value = true
-                Log.d("register: ", "register 성공")
+                Log.d("response: ", "${_registerResultBool.value}")
             }.onFailure { error ->
                 _registerResultBool.value = false
                 Log.d("register: ", "register 실패")

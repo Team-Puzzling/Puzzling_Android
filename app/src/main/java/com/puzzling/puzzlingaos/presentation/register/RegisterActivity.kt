@@ -3,8 +3,6 @@ package com.puzzling.puzzlingaos.presentation.register
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
@@ -39,6 +37,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         textBoxListener(viewModel.nickName)
         canBtnClick()
         clickRegisterBtn()
+        getProjectCode()
     }
 
     private fun pickedDate() {
@@ -65,8 +64,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         binding.rcvRetrospectWeekCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
-            viewModel.dayArray = dayCycleAdapter.sortedSelectedRetrospectDayArray
-            viewModel.isDateCycleSelected.value = viewModel.dayArray
+            // viewModel.dayArray = dayCycleAdapter.sortedSelectedRetrospectDayArray
+            viewModel.isDateCycleSelected.value = dayCycleAdapter.sortedSelectedRetrospectDayArray
         }
     }
 
@@ -136,6 +135,20 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 )
             }
         }
+//        viewModel.registerResultBool.observe(this) {
+//            Log.d("projectName: ", "${viewModel.projectName.value}")
+//            Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
+//            Log.d("projectStartDate: ", "${viewModel.projectStartDate.value}")
+//            Log.d("role: ", "${viewModel.role.value}")
+//            Log.d("nickName: ", "${viewModel.nickName.value}")
+//            Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
+//            showDialog("${viewModel.projectCode.value}")
+//            Log.d("projectCode: ", "${viewModel.projectCode.value}")
+//
+//        }
+    }
+
+    private fun getProjectCode() {
         viewModel.registerResultBool.observe(this) {
             Log.d("projectName: ", "${viewModel.projectName.value}")
             Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
@@ -143,22 +156,14 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             Log.d("role: ", "${viewModel.role.value}")
             Log.d("nickName: ", "${viewModel.nickName.value}")
             Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
-            showDialog()
+            showDialog("${viewModel.projectCode.value}")
+            Log.d("projectCode: ", "${viewModel.projectCode.value}")
+
         }
-        // showDialog()
-//        viewModel.registerResult.observe(this) {
-//            Log.d("projectName: ", "${viewModel.projectName.value}")
-//            Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
-//            Log.d("projectStartDate: ", "${viewModel.projectStartDate.value}")
-//            Log.d("role: ", "${viewModel.role.value}")
-//            Log.d("nickName: ", "${viewModel.nickName.value}")
-//            Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
-//            showDialog()
-//        }
     }
 
-    private fun showDialog() {
-        val registerDialog by lazy { ProjectCodeDialogFragment() }
+    private fun showDialog(code: String) {
+        val registerDialog by lazy { ProjectCodeDialogFragment(code) }
         registerDialog.show(supportFragmentManager, TAG_REGISTER_DIALOG)
         Log.d("dialog: ", "dialog")
     }
