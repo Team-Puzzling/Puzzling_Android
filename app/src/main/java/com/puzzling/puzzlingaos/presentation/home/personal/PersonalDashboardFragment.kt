@@ -21,6 +21,7 @@ class PersonalDashboardFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
         setActionPlanAdapter()
         clickBottomBtn()
         clickMyPuzzleBoardBtn()
@@ -33,6 +34,9 @@ class PersonalDashboardFragment :
         binding.rcvPersonalView.also {
             it.adapter = _actionPlanAdapter
         }
+    }
+
+    private fun setPuzzlePiece() {
     }
 
     private fun clickBottomBtn() {

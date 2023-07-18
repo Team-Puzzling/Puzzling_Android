@@ -5,7 +5,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseMyPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProceedingProjectDto
 
 interface MyDashBoardDataSource {
-    suspend fun getMyPuzzleBoard(
+    suspend fun getUserPuzzle(
         memberId: Int,
         projectId: Int,
         today: String,
