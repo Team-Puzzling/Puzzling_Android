@@ -29,6 +29,11 @@
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.invitationCode.InvitationCodeActivity"
@@ -39,22 +44,15 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.team.currentSituation.TeamCurrentSituationFragment"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:name=".presentation.team.currentSituation.MjTestActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" >
+        </activity>
         <activity android:name=".presentation.detailRetrospect.DetailRetroActivity"
             android:exported="true"/>
         <activity android:name=".presentation.onboarding.LoginActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
 
                 <data
                     android:host="oauth"
