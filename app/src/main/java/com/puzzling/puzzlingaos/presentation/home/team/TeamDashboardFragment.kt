@@ -7,7 +7,9 @@ import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamDashboardBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TeamDashboardFragment :
     BaseFragment<FragmentTeamDashboardBinding>(R.layout.fragment_team_dashboard) {
     private val viewModel by viewModels<TeamDashBoardViewModel>()

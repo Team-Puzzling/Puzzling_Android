@@ -6,7 +6,9 @@ import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityMyPuzzleBoardBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyPuzzleBoardActivity :
     BaseActivity<ActivityMyPuzzleBoardBinding>(R.layout.activity_my_puzzle_board) {
     private val viewModel by viewModels<MyPuzzleBoardViewModel>()

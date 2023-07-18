@@ -30,7 +30,7 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="20dp"
                 android:includeFontPadding="false"
-                android:text="@string/tv_personal_title"
+                android:text="@{@string/tv_personal_title(vm.myNickname)}"
                 android:textAppearance="@style/Kor.Heading4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
                 android:layout_marginStart="105dp"
                 android:layout_marginEnd="4dp"
                 android:includeFontPadding="false"
-                android:text="@string/tv_personal_puzzle_current"
+                android:text="@{@string/tv_personal_puzzle_current(vm.mypuzzleCount)}"
                 android:textAppearance="@style/Kor.Heading4"
                 android:textColor="@color/blue_400"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_personal_title"

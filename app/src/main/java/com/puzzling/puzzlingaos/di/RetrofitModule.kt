@@ -55,7 +55,7 @@ object RetrofitModule {
     @Singleton
     @Provides
     @PuzzlingRetrofit
-    fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun providePuzzlingRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(PUZZLING_BASE_URL)
         .client(okHttpClient)
@@ -65,7 +65,10 @@ object RetrofitModule {
         val requestInterceptor = Interceptor { chain ->
             val original = chain.request()
             val builder = original.newBuilder()
-            builder.addHeader("Authorization", "헤더의 토큰 값")
+            builder.addHeader(
+                "Authorization",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODk2MzAyMjIsImV4cCI6MTY4OTk5MDIyMiwibWVtYmVySWQiOjF9.tR938XSLko7fuv8RduU6AL7dFs8JnzDNRS1OIfpFSC0",
+            )
             chain.proceed(builder.build())
         }
         return requestInterceptor

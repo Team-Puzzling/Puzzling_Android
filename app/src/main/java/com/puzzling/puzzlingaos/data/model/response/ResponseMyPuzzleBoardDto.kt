@@ -1,17 +1,23 @@
 package com.puzzling.puzzlingaos.data.model.response
 
-import com.puzzling.puzzlingaos.domain.entity.MyPuzzle
+import com.puzzling.puzzlingaos.domain.entity.Puzzle
+import com.puzzling.puzzlingaos.domain.entity.UserPuzzleBoard
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-
 data class ResponseMyPuzzleBoardDto(
-    @SerialName("myPuzzle")
-    val data: MyPuzzleBoardDto,
+    @SerialName("status")
+    val status: Int,
+    @SerialName("success")
+    val success: Boolean,
+    @SerialName("message")
+    val message: String,
+    @SerialName("data")
+    val data: MyPuzzleBoardData,
 ) {
     @Serializable
-    data class MyPuzzleBoardDto(
+    data class MyPuzzleBoardData(
         @SerialName("myPuzzle")
         val myPuzzle: MyPuzzle,
         @SerialName("userPuzzleBoard")
@@ -28,27 +34,27 @@ data class ResponseMyPuzzleBoardDto(
             @SerialName("puzzleCount")
             val puzzleCount: Int,
 
-        ) {
-            fun toMyPuzzleEntity() = com.puzzling.puzzlingaos.domain.entity.MyPuzzle(
-                nickname,
-                puzzleCount,
+        )
+
+        fun toPuzzle(): Puzzle {
+            return Puzzle(
+                nickname = myPuzzle.nickname,
+                puzzleCount = myPuzzle.puzzleCount,
             )
         }
 
         @Serializable
         data class UserPuzzleBoard(
-            @SerialName("nickname")
-            val nickname: String,
+            @SerialName("reviewDate")
+            val reviewDate: String,
             @SerialName("reviewId")
             val reviewId: Int,
             @SerialName("puzzleAssetName")
             val puzzleAssetName: String,
         )
+
+        fun toUserPuzzleBoardList(): List<UserPuzzleBoard> {
+            return userPuzzleBoard
+        }
     }
 }
-
-/*
-fun ResponseCardDto.toCardEntity() = Card(
-    cardId, imageUrl, visitedAt, spaceId
-)
- */

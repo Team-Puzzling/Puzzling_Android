@@ -14,7 +14,9 @@ import com.puzzling.puzzlingaos.databinding.FragmentHomeBinding
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardFragment
 import com.puzzling.puzzlingaos.presentation.home.team.TeamDashboardFragment
 import com.puzzling.puzzlingaos.presentation.main.HomeChooseProjectFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel by activityViewModels<HomeViewModel>()

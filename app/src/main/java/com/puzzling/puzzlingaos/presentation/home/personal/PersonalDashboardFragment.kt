@@ -8,7 +8,9 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
 import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PersonalDashboardFragment :
     BaseFragment<FragmentPersonalDashboardBinding>(R.layout.fragment_personal_dashboard) {
     private val viewModel by viewModels<PersonalDashboardViewModel>()
@@ -27,7 +29,7 @@ class PersonalDashboardFragment :
 
     private fun setActionPlanAdapter() {
         _actionPlanAdapter = ActionPlanListAdapter()
-        _actionPlanAdapter?.submitList(viewModel.actionPlanList)
+        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
         binding.rcvPersonalView.also {
             it.adapter = _actionPlanAdapter
         }
