@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_onBoarding_puzzling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/ic_puzzling"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/iv_onBoarding_newPuzzle"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            android:src="@drawable/ic_new_puzzle"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_onBoarding_puzzling" />
+
+        <TextView
+            android:id="@+id/tv_onBoarding_new_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로젝트를 새로 등록할까요?"
+            android:textAppearance="@style/Kor.Heading4"
+            android:textColor="@color/black_000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_onBoarding_newPuzzle" />
+
+        <LinearLayout
+            android:id="@+id/linear_onBoarding_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onBoarding_new_desc">
+
+            <TextView
+                android:id="@+id/tv_onBoarding_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="프로젝트 등록하기"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                android:textColor="@color/blue_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_onBoarding_new_desc" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_next_blue"
+                app:layout_constraintStart_toEndOf="@id/tv_onBoarding_register" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_onBoarding"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_onBoarding_register"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@color/gray_300"
+            android:orientation="horizontal" />
+
+        <ImageView
+            android:id="@+id/iv_onBoarding_joinPuzzle"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            android:src="@drawable/ic_join_puzzle"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_onBoarding" />
+
+        <TextView
+            android:id="@+id/tv_onBoarding_join_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="초대코드가 있으신가요?"
+            android:textAppearance="@style/Kor.Heading4"
+            android:textColor="@color/black_000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_onBoarding_joinPuzzle" />
+
+        <LinearLayout
+            android:id="@+id/linear_onBoarding_join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onBoarding_join_desc">
+
+            <TextView
+                android:id="@+id/tv_onBoarding_join"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="프로젝트 참여하기"
+                android:textAppearance="@style/Kor.Body1.Bold"
+                android:textColor="@color/blue_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_onBoarding_join_desc" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_next_blue"
+                app:layout_constraintStart_toEndOf="@id/tv_onBoarding_register" />
+
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

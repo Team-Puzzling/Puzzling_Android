@@ -26,6 +26,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "PUZZLING_BASE_URL", properties["puzzling.base.url"]
+        buildConfigField "String", "NATIVE_APP_KEY", properties["native.app.key"]
+
+        manifestPlaceholders["NATIVE_APP_KEY"] =
+                properties.getProperty("native.app.key.no.quotes")
     }
 
     buildTypes {
@@ -94,6 +98,13 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.44"
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
+    // kakao
+    implementation "com.kakao.sdk:v2-all:2.15.0" // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation "com.kakao.sdk:v2-user:2.15.0" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.15.0" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-share:2.15.0" // 메시지(카카오톡 공유)
+    //EncryptedSharedPreference
+    implementation "androidx.security:security-crypto-ktx:1.1.0-alpha06"
 }
 // hilt dependency와 함께 추가
 kapt {
