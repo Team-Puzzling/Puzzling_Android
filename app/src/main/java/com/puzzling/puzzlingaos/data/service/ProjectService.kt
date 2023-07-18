@@ -7,7 +7,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface RegisterService {
+interface ProjectService {
 
     @POST("~/api/v1/member/{memberId}/project")
     suspend fun projectRegister(

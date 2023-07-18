@@ -1,11 +1,14 @@
-package com.puzzling.puzzlingaos.data.source.remote
+package com.puzzling.puzzlingaos.domain.repository
 
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 
-interface ProjectRegisterDataSource {
+interface ProjectRepository {
+
+    // suspend fun register(): Result<Unit>
+
     suspend fun projectRegister(
         memberId: Int,
         request: RequestProjectRegisterDto,
-    ): ResponseProjectRegisterDto
+    ): Result<ResponseProjectRegisterDto>
 }
