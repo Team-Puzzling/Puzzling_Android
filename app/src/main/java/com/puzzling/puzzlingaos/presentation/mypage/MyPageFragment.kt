@@ -3,6 +3,7 @@ package com.puzzling.puzzlingaos.presentation.mypage
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
@@ -12,7 +13,9 @@ import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectBottomAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectContentAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectTitleAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
     private val dummyItemList = mutableListOf<ResponseMyPageProjectDto>(
