@@ -20,8 +20,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var keyHash = Utility.getKeyHash(this)
-        Log.d("키해시", " $keyHash")
         startKakaoLogin()
         isKakaoLoginSuccess()
     }

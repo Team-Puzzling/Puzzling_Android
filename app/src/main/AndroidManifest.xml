@@ -31,7 +31,6 @@
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,7 +41,9 @@
         <activity
             android:name=".presentation.register.RegisterActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+
+        </activity>
         <activity
             android:name=".presentation.team.currentSituation.MjTestActivity"
             android:windowSoftInputMode="adjustPan"
@@ -52,7 +53,15 @@
             android:exported="true"/>
         <activity android:name=".presentation.onboarding.LoginActivity"
             android:exported="true">
+
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
 
                 <data
                     android:host="oauth"
