@@ -5,6 +5,7 @@ import com.puzzling.puzzlingaos.data.model.request.RequestReviewAARDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewTILDto
 import com.puzzling.puzzlingaos.data.model.response.ResponsePreviousTemplateDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseReviewTypeDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseSaveReviewDto
 
 interface WriteReviewDataSource {
     suspend fun getReviewTemplate(): ResponseReviewTypeDto
@@ -13,19 +14,19 @@ interface WriteReviewDataSource {
         memberId: Int,
         projectId: Int,
         requestReviewTIL: RequestReviewTILDto,
-    ): RequestReviewTILDto
+    ): ResponseSaveReviewDto
 
     suspend fun uploadReview5F(
         memberId: Int,
         projectId: Int,
         requestReview5F: RequestReview5FDto,
-    ): RequestReview5FDto
+    ): ResponseSaveReviewDto
 
     suspend fun uploadReviewAAR(
         memberId: Int,
         projectId: Int,
         requestReviewAAR: RequestReviewAARDto,
-    ): RequestReviewAARDto
+    ): ResponseSaveReviewDto
 
     suspend fun getPreviousTemplate(
         memberId: Int,
