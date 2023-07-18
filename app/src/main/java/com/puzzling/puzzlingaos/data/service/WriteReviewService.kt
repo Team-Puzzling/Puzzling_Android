@@ -4,8 +4,8 @@ import com.puzzling.puzzlingaos.data.model.request.RequestReview5FDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewAARDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewTILDto
 import com.puzzling.puzzlingaos.data.model.response.ResponsePreviousTemplateDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseReviewTypeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseSaveReviewDto
-import com.puzzling.puzzlingaos.data.model.response.ResponseWriteReviewDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -17,7 +17,7 @@ interface WriteReviewService {
      ~/api/v1/review/template
      */
     @GET("api/v1/review/template")
-    suspend fun getReviewTemplate(): ResponseWriteReviewDto
+    suspend fun getReviewTemplate(): ResponseReviewTypeDto
 
     /*
     [회고 글 작성 API(TIL)]

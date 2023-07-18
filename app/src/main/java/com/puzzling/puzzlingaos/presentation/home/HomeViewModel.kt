@@ -21,14 +21,6 @@ class HomeViewModel @Inject constructor(
     val projectList: LiveData<List<Project>>
         get() = _projectList
 
-    val projectItemList = mutableListOf<ResponseMyPageProjectDto>(
-        ResponseMyPageProjectDto("Piickle", "2023-07-03", 2),
-        ResponseMyPageProjectDto("HARA", "2023-07-28", 3),
-        ResponseMyPageProjectDto("낫투두", "2023-07-12", 4),
-        ResponseMyPageProjectDto("PEEKABOOK", "2023-07-20", 5),
-        ResponseMyPageProjectDto("ZOOC", "2023-06-25", 9),
-    )
-
     private val _reviewCycleList = MutableLiveData<List<String>>()
     val reviewCycleList: List<String>
         get() = requireNotNull(_reviewCycleList.value)

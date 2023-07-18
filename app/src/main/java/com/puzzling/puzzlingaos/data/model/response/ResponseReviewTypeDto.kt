@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseWriteReviewDto(
+data class ResponseReviewTypeDto(
     @SerialName("status")
     val status: Int,
     @SerialName("success")
@@ -12,10 +12,10 @@ data class ResponseWriteReviewDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: List<WriteReviewData>,
+    val data: List<ReviewTypeData>,
 ) {
     @Serializable
-    data class WriteReviewData(
+    data class ReviewTypeData(
         @SerialName("reviewTemplateId")
         val reviewTemplateId: Int,
         @SerialName("reviewTemplateName")
