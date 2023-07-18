@@ -10,7 +10,7 @@ import com.puzzling.puzzlingaos.databinding.FragmentWriteAarBinding
 
 class WriteAarFragment :
     BaseFragment<FragmentWriteAarBinding>(R.layout.fragment_write_aar) {
-    private val viewModel by activityViewModels<WriteRetrospectiveViewModel>()
+    private val viewModel by activityViewModels<WriteReviewViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

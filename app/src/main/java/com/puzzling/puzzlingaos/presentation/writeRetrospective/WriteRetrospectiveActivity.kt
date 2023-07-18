@@ -13,7 +13,7 @@ import com.puzzling.puzzlingaos.databinding.ActivityWriteRetrospectiveBinding
 
 class WriteRetrospectiveActivity :
     BaseActivity<ActivityWriteRetrospectiveBinding>(R.layout.activity_write_retrospective) {
-    private val viewModel by viewModels<WriteRetrospectiveViewModel>()
+    private val viewModel by viewModels<WriteReviewViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +34,8 @@ class WriteRetrospectiveActivity :
     private fun clickBtn() {
         with(binding) {
             clWriteChip.setOnClickListener {
-                val chooseRetrospectiveFragment = ChooseRetrospectiveFragment()
-                chooseRetrospectiveFragment.show(supportFragmentManager, "show")
+                val chooseReviewFragment = ChooseReviewFragment()
+                chooseReviewFragment.show(supportFragmentManager, "show")
             }
             tvWriteRegister.setOnClickListener {
                 if (viewModel.isInputEnabled.value == true) {

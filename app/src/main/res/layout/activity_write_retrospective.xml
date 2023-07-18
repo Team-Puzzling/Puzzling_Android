@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel" />
+            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteReviewViewModel" />
 
 
     </data>

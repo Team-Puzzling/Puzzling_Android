@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentWriteTilBinding
-import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel
+import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteReviewViewModel
 
 class WriteTilFragment :
     BaseFragment<FragmentWriteTilBinding>(R.layout.fragment_write_til) {
-    private val viewModel by activityViewModels<WriteRetrospectiveViewModel>()
+    private val viewModel by activityViewModels<WriteReviewViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

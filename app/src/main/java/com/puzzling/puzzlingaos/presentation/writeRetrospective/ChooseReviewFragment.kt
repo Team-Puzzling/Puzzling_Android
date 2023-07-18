@@ -5,11 +5,11 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
-import com.puzzling.puzzlingaos.databinding.FragmentChooseRetrospectiveBinding
+import com.puzzling.puzzlingaos.databinding.FragmentChooseReviewBinding
 
-class ChooseRetrospectiveFragment :
-    BottomSheetDialogFragment<FragmentChooseRetrospectiveBinding>(R.layout.fragment_choose_retrospective) {
-    private val viewModel by activityViewModels<WriteRetrospectiveViewModel>()
+class ChooseReviewFragment :
+    BottomSheetDialogFragment<FragmentChooseReviewBinding>(R.layout.fragment_choose_review) {
+    private val viewModel by activityViewModels<WriteReviewViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

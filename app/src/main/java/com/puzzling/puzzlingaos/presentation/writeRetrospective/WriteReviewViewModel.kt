@@ -6,7 +6,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class WriteRetrospectiveViewModel : ViewModel() {
+class WriteReviewViewModel : ViewModel() {
     private val registerRegex = WRITE_REGEX.toRegex()
 
     val tilQuestion1 = MutableLiveData<String>()
