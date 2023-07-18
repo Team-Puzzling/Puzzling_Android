@@ -7,7 +7,9 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentDatePickerBinding
 import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DatePickerFragment : BottomSheetDialogFragment<FragmentDatePickerBinding>(R.layout.fragment_date_picker) {
 
     private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(requireActivity()) }

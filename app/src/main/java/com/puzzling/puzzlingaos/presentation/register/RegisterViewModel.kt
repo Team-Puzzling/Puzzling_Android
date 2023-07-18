@@ -4,7 +4,9 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puzzling.puzzlingaos.data.repository.ProjectRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 
+@HiltViewModel
 class RegisterViewModel(private val projectRepositoryImpl: ProjectRepositoryImpl) : ViewModel() {
 
     private val registerRegex = REGISTER_REGEX.toRegex()
