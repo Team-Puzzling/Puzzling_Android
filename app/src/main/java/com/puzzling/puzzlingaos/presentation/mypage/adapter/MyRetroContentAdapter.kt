@@ -8,7 +8,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroRetroBinding
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
-class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto, MyRetroContentAdapter.MyRetroContenViewHolder>(
+class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto.ReviewData, MyRetroContentAdapter.MyRetroContenViewHolder>(
     diffCallback,
 ) {
 
@@ -24,14 +24,14 @@ class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto, MyRetroConte
 
     class MyRetroContenViewHolder(private val binding: ItemMyretroRetroBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyRetroListDto) {
+        fun onBind(item: ResponseMyRetroListDto.ReviewData) {
             binding.tvMyretroDate.text = item.reviewDate
         }
     }
 
     companion object {
         private val diffCallback =
-            ItemDiffCallback<ResponseMyRetroListDto>(
+            ItemDiffCallback<ResponseMyRetroListDto.ReviewData>(
                 onContentsTheSame = { old, new -> old == new },
                 onItemsTheSame = { old, new -> old == new },
             )
