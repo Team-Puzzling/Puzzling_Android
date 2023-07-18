@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.ItemHomeProjectBinding
+import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
 class HomeChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
-    ListAdapter<ResponseMyPageProjectDto, HomeChooseProjectAdapter.HomeChooseProjectViewHolder>(
-        ItemDiffCallback<ResponseMyPageProjectDto>(
+    ListAdapter<Project, HomeChooseProjectAdapter.HomeChooseProjectViewHolder>(
+        ItemDiffCallback<Project>(
             onContentsTheSame = { old, new -> old == new },
             onItemsTheSame = { old, new -> old == new },
         ),
@@ -30,7 +30,7 @@ class HomeChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
 
     override fun onBindViewHolder(holder: HomeChooseProjectViewHolder, position: Int) {
         holder.onBind(
-            getItem(position) as ResponseMyPageProjectDto,
+            getItem(position) as Project,
         )
     }
 
@@ -40,7 +40,7 @@ class HomeChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
         private var isItemSelected = false
-        fun onBind(data: ResponseMyPageProjectDto) = with(binding) {
+        fun onBind(data: Project) = with(binding) {
             tvHomeProjectName.text = data.projectName
             clHomeProject.setOnClickListener {
                 isItemSelected = !isItemSelected

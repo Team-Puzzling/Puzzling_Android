@@ -28,7 +28,7 @@ class HomeChooseProjectFragment :
         val chooseProjectAdapter = HomeChooseProjectAdapter(::clickProjectItem)
 
         binding.rcvHomeChooseProject.adapter = chooseProjectAdapter
-        chooseProjectAdapter.submitList(viewModel.projectItemList)
+        chooseProjectAdapter.submitList(viewModel.projectList.value)
     }
 
     private fun clickBottomBtn() {
