@@ -12,8 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.PuzzlingAOS"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".presentation.home.team.TeamPuzzleBoardActivity"
@@ -28,8 +28,7 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".presentation.invitationCode.InvitationCodeActivity"
             android:exported="true"
@@ -40,22 +39,29 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.team.currentSituation.MjTestActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" >
-        </activity>
-        <activity android:name=".presentation.detailRetrospect.DetailRetroActivity"
-            android:exported="true"/>
-        <activity android:name=".presentation.onboarding.LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".presentation.detailRetrospect.DetailRetroActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.onboarding.LoginActivity"
             android:exported="true">
             <intent-filter>
-
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
                 <data
                     android:host="oauth"
                     android:scheme="kakao${NATIVE_APP_KEY}" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.onboarding.ChooseJoinRegisterActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".presentation.onboarding.ChooseJoinRegisterActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
