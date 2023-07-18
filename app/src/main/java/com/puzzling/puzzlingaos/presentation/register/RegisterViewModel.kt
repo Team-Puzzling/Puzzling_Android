@@ -24,9 +24,6 @@ class RegisterViewModel @Inject constructor(
     private val _registerResultBool: MutableLiveData<Boolean> = MutableLiveData()
     val registerResultBool: LiveData<Boolean> = _registerResultBool
 
-    // private var _projectCode = MutableLiveData<String>()
-    // val projectCode = LiveData<String>()
-
     private val registerRegex = REGISTER_REGEX.toRegex()
 
     val projectName = MutableLiveData<String>()
@@ -86,8 +83,6 @@ class RegisterViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             projectRepositoryImpl.projectRegister(id, RequestProjectRegisterDto(projectName, projectIntro, startDate, role, nickName, dateCycle)).onSuccess { response ->
-//                _registerResult.value = response
-//                _registerResultBool.value = true
                 projectCode.value = response.getProjectCode().projectCode
                 Log.d("response: ", "${_registerResultBool.value}")
                 Log.d("register: ", "register 성공")

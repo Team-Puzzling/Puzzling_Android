@@ -1,7 +1,5 @@
 package com.puzzling.puzzlingaos.data.model.response
 
-import com.puzzling.puzzlingaos.domain.entity.Project
-import com.puzzling.puzzlingaos.domain.entity.Puzzle
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -24,7 +22,7 @@ data class ResponseProjectRegisterDto(
 
     fun getProjectCode(): ProjectCode {
         return ProjectCode(
-            projectCode = data.projectCode
+            projectCode = data.projectCode,
         )
     }
 }

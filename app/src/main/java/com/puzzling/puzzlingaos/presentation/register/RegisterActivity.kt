@@ -16,8 +16,6 @@ import java.util.*
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
 
-    // private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(this) }
-
     private val viewModel by viewModels<RegisterViewModel>()
 
     private lateinit var dayCycleAdapter: RetrospectWeekCycleAdapter
@@ -135,17 +133,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 )
             }
         }
-//        viewModel.registerResultBool.observe(this) {
-//            Log.d("projectName: ", "${viewModel.projectName.value}")
-//            Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
-//            Log.d("projectStartDate: ", "${viewModel.projectStartDate.value}")
-//            Log.d("role: ", "${viewModel.role.value}")
-//            Log.d("nickName: ", "${viewModel.nickName.value}")
-//            Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
-//            showDialog("${viewModel.projectCode.value}")
-//            Log.d("projectCode: ", "${viewModel.projectCode.value}")
-//
-//        }
     }
 
     private fun getProjectCode() {
@@ -158,7 +145,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
             showDialog("${viewModel.projectCode.value}")
             Log.d("projectCode: ", "${viewModel.projectCode.value}")
-
         }
     }
 
