@@ -1,12 +1,15 @@
 package com.puzzling.puzzlingaos.presentation.register
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
+import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -15,7 +18,9 @@ import java.util.*
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
 
-    private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(this) }
+    // private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(this) }
+
+    private val viewModel by viewModels<RegisterViewModel>()
 
     private lateinit var dayCycleAdapter: RetrospectWeekCycleAdapter
 
@@ -33,6 +38,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         textBoxListener(viewModel.role)
         textBoxListener(viewModel.nickName)
         canBtnClick()
+        clickRegisterBtn()
     }
 
     private fun pickedDate() {
@@ -112,6 +118,19 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     private fun canBtnClick() {
         viewModel.isEnabledRegister.observe(this@RegisterActivity) {
             viewModel.checkBtnEnabled()
+        }
+    }
+
+    private fun clickRegisterBtn() {
+        binding.btnRegister.setOnClickListener {
+            Log.d("projectName: ", "${viewModel.projectName.value}")
+            Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
+            Log.d("projectStartDate: ", "${viewModel.projectStartDate.value}")
+            Log.d("role: ", "${viewModel.role.value}")
+            Log.d("nickName: ", "${viewModel.nickName.value}")
+            Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
+
+
         }
     }
 

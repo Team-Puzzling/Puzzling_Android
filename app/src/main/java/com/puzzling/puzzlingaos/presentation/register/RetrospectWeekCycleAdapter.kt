@@ -55,6 +55,10 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
     }
 
     var selectedRetrospectDayArray = arrayListOf<String>()
+    private val dayKey = listOf("월", "화", "수", "목", "금", "토", "일")
+    private var dayMap = HashMap<Int, String>()
+    private var daySortedMap = LinkedHashMap<Int, String>()
+    private var sortedSelectedRetrospectDayArray = arrayListOf<String>()
 
     private fun daySelection(binding: ItemRegisterRetrospectWeekCycleBinding, retrospectWeekCycle: RetrospectWeekCycle) {
         if (selectedRetrospectDayArray.contains(retrospectWeekCycle.day)) {
@@ -64,7 +68,17 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
             selectedRetrospectDayArray.add(retrospectWeekCycle.day)
             changeBackground(binding, true)
         }
-        viewmodel.isDateCycleSelected.value = selectedRetrospectDayArray
+        daySorted(selectedRetrospectDayArray)
+
+        viewmodel.isDateCycleSelected.value = sortedSelectedRetrospectDayArray
+    }
+
+    private fun daySorted(dayArray: ArrayList<String>) {
+        for (i in 0 until dayArray.size) {
+            dayMap[dayKey.indexOf(dayArray[i])] = dayArray[i]
+        }
+        dayMap.keys.sorted().forEach { daySortedMap[it] = dayMap[it]!! }
+        sortedSelectedRetrospectDayArray = daySortedMap.values.sorted().toTypedArray().toCollection(ArrayList())
     }
 
     private fun changeBackground(binding: ItemRegisterRetrospectWeekCycleBinding, bool: Boolean) {

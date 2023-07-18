@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puzzling.puzzlingaos.data.repository.ProjectRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel(private val projectRepositoryImpl: ProjectRepositoryImpl) : ViewModel() {
+class RegisterViewModel @Inject constructor(
+    private val projectRepositoryImpl: ProjectRepositoryImpl,
+) : ViewModel() {
 
     private val registerRegex = REGISTER_REGEX.toRegex()
 
