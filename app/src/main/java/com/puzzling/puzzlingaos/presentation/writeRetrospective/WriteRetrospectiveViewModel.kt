@@ -46,6 +46,14 @@ class WriteRetrospectiveViewModel : ViewModel() {
     val selectedReviewType: LiveData<String>
         get() = _selectedReviewType
 
+    private val _selectedChipText = MutableLiveData<String>()
+    val selectedChipText: LiveData<String>
+        get() = _selectedChipText
+
+    fun setSelectedChipText(chipText: String) {
+        _selectedChipText.value = chipText
+    }
+
     fun validTextBox(textBox: String): Boolean {
         return textBox.matches(registerRegex)
     }

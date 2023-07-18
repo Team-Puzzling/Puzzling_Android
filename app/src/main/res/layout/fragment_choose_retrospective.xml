@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="vm"
-            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel" />
 
     </data>
 
@@ -15,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="274dp"
         android:background="@drawable/rect_white_fill_top16"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context=".presentation.writeRetrospective.ChooseRetrospectiveFragment">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_choose_top"
@@ -25,86 +22,113 @@
             android:layout_marginHorizontal="160dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/rect_gray300_fill"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioGroup
-            android:id="@+id/rg_choose_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_choose_first"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="53dp"
-            android:layout_marginBottom="85dp"
-            android:orientation="vertical"
-            android:checkedButton="@id/rbtn_choose_first"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="57dp"
+            android:background="@drawable/selector_custom_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbtn_choose_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/selector_custom_button"
-                android:paddingHorizontal="20dp"
-                android:text="@string/rbtn_choose_first"
-                android:textAppearance="@style/Kor.Body1.Bold" />
-
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbtn_choose_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/selector_custom_button"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="@string/rbtn_choose_second"
-                android:textAppearance="@style/Kor.Body1.Bold" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbtn_choose_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/selector_custom_button"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="@string/rbtn_choose_third"
-                android:textAppearance="@style/Kor.Body1.Bold" />
-
-        </RadioGroup>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_choose_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/tv_choose_first"
-            app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="20dp"
+            android:includeFontPadding="false"
+            android:text="TIL"
+            android:textAppearance="@style/Kor.Body1.Bold"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_choose_first"
+            app:layout_constraintStart_toEndOf="@+id/cl_choose_first"
+            app:layout_constraintTop_toTopOf="@+id/cl_choose_first" />
+
+        <TextView
+            android:id="@+id/tv_choose_first_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:textAppearance="@style/Kor.Detail1.Regular"
+            android:textColor="@color/gray_600"
+            android:includeFontPadding="false"
+            android:text="학습과 자기 반성을 통해 향후 더 나은 결정을\n 내릴 수 있게 해 주는 회고 방식이에요!"
+            app:layout_constraintStart_toEndOf="@+id/tv_choose_first"
+            app:layout_constraintTop_toTopOf="@+id/tv_choose_first"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_choose_second"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/selector_custom_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_choose_first" />
 
         <TextView
             android:id="@+id/tv_choose_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="111dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/tv_choose_second"
-            app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="20dp"
+            android:includeFontPadding="false"
+            android:text="5F"
+            android:textAppearance="@style/Kor.Body1.Bold"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_choose_second"
+            app:layout_constraintStart_toEndOf="@+id/cl_choose_second"
+            app:layout_constraintTop_toTopOf="@+id/cl_choose_second" />
+
+        <TextView
+            android:id="@+id/tv_choose_second_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:textAppearance="@style/Kor.Detail1.Regular"
+            android:textColor="@color/gray_600"
+            android:includeFontPadding="false"
+            android:text="다양한 측면을 고려하여 개인과 프로젝트 전\n체적인 관점을 보여주는 회고 방식이에요!"
+            app:layout_constraintStart_toEndOf="@+id/tv_choose_second"
+            app:layout_constraintTop_toTopOf="@+id/tv_choose_second"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_choose_third"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/selector_custom_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_choose_second" />
 
         <TextView
             android:id="@+id/tv_choose_third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="30dp"
-            android:text="@string/tv_choose_third"
-            app:layout_constraintStart_toEndOf="@+id/rg_choose_main"
-            app:layout_constraintTop_toBottomOf="@+id/tv_choose_second" />
+            android:layout_marginStart="20dp"
+            android:includeFontPadding="false"
+            android:text="AAR"
+            android:textAppearance="@style/Kor.Body1.Bold"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_choose_third"
+            app:layout_constraintStart_toEndOf="@+id/cl_choose_third"
+            app:layout_constraintTop_toTopOf="@+id/cl_choose_third" />
 
+        <TextView
+            android:id="@+id/tv_choose_third_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textAppearance="@style/Kor.Detail1.Regular"
+            android:textColor="@color/gray_600"
+            android:layout_marginBottom="67dp"
+            android:includeFontPadding="false"
+            android:text="목표 달성에 대한 책임감과 함께, 개선에 중\n점을 두는 회고 방식이에요!"
+            app:layout_constraintStart_toEndOf="@+id/tv_choose_third"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_choose_third"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
