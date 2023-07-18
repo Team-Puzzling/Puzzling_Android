@@ -9,10 +9,9 @@ import retrofit2.http.Path
 
 interface ProjectService {
 
-    @POST("~/api/v1/member/{memberId}/project")
+    @POST("api/v1/member/{memberId}/project")
     suspend fun projectRegister(
         @Path("memberId") memberId: Int,
-        // @Query("request") request: RequestProjectRegisterDto,
         @Body request: RequestProjectRegisterDto,
     ): BaseResponse<ResponseProjectRegisterDto>
 }
