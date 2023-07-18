@@ -1,6 +1,6 @@
 package com.puzzling.puzzlingaos.domain.repository
 
-interface RegisterRepository {
+interface ProjectRegisterRepository {
 
     suspend fun register(): Result<Unit>
 }
