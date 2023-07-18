@@ -19,6 +19,7 @@ class MyRetrospectFragment :
     BaseFragment<FragmentMyRetrospectBinding>(R.layout.fragment_my_retrospect) {
 
     private lateinit var viewModel: MyRetrospectViewModel
+    private var currentTitle = "piikle"
 
     private val dummyItemList = mutableListOf(
         ResponseMyRetroListDto.ReviewData(23, "2023-07-12", "여기는 20글자 정도 노출되고,,"),
@@ -56,7 +57,12 @@ class MyRetrospectFragment :
 
     private fun initAdapter() {
         val myRetroContentAdapter = MyRetroContentAdapter()
-        val myRetroTitleAdapter = MyRetroTitleAdapter("Piickle")
+        val myRetroTitleAdapter = MyRetroTitleAdapter()
+
+        viewModel.currentProject.observe(viewLifecycleOwner) {
+            myRetroTitleAdapter.projectName = it
+            myRetroContentAdapter.notifyDataSetChanged()
+        }
 
         viewModel.responseReveiew.observe(this) {
             myRetroContentAdapter.submitList(it)

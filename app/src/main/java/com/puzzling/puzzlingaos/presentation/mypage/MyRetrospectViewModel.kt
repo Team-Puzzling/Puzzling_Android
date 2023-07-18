@@ -18,6 +18,9 @@ class MyRetrospectViewModel @Inject constructor(private val repository: MyPageRe
     private val _responseReview = MutableLiveData<List<ResponseMyRetroListDto.ReviewData>?>()
     val responseReveiew: LiveData<List<ResponseMyRetroListDto.ReviewData>?> get() = _responseReview
 
+    private val _currentProject = MutableLiveData<String>("프로젝트 이름")
+    val currentProject: LiveData<String> get() = _currentProject
+
     init {
         getMyProjectReview()
     }
@@ -33,4 +36,8 @@ class MyRetrospectViewModel @Inject constructor(private val repository: MyPageRe
         }
     }
 
+    fun setCurrentProject(currentProject: String) {
+        _currentProject.value = currentProject
+        Log.d("viewModel 클릭 이벤트","${currentProject}")
+    }
 }
