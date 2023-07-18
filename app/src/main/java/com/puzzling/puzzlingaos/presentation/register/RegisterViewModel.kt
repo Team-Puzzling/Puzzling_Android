@@ -3,9 +3,9 @@ package com.puzzling.puzzlingaos.presentation.register
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puzzling.puzzlingaos.data.repository.ProjectProjectRegisterRepositoryImpl
+import com.puzzling.puzzlingaos.data.repository.ProjectRegisterRepositoryImpl
 
-class RegisterViewModel(private val projectRegisterRepositoryImpl: ProjectProjectRegisterRepositoryImpl) : ViewModel() {
+class RegisterViewModel(private val projectRegisterRepositoryImpl: ProjectRegisterRepositoryImpl) : ViewModel() {
 
     private val registerRegex = REGISTER_REGEX.toRegex()
 
