@@ -8,7 +8,6 @@ import com.puzzling.puzzlingaos.data.repository.TeamCurrentSituationRepositoryIm
 import com.puzzling.puzzlingaos.data.service.KakaoLoginService
 import com.puzzling.puzzlingaos.data.source.remote.RegisterRemoteDataSource
 import com.puzzling.puzzlingaos.data.source.remote.TeamCurrentSituationRemoteDataSource
-import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroViewModel
 import com.puzzling.puzzlingaos.presentation.invitationCode.InvitationCodeViewModel
 import com.puzzling.puzzlingaos.presentation.onboarding.LoginViewModel
 import com.puzzling.puzzlingaos.presentation.register.RegisterViewModel
@@ -36,10 +35,6 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
                         TeamCurrentSituationRemoteDataSource(),
                     ),
                 ) as T
-            }
-
-            modelClass.isAssignableFrom(DetailRetroViewModel::class.java) -> {
-                DetailRetroViewModel(context) as T
             }
 
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
