@@ -1,8 +1,10 @@
 package com.puzzling.puzzlingaos.di
 
 import com.puzzling.puzzlingaos.data.source.remote.MyDashBoardDataSource
+import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
 import com.puzzling.puzzlingaos.data.source.remote.WriteReviewDataSource
 import com.puzzling.puzzlingaos.data.source.remote.impl.MyDashBoardDataSourceImpl
+import com.puzzling.puzzlingaos.data.source.remote.impl.ProjectDataSourceImpl
 import com.puzzling.puzzlingaos.data.source.remote.impl.WriteReviewDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -20,4 +22,8 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun providesWriteReviewDataSource(DataSourceImpl: WriteReviewDataSourceImpl): WriteReviewDataSource
+
+    @Singleton
+    @Binds
+    abstract fun sendProjectRegisterDataSource(DataSourceImpl: ProjectDataSourceImpl): ProjectDataSource
 }

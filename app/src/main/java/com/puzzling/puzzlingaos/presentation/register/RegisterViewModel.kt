@@ -1,11 +1,28 @@
 package com.puzzling.puzzlingaos.presentation.register
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puzzling.puzzlingaos.data.repository.RegisterRepositoryImpl
+import androidx.lifecycle.viewModelScope
+import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
+import com.puzzling.puzzlingaos.data.repository.ProjectRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryImpl) : ViewModel() {
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
+    private val projectRepositoryImpl: ProjectRepositoryImpl,
+) : ViewModel() {
+
+    private val _registerResult: MutableLiveData<ResponseProjectRegisterDto> = MutableLiveData()
+    val registerResult: LiveData<ResponseProjectRegisterDto> = _registerResult
+
+    private val _registerResultBool: MutableLiveData<Boolean> = MutableLiveData()
+    val registerResultBool: LiveData<Boolean> = _registerResultBool
 
     private val registerRegex = REGISTER_REGEX.toRegex()
 
@@ -15,7 +32,8 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
     val role = MutableLiveData<String>()
     val nickName = MutableLiveData<String>()
     var dayArray = ArrayList<String>()
-    val isDateCycleSelected = MutableLiveData<ArrayList<String>>()
+    var isDateCycleSelected = MutableLiveData<ArrayList<String>>()
+    var projectCode = MutableLiveData<String>()
 
     // editText 확인용
     fun validTextBox(textBox: String): Boolean {
@@ -52,6 +70,36 @@ class RegisterViewModel(private val registerRepositoryImpl: RegisterRepositoryIm
 
     fun checkBtnEnabled() {
         isBtnEnabled.value = isValid()
+    }
+
+    fun doProjectRegister(
+        id: Int,
+        projectName: String,
+        projectIntro: String,
+        startDate: String,
+        role: String,
+        nickName: String,
+        dateCycle: ArrayList<String>,
+    ) {
+        viewModelScope.launch {
+            projectRepositoryImpl.projectRegister(id, RequestProjectRegisterDto(projectName, projectIntro, startDate, role, nickName, dateCycle)).onSuccess { response ->
+                projectCode.value = response.getProjectCode().projectCode
+                Log.d("response: ", "${_registerResultBool.value}")
+                Log.d("register: ", "register 성공")
+                Log.d("response: ", "$response")
+                Log.d("response: ", "${response.getProjectCode().projectCode}")
+                Log.d("response: ", "${projectCode.value}")
+                _registerResult.value = response
+                _registerResultBool.value = true
+                Log.d("response: ", "${_registerResultBool.value}")
+            }.onFailure { error ->
+                _registerResultBool.value = false
+                Log.d("register: ", "register 실패")
+            }
+        }
+    }
+
+    fun checkNickname(nickName: String) {
     }
 
     companion object {

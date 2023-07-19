@@ -423,6 +423,7 @@
                 android:textAppearance="@style/Kor.Heading4"
                 android:textColor="@color/white_000"
                 android:includeFontPadding="false"
+                android:clickable="@{viewModel.isBtnEnabled}"
                 android:enabled="@{viewModel.isBtnEnabled}"
                 android:background="@{viewModel.isBtnEnabled ? @drawable/bg_register_registerbutton_select : @drawable/bg_register_registerbutton_deselect}"
                 app:layout_constraintTop_toTopOf="parent"
