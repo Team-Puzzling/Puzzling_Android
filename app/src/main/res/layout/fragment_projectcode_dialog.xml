@@ -8,18 +8,19 @@
 
     </data>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="290dp"
+        android:layout_height="368dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             >
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardview"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
@@ -83,10 +84,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:stateListAnimator="@null"
-                    android:layout_marginHorizontal="130dp"
+                    android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="271dp"
                     android:layout_marginBottom="28dp"
-                    android:background="@drawable/rect_bg50_fill_radius_16"
+                    android:background="@color/transparent"
                     android:text="닫기"
                     android:textAppearance="@style/Kor.Body1.Regular"
                     android:textColor="@color/gray_500"
@@ -100,8 +101,13 @@
         <ImageView
             android:layout_width="78dp"
             android:layout_height="78dp"
-            android:layout_marginStart="171dp"
+            android:layout_marginStart="109dp"
+            android:layout_marginEnd="103dp"
             android:contentDescription="@null"
-            android:src="@drawable/img_dialog_puzzle1" />
-    </FrameLayout>
+            android:src="@drawable/img_dialog_puzzle1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
