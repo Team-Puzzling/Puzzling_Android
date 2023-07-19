@@ -14,6 +14,7 @@ interface WriteReviewRepository {
         memberId: Int,
         projectId: Int,
         requestReviewTIL: RequestReviewTILDto,
+//        requestReviewTIL: TIL,
     ): Result<ResponseSaveReviewDto>
 
     suspend fun upload5F(

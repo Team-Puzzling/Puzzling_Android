@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
+import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -54,7 +55,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getProjectList() = viewModelScope.launch {
-        repository.getProceedingProject(1).onSuccess { response ->
+        repository.getProceedingProject(UserInfo.MEMBER_ID).onSuccess { response ->
             Log.d("home", "getProjectList() success:: $response")
             _projectList.value = response
         }.onFailure {

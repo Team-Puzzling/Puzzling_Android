@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.domain.entity.ActionPlan
 import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
+import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -72,7 +73,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleBoard() = viewModelScope.launch {
-        repository.getUserPuzzleBoard(1, 3, "2023-07-05")
+        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
             .onSuccess { response ->
                 _myPuzzleBoardList.value = response
                 Log.d("personal", "getMyPuzzleBoard() success:: $response")
@@ -92,7 +93,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getActionPlan() = viewModelScope.launch {
-        repository.getActionPlan(1, 3).onSuccess { response ->
+        repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
             Log.d("personal", "getActionPlan() success:: $response")
             _actionPlanList.value = response
         }.onFailure {

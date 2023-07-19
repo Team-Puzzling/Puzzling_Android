@@ -1,3 +1,5 @@
+package com.puzzling.puzzlingaos.presentation.writeRetrospective
+
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -5,8 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentWriteTilBinding
-import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteReviewViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteTilFragment :
     BaseFragment<FragmentWriteTilBinding>(R.layout.fragment_write_til) {
     private val viewModel by activityViewModels<WriteReviewViewModel>()

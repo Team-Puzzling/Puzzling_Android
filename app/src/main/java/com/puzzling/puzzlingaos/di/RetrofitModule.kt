@@ -67,7 +67,7 @@ object RetrofitModule {
             val builder = original.newBuilder()
             builder.addHeader(
                 "Authorization",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODk2MjA3OTMsImV4cCI6MTY4OTk4MDc5MywibWVtYmVySWQiOjF9.oJu8gFirmwwhwZyWKiqdLwZbZEE_ICqQHTyAqLDaMoE",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODk3NTAxMTIsImV4cCI6MTY5MDExMDExMiwibWVtYmVySWQiOjJ9.cObREoCFGC8jgcBJjz0z7Bnb03KfP_Fzzup9Oge1tYA",
             )
             chain.proceed(builder.build())
         }

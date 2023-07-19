@@ -6,13 +6,16 @@ import androidx.fragment.app.activityViewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentChooseReviewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChooseReviewFragment :
     BottomSheetDialogFragment<FragmentChooseReviewBinding>(R.layout.fragment_choose_review) {
     private val viewModel by activityViewModels<WriteReviewViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
         clickItemButton()
     }
 
