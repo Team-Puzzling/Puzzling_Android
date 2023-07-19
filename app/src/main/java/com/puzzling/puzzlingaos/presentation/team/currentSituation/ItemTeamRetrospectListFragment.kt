@@ -51,12 +51,7 @@ class ItemTeamRetrospectListFragment(
             for (item in retroItem) {
                 if (day == item.reviewDay) {
                     testItemList(viewModel.teamRetrospectList, day)
-                }
-            }
-        }
-        if (retroItem != null) {
-            for (item in retroItem) {
-                if (day == item.reviewDay) {
+
                     binding.rcvTeamRetrospectList.adapter = viewModel.teamRetrospectMultiList.value?.let {
                         RetrospectListAdapter(
                             it,
@@ -65,6 +60,17 @@ class ItemTeamRetrospectListFragment(
                 }
             }
         }
+//        if (retroItem != null) {
+//            for (item in retroItem) {
+//                if (day == item.reviewDay) {
+//                    binding.rcvTeamRetrospectList.adapter = viewModel.teamRetrospectMultiList.value?.let {
+//                        RetrospectListAdapter(
+//                            it,
+//                        )
+//                    }
+//                }
+//            }
+//        }
     }
 
     fun testItemList(itemList: LiveData<ArrayList<ResponseTeamRetroListDto.Data>>, day: String) {
