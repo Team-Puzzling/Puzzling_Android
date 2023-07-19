@@ -5,6 +5,11 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.home.team.TeamDashBoardViewModel" />
+
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -31,7 +36,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="20dp"
                     android:includeFontPadding="false"
-                    android:text="이솝트 님이 모은 퍼즐"
+                    android:text="@{@string/tv_team_title(vm.myNickname)}"
                     android:textAppearance="@style/Kor.Heading4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +48,7 @@
                     android:layout_marginStart="105dp"
                     android:layout_marginEnd="4dp"
                     android:includeFontPadding="false"
-                    android:text="N 조각"
+                    android:text="@{@string/tv_team_puzzle_current(vm.myPuzzleCount)}"
                     android:textAppearance="@style/Kor.Heading4"
                     android:textColor="@color/blue_400"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_team_title"
@@ -97,7 +102,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle1"
+                                app:imageName="@{vm.teamPuzzleImage[0]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +114,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[0]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -133,7 +138,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle2"
+                                app:imageName="@{vm.teamPuzzleImage[1]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +150,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[1]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -169,7 +174,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle3"
+                                app:imageName="@{vm.teamPuzzleImage[2]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +186,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[2]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -205,7 +210,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle4"
+                                app:imageName="@{vm.teamPuzzleImage[3]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -217,7 +222,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[3]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -241,7 +246,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle5"
+                                app:imageName="@{vm.teamPuzzleImage[4]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -253,7 +258,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[4]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -277,7 +282,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle5"
+                                app:imageName="@{vm.teamPuzzleImage[5]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -289,7 +294,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[5]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -313,7 +318,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle7"
+                                app:imageName="@{vm.teamPuzzleImage[6]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -325,7 +330,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[6]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -349,7 +354,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle8"
+                                app:imageName="@{vm.teamPuzzleImage[7]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -361,7 +366,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[7]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -385,7 +390,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle9"
+                                app:imageName="@{vm.teamPuzzleImage[8]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -397,7 +402,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[8]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -421,7 +426,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle10"
+                                app:imageName="@{vm.teamPuzzleImage[9]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -433,7 +438,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[9]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -457,7 +462,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle1"
+                                app:imageName="@{vm.teamPuzzleImage[10]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -469,7 +474,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[10]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -493,7 +498,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle12"
+                                app:imageName="@{vm.teamPuzzleImage[11]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -505,7 +510,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[11]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -529,7 +534,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle13"
+                                app:imageName="@{vm.teamPuzzleImage[12]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -541,7 +546,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[12]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -565,7 +570,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle14"
+                                app:imageName="@{vm.teamPuzzleImage[13]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -577,7 +582,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[13]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -601,7 +606,7 @@
                                 android:layout_width="64dp"
                                 android:layout_height="0dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_puzzle15"
+                                app:imageName="@{vm.teamPuzzleImage[14]}"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -613,7 +618,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="@string/tv_team_date"
+                                android:text="@{vm.teamReviewDate[14]}"
                                 android:textAppearance="@style/Kor.Detail2.Regular"
                                 android:textColor="@color/blue_500"
                                 android:visibility="visible"
@@ -678,7 +683,7 @@
                         android:layout_marginTop="18dp"
                         android:layout_marginBottom="20dp"
                         android:includeFontPadding="false"
-                        android:text="@string/tv_team_current_puzzle_board"
+                        android:text="@{@string/tv_team_current_puzzle_board(vm.teamPuzzleBoardCount)}"
                         android:textAppearance="@style/Kor.Heading4"
                         android:textColor="@color/blue_400"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -727,7 +732,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_team_ranking_topranking_main"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -737,7 +742,6 @@
                         android:id="@+id/cl_team_second_ranking_background"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
                         android:layout_marginTop="44dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -756,7 +760,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_team_second_ranking_box"
-                            android:layout_width="wrap_content"
+                            android:layout_width="69dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:background="@drawable/rect_lightblue_fill_radius_14_gradient"
@@ -771,12 +775,13 @@
                                 android:layout_marginHorizontal="15dp"
                                 android:layout_marginTop="10dp"
                                 android:includeFontPadding="false"
-                                android:text="김솝트"
+                                android:text="@{vm.memberNickname[1]}"
                                 android:textAppearance="@style/Kor.Body3.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="이솝트" />
 
                             <TextView
                                 android:id="@+id/tv_team_second_ranking_part"
@@ -784,7 +789,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:includeFontPadding="false"
-                                android:text="서버"
+                                android:text="@{vm.memberRole[1]}"
                                 android:textAppearance="@style/Kor.Detail3.Regular"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="@+id/tv_team_second_name"
@@ -798,7 +803,7 @@
                                 android:layout_marginTop="4dp"
                                 android:layout_marginBottom="9dp"
                                 android:includeFontPadding="false"
-                                android:text="5조각"
+                                android:text="@{@string/tv_team_second_ranking_puzzle(vm.memberPuzzleCount[1])}"
                                 android:textAppearance="@style/Kor.Body3.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -813,7 +818,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_team_first_ranking_background"
-                        android:layout_width="wrap_content"
+                        android:layout_width="108dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         app:layout_constraintBottom_toBottomOf="@+id/cl_team_second_ranking_background"
@@ -827,14 +832,13 @@
                             android:contentDescription="@null"
                             android:src="@drawable/ic_first_rank"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_team_first_ranking_box"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="4dp"
                             android:background="@drawable/rect_blue_fill_radius_16_gradient"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -848,12 +852,13 @@
                                 android:layout_marginHorizontal="24dp"
                                 android:layout_marginTop="14dp"
                                 android:includeFontPadding="false"
-                                android:text="박솝트"
+                                android:text="@{vm.memberNickname[0]}"
                                 android:textAppearance="@style/Kor.Body1.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="박솝트" />
 
                             <TextView
                                 android:id="@+id/tv_team_first_ranking_part"
@@ -861,7 +866,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:includeFontPadding="false"
-                                android:text="디자인"
+                                android:text="@{vm.memberRole[0]}"
                                 android:textAppearance="@style/Kor.Body3.Regular"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="@+id/tv_team_first_name"
@@ -875,7 +880,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="14dp"
                                 android:includeFontPadding="false"
-                                android:text="13조각"
+                                android:text="@{@string/tv_team_first_ranking_puzzle(vm.memberPuzzleCount[0])}"
                                 android:textAppearance="@style/Kor.Body3.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -892,10 +897,9 @@
                         android:id="@+id/cl_team_third_ranking_background"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="31dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0"
+                        android:layout_marginStart="32dp"
                         app:layout_constraintBottom_toBottomOf="@+id/cl_team_first_ranking_background"
+                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toEndOf="@+id/cl_team_first_ranking_background">
 
 
@@ -913,7 +917,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_team_third_ranking_box"
-                            android:layout_width="wrap_content"
+                            android:layout_width="69dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:background="@drawable/rect_lightblue_fill_radius_14_gradient"
@@ -928,12 +932,13 @@
                                 android:layout_marginHorizontal="15dp"
                                 android:layout_marginTop="10dp"
                                 android:includeFontPadding="false"
-                                android:text="김솝트"
+                                android:text="최솝트"
                                 android:textAppearance="@style/Kor.Body3.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="최솝트" />
 
                             <TextView
                                 android:id="@+id/tv_team_third_ranking_part"
@@ -941,7 +946,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:includeFontPadding="false"
-                                android:text="서버"
+                                android:text="@{vm.memberRole[2]}"
                                 android:textAppearance="@style/Kor.Detail3.Regular"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="@+id/tv_team_third_name"
@@ -955,7 +960,7 @@
                                 android:layout_marginTop="4dp"
                                 android:layout_marginBottom="9dp"
                                 android:includeFontPadding="false"
-                                android:text="7조각"
+                                android:text="@{@string/tv_team_first_ranking_puzzle(vm.memberPuzzleCount[2])}"
                                 android:textAppearance="@style/Kor.Body3.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -970,19 +975,6 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <!--            <androidx.recyclerview.widget.RecyclerView-->
-                <!--                android:id="@+id/rcv_team_main"-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="match_parent"-->
-                <!--                android:orientation="vertical"-->
-                <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-                <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-                <!--                app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                app:layout_constraintStart_toStartOf="parent"-->
-                <!--                app:layout_constraintTop_toBottomOf="@+id/cl_team_ranking_topranking_main"-->
-                <!--                tools:itemCount="5"-->
-                <!--                tools:listitem="@layout/item_team_ranking" />-->
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
