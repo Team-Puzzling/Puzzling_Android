@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puzzling.puzzlingaos.data.repository.TeamCurrentSituationRepositoryImpl
+import com.puzzling.puzzlingaos.data.repository.TeamRetroRepositoryImpl
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList
 import kotlinx.coroutines.launch
 
-class TeamCurrentSituationViewModel(private val teamCurrentSituationRepositoryImpl: TeamCurrentSituationRepositoryImpl) : ViewModel() {
+class TeamCurrentSituationViewModel(private val teamCurrentSituationRepositoryImpl: TeamRetroRepositoryImpl) : ViewModel() {
 
     var isWeekRetrospectColor: MutableLiveData<Boolean> = MutableLiveData(true)
 
