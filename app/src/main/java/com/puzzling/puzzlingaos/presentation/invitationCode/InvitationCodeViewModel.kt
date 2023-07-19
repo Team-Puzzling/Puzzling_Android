@@ -2,8 +2,11 @@ package com.puzzling.puzzlingaos.presentation.invitationCode
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
+import com.puzzling.puzzlingaos.util.UserInfo.MEMBER_ID
+import com.puzzling.puzzlingaos.util.UserInfo.PROJECT_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -108,19 +111,29 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
     fun isCodeValid() = viewModelScope.launch {
         kotlin.runCatching {
             repository.isValidInvitationCode(inputCode.value)
-        }.onSuccess {
+        }.onSuccess { response ->
             _isCodeSucces.value = true
-            _codeResponse.value = it.data
-            Log.d("초대코드", "$it")
+            _codeResponse.value = response.data
+            Log.d("초대코드", "$response")
         }.onFailure {
+            _isCodeSucces.value = true
             Log.d("초대코드", "$it")
         }
     }
 
     fun joinProject() = viewModelScope.launch {
-        // 서버 통신 추가 예정
-        _isProfileSucces.value = true
-        Log.d("프로젝트 참여하기", "프로젝트 참여하기 ${_codeResponse.value?.projectName}")
+        kotlin.runCatching {
+            repository.joinProject(
+                MEMBER_ID,
+                RequestInvitationCode(PROJECT_ID, inputNickName.value, inputRole.value),
+            )
+        }.onSuccess { response ->
+            _isProfileSucces.value = true
+            Log.d("프로젝트 참여하기", "프로젝트 참여하기 $response")
+        }.onFailure {
+            _isProfileSucces.value = true
+            Log.d("프로젝트 참여하기", "$it")
+        }
     }
 
     companion object {

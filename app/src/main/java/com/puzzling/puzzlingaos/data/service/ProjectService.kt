@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.service
 
+import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
@@ -17,8 +18,14 @@ interface ProjectService {
         @Body request: RequestProjectRegisterDto,
     ): ResponseProjectRegisterDto
 
+    @POST("api/v1/member/{memberId}/project/join")
+    suspend fun joinProejct(
+        @Path("memberId") memberId: Int,
+        @Body request: RequestInvitationCode,
+    ): ResponseInvitationCodeDto
+
     @GET("api/v1/project/verify?")
     suspend fun isValidInvitationCode(
         @Query("invitationCode") invitationCode: String,
-    ) : ResponseInvitationCodeDto
+    ): ResponseInvitationCodeDto
 }
