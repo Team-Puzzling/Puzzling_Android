@@ -1,11 +1,11 @@
 package com.puzzling.puzzlingaos.data.model.response
 
-import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
+import com.puzzling.puzzlingaos.domain.entity.TeamPuzzleBoard
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseMyPuzzleBoardDto(
+data class ResponseTeamPuzzleBoardDto(
     @SerialName("status")
     val status: Int,
     @SerialName("success")
@@ -13,16 +13,16 @@ data class ResponseMyPuzzleBoardDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: MyPuzzleBoardData,
+    val data: TeamPuzzleBoardData,
 ) {
     @Serializable
-    data class MyPuzzleBoardData(
+    data class TeamPuzzleBoardData(
         @SerialName("myPuzzle")
         val myPuzzle: MyPuzzle,
-        @SerialName("userPuzzleBoard")
-        val userPuzzleBoard: List<UserPuzzleBoard>,
-        @SerialName("puzzleBoardCount")
-        val puzzleBoardCount: Int,
+        @SerialName("teamPuzzleBoard")
+        val teamPuzzleBoard: List<UserPuzzleBoard>,
+        @SerialName("teamPuzzleBoardCount")
+        val teamPuzzleBoardCount: Int,
         @SerialName("isReviewDay")
         val isReviewDay: Boolean,
         @SerialName("hasTodayReview")
@@ -41,16 +41,16 @@ data class ResponseMyPuzzleBoardDto(
         data class UserPuzzleBoard(
             @SerialName("reviewDate")
             val reviewDate: String?,
-            @SerialName("reviewId")
-            val reviewId: Int?,
+            @SerialName("reviewMemberPercent")
+            val reviewMemberPercent: String?,
             @SerialName("puzzleAssetName")
             val puzzleAssetName: String,
         )
 
-        fun toPuzzleBoard() = userPuzzleBoard.map { board ->
-            MyPuzzleBoard(
+        fun toPuzzleBoard() = teamPuzzleBoard.map { board ->
+            TeamPuzzleBoard(
                 board.reviewDate ?: "null",
-                board.reviewId ?: -1,
+                board.reviewMemberPercent ?: "null",
                 board.puzzleAssetName,
             )
         }

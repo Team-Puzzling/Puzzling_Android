@@ -30,9 +30,10 @@ class PersonalDashboardFragment :
 
     private fun setActionPlanAdapter() {
         _actionPlanAdapter = ActionPlanListAdapter()
-        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
-        binding.rcvPersonalView.also {
-            it.adapter = _actionPlanAdapter
+//        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
+        viewModel.actionPlanList.observe(this) {
+            binding.rcvPersonalView.adapter = _actionPlanAdapter
+            _actionPlanAdapter!!.submitList(it)
         }
     }
 
@@ -41,21 +42,8 @@ class PersonalDashboardFragment :
 
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
-            when (viewModel.previousReviewType.value) {
-                1 -> activity?.let { // TIL
-                    val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-                    startActivity(intent)
-                }
-                2 -> activity?.let { // 5F
-                    val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-                    startActivity(intent)
-                }
-                3 -> activity?.let {
-                    // AAR
-                    val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-                    startActivity(intent)
-                }
-            }
+            val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+            startActivity(intent)
         }
     }
 
