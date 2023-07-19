@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroAllProjectsBinding
 import com.puzzling.puzzlingaos.databinding.ItemMyretroCurrentProjectBinding
+import com.puzzling.puzzlingaos.domain.entity.Project
 
 class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var itemList = mutableListOf<ResponseMyPageProjectDto>()
+    private var itemList = listOf<Project>()
 
     private var listener: OnItemClickListener? = null
 
@@ -61,7 +62,7 @@ class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
 
     inner class CurrentProjectViewHolder(private val binding: ItemMyretroCurrentProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyPageProjectDto) {
+        fun onBind(item: Project) {
             binding.tvMyRetroProjectName.text = item.projectName
 
             binding.clMyRetroContainer.setOnClickListener {
@@ -73,7 +74,7 @@ class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
 
     inner class ChooseProjectViewHolder(private val binding: ItemMyretroAllProjectsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyPageProjectDto) {
+        fun onBind(item: Project) {
             binding.tvMyRetroProjectName.text = item.projectName
 
             binding.clMyRetroContainer.setOnClickListener {
@@ -83,7 +84,7 @@ class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
         }
     }
 
-    fun setItemList(newItemList: MutableList<ResponseMyPageProjectDto>) {
+    fun setItemList(newItemList: List<Project>) {
         itemList = newItemList
     }
 

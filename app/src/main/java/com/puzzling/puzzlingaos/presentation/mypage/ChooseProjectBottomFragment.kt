@@ -53,7 +53,9 @@ class ChooseProjectBottomFragment :
         }
 
         binding.rcvMyRetroChooseProject.adapter = chooseProjectAdapter
-        chooseProjectAdapter.setItemList(dummyItemList)
+        viewModel.responseProjectList.observe(this) {
+            chooseProjectAdapter.setItemList(it)
+        }
     }
 
     private fun clickProjectItem(projectName: String) {
