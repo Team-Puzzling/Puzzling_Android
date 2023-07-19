@@ -36,10 +36,12 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="48dp"
                     android:layout_marginStart="112dp"
+                    android:layout_marginEnd="111dp"
                     android:includeFontPadding="false"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     />
 
                 <ImageButton
@@ -225,6 +227,8 @@
                             app:boxCornerRadiusBottomEnd="16dp"
                             app:boxStrokeColor="@color/blue_200"
                             app:boxStrokeWidthFocused="2dp"
+                            android:focusable="true"
+                            android:clickable="true"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             >
 
@@ -424,8 +428,7 @@
                 android:textColor="@color/white_000"
                 android:includeFontPadding="false"
                 android:clickable="@{viewModel.isBtnEnabled}"
-                android:enabled="@{viewModel.isBtnEnabled}"
-                android:background="@{viewModel.isBtnEnabled ? @drawable/bg_register_registerbutton_select : @drawable/bg_register_registerbutton_deselect}"
+                android:background="@{viewModel.isBtnEnabled ? @drawable/bg_button_selected_ripple : @drawable/bg_register_registerbutton_deselect}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />

@@ -18,11 +18,14 @@ data class ResponseProjectRegisterDto(
     data class ProjectCode(
         @SerialName("projectCode")
         val projectCode: String,
+        @SerialName("projectId")
+        val projectId: Int
     )
 
     fun getProjectCode(): ProjectCode {
         return ProjectCode(
             projectCode = data.projectCode,
+            projectId = data.projectId
         )
     }
 }
