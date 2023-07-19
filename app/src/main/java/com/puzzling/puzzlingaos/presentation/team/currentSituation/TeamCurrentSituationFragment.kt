@@ -32,9 +32,7 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
-
-        // getTeamRetroList()
-        // makeAdapter()
+        binding.tvTeamCurrentYearmonth.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월"))
 
         viewModel.getTeamRetrospectList(
             1,

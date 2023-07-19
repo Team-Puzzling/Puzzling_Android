@@ -69,7 +69,6 @@
             android:textAppearance="@style/Kor.Heading2"
             android:textColor="@color/black_000"
             android:includeFontPadding="false"
-            android:text="2023년 7월"
             app:layout_constraintTop_toBottomOf="@id/tb_team_current"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="2023년 7월"
