@@ -1,6 +1,7 @@
 package com.puzzling.puzzlingaos.presentation.mypage.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,8 @@ class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto.ReviewData, M
     diffCallback,
 ) {
 
+    private var listener: OnItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRetroContenViewHolder {
         val binding: ItemMyretroRetroBinding =
             ItemMyretroRetroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,11 +25,25 @@ class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto.ReviewData, M
         return holder.onBind(currentList[position])
     }
 
-    class MyRetroContenViewHolder(private val binding: ItemMyretroRetroBinding) :
+    inner class MyRetroContenViewHolder(private val binding: ItemMyretroRetroBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: ResponseMyRetroListDto.ReviewData) {
             binding.tvMyretroDate.text = item.reviewDate
+
+            if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                binding.clMyRetroContainer.setOnClickListener {
+                    listener?.onItemClick(itemView, bindingAdapterPosition)
+                }
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(v: View, pos: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 
     companion object {
