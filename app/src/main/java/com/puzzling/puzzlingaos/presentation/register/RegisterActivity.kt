@@ -38,7 +38,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
     }
 
     private fun pickedDate() {
-        binding.btnDateDropDown.setOnClickListener {
+        binding.layoutRegisterDate.setOnClickListener {
             val bottomSheetFragment = DatePickerFragment()
             bottomSheetFragment.setOnDateSelectedListener(object :
                 DatePickerFragment.OnDateSelectedListener {
@@ -52,7 +52,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                     viewModel.projectStartDate.value = formattedDateRegister
                 }
             })
-
+            binding.layoutRegisterDate.setBackgroundResource(R.drawable.sel_register_drawable_custom_edittext) //
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
     }

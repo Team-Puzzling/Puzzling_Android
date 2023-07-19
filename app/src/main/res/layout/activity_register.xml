@@ -225,6 +225,8 @@
                             app:boxCornerRadiusBottomEnd="16dp"
                             app:boxStrokeColor="@color/blue_200"
                             app:boxStrokeWidthFocused="2dp"
+                            android:focusable="true"
+                            android:clickable="true"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             >
 
