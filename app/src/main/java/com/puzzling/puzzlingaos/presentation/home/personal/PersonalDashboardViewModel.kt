@@ -113,7 +113,8 @@ class PersonalDashboardViewModel @Inject constructor(
     private fun getActionPlan() = viewModelScope.launch {
         repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
             Log.d("personal", "getActionPlan() success:: $response")
-            _actionPlanList.value = response
+            val truncatedList = truncateActionPlanList(response)
+            _actionPlanList.value = truncatedList
             Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
         }.onFailure {
             Log.d("personal", "getActionPlan() Fail:: $it")
@@ -130,5 +131,25 @@ class PersonalDashboardViewModel @Inject constructor(
                     Log.d("write", "getPreviousTemplate() Fail:: $it")
                 }
         }
+    }
+
+    fun truncateActionPlanList(actionPlanList: List<ActionPlan>): List<ActionPlan> {
+        val maxLength = 50
+        val truncatedList = mutableListOf<ActionPlan>()
+
+        for (actionPlan in actionPlanList) {
+            val truncatedText = if (actionPlan.actionPlanContent!!.length <= maxLength) {
+                actionPlan.actionPlanContent
+            } else {
+                actionPlan.actionPlanContent.substring(0, maxLength - 2) + ".."
+            }
+            val truncatedActionPlan = ActionPlan(
+                truncatedText,
+                actionPlan.actionPlanDate,
+            )
+            truncatedList.add(truncatedActionPlan)
+        }
+
+        return truncatedList
     }
 }

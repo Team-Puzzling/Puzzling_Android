@@ -80,7 +80,7 @@ class TeamDashBoardViewModel @Inject constructor(
                 _hasTodayReview.value = response.data.hasTodayReview
                 _teamPuzzleBoardCount.value = response.data.teamPuzzleBoardCount
                 Log.d("team", "myNickname success:: ${_myNickname.value}")
-                Log.d("team", "puzzleCount success:: ${_myPuzzleCount.value}")
+                Log.d("team", "_teamPuzzleBoardCount success:: ${_teamPuzzleBoardCount.value}")
                 Log.d("team", "hasTodayReview success:: ${_hasTodayReview.value}")
             }
             .onFailure {
