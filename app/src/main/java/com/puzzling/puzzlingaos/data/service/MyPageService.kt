@@ -7,13 +7,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MyPageService {
-    @GET("api/v1/member/{memberId}/project/{projectId}/review")
+    @GET("api/v1/member/{memberId}/project/{projectId}/reviews")
     suspend fun getMyProjectReview(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
     ): ResponseMyRetroListDto
 
-    @GET("api/v1/member/{memberId}/project/{projectId]/review?")
+    @GET("api/v1/member/{memberId}/project/{projectId}/team/review?")
     suspend fun getMyDetailReview(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
