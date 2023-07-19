@@ -2,11 +2,13 @@ package com.puzzling.puzzlingaos.di
 
 import com.puzzling.puzzlingaos.data.service.PersonalReviewService
 import com.puzzling.puzzlingaos.data.service.ProjectService
+import com.puzzling.puzzlingaos.data.service.TeamRetroService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -21,4 +23,9 @@ object ApiModule {
     @Singleton
     fun sendProjectRegister(@PuzzlingRetrofit retrofit: Retrofit): ProjectService =
         retrofit.create(ProjectService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTeamRetroList(@PuzzlingRetrofit retrofit: Retrofit): TeamRetroService =
+        retrofit.create(TeamRetroService::class.java)
 }

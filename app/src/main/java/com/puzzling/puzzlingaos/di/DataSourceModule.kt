@@ -2,8 +2,10 @@ package com.puzzling.puzzlingaos.di
 
 import com.puzzling.puzzlingaos.data.source.remote.MyDashBoardDataSource
 import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
+import com.puzzling.puzzlingaos.data.source.remote.TeamRetroDataSource
 import com.puzzling.puzzlingaos.data.source.remote.impl.MyDashBoardDataSourceImpl
 import com.puzzling.puzzlingaos.data.source.remote.impl.ProjectDataSourceImpl
+import com.puzzling.puzzlingaos.data.source.remote.impl.TeamRetroDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -20,4 +22,8 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun sendProjectRegisterDataSource(DataSourceImpl: ProjectDataSourceImpl): ProjectDataSource
+
+    @Singleton
+    @Binds
+    abstract fun provideTeamRetroDataSource(DataSourceImpl: TeamRetroDataSourceImpl): TeamRetroDataSource
 }
