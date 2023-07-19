@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.databinding.ItemMyretroProjectBinding
 
-class MyRetroTitleAdapter(private val projectName: String) :
+class MyRetroTitleAdapter() :
     RecyclerView.Adapter<MyRetroTitleAdapter.MyRetroTitleViewHolder>() {
 
     private var listener: OnItemClickListener? = null
 
+    var projectName = "프로젝트 이름"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRetroTitleViewHolder {
-        val binding: ItemMyretroProjectBinding = ItemMyretroProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemMyretroProjectBinding =
+            ItemMyretroProjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyRetroTitleViewHolder(binding)
     }
 
@@ -44,4 +46,5 @@ class MyRetroTitleAdapter(private val projectName: String) :
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
+
 }

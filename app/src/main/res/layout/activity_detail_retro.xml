@@ -19,8 +19,7 @@
             app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back">
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
@@ -32,6 +31,14 @@
                 android:text="프로젝트1"
                 android:textAppearance="@style/Kor.Heading4"
                 tools:ignore="NotSibling" />
+            <ImageButton
+                android:id="@+id/ib_detailRetro_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cancel"
+                android:background="@color/transparent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"/>
 
         </androidx.appcompat.widget.Toolbar>
 

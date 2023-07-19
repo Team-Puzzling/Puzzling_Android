@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.ItemMyProjectBinding
+import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MyProjectContentAdapter() :
-    ListAdapter<ResponseMyPageProjectDto, MyProjectContentAdapter.MyProjectContentViewHolder>(
+    ListAdapter<Project, MyProjectContentAdapter.MyProjectContentViewHolder>(
         diffCallback,
     ) {
 
@@ -31,10 +32,10 @@ class MyProjectContentAdapter() :
     inner class MyProjectContentViewHolder(private val binding: ItemMyProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(item: ResponseMyPageProjectDto) {
+        fun onBind(item: Project) {
             val now = Date()
             val startDate =
-                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(item.startDate)
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(item.projectStartDate)
             val timeDiff = (now.time - startDate.time) / (24 * 60 * 60 * 1000)
 
             with(binding) {
@@ -55,7 +56,7 @@ class MyProjectContentAdapter() :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(v: View, data: ResponseMyPageProjectDto, pos: Int)
+        fun onItemClick(v: View, data: Project, pos: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -64,7 +65,7 @@ class MyProjectContentAdapter() :
 
     companion object {
         private val diffCallback =
-            ItemDiffCallback<ResponseMyPageProjectDto>(
+            ItemDiffCallback<Project>(
                 onContentsTheSame = { old, new -> old == new },
                 onItemsTheSame = { old, new -> old == new },
             )
