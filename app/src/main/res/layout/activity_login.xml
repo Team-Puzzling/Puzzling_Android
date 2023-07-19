@@ -14,74 +14,47 @@
             android:id="@+id/iv_login_puzzling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_puzzling"
             android:layout_marginTop="64dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_puzzling"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_login_puzzlingLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzling"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="120dp"
+            android:layout_height="148dp"
+            android:layout_marginTop="110dp"
             android:src="@drawable/ic_puzzling_logo"
-            android:layout_marginTop="110dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzling" />
 
         <ImageView
             android:id="@+id/iv_login_puzzlingComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_puzzling_coment"
             android:layout_marginTop="73dp"
-            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzlingLogo"
+            android:src="@drawable/ic_puzzling_coment"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
+            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzlingLogo" />
 
 
         <ImageButton
             android:id="@+id/ib_login_kakao"
-            app:layout_goneMarginTop="73dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="328dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/transparent"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_login_kakao"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            android:layout_marginHorizontal="10dp"
-            app:layout_constraintEnd_toStartOf="@id/ib_login_naver"
-            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzlingComment"
-            android:background="@color/transparent"
-            android:layout_marginTop="56dp"/>
-
-        <ImageButton
-            android:id="@+id/ib_login_naver"
-            app:layout_goneMarginTop="73dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/ib_login_kakao"
-            android:src="@drawable/ic_login_naver"
-            app:layout_constraintEnd_toStartOf="@id/ib_login_google"
-            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzlingComment"
-            android:background="@color/transparent"
-            android:layout_marginTop="56dp"/>
-
-        <ImageButton
-            android:id="@+id/ib_login_google"
-            app:layout_goneMarginTop="73dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="10dp"
-            app:layout_constraintStart_toEndOf="@id/ib_login_naver"
-            android:src="@drawable/ic_login_google"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_login_puzzlingComment"
-            android:background="@color/transparent"
-            android:layout_marginTop="56dp"/>
+            app:layout_goneMarginTop="73dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
