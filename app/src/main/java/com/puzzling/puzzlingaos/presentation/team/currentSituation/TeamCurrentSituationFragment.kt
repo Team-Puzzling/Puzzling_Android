@@ -44,16 +44,18 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
 
         viewModel.teamRetrospectList.observe(this) { contents ->
             Log.d("오류", "contents : $contents")
-            contents.forEach { day ->
-                day.reviewDay?.let { reviewDay ->
-                    if (day.reviewWriters != null) {
-                        num[viewModel.week.indexOf(day.reviewDay)] = BLUE_100
-                    } else {
-                        num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+            if (contents.isNotEmpty()) {
+                contents.forEach { day ->
+                    day.reviewDay?.let { reviewDay ->
+                        if (day.reviewWriters != null) {
+                            num[viewModel.week.indexOf(day.reviewDay)] = BLUE_100
+                        } else {
+                            num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+                        }
                     }
                 }
+                setBackGround()
             }
-            setBackGround()
         }
 
         binding.viewPagerTeamRetrospectList.adapter = RetrospectThisWeekAdapter(this, num)
