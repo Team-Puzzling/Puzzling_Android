@@ -1,3 +1,5 @@
+package com.puzzling.puzzlingaos.presentation.writeRetrospective
+
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -5,11 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentWrite5fBinding
-import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Write5fFragment :
     BaseFragment<FragmentWrite5fBinding>(R.layout.fragment_write5f) {
-    private val viewModel by activityViewModels<WriteRetrospectiveViewModel>()
+    private val viewModel by activityViewModels<WriteReviewViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

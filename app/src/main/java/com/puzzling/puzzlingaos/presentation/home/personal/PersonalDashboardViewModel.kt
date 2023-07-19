@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.domain.entity.ActionPlan
 import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
+import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
+import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PersonalDashboardViewModel @Inject constructor(
     private val repository: MyBoardRepository,
+    private val writeReviewRepository: WriteReviewRepository,
 ) : ViewModel() {
     private val _myNickname = MutableLiveData<String>()
     val myNickname: LiveData<String> get() = _myNickname
@@ -43,6 +46,10 @@ class PersonalDashboardViewModel @Inject constructor(
     val actionPlanList: LiveData<List<ActionPlan>>
         get() = _actionPlanList
 
+    private val _previousReviewType = MutableLiveData<Int>()
+    val previousReviewType: LiveData<Int>
+        get() = _previousReviewType
+
     private val _isSuccess = MutableLiveData(false)
     val isSuccess: LiveData<Boolean> get() = _isSuccess
 
@@ -51,6 +58,7 @@ class PersonalDashboardViewModel @Inject constructor(
         getMyPuzzleData()
         getActionPlan()
         getMyPuzzleBoard()
+        getPreviousTemplate()
     }
 
     private fun getMyPuzzleData() = viewModelScope.launch {
@@ -72,7 +80,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleBoard() = viewModelScope.launch {
-        repository.getUserPuzzleBoard(1, 3, "2023-07-05")
+        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
             .onSuccess { response ->
                 _myPuzzleBoardList.value = response
                 Log.d("personal", "getMyPuzzleBoard() success:: $response")
@@ -92,7 +100,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getActionPlan() = viewModelScope.launch {
-        repository.getActionPlan(1, 3).onSuccess { response ->
+        repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
             Log.d("personal", "getActionPlan() success:: $response")
             _actionPlanList.value = response
         }.onFailure {
@@ -100,16 +108,15 @@ class PersonalDashboardViewModel @Inject constructor(
         }
     }
 
-//    val actionPlanList: List<ActionPlan> =
-//        listOf(
-//            ActionPlan("여기에는 글이 계속 작성되다가 작성되다가 작성되다가 작성되다가 이쯤 되면 끊기게 돼...", "7월 3일"),
-//            ActionPlan("여기에는 글이 계속 작성되다가 작성되다가 작성되다가 작성되다가 이쯤 되면 끊기게 돼...", "7월 4일"),
-//            ActionPlan("여기에는 글이 계속 작성되다가 작성되다가 작성되다가 작성되다가 이쯤 되면 끊기게 돼...", "7월 5일"),
-//            ActionPlan("여기에는 글이 계속 작성되다가 작성되다가 작성되다가 작성되다가 이쯤 되면 끊기게 돼...", "7월 6일"),
-//            ActionPlan("여기에는 글이 계속 작성되다가 작성되다가 작성되다가 작성되다가 이쯤 되면 끊기게 돼...", "7월 7일"),
-//        )
-
-    val _bottomButtonText = MutableLiveData<String>()
-    val bottomButtonText: String
-        get() = _bottomButtonText.value ?: "회고 작성일이 아니에요"
+    private fun getPreviousTemplate() {
+        viewModelScope.launch {
+            writeReviewRepository.getPreviousTemplate(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID)
+                .onSuccess { response ->
+                    _previousReviewType.value = response.data.previousTemplateId
+                    Log.d("write", "getPreviousTemplate() success:: ${_previousReviewType.value}")
+                }.onFailure {
+                    Log.d("write", "getPreviousTemplate() Fail:: $it")
+                }
+        }
+    }
 }
