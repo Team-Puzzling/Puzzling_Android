@@ -37,13 +37,6 @@ data class ResponseMyPuzzleBoardDto(
 
         )
 
-//        fun toPuzzle(): Puzzle {
-//            return Puzzle(
-//                nickname = myPuzzle.nickname,
-//                puzzleCount = myPuzzle.puzzleCount,
-//            )
-//        }
-
         @Serializable
         data class UserPuzzleBoard(
             @SerialName("reviewDate")

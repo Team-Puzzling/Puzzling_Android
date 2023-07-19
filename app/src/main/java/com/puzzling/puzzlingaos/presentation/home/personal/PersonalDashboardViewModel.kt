@@ -28,6 +28,8 @@ class PersonalDashboardViewModel @Inject constructor(
     val isReviewDay: LiveData<Boolean> get() = _isReviewDay
     private val _hasTodayReview = MutableLiveData<Boolean>()
     val hasTodayReview: LiveData<Boolean> get() = _hasTodayReview
+    private val _puzzleBoardCount = MutableLiveData<Int>()
+    val puzzleBoardCount: LiveData<Int> get() = _puzzleBoardCount
 
     private var _myPuzzleBoardList: MutableLiveData<List<MyPuzzleBoard>> = MutableLiveData()
     val myPuzzleBoardList: LiveData<List<MyPuzzleBoard>>
@@ -62,7 +64,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleData() = viewModelScope.launch {
-        repository.getUserPuzzle(1, 3, "2023-07-05")
+        repository.getUserPuzzle(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("personal", "getMyPuzzleData() success:: $response")
@@ -70,6 +72,7 @@ class PersonalDashboardViewModel @Inject constructor(
                 _myPuzzleCount.value = response.data.myPuzzle.puzzleCount
                 _isReviewDay.value = response.data.isReviewDay
                 _hasTodayReview.value = response.data.hasTodayReview
+                _puzzleBoardCount.value = response.data.puzzleBoardCount
                 Log.d("personal", "myNickname success:: ${_myNickname.value}")
                 Log.d("personal", "puzzleCount success:: ${_myPuzzleCount.value}")
                 Log.d("personal", "hasTodayReview success:: ${_hasTodayReview.value}")
@@ -87,7 +90,9 @@ class PersonalDashboardViewModel @Inject constructor(
 
                 val myPuzzles: List<MyPuzzleBoard> =
                     _myPuzzleBoardList.value!!
-                _myReviewDate.value = myPuzzles.map { it.reviewDate ?: "" }
+                _myReviewDate.value = myPuzzles.map {
+                    it.reviewDate?.substringOrNull(5)?.replace("-", "/") ?: ""
+                }
                 _myReviewId.value = myPuzzles.map { it.reviewId ?: -1 }
                 _myPuzzleImage.value = myPuzzles.map { it.puzzleAssetName }
                 Log.d("personal", "_myReviewDate:: ${_myReviewDate.value}")
@@ -97,6 +102,13 @@ class PersonalDashboardViewModel @Inject constructor(
             .onFailure {
                 Log.d("personal", "getMyPuzzleBoard() Fail:: $it")
             }
+    }
+
+    fun String.substringOrNull(startIndex: Int): String? {
+        if (startIndex >= length) {
+            return null
+        }
+        return substring(startIndex)
     }
 
     private fun getActionPlan() = viewModelScope.launch {
