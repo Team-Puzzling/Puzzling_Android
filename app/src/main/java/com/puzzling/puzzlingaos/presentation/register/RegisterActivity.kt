@@ -1,19 +1,22 @@
 package com.puzzling.puzzlingaos.presentation.register
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
-import com.puzzling.puzzlingaos.util.ViewModelFactory
+import com.puzzling.puzzlingaos.presentation.register.projectCode.ProjectCodeDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
 
-    private val viewModel: RegisterViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel by viewModels<RegisterViewModel>()
 
     private lateinit var dayCycleAdapter: RetrospectWeekCycleAdapter
 
@@ -25,12 +28,13 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
         pickedDate()
         clickDayCyclePicker()
-        getDay()
         textBoxListener(viewModel.projectName)
         textBoxListener(viewModel.projectExplanation)
         textBoxListener(viewModel.role)
         textBoxListener(viewModel.nickName)
         canBtnClick()
+        clickRegisterBtn()
+        getProjectCode()
     }
 
     private fun pickedDate() {
@@ -59,10 +63,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         dayCycleAdapter.setOnDayClickListener { response ->
             viewModel.dayArray = dayCycleAdapter.selectedRetrospectDayArray
         }
-    }
-
-    private fun getDay() {
-        viewModel.isDateCycleSelected.value = viewModel.dayArray
+        viewModel.isDateCycleSelected.value = dayCycleAdapter.sortedSelectedRetrospectDayArray
     }
 
     private fun textBoxListener(textBox: MutableLiveData<String>) {
@@ -113,7 +114,43 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         }
     }
 
+    private fun clickRegisterBtn() {
+        binding.btnRegister.setOnClickListener {
+            viewModel.isDateCycleSelected.value?.let { it1 ->
+                viewModel.doProjectRegister(
+                    2,
+                    viewModel.projectName.value.toString(),
+                    viewModel.projectExplanation.value.toString(),
+                    viewModel.projectStartDate.value.toString(),
+                    viewModel.role.value.toString(),
+                    viewModel.nickName.value.toString(),
+                    it1,
+                )
+            }
+        }
+    }
+
+    private fun getProjectCode() {
+        viewModel.registerResultBool.observe(this) {
+            Log.d("projectName: ", "${viewModel.projectName.value}")
+            Log.d("projectIntro: ", "${viewModel.projectExplanation.value}")
+            Log.d("projectStartDate: ", "${viewModel.projectStartDate.value}")
+            Log.d("role: ", "${viewModel.role.value}")
+            Log.d("nickName: ", "${viewModel.nickName.value}")
+            Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
+            showDialog("${viewModel.projectCode.value}")
+            Log.d("projectCode: ", "${viewModel.projectCode.value}")
+        }
+    }
+
+    private fun showDialog(code: String) {
+        val registerDialog by lazy { ProjectCodeDialogFragment(code) }
+        registerDialog.show(supportFragmentManager, TAG_REGISTER_DIALOG)
+        Log.d("dialog: ", "dialog")
+    }
+
     companion object {
         const val ERROR_MESSAGE = "특수문자, 이모지를 사용할 수 없어요"
+        const val TAG_REGISTER_DIALOG = "Register dialog"
     }
 }

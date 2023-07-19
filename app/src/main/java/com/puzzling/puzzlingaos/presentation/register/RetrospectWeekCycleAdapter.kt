@@ -34,6 +34,7 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
             binding.root.setOnClickListener {
                 daySelection(binding, dayCycle)
                 onItemClickListener?.let { it(dayCycle) }
+                daySelectedSort()
             }
         }
     }
@@ -55,16 +56,25 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
     }
 
     var selectedRetrospectDayArray = arrayListOf<String>()
+    val dayKey = listOf("월", "화", "수", "목", "금", "토", "일")
+    var dayMap = HashMap<Int, String>()
+    var sortedSelectedRetrospectDayArray = arrayListOf<String>()
 
     private fun daySelection(binding: ItemRegisterRetrospectWeekCycleBinding, retrospectWeekCycle: RetrospectWeekCycle) {
         if (selectedRetrospectDayArray.contains(retrospectWeekCycle.day)) {
-            selectedRetrospectDayArray.remove(retrospectWeekCycle.day)
+            selectedRetrospectDayArray.removeAt(selectedRetrospectDayArray.indexOf(retrospectWeekCycle.day))
+            dayMap.remove(dayKey.indexOf(retrospectWeekCycle.day))
             changeBackground(binding, false)
         } else {
             selectedRetrospectDayArray.add(retrospectWeekCycle.day)
+            dayMap[dayKey.indexOf(retrospectWeekCycle.day) ] = retrospectWeekCycle.day //
             changeBackground(binding, true)
         }
-        viewmodel.isDateCycleSelected.value = selectedRetrospectDayArray
+    }
+
+    private fun daySelectedSort() {
+        sortedSelectedRetrospectDayArray = dayMap.toSortedMap().values.toTypedArray().toCollection(ArrayList())
+        viewmodel.isDateCycleSelected.value = sortedSelectedRetrospectDayArray
     }
 
     private fun changeBackground(binding: ItemRegisterRetrospectWeekCycleBinding, bool: Boolean) {
@@ -74,5 +84,4 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
                 false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.bg_050))
             }
     }
-
 }
