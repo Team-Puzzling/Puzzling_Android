@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputProfileBinding
+import com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamCurrentSituationViewModel
 import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InputProfileFragment :
     BaseFragment<FragmentInputProfileBinding>(R.layout.fragment_input_profile) {
 
@@ -17,7 +20,6 @@ class InputProfileFragment :
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelFactory(requireContext()),
         )[InvitationCodeViewModel::class.java]
 
         binding.lifecycleOwner = viewLifecycleOwner

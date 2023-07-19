@@ -8,9 +8,10 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputCodeBinding
 import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragment_input_code) {
 
     lateinit var viewModel: InvitationCodeViewModel
@@ -20,7 +21,6 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
 
         viewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelFactory(requireContext()),
         )[InvitationCodeViewModel::class.java]
 
         binding.vm = viewModel

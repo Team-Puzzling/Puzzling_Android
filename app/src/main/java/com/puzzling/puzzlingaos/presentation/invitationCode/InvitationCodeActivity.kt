@@ -7,11 +7,13 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityInvitationCodeBinding
 import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InvitationCodeActivity :
     BaseActivity<ActivityInvitationCodeBinding>(R.layout.activity_invitation_code) {
 
-    private val viewModel: InvitationCodeViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel by viewModels<InvitationCodeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,7 +1,10 @@
 package com.puzzling.puzzlingaos.data.source.remote.impl
 
+import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.data.service.ProjectService
 import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
 import javax.inject.Inject
@@ -15,4 +18,15 @@ class ProjectDataSourceImpl @Inject constructor(
         request: RequestProjectRegisterDto,
     ): ResponseProjectRegisterDto =
         apiService.projectRegister2(memberId, request)
+
+    override suspend fun joinProject(
+        memberId: Int,
+        request: RequestInvitationCode,
+    ): ResponseInvitationCodeDto = apiService.joinProject(memberId, request)
+
+    override suspend fun isValidInvitationCode(invitationCode: String): ResponseInvitationCodeDto =
+        apiService.isValidInvitationCode(invitationCode)
+
+    override suspend fun getProjectWeekCycle(projectId: Int): ResponseProjectRetroWeekDto =
+        apiService.getProjectWeekCycle(projectId)
 }

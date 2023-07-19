@@ -35,6 +35,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[MyRetrospectViewModel::class.java]
         viewModel.getMyProjectList()
+        viewModel.getProjectWeekCycle()
         initAdapter()
         showPopupMessage()
     }
