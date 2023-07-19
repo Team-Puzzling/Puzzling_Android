@@ -1,12 +1,12 @@
 package com.puzzling.puzzlingaos.data.source.remote
 
-import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRetroListDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
 
-interface TeamRetroDataSource {
+interface TeamReviewDataSource {
 
     suspend fun getTeamRetroList(
         projectId: Int,
         startDate: String,
         endDate: String,
-    ): ResponseTeamRetroListDto
+    ): ResponseTeamReviewListDto
 }

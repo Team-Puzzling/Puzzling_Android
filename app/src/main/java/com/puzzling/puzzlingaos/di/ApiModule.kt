@@ -3,13 +3,12 @@ package com.puzzling.puzzlingaos.di
 import com.puzzling.puzzlingaos.data.service.PersonalReviewService
 import com.puzzling.puzzlingaos.data.service.WriteReviewService
 import com.puzzling.puzzlingaos.data.service.ProjectService
-import com.puzzling.puzzlingaos.data.service.TeamRetroService
+import com.puzzling.puzzlingaos.data.service.TeamReviewService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -32,6 +31,6 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideTeamRetroList(@PuzzlingRetrofit retrofit: Retrofit): TeamRetroService =
-        retrofit.create(TeamRetroService::class.java)
+    fun provideTeamRetroList(@PuzzlingRetrofit retrofit: Retrofit): TeamReviewService =
+        retrofit.create(TeamReviewService::class.java)
 }

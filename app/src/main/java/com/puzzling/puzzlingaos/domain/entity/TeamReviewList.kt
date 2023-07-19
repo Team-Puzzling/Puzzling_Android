@@ -1,11 +1,10 @@
 package com.puzzling.puzzlingaos.domain.entity
 
-import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRetroListDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TeamRetrospectList(
+data class TeamReviewList(
     @SerialName("reviewDay")
     val reviewDay: String,
     @SerialName("reviewDate")

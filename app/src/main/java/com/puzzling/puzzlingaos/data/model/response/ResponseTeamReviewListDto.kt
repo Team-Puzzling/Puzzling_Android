@@ -1,11 +1,10 @@
 package com.puzzling.puzzlingaos.data.model.response
 
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseTeamRetroListDto(
+data class ResponseTeamReviewListDto(
     @SerialName("status")
     val status: Int,
     @SerialName("success")

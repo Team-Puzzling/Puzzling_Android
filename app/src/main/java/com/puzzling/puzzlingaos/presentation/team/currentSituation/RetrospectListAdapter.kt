@@ -7,13 +7,13 @@ import com.puzzling.puzzlingaos.databinding.ItemTeamDoRetrospectListBinding
 import com.puzzling.puzzlingaos.databinding.ItemTeamDoRetrospectTextBinding
 import com.puzzling.puzzlingaos.databinding.ItemTeamDontRetrospectListBinding
 import com.puzzling.puzzlingaos.databinding.ItemTeamDontRetrospectTextBinding
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DONT_RETROSPECT_LIST
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DONT_RETROSPECT_TEXT
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DO_RETROSPECT_LIST
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList.Companion.DO_RETROSPECT_TEXT
+import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList
+import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList.Companion.DONT_RETROSPECT_LIST
+import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList.Companion.DONT_RETROSPECT_TEXT
+import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList.Companion.DO_RETROSPECT_LIST
+import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList.Companion.DO_RETROSPECT_TEXT
 
-class RetrospectListAdapter(var adapterItemList: ArrayList<TeamRetrospectMultiList> = ArrayList<TeamRetrospectMultiList>()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RetrospectListAdapter(var adapterItemList: ArrayList<TeamReviewMultiList> = ArrayList<TeamReviewMultiList>()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var doRetrospectTextBinding: ItemTeamDoRetrospectTextBinding
     private lateinit var dontRetrospectTextBinding: ItemTeamDontRetrospectTextBinding
@@ -21,24 +21,24 @@ class RetrospectListAdapter(var adapterItemList: ArrayList<TeamRetrospectMultiLi
     private lateinit var dontRetrospectListBinding: ItemTeamDontRetrospectListBinding
 
     inner class DoRetrospectTextViewHolder(val binding: ItemTeamDoRetrospectTextBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectMultiList) {
+        fun bind(item: TeamReviewMultiList) {
             binding.tvItemRetrospectText.text
         }
     }
     inner class DontRetrospectTextViewHolder(val binding: ItemTeamDontRetrospectTextBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectMultiList) {
+        fun bind(item: TeamReviewMultiList) {
             binding.tvItemRetrospectText.text
         }
     }
     inner class DoRetrospectListViewHolder(val binding: ItemTeamDoRetrospectListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectMultiList) {
+        fun bind(item: TeamReviewMultiList) {
             binding.tvItemRetrospectNickName.text = item.memberNickname
             binding.tvItemRetrospectRole.text = item.memberRole
         }
     }
 
     inner class DontRetrospectListViewHolder(val binding: ItemTeamDontRetrospectListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamRetrospectMultiList) {
+        fun bind(item: TeamReviewMultiList) {
             binding.tvItemRetrospectNickName.text = item.memberNickname
             binding.tvItemRetrospectRole.text = item.memberRole
         }

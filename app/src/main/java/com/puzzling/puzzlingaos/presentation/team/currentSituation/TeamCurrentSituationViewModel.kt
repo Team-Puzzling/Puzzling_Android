@@ -5,16 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRetroListDto
-import com.puzzling.puzzlingaos.data.repository.TeamRetroRepositoryImpl
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList
+import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
+import com.puzzling.puzzlingaos.data.repository.TeamReviewRepositoryImpl
+import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class TeamCurrentSituationViewModel @Inject constructor(
-    private val repositoryImpl: TeamRetroRepositoryImpl,
+    private val repositoryImpl: TeamReviewRepositoryImpl,
 ) : ViewModel() {
 
     var isWeekRetrospectColor: MutableLiveData<Boolean> = MutableLiveData(true)
@@ -22,11 +22,11 @@ class TeamCurrentSituationViewModel @Inject constructor(
 //    private val _teamRetrospectList = MutableLiveData<ArrayList<TeamRetrospectList>>().apply { value = arrayListOf() }
 //    val teamRetrospectList: LiveData<ArrayList<TeamRetrospectList>> get() = _teamRetrospectList
 
-    private val _teamRetrospectList = MutableLiveData<ArrayList<ResponseTeamRetroListDto.Data>>().apply { value = arrayListOf() }
-    val teamRetrospectList: LiveData<ArrayList<ResponseTeamRetroListDto.Data>> get() = _teamRetrospectList
+    private val _teamRetrospectList = MutableLiveData<ArrayList<ResponseTeamReviewListDto.Data>>().apply { value = arrayListOf() }
+    val teamRetrospectList: LiveData<ArrayList<ResponseTeamReviewListDto.Data>> get() = _teamRetrospectList
 
-    private val _teamRetrospectMultiList = MutableLiveData<ArrayList<TeamRetrospectMultiList>>()
-    val teamRetrospectMultiList: LiveData<ArrayList<TeamRetrospectMultiList>> get() = _teamRetrospectMultiList
+    private val _teamRetrospectMultiList = MutableLiveData<ArrayList<TeamReviewMultiList>>()
+    val teamRetrospectMultiList: LiveData<ArrayList<TeamReviewMultiList>> get() = _teamRetrospectMultiList
 
     val week = listOf("월", "화", "수", "목", "금", "토", "일")
 
@@ -50,7 +50,7 @@ class TeamCurrentSituationViewModel @Inject constructor(
 //            null,
 //        ),
 //
-    var itemRetroList = arrayListOf<ResponseTeamRetroListDto.Data>()
+    var itemRetroList = arrayListOf<ResponseTeamReviewListDto.Data>()
 
 //    private var _itemRetroList: MutableLiveData<ArrayList<TeamRetrospectList>> = MutableLiveData(null)
 //    val itemRetroList: LiveData<ArrayList<TeamRetrospectList>> get() = _itemRetroList
