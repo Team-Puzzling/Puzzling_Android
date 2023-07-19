@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.domain.entity.ActionPlan
 import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
@@ -115,6 +114,7 @@ class PersonalDashboardViewModel @Inject constructor(
         repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
             Log.d("personal", "getActionPlan() success:: $response")
             _actionPlanList.value = response
+            Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
         }.onFailure {
             Log.d("personal", "getActionPlan() Fail:: $it")
         }
