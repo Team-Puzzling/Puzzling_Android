@@ -1,7 +1,5 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
-import Write5fFragment
-import WriteTilFragment
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -10,10 +8,13 @@ import androidx.fragment.app.commit
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityWriteRetrospectiveBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteRetrospectiveActivity :
     BaseActivity<ActivityWriteRetrospectiveBinding>(R.layout.activity_write_retrospective) {
-    private val viewModel by viewModels<WriteRetrospectiveViewModel>()
+    private val viewModel by viewModels<WriteReviewViewModel>()
+    private var reviewType: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +35,8 @@ class WriteRetrospectiveActivity :
     private fun clickBtn() {
         with(binding) {
             clWriteChip.setOnClickListener {
-                val chooseRetrospectiveFragment = ChooseRetrospectiveFragment()
-                chooseRetrospectiveFragment.show(supportFragmentManager, "show")
+                val chooseReviewFragment = ChooseReviewFragment()
+                chooseReviewFragment.show(supportFragmentManager, "show")
             }
             tvWriteRegister.setOnClickListener {
                 if (viewModel.isInputEnabled.value == true) {
@@ -54,10 +55,11 @@ class WriteRetrospectiveActivity :
     }
 
     private fun handleSelectedReviewType() {
-        viewModel.selectedReviewType.observe(this) { reviewType ->
-            binding.tvWriteChip.text = reviewType
+        viewModel.selectedReviewType.observe(this) { type ->
+            binding.tvWriteChip.text = type
+            reviewType = type
             Log.d("write", "review type:: $reviewType")
-            when (reviewType) {
+            when (type) {
                 "TIL" -> {
                     clearTilQuestionText()
                     replaceFragment(WriteTilFragment())
@@ -74,26 +76,71 @@ class WriteRetrospectiveActivity :
         }
     }
 
+    //    private fun clearTilQuestionText() {
+//        viewModel.tilQuestion1.value = ""
+//        viewModel.tilQuestion2.value = ""
+//        viewModel.tilQuestion3.value = ""
+//    }
+//
+//    private fun clear5fQuestionText() {
+//        viewModel.question5f1.value = ""
+//        viewModel.question5f2.value = ""
+//        viewModel.question5f3.value = ""
+//        viewModel.question5f4.value = ""
+//        viewModel.question5f5.value = ""
+//    }
+//
+//    private fun clearAarQuestionText() {
+//        viewModel.aarQuestion1.value = ""
+//        viewModel.aarQuestion2.value = ""
+//        viewModel.aarQuestion3.value = ""
+//        viewModel.aarQuestion4.value = ""
+//        viewModel.aarQuestion5.value = ""
+//    }
+
+    private fun clearText(vararg text: String?): Array<String?> {
+        return Array(text.size) { "" }
+    }
+
     private fun clearTilQuestionText() {
-        viewModel.tilQuestion1.value = ""
-        viewModel.tilQuestion2.value = ""
-        viewModel.tilQuestion3.value = ""
+        val clearedText = clearText(
+            viewModel.tilQuestion1.value,
+            viewModel.tilQuestion2.value,
+            viewModel.tilQuestion3.value,
+        )
+        viewModel.tilQuestion1.value = clearedText[0]
+        viewModel.tilQuestion2.value = clearedText[1]
+        viewModel.tilQuestion3.value = clearedText[2]
     }
 
     private fun clear5fQuestionText() {
-        viewModel.question5f1.value = ""
-        viewModel.question5f2.value = ""
-        viewModel.question5f3.value = ""
-        viewModel.question5f4.value = ""
-        viewModel.question5f5.value = ""
+        val clearedText = clearText(
+            viewModel.question5f1.value,
+            viewModel.question5f2.value,
+            viewModel.question5f3.value,
+            viewModel.question5f4.value,
+            viewModel.question5f5.value,
+        )
+        viewModel.question5f1.value = clearedText[0]
+        viewModel.question5f2.value = clearedText[1]
+        viewModel.question5f3.value = clearedText[2]
+        viewModel.question5f4.value = clearedText[3]
+        viewModel.question5f5.value = clearedText[4]
     }
 
     private fun clearAarQuestionText() {
-        viewModel.aarQuestion1.value = ""
-        viewModel.aarQuestion2.value = ""
-        viewModel.aarQuestion3.value = ""
-        viewModel.aarQuestion4.value = ""
-        viewModel.aarQuestion5.value = ""
+        val clearedText = clearText(
+            viewModel.aarQuestion1.value,
+            viewModel.aarQuestion2.value,
+            viewModel.aarQuestion3.value,
+            viewModel.aarQuestion4.value,
+            viewModel.aarQuestion5.value,
+        )
+        viewModel.aarQuestion1.value = clearedText[0]
+        viewModel.aarQuestion2.value = clearedText[1]
+        viewModel.aarQuestion3.value = clearedText[2]
+        viewModel.aarQuestion4.value = clearedText[3]
+        viewModel.aarQuestion5.value = clearedText[4]
     }
 
     private fun checkBtnEnabled() {

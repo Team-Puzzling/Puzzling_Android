@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.response
 
+import com.puzzling.puzzlingaos.domain.entity.ReviewType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,7 +21,15 @@ data class ResponseReviewTypeDto(
         val reviewTemplateId: Int,
         @SerialName("reviewTemplateName")
         val reviewTemplateName: String,
-        @SerialName("reviewTempalteMeaning")
-        val reviewTempalteMeaning: Int,
+        @SerialName("reviewTemplateMeaning")
+        val reviewTemplateMeaning: String,
     )
+
+    fun toReviewType() = data.map { type ->
+        ReviewType(
+            reviewTemplateId = type.reviewTemplateId,
+            reviewTemplateName = type.reviewTemplateName,
+            reviewTemplateMeaning = type.reviewTemplateMeaning,
+        )
+    }
 }

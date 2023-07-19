@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteReviewViewModel" />
 
     </data>
 
@@ -42,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:includeFontPadding="false"
-            android:text="TIL"
+            tools:text="TIL"
+            android:text="@{vm.reviewNameList[0]}"
             android:textAppearance="@style/Kor.Body1.Bold"
             app:layout_constraintBottom_toBottomOf="@+id/cl_choose_first"
             app:layout_constraintStart_toEndOf="@+id/cl_choose_first"
@@ -56,7 +60,8 @@
             android:textAppearance="@style/Kor.Detail1.Regular"
             android:textColor="@color/gray_600"
             android:includeFontPadding="false"
-            android:text="학습과 자기 반성을 통해 향후 더 나은 결정을\n 내릴 수 있게 해 주는 회고 방식이에요!"
+            android:text="@{vm.reviewDescList[0]}"
+            tools:text="학습과 자기 반성을 통해 향후 더 나은 결정을\n 내릴 수 있게 해 주는 회고 방식이에요!"
             app:layout_constraintStart_toEndOf="@+id/tv_choose_first"
             app:layout_constraintTop_toTopOf="@+id/tv_choose_first"/>
 
@@ -76,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:includeFontPadding="false"
-            android:text="5F"
+            android:text="@{vm.reviewNameList[1]}"
+            tools:text="5F"
             android:textAppearance="@style/Kor.Body1.Bold"
             app:layout_constraintBottom_toBottomOf="@+id/cl_choose_second"
             app:layout_constraintStart_toEndOf="@+id/cl_choose_second"
@@ -90,7 +96,8 @@
             android:textAppearance="@style/Kor.Detail1.Regular"
             android:textColor="@color/gray_600"
             android:includeFontPadding="false"
-            android:text="다양한 측면을 고려하여 개인과 프로젝트 전\n체적인 관점을 보여주는 회고 방식이에요!"
+            android:text="@{vm.reviewDescList[1]}"
+            tools:text="다양한 측면을 고려하여 개인과 프로젝트 전\n체적인 관점을 보여주는 회고 방식이에요!"
             app:layout_constraintStart_toEndOf="@+id/tv_choose_second"
             app:layout_constraintTop_toTopOf="@+id/tv_choose_second"/>
 
@@ -110,7 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:includeFontPadding="false"
-            android:text="AAR"
+            android:text="@{vm.reviewNameList[2]}"
+            tools:text="AAR"
             android:textAppearance="@style/Kor.Body1.Bold"
             app:layout_constraintBottom_toBottomOf="@+id/cl_choose_third"
             app:layout_constraintStart_toEndOf="@+id/cl_choose_third"
@@ -125,7 +133,8 @@
             android:textColor="@color/gray_600"
             android:layout_marginBottom="67dp"
             android:includeFontPadding="false"
-            android:text="목표 달성에 대한 책임감과 함께, 개선에 중\n점을 두는 회고 방식이에요!"
+            android:text="@{vm.reviewDescList[2]}"
+            tools:text="목표 달성에 대한 책임감과 함께, 개선에 중\n점을 두는 회고 방식이에요!"
             app:layout_constraintStart_toEndOf="@+id/tv_choose_third"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_choose_third"/>
