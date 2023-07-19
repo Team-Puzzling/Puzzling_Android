@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyRetrospectBinding
+import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroContentAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyRetroTitleAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,6 +75,15 @@ class MyRetrospectFragment :
             override fun onItemClick(v: View, data: String, pos: Int) {
                 val chooseProjectBottomFragment = ChooseProjectBottomFragment()
                 chooseProjectBottomFragment.show(requireActivity().supportFragmentManager, "show")
+            }
+        })
+
+        myRetroContentAdapter.setOnItemClickListener(object :
+            MyRetroContentAdapter.OnItemClickListener {
+            override fun onItemClick(v: View, pos: Int) {
+                val intent = Intent(activity, DetailRetroActivity::class.java)
+                intent.putExtra("Title", viewModel.currentProject.value)
+                startActivity(intent)
             }
         })
         val concatAdapter = ConcatAdapter(myRetroTitleAdapter, myRetroContentAdapter)

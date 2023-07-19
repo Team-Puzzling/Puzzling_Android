@@ -1,14 +1,17 @@
 package com.puzzling.puzzlingaos.presentation.detailRetrospect
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import com.puzzling.puzzlingaos.util.ViewModelFactory
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -30,6 +33,9 @@ class DetailRetroActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        clickToolbarBtnBack()
+
+        binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
 
         viewModel.getDetailRetroList()
 
@@ -97,5 +103,23 @@ class DetailRetroActivity :
         }
 
         return dates
+    }
+
+    private fun clickToolbarBtnBack() {
+        setSupportActionBar(binding.tbDetailRetroMain)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
