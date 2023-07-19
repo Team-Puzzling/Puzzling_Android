@@ -48,6 +48,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                     val formattedDateTextBox = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
                     var formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
                     binding.tvDateDropDown.text = formattedDateTextBox
+                    binding.tvDateDropDown.setTextAppearance(R.style.Kor_Body2_Bold)
                     viewModel.projectStartDate.value = formattedDateRegister
                 }
             })
