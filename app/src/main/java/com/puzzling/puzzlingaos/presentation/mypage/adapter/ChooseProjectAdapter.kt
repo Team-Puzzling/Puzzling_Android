@@ -1,16 +1,22 @@
 package com.puzzling.puzzlingaos.presentation.mypage.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroAllProjectsBinding
 import com.puzzling.puzzlingaos.databinding.ItemMyretroCurrentProjectBinding
+import com.puzzling.puzzlingaos.domain.entity.Project
 
-class ChooseProjectAdapter(private val currentProject: String) :
+class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var itemList = mutableListOf<ResponseMyPageProjectDto>()
+    private var itemList = listOf<Project>()
+
+    private var listener: OnItemClickListener? = null
+
+    var currentProject = "프로젝트 이름"
 
     override fun getItemViewType(position: Int): Int {
         return when (itemList[position].projectName) {
@@ -54,23 +60,40 @@ class ChooseProjectAdapter(private val currentProject: String) :
         }
     }
 
-    class CurrentProjectViewHolder(private val binding: ItemMyretroCurrentProjectBinding) :
+    inner class CurrentProjectViewHolder(private val binding: ItemMyretroCurrentProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyPageProjectDto) {
+        fun onBind(item: Project) {
             binding.tvMyRetroProjectName.text = item.projectName
+
+            binding.clMyRetroContainer.setOnClickListener {
+                selectedItem(item.projectName)
+                currentProject = item.projectName
+            }
         }
     }
 
-    class ChooseProjectViewHolder(private val binding: ItemMyretroAllProjectsBinding) :
+    inner class ChooseProjectViewHolder(private val binding: ItemMyretroAllProjectsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyPageProjectDto) {
+        fun onBind(item: Project) {
             binding.tvMyRetroProjectName.text = item.projectName
+
+            binding.clMyRetroContainer.setOnClickListener {
+                selectedItem(item.projectName)
+                currentProject = item.projectName
+            }
         }
     }
 
-    fun setItemList(newItemList: MutableList<ResponseMyPageProjectDto>) {
+    fun setItemList(newItemList: List<Project>) {
         itemList = newItemList
-        notifyDataSetChanged()
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(v: View, data: ResponseMyPageProjectDto, pos: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 
     companion object {

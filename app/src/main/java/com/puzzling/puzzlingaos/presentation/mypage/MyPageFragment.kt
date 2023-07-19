@@ -3,17 +3,24 @@ package com.puzzling.puzzlingaos.presentation.mypage
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
+import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectBottomAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectContentAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectTitleAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
+
+    private lateinit var viewModel: MyRetrospectViewModel
 
     private val dummyItemList = mutableListOf<ResponseMyPageProjectDto>(
         ResponseMyPageProjectDto("Piickle", "2023-07-03", 2),
@@ -26,6 +33,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity())[MyRetrospectViewModel::class.java]
+        viewModel.getMyProjectList()
         initAdapter()
         showPopupMessage()
     }
@@ -43,11 +52,15 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             rcvMyPageMain.adapter = concatAdapter
             rcvMyPageMain.layoutManager = LinearLayoutManager(activity)
         }
-        myProjectContentAdapter.submitList(dummyItemList)
+
+        viewModel.responseProjectList.observe(this){
+            myProjectContentAdapter.submitList(it)
+        }
 
         myProjectContentAdapter.setOnItemClickListener(object :
             MyProjectContentAdapter.OnItemClickListener {
-            override fun onItemClick(v: View, data: ResponseMyPageProjectDto, pos: Int) {
+            override fun onItemClick(v: View, data: Project, pos: Int) {
+                viewModel.setCurrentProject(data.projectName)
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.fcv_main_container, MyRetrospectFragment()).addToBackStack(null)
                     .commit()
