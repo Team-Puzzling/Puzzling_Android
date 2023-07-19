@@ -27,14 +27,14 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun sendProjectRegister(@PuzzlingRetrofit retrofit: Retrofit): ProjectService =
+    fun provideProjectRegister(@PuzzlingRetrofit retrofit: Retrofit): ProjectService =
         retrofit.create(ProjectService::class.java)
 
     @Provides
     @Singleton
     fun provideTeamRetroList(@PuzzlingRetrofit retrofit: Retrofit): TeamReviewService =
         retrofit.create(TeamReviewService::class.java)
-        
+
     @Provides
     @Singleton
     fun provideWriteReviewService(@PuzzlingRetrofit retrofit: Retrofit): WriteReviewService =
