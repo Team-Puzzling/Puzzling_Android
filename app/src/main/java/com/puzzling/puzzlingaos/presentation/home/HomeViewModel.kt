@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
+import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: MyBoardRepository,
+    private val projectRepository: ProjectRepository
 ) : ViewModel() {
 
     private var _projectList: MutableLiveData<List<Project>> = MutableLiveData()
@@ -48,6 +50,9 @@ class HomeViewModel @Inject constructor(
     val selectedProjectName: LiveData<String>
         get() = _selectedProjectName
 
+    private val _retroWeek = MutableLiveData<String>()
+    val retroWeek: LiveData<String> get() = _retroWeek
+
     init {
         _reviewCycleList.value = listOf("월", "수", "금")
         _reviewCycleText.value = _reviewCycleList.value?.joinToString(separator = ",")
@@ -67,5 +72,16 @@ class HomeViewModel @Inject constructor(
         _selectedProjectName.value = projectName
         Log.d("home", "_selectedProjectName.value :: ${_selectedProjectName.value}")
         _isProjectNameSelected.value = true
+    }
+
+    fun getProjectWeekCycle() = viewModelScope.launch {
+        kotlin.runCatching {
+            projectRepository.getProjectWeekCycle(UserInfo.PROJECT_ID)
+        }.onSuccess { response ->
+            _retroWeek.value = response.data?.projectReviewCycle
+            Log.d("회고 주기", "$response")
+        }.onFailure {
+            Log.d("회고 주기", "$it")
+        }
     }
 }
