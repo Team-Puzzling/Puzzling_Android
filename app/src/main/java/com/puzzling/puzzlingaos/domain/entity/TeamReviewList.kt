@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TeamRetrospectList(
+data class TeamReviewList(
     @SerialName("reviewDay")
     val reviewDay: String,
     @SerialName("reviewDate")
@@ -13,6 +13,7 @@ data class TeamRetrospectList(
     val reviewWriters: ArrayList<ReviewWriterList>?,
     @SerialName("nonReviewWriters")
     val nonReviewWriters: ArrayList<NonReviewWriterList>?,
+
 ) {
     @Serializable
     data class ReviewWriterList(
