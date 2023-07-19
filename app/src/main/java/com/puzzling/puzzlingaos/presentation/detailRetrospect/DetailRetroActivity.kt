@@ -12,15 +12,16 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
 import com.puzzling.puzzlingaos.presentation.main.MainActivity
-import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class DetailRetroActivity :
     BaseActivity<ActivityDetailRetroBinding>(R.layout.activity_detail_retro) {
 
-    private val viewModel: DetailRetroViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel by viewModels<DetailRetroViewModel>()
 
     private val tabTitle = getWeekDatesWithToday()
 
@@ -37,17 +38,19 @@ class DetailRetroActivity :
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
 
-        viewModel.getDetailRetroList()
+        viewModel.getDetailRetro()
 
         viewModel.detailRetroList.observe(this) { contents ->
 
             Log.d("오류", "contents : $contents")
 
-            for (day in contents) {
-                if (day.reviewId != null) {
-                    num[viewModel.week.indexOf(day.reviewDay)] = BG_BLUE_100
-                } else {
-                    num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+            if (contents != null) {
+                for (day in contents) {
+                    if (day.reviewId != null) {
+                        num[viewModel.week.indexOf(day.reviewDay)] = BG_BLUE_100
+                    } else {
+                        num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+                    }
                 }
             }
             setItemBg()
