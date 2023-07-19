@@ -13,7 +13,7 @@ interface MyPageService {
         @Path("projectId") projectId: Int,
     ): ResponseMyRetroListDto
 
-    @GET("api/v1/member/{memberId}/project/{projectId}/team/review?")
+    @GET("api/v1/member/{memberId}/project/{projectId}/review?")
     suspend fun getMyDetailReview(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,
