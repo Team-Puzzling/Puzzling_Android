@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.domain.entity
 
+import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRetroListDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,6 +14,7 @@ data class TeamRetrospectList(
     val reviewWriters: ArrayList<ReviewWriterList>?,
     @SerialName("nonReviewWriters")
     val nonReviewWriters: ArrayList<NonReviewWriterList>?,
+
 ) {
     @Serializable
     data class ReviewWriterList(

@@ -12,14 +12,16 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamCurrentSituationBinding
-import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBinding>(R.layout.fragment_team_current_situation) {
 
-    private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
+    // private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
+    private val viewModel by viewModels<TeamCurrentSituationViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val teamTabTitle = getWeekDates()

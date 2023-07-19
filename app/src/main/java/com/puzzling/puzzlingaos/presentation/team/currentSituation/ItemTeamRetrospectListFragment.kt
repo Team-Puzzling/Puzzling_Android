@@ -58,6 +58,7 @@ class ItemTeamRetrospectListFragment(
 
     fun testItemList(itemList: LiveData<ArrayList<TeamRetrospectList>>, day: String) {
         var intDay: Int = viewModel.itemRetroList.indexOfFirst { it.reviewDay == day }
+        // var intDay: Int = viewModel.teamRetrospectList.indexOfFirst { it.reviewDay == day }
 
         viewModel.teamRetrospectMultiList.value?.clear()
 
