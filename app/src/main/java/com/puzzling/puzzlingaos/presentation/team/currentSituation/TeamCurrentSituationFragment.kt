@@ -12,14 +12,16 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamCurrentSituationBinding
-import com.puzzling.puzzlingaos.util.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBinding>(R.layout.fragment_team_current_situation) {
 
-    private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
+    // private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
+    private val viewModel by viewModels<TeamCurrentSituationViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val teamTabTitle = getWeekDates()
@@ -30,21 +32,28 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
+        binding.tvTeamCurrentYearmonth.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월"))
 
-        viewModel.getTeamRetrospectList()
+        viewModel.getTeamRetrospectList(
+            1,
+            startOfWeek = LocalDate.now().with(DayOfWeek.MONDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            endOfWeek = LocalDate.now().with(DayOfWeek.SUNDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+        )
 
         viewModel.teamRetrospectList.observe(this) { contents ->
             Log.d("오류", "contents : $contents")
-            contents.forEach { day ->
-                day.reviewDay?.let { reviewDay ->
-                    if (day.reviewWriters != null) {
-                        num[viewModel.week.indexOf(day.reviewDay)] = BLUE_100
-                    } else {
-                        num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+            if (contents.isNotEmpty()) {
+                contents.forEach { day ->
+                    day.reviewDay?.let { reviewDay ->
+                        if (day.reviewWriters != null) {
+                            num[viewModel.week.indexOf(day.reviewDay)] = BLUE_100
+                        } else {
+                            num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
+                        }
                     }
                 }
+                setBackGround()
             }
-            setBackGround()
         }
 
         binding.viewPagerTeamRetrospectList.adapter = RetrospectThisWeekAdapter(this, num)
