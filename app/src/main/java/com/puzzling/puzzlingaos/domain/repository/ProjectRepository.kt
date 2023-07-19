@@ -1,6 +1,7 @@
 package com.puzzling.puzzlingaos.domain.repository
 
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 
 interface ProjectRepository {
@@ -11,4 +12,8 @@ interface ProjectRepository {
         memberId: Int,
         request: RequestProjectRegisterDto,
     ): Result<ResponseProjectRegisterDto>
+
+    suspend fun isValidInvitationCode(
+        invitationCode: String,
+    ): ResponseInvitationCodeDto
 }

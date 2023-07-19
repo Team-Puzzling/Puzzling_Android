@@ -1,6 +1,7 @@
 package com.puzzling.puzzlingaos.data.source.remote.impl
 
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 import com.puzzling.puzzlingaos.data.service.ProjectService
 import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
@@ -15,4 +16,7 @@ class ProjectDataSourceImpl @Inject constructor(
         request: RequestProjectRegisterDto,
     ): ResponseProjectRegisterDto =
         apiService.projectRegister2(memberId, request)
+
+    override suspend fun isValidInvitationCode(invitationCode: String): ResponseInvitationCodeDto =
+        apiService.isValidInvitationCode(invitationCode)
 }

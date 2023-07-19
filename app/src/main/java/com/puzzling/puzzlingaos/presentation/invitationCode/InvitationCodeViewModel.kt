@@ -1,13 +1,17 @@
 package com.puzzling.puzzlingaos.presentation.invitationCode
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
+import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class InvitationCodeViewModel(context: Context) : ViewModel() {
+@HiltViewModel
+class InvitationCodeViewModel @Inject constructor(private val repository: ProjectRepository) :
+    ViewModel() {
 
     // inputCode 관련
     val inputCode = MutableStateFlow("")
@@ -102,9 +106,15 @@ class InvitationCodeViewModel(context: Context) : ViewModel() {
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
 
     fun isCodeValid() = viewModelScope.launch {
-        // 서버 통신 추가 예정
-        _codeResponse.value = ResponseInvitationCodeDto.InvitationCodeData(4, "pickle")
-        _isCodeSucces.value = true
+        kotlin.runCatching {
+            repository.isValidInvitationCode(inputCode.value)
+        }.onSuccess {
+            _isCodeSucces.value = true
+            _codeResponse.value = it.data
+            Log.d("초대코드", "$it")
+        }.onFailure {
+            Log.d("초대코드", "$it")
+        }
     }
 
     fun joinProject() = viewModelScope.launch {
