@@ -33,8 +33,7 @@ class RegisterDialogFragment :
                     "5F" -> viewModel.postReview5F()
                     "AAR" -> viewModel.postReviewAAR()
                 }
-                // TODO detailRetroActivity 넘어갈때
-                // 프로젝트 이름을 넘겨줌
+                // TODO detailRetroActivity 넘어갈때 프로젝트 이름을 넘겨줌
             }
             btnRegisterDialogBottom.setOnClickListener {
                 dialog?.dismiss()
