@@ -7,7 +7,8 @@ import retrofit2.http.Query
 
 interface TeamRetroService {
 
-    @GET("api/v1/project/{projectId}/team/review?startDate={}&endDate={}")
+    // api/v1/project/{projectId}/team/review?startDate={}&endDate={}
+    @GET("api/v1/project/{projectId}/team/review?")
     suspend fun getTeamRetroList(
         @Path("projectId") memberId: Int,
         @Query("startDate") startDate: String,

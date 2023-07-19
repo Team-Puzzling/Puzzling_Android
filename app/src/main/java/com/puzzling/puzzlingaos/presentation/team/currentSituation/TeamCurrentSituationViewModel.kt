@@ -6,20 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRetroListDto
-import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectList
+import com.puzzling.puzzlingaos.data.repository.TeamRetroRepositoryImpl
 import com.puzzling.puzzlingaos.domain.entity.TeamRetrospectMultiList
-import com.puzzling.puzzlingaos.domain.repository.TeamRetroRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
 class TeamCurrentSituationViewModel @Inject constructor(
-    private val repository: TeamRetroRepository
-    ): ViewModel() {
+    private val repositoryImpl: TeamRetroRepositoryImpl,
+) : ViewModel() {
 
     var isWeekRetrospectColor: MutableLiveData<Boolean> = MutableLiveData(true)
 
@@ -32,7 +28,7 @@ class TeamCurrentSituationViewModel @Inject constructor(
     private val _teamRetrospectMultiList = MutableLiveData<ArrayList<TeamRetrospectMultiList>>()
     val teamRetrospectMultiList: LiveData<ArrayList<TeamRetrospectMultiList>> get() = _teamRetrospectMultiList
 
-    val week = listOf("월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일")
+    val week = listOf("월", "화", "수", "목", "금", "토", "일")
 
 //    val itemRetroList = arrayListOf<TeamRetrospectList>(
 //        TeamRetrospectList(
@@ -54,7 +50,7 @@ class TeamCurrentSituationViewModel @Inject constructor(
 //            null,
 //        ),
 //
-var itemRetroList = arrayListOf<ResponseTeamRetroListDto.Data>()
+    var itemRetroList = arrayListOf<ResponseTeamRetroListDto.Data>()
 
 //    private var _itemRetroList: MutableLiveData<ArrayList<TeamRetrospectList>> = MutableLiveData(null)
 //    val itemRetroList: LiveData<ArrayList<TeamRetrospectList>> get() = _itemRetroList
@@ -64,20 +60,41 @@ var itemRetroList = arrayListOf<ResponseTeamRetroListDto.Data>()
 //        _teamRetrospectMultiList.apply { value = arrayListOf() }
 //    }
 
-    val today = LocalDate.now()
-    val dateFormatter = DateTimeFormatter.ofPattern("dd")
-    val startOfWeek = today.with(DayOfWeek.MONDAY).format(dateFormatter) // 해당 주의 시작일
-    val endOfWeek = today.with(DayOfWeek.SUNDAY).format(dateFormatter) // 해당 주의 종료일
-    fun getTeamRetrospectList() = viewModelScope.launch {
-        repository.getTeamRetroList(2, startOfWeek, endOfWeek).onSuccess { response ->
-            itemRetroList = response.toTeamRetroArray()!!
-            _teamRetrospectList.value = itemRetroList
-            // _teamRetrospectList.apply { value = ArrayList(response.toTeamRetro()) }
-            Log.d("viewModel._teamRetrospectList: ", "${_teamRetrospectList.value}")
-            _teamRetrospectMultiList.apply { value = arrayListOf() }
-            Log.d("viewModel._teamRetrospectList: ", "${_teamRetrospectMultiList.value}")
-        }.onFailure { error ->
-            Log.d("팀원 현황 viewModel: ", "연결 실패")
+//    fun getTeamRetrospectList(
+//        id: Int,
+//        startOfWeek: String,
+//        endOfWeek: String,
+//    ) {
+//        viewModelScope.launch {
+//            repositoryImpl.getTeamRetroList(id, startOfWeek, endOfWeek).onSuccess { response ->
+//                itemRetroList = response.toTeamRetroArray()!!
+//                _teamRetrospectList.value = itemRetroList
+//                // _teamRetrospectList.apply { value = ArrayList(response.toTeamRetro()) }
+//                Log.d("viewModel._teamRetrospectList: ", "${_teamRetrospectList.value}")
+//                _teamRetrospectMultiList.apply { value = arrayListOf() }
+//                // Log.d("viewModel._teamRetrospectMultiList: ", "${_teamRetrospectMultiList.value}")
+//            }.onFailure { error ->
+//                Log.d("팀원 현황 viewModel: ", "연결 실패")
+//            }
+//        }
+//    }
+
+    fun getTeamRetrospectList(
+        id: Int,
+        startOfWeek: String,
+        endOfWeek: String,
+    ) {
+        viewModelScope.launch {
+            repositoryImpl.getTeamRetroList(id, startOfWeek, endOfWeek).onSuccess { response ->
+                itemRetroList = response.toTeamRetroArray()!!
+                _teamRetrospectList.value = itemRetroList
+                // _teamRetrospectList.apply { value = ArrayList(response.toTeamRetro()) }
+                Log.d("viewModel._teamRetrospectList: ", "${_teamRetrospectList.value}")
+                _teamRetrospectMultiList.apply { value = arrayListOf() }
+                // Log.d("viewModel._teamRetrospectMultiList: ", "${_teamRetrospectMultiList.value}")
+            }.onFailure { error ->
+                Log.d("팀원 현황 viewModel: ", "연결 실패")
+            }
         }
     }
 }

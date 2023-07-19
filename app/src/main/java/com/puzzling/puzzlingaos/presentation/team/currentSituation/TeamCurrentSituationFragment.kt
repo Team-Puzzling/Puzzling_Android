@@ -33,7 +33,14 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
 
         binding.viewModel = viewModel
 
-        viewModel.getTeamRetrospectList()
+        // getTeamRetroList()
+        // makeAdapter()
+
+        viewModel.getTeamRetrospectList(
+            1,
+            startOfWeek = LocalDate.now().with(DayOfWeek.MONDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            endOfWeek = LocalDate.now().with(DayOfWeek.SUNDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+        )
 
         viewModel.teamRetrospectList.observe(this) { contents ->
             Log.d("오류", "contents : $contents")
