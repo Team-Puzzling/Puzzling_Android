@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentWriteAarBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteAarFragment :
     BaseFragment<FragmentWriteAarBinding>(R.layout.fragment_write_aar) {
-    private val viewModel by activityViewModels<WriteRetrospectiveViewModel>()
+    private val viewModel by activityViewModels<WriteReviewViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

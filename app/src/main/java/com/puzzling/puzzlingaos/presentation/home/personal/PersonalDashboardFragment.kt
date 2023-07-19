@@ -41,9 +41,20 @@ class PersonalDashboardFragment :
 
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
-            activity?.let {
-                val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-                startActivity(intent)
+            when (viewModel.previousReviewType.value) {
+                1 -> activity?.let { // TIL
+                    val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+                    startActivity(intent)
+                }
+                2 -> activity?.let { // 5F
+                    val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+                    startActivity(intent)
+                }
+                3 -> activity?.let {
+                    // AAR
+                    val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.puzzling.puzzlingaos.di
 
 import com.puzzling.puzzlingaos.data.service.PersonalReviewService
+import com.puzzling.puzzlingaos.data.service.WriteReviewService
 import com.puzzling.puzzlingaos.data.service.ProjectService
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,11 @@ object ApiModule {
     @Singleton
     fun provideMyDashBoardService(@PuzzlingRetrofit retrofit: Retrofit): PersonalReviewService =
         retrofit.create(PersonalReviewService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWriteReviewService(@PuzzlingRetrofit retrofit: Retrofit): WriteReviewService =
+        retrofit.create(WriteReviewService::class.java)
 
     @Provides
     @Singleton

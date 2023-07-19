@@ -21,6 +21,8 @@ data class ResponseMyPuzzleBoardDto(
         val myPuzzle: MyPuzzle,
         @SerialName("userPuzzleBoard")
         val userPuzzleBoard: List<UserPuzzleBoard>,
+        @SerialName("puzzleBoardCount")
+        val puzzleBoardCount: Int,
         @SerialName("isReviewDay")
         val isReviewDay: Boolean,
         @SerialName("hasTodayReview")
