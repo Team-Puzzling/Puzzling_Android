@@ -1,7 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.response
 
-import com.puzzling.puzzlingaos.domain.entity.Puzzle
-import com.puzzling.puzzlingaos.domain.entity.UserPuzzleBoard
+import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -36,25 +35,29 @@ data class ResponseMyPuzzleBoardDto(
 
         )
 
-        fun toPuzzle(): Puzzle {
-            return Puzzle(
-                nickname = myPuzzle.nickname,
-                puzzleCount = myPuzzle.puzzleCount,
-            )
-        }
+//        fun toPuzzle(): Puzzle {
+//            return Puzzle(
+//                nickname = myPuzzle.nickname,
+//                puzzleCount = myPuzzle.puzzleCount,
+//            )
+//        }
 
         @Serializable
         data class UserPuzzleBoard(
             @SerialName("reviewDate")
-            val reviewDate: String,
+            val reviewDate: String?,
             @SerialName("reviewId")
-            val reviewId: Int,
+            val reviewId: Int?,
             @SerialName("puzzleAssetName")
             val puzzleAssetName: String,
         )
 
-        fun toUserPuzzleBoardList(): List<UserPuzzleBoard> {
-            return userPuzzleBoard
+        fun toPuzzleBoard() = userPuzzleBoard.map { board ->
+            MyPuzzleBoard(
+                board.reviewDate ?: "null",
+                board.reviewId ?: -1,
+                board.puzzleAssetName,
+            )
         }
     }
 }

@@ -4,17 +4,22 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
+import com.puzzling.puzzlingaos.domain.entity.Project
+import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository: MyBoardRepository,
+) : ViewModel() {
 
-    val projectItemList = mutableListOf<ResponseMyPageProjectDto>(
-        ResponseMyPageProjectDto("Piickle", "2023-07-03", 2),
-        ResponseMyPageProjectDto("HARA", "2023-07-28", 3),
-        ResponseMyPageProjectDto("낫투두", "2023-07-12", 4),
-        ResponseMyPageProjectDto("PEEKABOOK", "2023-07-20", 5),
-        ResponseMyPageProjectDto("ZOOC", "2023-06-25", 9),
-    )
+    private var _projectList: MutableLiveData<List<Project>> = MutableLiveData()
+    val projectList: LiveData<List<Project>>
+        get() = _projectList
 
     private val _reviewCycleList = MutableLiveData<List<String>>()
     val reviewCycleList: List<String>
@@ -45,6 +50,16 @@ class HomeViewModel : ViewModel() {
     init {
         _reviewCycleList.value = listOf("월", "수", "금")
         _reviewCycleText.value = _reviewCycleList.value?.joinToString(separator = ",")
+        getProjectList()
+    }
+
+    private fun getProjectList() = viewModelScope.launch {
+        repository.getProceedingProject(1).onSuccess { response ->
+            Log.d("home", "getProjectList() success:: $response")
+            _projectList.value = response
+        }.onFailure {
+            Log.d("home", "getProjectList() Fail:: $it")
+        }
     }
 
     fun setSelectedProjectText(projectName: String) {
