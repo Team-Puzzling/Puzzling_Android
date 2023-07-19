@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.puzzling.puzzlingaos.presentation.mypage.MyRetrospectViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,7 +111,7 @@
                         android:id="@+id/tv_mypage_popup_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="매주 월, 수, 금에\n 회고를 작성해주세요!"
+                        android:text="@{@string/tv_myPage_popup(vm.retroWeek)}"
                         android:textAppearance="@style/Kor.Body3.Regular"
                         app:layout_constraintStart_toStartOf="@+id/tv_mypage_popup_title"
                         app:layout_constraintTop_toBottomOf="@+id/tv_mypage_popup_title" />
