@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.fragment.app.commit
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityWriteRetrospectiveBinding
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +46,9 @@ class WriteRetrospectiveActivity :
                 }
             }
             btnWriteBack.setOnClickListener {
-                // 뒤로 가기 로직
+                val intent = Intent(this@WriteRetrospectiveActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }

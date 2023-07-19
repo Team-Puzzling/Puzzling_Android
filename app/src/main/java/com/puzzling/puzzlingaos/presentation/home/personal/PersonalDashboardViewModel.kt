@@ -115,6 +115,10 @@ class PersonalDashboardViewModel @Inject constructor(
             Log.d("personal", "getActionPlan() success:: $response")
             _actionPlanList.value = response
             Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
+            Log.d(
+                "actionPlan",
+                "actionPlanList length:: ${_actionPlanList.value.toString().length}",
+            )
         }.onFailure {
             Log.d("personal", "getActionPlan() Fail:: $it")
         }
