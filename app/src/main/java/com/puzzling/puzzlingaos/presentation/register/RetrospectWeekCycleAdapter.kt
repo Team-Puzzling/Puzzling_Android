@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.register
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -77,11 +78,22 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
         viewmodel.isDateCycleSelected.value = sortedSelectedRetrospectDayArray
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun changeBackground(binding: ItemRegisterRetrospectWeekCycleBinding, bool: Boolean) {
-        binding.root.backgroundTintList =
-            when (bool) {
-                true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.blue_400))
-                false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.bg_050))
+        when (bool) {
+            true -> {
+                binding.root.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.blue_400))
+                binding.tvRegisterDayCycle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white_000))
             }
+            false -> {
+                binding.root.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.bg_050))
+                binding.tvRegisterDayCycle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.black_000))
+            }
+        }
+//        binding.root.backgroundTintList =
+//            when (bool) {
+//                true -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.blue_400))
+//                false -> ColorStateList.valueOf(ContextCompat.getColor(binding.root.context, R.color.bg_050))
+//            }
     }
 }

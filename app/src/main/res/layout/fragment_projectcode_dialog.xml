@@ -60,7 +60,8 @@
                     android:stateListAnimator="@null"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="151dp"
-                    android:background="@drawable/rect_blue400_fill_radius_16"
+                    android:background="@drawable/bg_button_selected_ripple"
+                    android:clickable="true"
                     android:text="초대코드 복사하기"
                     android:textAppearance="@style/Kor.Body1.Bold"
                     android:textColor="@color/white" />
