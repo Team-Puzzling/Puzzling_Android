@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.team.currentSituation
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamCurrentSituationBinding
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -60,6 +62,13 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
         TabLayoutMediator(binding.layoutTeamTabDate, binding.viewPagerTeamRetrospectList) { tab, position ->
             tab.text = teamTabTitle[position]
         }.attach()
+
+        clickBackBtn()
+    }
+    private fun clickBackBtn() {
+        binding.btnTeamCurrentBack.setOnClickListener {
+            Intent(requireContext(), MainActivity::class.java).apply { startActivity(this) }
+        }
     }
 
     private fun setBackGround() {
