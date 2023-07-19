@@ -30,10 +30,11 @@ class PersonalDashboardFragment :
 
     private fun setActionPlanAdapter() {
         _actionPlanAdapter = ActionPlanListAdapter()
-        binding.rcvPersonalView.also {
-            it.adapter = _actionPlanAdapter
+//        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
+        viewModel.actionPlanList.observe(this) {
+            binding.rcvPersonalView.adapter = _actionPlanAdapter
+            _actionPlanAdapter!!.submitList(it)
         }
-        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
     }
 
     private fun setPuzzlePiece() {
