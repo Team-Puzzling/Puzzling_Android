@@ -28,7 +28,7 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun sendProjectRegisterDataSource(DataSourceImpl: ProjectDataSourceImpl): ProjectDataSource
+    abstract fun providesProjectRegisterDataSource(DataSourceImpl: ProjectDataSourceImpl): ProjectDataSource
 
     @Singleton
     @Binds

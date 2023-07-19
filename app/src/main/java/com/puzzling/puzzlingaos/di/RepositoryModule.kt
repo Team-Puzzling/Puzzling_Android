@@ -26,7 +26,7 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun sendProjectRepository(repoImpl: ProjectRepositoryImpl): ProjectRepository
+    abstract fun providesProjectRepository(repoImpl: ProjectRepositoryImpl): ProjectRepository
 
     @Singleton
     @Binds
