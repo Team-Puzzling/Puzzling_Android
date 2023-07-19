@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
+import com.puzzling.puzzlingaos.presentation.onboarding.ChooseJoinRegisterActivity
 import com.puzzling.puzzlingaos.presentation.register.projectCode.ProjectCodeDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -35,6 +37,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         canBtnClick()
         clickRegisterBtn()
         getProjectCode()
+        clickBackBtn()
     }
 
     private fun pickedDate() {
@@ -148,6 +151,13 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         val registerDialog by lazy { ProjectCodeDialogFragment(code) }
         registerDialog.show(supportFragmentManager, TAG_REGISTER_DIALOG)
         Log.d("dialog: ", "dialog")
+    }
+
+    private fun clickBackBtn() {
+        binding.btnToolbarClose.setOnClickListener {
+            val intent = Intent(this, ChooseJoinRegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {
