@@ -34,6 +34,7 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
             binding.root.setOnClickListener {
                 daySelection(binding, dayCycle)
                 onItemClickListener?.let { it(dayCycle) }
+                daySelectedSort()
             }
         }
     }
@@ -54,31 +55,26 @@ class RetrospectWeekCycleAdapter(private val viewmodel: RegisterViewModel) : Lis
         onItemClickListener = listener
     }
 
-    private var selectedRetrospectDayArray = arrayListOf<String>()
-    private val dayKey = listOf("월", "화", "수", "목", "금", "토", "일")
-    private var dayMap = HashMap<Int, String>()
-    private var daySortedMap = LinkedHashMap<Int, String>()
+    var selectedRetrospectDayArray = arrayListOf<String>()
+    val dayKey = listOf("월", "화", "수", "목", "금", "토", "일")
+    var dayMap = HashMap<Int, String>()
     var sortedSelectedRetrospectDayArray = arrayListOf<String>()
 
     private fun daySelection(binding: ItemRegisterRetrospectWeekCycleBinding, retrospectWeekCycle: RetrospectWeekCycle) {
         if (selectedRetrospectDayArray.contains(retrospectWeekCycle.day)) {
-            selectedRetrospectDayArray.remove(retrospectWeekCycle.day)
+            selectedRetrospectDayArray.removeAt(selectedRetrospectDayArray.indexOf(retrospectWeekCycle.day))
+            dayMap.remove(dayKey.indexOf(retrospectWeekCycle.day))
             changeBackground(binding, false)
         } else {
             selectedRetrospectDayArray.add(retrospectWeekCycle.day)
+            dayMap[dayKey.indexOf(retrospectWeekCycle.day) ] = retrospectWeekCycle.day //
             changeBackground(binding, true)
         }
-        daySorted(selectedRetrospectDayArray)
-
-        viewmodel.isDateCycleSelected.value = sortedSelectedRetrospectDayArray
     }
 
-    private fun daySorted(dayArray: ArrayList<String>) {
-        for (i in 0 until dayArray.size) {
-            dayMap[dayKey.indexOf(dayArray[i]) ] = dayArray[i]
-        }
-        dayMap.keys.sorted().forEach { daySortedMap[it] = dayMap[it]!! }
-        sortedSelectedRetrospectDayArray = daySortedMap.values.sorted().toTypedArray().toCollection(ArrayList())
+    private fun daySelectedSort() {
+        sortedSelectedRetrospectDayArray = dayMap.toSortedMap().values.toTypedArray().toCollection(ArrayList())
+        viewmodel.isDateCycleSelected.value = sortedSelectedRetrospectDayArray
     }
 
     private fun changeBackground(binding: ItemRegisterRetrospectWeekCycleBinding, bool: Boolean) {

@@ -28,7 +28,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
         pickedDate()
         clickDayCyclePicker()
-        getDay()
         textBoxListener(viewModel.projectName)
         textBoxListener(viewModel.projectExplanation)
         textBoxListener(viewModel.role)
@@ -62,13 +61,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         binding.rcvRetrospectWeekCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
-            // viewModel.dayArray = dayCycleAdapter.sortedSelectedRetrospectDayArray
-            viewModel.isDateCycleSelected.value = dayCycleAdapter.sortedSelectedRetrospectDayArray
+            viewModel.dayArray = dayCycleAdapter.selectedRetrospectDayArray
         }
-    }
-
-    private fun getDay() {
-        // viewModel.isDateCycleSelected.value = viewModel.dayArray
+        viewModel.isDateCycleSelected.value = dayCycleAdapter.sortedSelectedRetrospectDayArray
     }
 
     private fun textBoxListener(textBox: MutableLiveData<String>) {
