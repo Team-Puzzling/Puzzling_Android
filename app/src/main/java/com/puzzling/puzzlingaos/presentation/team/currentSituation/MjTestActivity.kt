@@ -11,7 +11,7 @@ class MjTestActivity : BaseActivity<ActivityMjTestBinding>(R.layout.activity_mj_
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        // 확인용
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fcv_team_current, TeamCurrentSituationFragment())
