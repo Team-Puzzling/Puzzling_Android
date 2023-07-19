@@ -45,7 +45,7 @@ interface WriteReviewService {
  [회고 글 작성 API(ARR)]
  ~/api/v1/member/{memberId}/project/{projectId}/review/ARR
   */
-    @POST("api/v1/member/{memberId}/project/{projectId}/review/ARR")
+    @POST("api/v1/member/{memberId}/project/{projectId}/review/AAR")
     suspend fun postSaveReviewAAR(
         @Path("memberId") memberId: Int,
         @Path("projectId") projectId: Int,

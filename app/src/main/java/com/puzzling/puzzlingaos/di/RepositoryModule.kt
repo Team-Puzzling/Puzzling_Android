@@ -6,6 +6,8 @@ import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import com.puzzling.puzzlingaos.data.repository.MyPageRepositoryImpl
+import com.puzzling.puzzlingaos.data.repository.WriteReviewRepositoryImpl
+import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,11 +21,14 @@ abstract class RepositoryModule {
     @Binds
     abstract fun providesMyBoardRepository(repoImpl: MyBoardRepositoryImpl): MyBoardRepository
 
-    @Singleton
     @Binds
     abstract fun providesMyPageRepository(repoImpl: MyPageRepositoryImpl): MyPageRepository
 
     @Singleton
     @Binds
     abstract fun sendProjectRepository(repoImpl: ProjectRepositoryImpl): ProjectRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesWriteReviewRepository(repoImpl: WriteReviewRepositoryImpl): WriteReviewRepository
 }

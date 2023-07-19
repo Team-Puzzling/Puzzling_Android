@@ -1,37 +1,35 @@
-package com.puzzling.puzzlingaos.data.source.remote
+package com.puzzling.puzzlingaos.domain.repository
 
 import com.puzzling.puzzlingaos.data.model.request.RequestReview5FDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewAARDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewTILDto
 import com.puzzling.puzzlingaos.data.model.response.ResponsePreviousTemplateDto
-import com.puzzling.puzzlingaos.data.model.response.ResponseReviewTypeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseSaveReviewDto
+import com.puzzling.puzzlingaos.domain.entity.ReviewType
 
-interface WriteReviewDataSource {
-    suspend fun getReviewTemplate(): ResponseReviewTypeDto
+interface WriteReviewRepository {
+    suspend fun getReviewType(): Result<List<ReviewType>>
 
-    suspend fun uploadReviewTIL(
+    suspend fun uploadTIL(
         memberId: Int,
         projectId: Int,
         requestReviewTIL: RequestReviewTILDto,
-//        requestTIL: TIL,
+    ): Result<ResponseSaveReviewDto>
 
-    ): ResponseSaveReviewDto
-
-    suspend fun uploadReview5F(
+    suspend fun upload5F(
         memberId: Int,
         projectId: Int,
         requestReview5F: RequestReview5FDto,
-    ): ResponseSaveReviewDto
+    ): Result<ResponseSaveReviewDto>
 
-    suspend fun uploadReviewAAR(
+    suspend fun uploadAAR(
         memberId: Int,
         projectId: Int,
         requestReviewAAR: RequestReviewAARDto,
-    ): ResponseSaveReviewDto
+    ): Result<ResponseSaveReviewDto>
 
     suspend fun getPreviousTemplate(
         memberId: Int,
         projectId: Int,
-    ): ResponsePreviousTemplateDto
+    ): Result<ResponsePreviousTemplateDto>
 }

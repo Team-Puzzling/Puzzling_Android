@@ -11,9 +11,11 @@ import com.puzzling.puzzlingaos.databinding.FragmentHomeChooseProjectBinding
 import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
 import com.puzzling.puzzlingaos.presentation.invitationCode.InvitationCodeActivity
 import com.puzzling.puzzlingaos.presentation.register.RegisterActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeChooseProjectFragment :
     BottomSheetDialogFragment<FragmentHomeChooseProjectBinding>(R.layout.fragment_home_choose_project) {
     private val viewModel by activityViewModels<HomeViewModel>()
