@@ -64,7 +64,7 @@
                 android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                 android:scrollbars="vertical"
                 android:selectAllOnFocus="false"
-                android:text="@={vm.question5f1}" />
+                android:text="@={vm.aarQuestion1}" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -117,7 +117,7 @@
                 android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                 android:scrollbars="vertical"
                 android:selectAllOnFocus="false"
-                android:text="@={vm.question5f2}" />
+                android:text="@={vm.aarQuestion2}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -169,7 +169,7 @@
                 android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                 android:scrollbars="vertical"
                 android:selectAllOnFocus="false"
-                android:text="@={vm.question5f3}" />
+                android:text="@={vm.aarQuestion3}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -222,7 +222,7 @@
                 android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                 android:scrollbars="vertical"
                 android:selectAllOnFocus="false"
-                android:text="@={vm.question5f4}" />
+                android:text="@={vm.aarQuestion4}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -276,7 +276,7 @@
                 android:hint="placeholder 위치, 텍스트박스는 기본 사이즈입니다. 양 옆 마진 16px을 가진 텍스트박스가 존재합니다. "
                 android:scrollbars="vertical"
                 android:selectAllOnFocus="false"
-                android:text="@={vm.question5f5}" />
+                android:text="@={vm.aarQuestion5}" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

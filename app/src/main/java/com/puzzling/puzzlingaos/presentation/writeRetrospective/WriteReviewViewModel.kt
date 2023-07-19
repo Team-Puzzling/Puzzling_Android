@@ -65,6 +65,10 @@ class WriteReviewViewModel @Inject constructor(
     val selectedReviewType: LiveData<String>
         get() = _selectedReviewType
 
+    private val _reviewTypeText = MutableLiveData<String>()
+    val reviewTypeText: LiveData<String>
+        get() = _reviewTypeText
+
     private val _selectedChipText = MutableLiveData<String>()
     val selectedChipText: LiveData<String>
         get() = _selectedChipText
@@ -84,6 +88,10 @@ class WriteReviewViewModel @Inject constructor(
     private var _templateIdList: MutableLiveData<List<Int>> = MutableLiveData()
     val templateIdList: LiveData<List<Int>>
         get() = _templateIdList
+
+    private val _previousReviewType = MutableLiveData<Int>()
+    val previousReviewType: LiveData<Int>
+        get() = _previousReviewType
 
     fun setSelectedChipText(chipText: String) {
         _selectedChipText.value = chipText
@@ -154,6 +162,7 @@ class WriteReviewViewModel @Inject constructor(
 
     init {
         getReviewType()
+        getPreviousTemplate()
     }
 
     fun setSelectedReviewTypeText(reviewType: String) {
@@ -161,30 +170,6 @@ class WriteReviewViewModel @Inject constructor(
         Log.d("write", "_selectedReviewType.value :: ${_selectedReviewType.value}")
 
         _isReviewTypeSelected.value = true
-    }
-
-    private fun getReviewType() {
-        viewModelScope.launch {
-            repository.getReviewType().onSuccess { response ->
-                _reviewTypeList.value = response
-                val reviewTypes: List<ReviewType> =
-                    _reviewTypeList.value!!
-                Log.d("write", "getReviewType() success:: $response")
-                _reviewNameList.value = reviewTypes.map {
-                    it.reviewTemplateName
-                }
-                _reviewDescList.value = reviewTypes.map {
-                    it.reviewTemplateMeaning
-                }
-                _templateIdList.value = reviewTypes.map {
-                    it.reviewTemplateId
-                }
-                Log.d("write", "_reviewName success:: ${_reviewNameList.value}")
-                Log.d("write", "_reviewDesc success:: ${_reviewDescList.value}")
-            }.onFailure {
-                Log.d("write", "getReviewType() Fail:: $it")
-            }
-        }
     }
 
     fun getTIL(): TIL {
@@ -285,6 +270,47 @@ class WriteReviewViewModel @Inject constructor(
             }.onFailure {
                 Log.d("write", "postReviewAAR() Fail:: $it")
             }
+        }
+    }
+
+    private fun getReviewType() {
+        viewModelScope.launch {
+            repository.getReviewType().onSuccess { response ->
+                _reviewTypeList.value = response
+                val reviewTypes: List<ReviewType> =
+                    _reviewTypeList.value!!
+                Log.d("write", "getReviewType() success:: $response")
+                _reviewNameList.value = reviewTypes.map {
+                    it.reviewTemplateName
+                }
+                _reviewDescList.value = reviewTypes.map {
+                    it.reviewTemplateMeaning
+                }
+                _templateIdList.value = reviewTypes.map {
+                    it.reviewTemplateId
+                }
+                Log.d("write", "_reviewName success:: ${_reviewNameList.value}")
+                Log.d("write", "_reviewDesc success:: ${_reviewDescList.value}")
+            }.onFailure {
+                Log.d("write", "getReviewType() Fail:: $it")
+            }
+        }
+    }
+
+    private fun getPreviousTemplate() {
+        viewModelScope.launch {
+            repository.getPreviousTemplate(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID)
+                .onSuccess { response ->
+                    _previousReviewType.value = response.data.previousTemplateId
+                    when (_previousReviewType.value) {
+                        1 -> _reviewTypeText.value = "TIL"
+                        2 -> _reviewTypeText.value = "5F"
+                        3 -> _reviewTypeText.value = "AAR"
+                    }
+                    Log.d("write", "getPreviousTemplate() success:: ${_previousReviewType.value}")
+                }.onFailure {
+                    Log.d("write", "getPreviousTemplate() Fail:: $it")
+                }
         }
     }
 

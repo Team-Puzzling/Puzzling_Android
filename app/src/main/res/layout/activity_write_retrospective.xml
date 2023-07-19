@@ -113,7 +113,7 @@
                             android:layout_marginStart="18dp"
                             android:layout_marginEnd="2dp"
                             android:includeFontPadding="false"
-                            android:text="@string/tv_write_chip"
+                            android:text="@{vm.reviewTypeText}"
                             android:textAppearance="@style/Kor.Body1.Bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintHorizontal_bias="0"
