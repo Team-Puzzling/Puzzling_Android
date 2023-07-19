@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="290dp"
+        android:layout_height="368dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_register_dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="41dp"
+                    android:layout_marginTop="70dp"
+                    android:text="초대코드가 생성되었어요!"
+                    android:includeFontPadding="false"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Kor.Heading4" />
+
+                <TextView
+                    android:id="@+id/tv_register_dialog_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="65dp"
+                    android:layout_marginTop="102dp"
+                    android:textColor="@color/gray_600"
+                    android:includeFontPadding="false"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Kor.Body3.Regular"
+                    tools:text="ABCDEFG"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register_dialog_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stateListAnimator="@null"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="151dp"
+                    android:background="@drawable/rect_blue400_fill_radius_16"
+                    android:text="초대코드 복사하기"
+                    android:textAppearance="@style/Kor.Body1.Bold"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register_dialog_middle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stateListAnimator="@null"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="211dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="@drawable/rect_bg50_fill_radius_16"
+                    android:text="카카오톡으로 공유하기"
+                    android:textAppearance="@style/Kor.Body1.Bold"
+                    android:textColor="@color/gray_500"
+                    android:includeFontPadding="false"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register_dialog_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stateListAnimator="@null"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="271dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="@color/transparent"
+                    android:text="닫기"
+                    android:textAppearance="@style/Kor.Body1.Regular"
+                    android:textColor="@color/gray_500"
+                    android:includeFontPadding="false"
+                    android:gravity="center"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="109dp"
+            android:layout_marginEnd="103dp"
+            android:contentDescription="@null"
+            android:src="@drawable/img_dialog_puzzle1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
