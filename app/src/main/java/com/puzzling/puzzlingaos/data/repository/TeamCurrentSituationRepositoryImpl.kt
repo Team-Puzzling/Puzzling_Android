@@ -1,7 +1,0 @@
-package com.puzzling.puzzlingaos.data.repository
-
-import com.puzzling.puzzlingaos.data.source.remote.TeamCurrentSituationRemoteDataSource
-import com.puzzling.puzzlingaos.domain.repository.TeamCurrentSituationRepository
-
-class TeamCurrentSituationRepositoryImpl(private val teamCurrentSituationRemoteDataSource: TeamCurrentSituationRemoteDataSource) :
-    TeamCurrentSituationRepository
