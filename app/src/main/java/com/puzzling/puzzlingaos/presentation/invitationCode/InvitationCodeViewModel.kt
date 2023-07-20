@@ -50,7 +50,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
     private val _isCodeSucces = MutableStateFlow<Boolean?>(null)
     val isCodeSuccess = _isCodeSucces.asStateFlow()
 
-    private val _isProfileSucces = MutableStateFlow(true)
+    private val _isProfileSucces = MutableStateFlow<Boolean?>(null)
     val isProfileSuccess = _isProfileSucces.asStateFlow()
 
     val codeErrorMessage = MutableStateFlow("")
@@ -84,7 +84,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
                 isProfileSuccess == null -> true
                 isNickNameInEmoji && isProfileSuccess -> true
                 isProfileSuccess.not() -> {
-                    nickNameErrorMessage.value = INPUT_CODE_ERROR
+                    nickNameErrorMessage.value = NICKNAME_ALREADY_INUSE
                     return@combine false
                 }
                 else -> true
@@ -100,10 +100,6 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
                 }
                 isProfileSuccess == null -> true
                 isRoleInEmoji && isProfileSuccess -> true
-                isProfileSuccess.not() -> {
-                    roleErrorMessage.value = INPUT_CODE_ERROR
-                    return@combine false
-                }
                 else -> true
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
@@ -125,7 +121,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
         kotlin.runCatching {
             repository.joinProject(
                 MEMBER_ID,
-                RequestInvitationCode(PROJECT_ID, inputNickName.value, inputRole.value),
+                RequestInvitationCode(1, inputNickName.value, inputRole.value),
             )
         }.onSuccess { response ->
             _isProfileSucces.value = true
