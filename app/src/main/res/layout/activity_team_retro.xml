@@ -169,7 +169,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/layout_team_tab_date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/tab_background"
             android:theme="@style/TabTheme"
