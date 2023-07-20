@@ -3,6 +3,7 @@ package com.puzzling.puzzlingaos.data.service
 import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import retrofit2.http.Body
@@ -23,7 +24,7 @@ interface ProjectService {
     suspend fun joinProject(
         @Path("memberId") memberId: Int,
         @Body request: RequestInvitationCode,
-    ): ResponseInvitationCodeDto
+    ): ResponseJoinProjectDto
 
     @GET("api/v1/project/verify?")
     suspend fun isValidInvitationCode(
