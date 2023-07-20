@@ -24,17 +24,18 @@
             android:id="@+id/iv_login_puzzlingLogo"
             android:layout_width="120dp"
             android:layout_height="148dp"
-            android:layout_marginTop="110dp"
+            app:layout_constraintVertical_bias="0.32"
             android:src="@drawable/ic_puzzling_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_login_puzzling" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/iv_login_puzzlingComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="73dp"
+            android:layout_marginTop="70dp"
             android:src="@drawable/ic_puzzling_coment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
             android:layout_width="328dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="50dp"
             android:background="@color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_login_kakao"
