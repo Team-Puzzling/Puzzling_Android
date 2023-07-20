@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentRegisterDialogBinding
+import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +35,12 @@ class RegisterDialogFragment :
                     "5F" -> viewModel.postReview5F()
                     "AAR" -> viewModel.postReviewAAR()
                 }
-                // TODO detailRetroActivity 넘어갈때 프로젝트 이름을 넘겨줌
+                activity?.let {
+                    val intent = Intent(context, DetailRetroActivity::class.java)
+//                    intent.putExtra("Title", viewModel)
+                    startActivity(intent)
+                }
+                // TODO 프로젝트 넘기기
             }
             btnRegisterDialogBottom.setOnClickListener {
                 dialog?.dismiss()

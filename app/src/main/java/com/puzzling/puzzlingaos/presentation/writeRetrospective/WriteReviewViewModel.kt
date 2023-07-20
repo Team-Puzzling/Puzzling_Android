@@ -65,6 +65,10 @@ class WriteReviewViewModel @Inject constructor(
     val selectedReviewType: LiveData<String>
         get() = _selectedReviewType
 
+    private val _selectedReviewNum = MutableLiveData(1)
+    val selectedReviewNum: LiveData<Int>
+        get() = _selectedReviewNum
+
     private val _reviewTypeText = MutableLiveData<String>()
     val reviewTypeText: LiveData<String>
         get() = _reviewTypeText
@@ -167,6 +171,11 @@ class WriteReviewViewModel @Inject constructor(
 
     fun setSelectedReviewTypeText(reviewType: String) {
         _selectedReviewType.value = reviewType
+        when (reviewType) {
+            "TIL" -> _selectedReviewNum.value = 1
+            "5F" -> _selectedReviewNum.value = 2
+            "AAR" -> _selectedReviewNum.value = 3
+        }
         Log.d("write", "_selectedReviewType.value :: ${_selectedReviewType.value}")
 
         _isReviewTypeSelected.value = true
@@ -211,7 +220,7 @@ class WriteReviewViewModel @Inject constructor(
 
     fun postReviewTIL() {
         val requestReviewTIL = RequestReviewTILDto(
-            1,
+            _selectedReviewNum.value!!,
             tilQuestion1.value.toString(),
             tilQuestion2.value.toString(),
             tilQuestion3.value.toString(),
@@ -231,7 +240,7 @@ class WriteReviewViewModel @Inject constructor(
 
     fun postReview5F() {
         val requestReview5F = RequestReview5FDto(
-            2,
+            _selectedReviewNum.value!!,
             question5f1.value.toString(),
             question5f2.value.toString(),
             question5f3.value.toString(),
@@ -253,7 +262,7 @@ class WriteReviewViewModel @Inject constructor(
 
     fun postReviewAAR() {
         val requestReviewAAR = RequestReviewAARDto(
-            3,
+            _selectedReviewNum.value!!,
             aarQuestion1.value.toString(),
             aarQuestion2.value.toString(),
             aarQuestion3.value.toString(),
