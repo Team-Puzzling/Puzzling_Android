@@ -19,9 +19,10 @@
 
         <ImageView
             android:id="@+id/iv_puzzling_logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="100dp"
+            android:layout_height="124dp"
             android:layout_marginTop="104dp"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_puzzling_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

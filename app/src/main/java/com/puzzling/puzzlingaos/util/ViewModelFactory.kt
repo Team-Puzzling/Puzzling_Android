@@ -10,9 +10,9 @@ import com.puzzling.puzzlingaos.presentation.onboarding.LoginViewModel
 class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(InvitationCodeViewModel::class.java) -> {
-                InvitationCodeViewModel(context) as T
-            }
+//            modelClass.isAssignableFrom(InvitationCodeViewModel::class.java) -> {
+//                InvitationCodeViewModel(context) as T
+//            }
 
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 val repository = KakaoLoginService(context)

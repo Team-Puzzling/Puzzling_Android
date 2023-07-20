@@ -126,6 +126,10 @@ class PersonalDashboardViewModel @Inject constructor(
             val truncatedList = truncateActionPlanList(response)
             _actionPlanList.value = truncatedList
             Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
+            Log.d(
+                "actionPlan",
+                "actionPlanList length:: ${_actionPlanList.value.toString().length}",
+            )
         }.onFailure {
             Log.d("personal", "getActionPlan() Fail:: $it")
         }
