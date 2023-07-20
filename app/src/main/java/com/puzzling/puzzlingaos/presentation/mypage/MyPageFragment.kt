@@ -3,7 +3,6 @@ package com.puzzling.puzzlingaos.presentation.mypage
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +37,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         viewModel.getProjectWeekCycle()
         initAdapter()
         showPopupMessage()
+
+        viewModel.retroWeek.observe(this) {
+            binding.tvMypagePopupContent.text = "매주 $it \n 회고를 작성해주세요"
+        }
     }
 
     private fun initAdapter() {
@@ -54,7 +57,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             rcvMyPageMain.layoutManager = LinearLayoutManager(activity)
         }
 
-        viewModel.responseProjectList.observe(this){
+        viewModel.responseProjectList.observe(this) {
             myProjectContentAdapter.submitList(it)
         }
 
