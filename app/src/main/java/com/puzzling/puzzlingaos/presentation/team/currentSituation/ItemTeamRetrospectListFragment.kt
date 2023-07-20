@@ -21,14 +21,14 @@ class ItemTeamRetrospectListFragment(
     private val dayPosition: Int,
 ) : BaseFragment<FragmentItemTeamRetrospectListBinding>(R.layout.fragment_item_team_retrospect_list) {
 
-    private lateinit var viewModel: TeamCurrentSituationViewModel
+    private lateinit var viewModel: TeamRetroViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(
             requireActivity(),
-        )[TeamCurrentSituationViewModel::class.java]
+        )[TeamRetroViewModel::class.java]
 
         val day = viewModel.week[dayPosition]
 

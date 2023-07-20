@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter
 class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBinding>(R.layout.fragment_team_current_situation) {
 
     // private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
-    private val viewModel by viewModels<TeamCurrentSituationViewModel>()
+    private val viewModel by viewModels<TeamRetroViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val teamTabTitle = getWeekDates()

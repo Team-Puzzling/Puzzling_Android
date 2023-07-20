@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TeamCurrentSituationViewModel @Inject constructor(
+class TeamRetroViewModel @Inject constructor(
     private val repositoryImpl: TeamReviewRepositoryImpl,
 ) : ViewModel() {
 
