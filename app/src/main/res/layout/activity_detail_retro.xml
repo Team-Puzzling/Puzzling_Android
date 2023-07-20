@@ -26,6 +26,7 @@
                 android:id="@+id/tv_detailRetro_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="프로젝트1"
@@ -37,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_cancel"
                 android:background="@color/transparent"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"/>
 

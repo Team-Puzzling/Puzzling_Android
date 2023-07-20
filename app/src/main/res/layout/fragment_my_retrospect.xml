@@ -15,6 +15,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_myRetrospect_main"
             android:layout_width="0dp"
+            android:layout_marginTop="10dp"
             app:navigationIcon="@drawable/ic_back"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
