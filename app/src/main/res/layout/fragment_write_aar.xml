@@ -25,6 +25,7 @@
             android:includeFontPadding="false"
             android:text="초기의 목표는 무엇이었나요?"
             android:textAppearance="@style/Kor.Body1.Bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
