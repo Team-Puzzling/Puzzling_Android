@@ -25,6 +25,8 @@ class TeamRetroViewModel @Inject constructor(
     private val _teamRetrospectMultiList = MutableLiveData<ArrayList<TeamReviewMultiList>>()
     val teamRetrospectMultiList: LiveData<ArrayList<TeamReviewMultiList>> get() = _teamRetrospectMultiList
 
+    private val test = listOf(teamRetrospectMultiList)
+
     val week = listOf("월", "화", "수", "목", "금", "토", "일")
 
     var itemRetroList = arrayListOf<ResponseTeamReviewListDto.Data>()
@@ -46,5 +48,61 @@ class TeamRetroViewModel @Inject constructor(
                 Log.d("팀원 현황 viewModel: ", "연결 실패")
             }
         }
+    }
+
+
+    fun testItemList(itemList: LiveData<ArrayList<ResponseTeamReviewListDto.Data>>, day: String) {
+        var intDay: Int = itemRetroList.indexOfFirst { it.reviewDay == day }
+
+        teamRetrospectMultiList.value?.clear()
+
+        if (itemList.value?.isNotEmpty() == true) {
+            if (itemList.value?.get(intDay)?.reviewWriters?.isNotEmpty() == true) {
+                teamRetrospectMultiList.value?.add(
+                    TeamReviewMultiList(
+                        0,
+                        null,
+                        null,
+                        null,
+                        null,
+                    ),
+                )
+                for (i in 0 until (itemList.value?.get(intDay)?.reviewWriters!!.size ?: 0)) {
+                    teamRetrospectMultiList.value?.add(
+                        TeamReviewMultiList(
+                            1,
+                            itemList.value?.get(intDay)?.reviewDay,
+                            itemList.value?.get(intDay)?.reviewDate,
+                            itemList.value?.get(intDay)?.reviewWriters?.get(i)?.memberNickname,
+                            itemList.value?.get(intDay)?.reviewWriters?.get(i)?.memberRole,
+                        ),
+                    )
+                }
+            }
+
+            if (itemList.value?.get(intDay)?.nonReviewWriters?.isNotEmpty() == true) {
+                teamRetrospectMultiList.value?.add(
+                    TeamReviewMultiList(
+                        2,
+                        null,
+                        null,
+                        null,
+                        null,
+                    ),
+                )
+                for (i: Int in 0 until (itemList.value?.get(intDay)?.nonReviewWriters?.size ?: 0)) {
+                    teamRetrospectMultiList.value?.add(
+                        TeamReviewMultiList(
+                            3,
+                            itemList.value?.get(intDay)?.reviewDay,
+                            itemList.value?.get(intDay)?.reviewDate,
+                            itemList.value?.get(intDay)?.nonReviewWriters?.get(i)?.memberNickname,
+                            itemList.value?.get(intDay)?.nonReviewWriters?.get(i)?.memberRole,
+                        ),
+                    )
+                }
+            }
+        }
+        Log.d("ItemTeamRetrospectListFragment: ", "${teamRetrospectMultiList.value}")
     }
 }
