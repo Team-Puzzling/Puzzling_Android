@@ -11,4 +11,12 @@ data class ResponseSaveReviewDto(
     val success: Boolean,
     @SerialName("message")
     val message: String,
-)
+    @SerialName("data")
+    val data: ProjectData,
+) {
+    @Serializable
+    data class ProjectData(
+        @SerialName("projectName")
+        val projectName: String,
+    )
+}

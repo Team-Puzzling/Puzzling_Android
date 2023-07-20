@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamCurrentSituationViewModel" />
+            type="com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamRetroViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

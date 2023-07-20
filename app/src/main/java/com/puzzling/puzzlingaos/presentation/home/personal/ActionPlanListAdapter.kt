@@ -17,14 +17,26 @@ class ActionPlanListAdapter : ListAdapter<ActionPlan, ActionPlanListAdapter.Acti
 ) {
     class ActionPlanViewHolder(private val binding: ItemHomeActionplanBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(data: ActionPlan) = with(binding) {
+        fun onBind(data: ActionPlan?) = with(binding) {
+            /*
             Log.d("personal", "data.actionPlanContent:: ${data.actionPlanContent}")
             Log.d("personal", "data.actionPlanDate:: ${data.actionPlanDate}")
             // TODO item 텍스트 null일 경우 분기처리 해야함
             tvActionplanContent.text = data.actionPlanContent ?: "아직 회고가 없어요.\n첫 번째 회고를\n작성해 보세요!"
-//            tvActionplanContent.text = "아직 회고가 없어요.\n첫 번째 회고를\n작성해 보세요!"
             tvActionplanDate.text = data.actionPlanDate ?: ""
-//            tvActionplanDate.text = "7월8일"
+
+             */
+            if (data != null) {
+                Log.d("personal", "data.actionPlanContent:: ${data.actionPlanContent}")
+                Log.d("personal", "data.actionPlanDate:: ${data.actionPlanDate}")
+                tvActionplanContent.text =
+                    data.actionPlanContent ?: "아직 회고가 없어요.\n첫 번째 회고를\n작성해 보세요!"
+                tvActionplanDate.text = data.actionPlanDate ?: ""
+            } else {
+                // Set default text when data is null or empty
+                tvActionplanContent.text = "아직 회고가 없어요.\n첫 번째 회고를\n작성해 보세요!"
+                tvActionplanDate.text = ""
+            }
         }
     }
 
