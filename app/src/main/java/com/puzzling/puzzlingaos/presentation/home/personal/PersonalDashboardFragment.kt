@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
+import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.OnePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.ThreePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.TwoPuzzleBoardActivity
@@ -79,9 +80,14 @@ class PersonalDashboardFragment :
     }
 
     private fun clickPuzzlePiece() {
+        Log.d("personal", "review ID:::: ${viewModel.myReviewId.value}")
         with(binding) {
             // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
             clPersonalMain1.setOnClickListener {
+                activity?.let {
+                    val intent = Intent(context, DetailRetroActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }

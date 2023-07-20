@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.domain.entity.TeamPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.TeamRanking
 import com.puzzling.puzzlingaos.domain.repository.TeamReviewRepository
-import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamDashBoardViewModel @Inject constructor(
     private val repository: TeamReviewRepository,
-    private val writeReviewRepository: WriteReviewRepository,
 ) : ViewModel() {
     private val _myNickname = MutableLiveData<String>()
     val myNickname: LiveData<String> get() = _myNickname
@@ -70,7 +68,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamPuzzleData() = viewModelScope.launch {
-        repository.getTeamPuzzle(UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getTeamPuzzle(UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("team", "getTeamPuzzleData() success:: $response")
@@ -89,7 +87,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamPuzzleBoard() = viewModelScope.launch {
-        repository.getTeamPuzzleBoard(UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getTeamPuzzleBoard(UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _teamPuzzleBoardList.value = response
                 Log.d("team", "getTeamPuzzleBoard() success:: $response")
