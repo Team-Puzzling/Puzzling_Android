@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import com.puzzling.puzzlingaos.presentation.onboarding.ChooseJoinRegisterActivity
 import com.puzzling.puzzlingaos.presentation.register.projectCode.ProjectCodeDialogFragment
+import com.puzzling.puzzlingaos.util.UserInfo.POST_MEMBER_ID
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -122,7 +124,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         binding.btnRegister.setOnClickListener {
             viewModel.isDateCycleSelected.value?.let { it1 ->
                 viewModel.doProjectRegister(
-                    2,
+                    POST_MEMBER_ID,
                     viewModel.projectName.value.toString(),
                     viewModel.projectExplanation.value.toString(),
                     viewModel.projectStartDate.value.toString(),
@@ -155,8 +157,10 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private fun clickBackBtn() {
         binding.btnToolbarClose.setOnClickListener {
-            val intent = Intent(this, ChooseJoinRegisterActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+            finish()
         }
     }
 

@@ -5,8 +5,8 @@ import androidx.lifecycle.*
 import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
-import com.puzzling.puzzlingaos.util.UserInfo.MEMBER_ID
-import com.puzzling.puzzlingaos.util.UserInfo.PROJECT_ID
+import com.puzzling.puzzlingaos.util.UserInfo.POST_MEMBER_ID
+import com.puzzling.puzzlingaos.util.UserInfo.POST_PROJECT_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -120,8 +120,8 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
     fun joinProject() = viewModelScope.launch {
         kotlin.runCatching {
             repository.joinProject(
-                MEMBER_ID,
-                RequestInvitationCode(1, inputNickName.value, inputRole.value),
+                POST_MEMBER_ID,
+                RequestInvitationCode(POST_PROJECT_ID, inputNickName.value, inputRole.value),
             )
         }.onSuccess { response ->
             _isProfileSucces.value = true
