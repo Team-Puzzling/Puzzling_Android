@@ -2,15 +2,17 @@ package com.puzzling.puzzlingaos.presentation.invitationCode
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentInputCodeBinding
-import com.puzzling.puzzlingaos.util.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
 class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragment_input_code) {
 
@@ -30,11 +32,13 @@ class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragme
 
     private fun isCodeSuccess() {
         lifecycleScope.launch {
-            viewModel.isCodeSuccess.collect {
-                if (it != null && it) {
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.fcv_invitation_main, InputProfileFragment())
-                        .commit()
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.isCodeSuccess.collect {
+                    if (it != null && it) {
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.fcv_invitation_main, InputProfileFragment())
+                            .commit()
+                    }
                 }
             }
         }

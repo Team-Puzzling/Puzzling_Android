@@ -4,21 +4,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseProjectRetroWeekDto(
+data class ResponseJoinProjectDto(
     @SerialName("status")
     val status: Int,
     @SerialName("success")
     val success: Boolean,
     @SerialName("message")
     val message: String,
-    @SerialName("data")
-    val data: ProjectCycle?,
-) {
-    @Serializable
-    data class ProjectCycle(
-        @SerialName("projectName")
-        val projectName: String,
-        @SerialName("projectReviewCycle")
-        val projectReviewCycle: String,
-    )
-}
+)
