@@ -25,15 +25,23 @@ class TeamDashboardFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
         clickTeamPuzzleBoardBtn()
+        clickPuzzlePiece()
     }
 
-    private fun clickTeamPuzzleBoardBtn() {
-        // TODO 팀원 현황
+    private fun clickPuzzlePiece() {
         binding.clTeamMain1.setOnClickListener {
             activity?.let {
                 val intent = Intent(context, MjTestActivity::class.java)
+                intent.putExtra("Team", viewModel.myNickname.value)
                 startActivity(intent)
             }
+            Log.d("haha", "viewModel.myNickname.value!!:: ${viewModel.myNickname.value}")
+        }
+    }
+
+    private fun clickTeamPuzzleBoardBtn() {
+        // TODO 팀 보드
+        binding.clTeamTopBackground.setOnClickListener {
             binding.clTeamTopBackground.setOnClickListener {
                 Log.d(
                     "team",
@@ -42,7 +50,6 @@ class TeamDashboardFragment :
                 when (viewModel.teamPuzzleBoardCount.value) {
                     1 -> activity?.let {
                         val intent = Intent(context, OneTeamBoardActivity::class.java)
-                        Log.d("team", "1")
                         startActivity(intent)
                     }
                     2 -> activity?.let {
