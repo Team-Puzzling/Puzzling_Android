@@ -8,14 +8,14 @@
 
         <variable
             name="viewModel"
-            type="com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamCurrentSituationViewModel" />
+            type="com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamRetroViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.team.currentSituation.TeamCurrentSituationFragment">
+        tools:context=".presentation.team.currentSituation.TeamRetroActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_team_current"
@@ -49,10 +49,12 @@
                     android:gravity="center_horizontal"
                     android:layout_marginTop="48dp"
                     android:layout_marginStart="86dp"
+                    android:layout_marginEnd="141dp"
                     android:includeFontPadding="false"
                     android:text="프로젝트1"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btn_team_current_back"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="프로젝트1"/>
 
@@ -82,7 +84,8 @@
             android:layout_marginHorizontal="16dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/tv_team_current_yearmonth"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                 android:id="@+id/tv_week_mon"
@@ -166,7 +169,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/layout_team_tab_date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/tab_background"
             android:theme="@style/TabTheme"
@@ -175,6 +178,7 @@
             app:tabSelectedTextColor="@color/white_000"
             app:layout_constraintTop_toBottomOf="@id/layout_week_day"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:tabIndicatorColor="@color/white_000"
             app:tabTextAppearance="@style/Kor.Body2.Bold"
             />

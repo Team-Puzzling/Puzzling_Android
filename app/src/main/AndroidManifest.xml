@@ -39,7 +39,7 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.team.currentSituation.MjTestActivity"
+            android:name=".presentation.team.currentSituation.TeamRetroActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" >
         </activity>
