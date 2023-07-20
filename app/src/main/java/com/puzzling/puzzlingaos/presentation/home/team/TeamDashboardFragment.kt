@@ -44,10 +44,6 @@ class TeamDashboardFragment :
                     startActivity(intent)
                 }
             }
-//            activity?.let {
-//                val intent = Intent(context, TeamPuzzleBoardActivity::class.java)
-//                startActivity(intent)
-//            }
         }
     }
 }
