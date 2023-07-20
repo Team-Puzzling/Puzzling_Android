@@ -10,7 +10,6 @@ import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
 import com.puzzling.puzzlingaos.databinding.FragmentItemTeamRetrospectListBinding
 import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList
-import com.puzzling.puzzlingaos.util.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,10 +29,6 @@ class ItemTeamRetrospectListFragment(
         val day = viewModel.week[dayPosition]
 
         val retroItem = viewModel.teamRetrospectList.value
-
-        binding.rcvTeamRetrospectList.addItemDecoration(
-            DividerItemDecoration(R.color.gray_300, 32),
-        )
 
         if (retroItem != null) {
             for (item in retroItem) {
@@ -108,7 +103,6 @@ class ItemTeamRetrospectListFragment(
                 }
             }
         }
-        // _teamRetrospectMultiList.apply { value = arrayListOf() }
         Log.d("ItemTeamRetrospectListFragment: ", "${viewModel.teamRetrospectMultiList.value}")
     }
 }

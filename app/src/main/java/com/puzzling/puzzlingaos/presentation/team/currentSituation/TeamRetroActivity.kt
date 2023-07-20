@@ -29,10 +29,6 @@ class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.fcv_team_current, TeamCurrentSituationFragment())
-//            .commit()
 
 
         binding.viewModel = viewModel
