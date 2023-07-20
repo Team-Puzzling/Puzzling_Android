@@ -43,9 +43,6 @@ class PersonalDashboardFragment :
         }
     }
 
-    private fun setPuzzlePiece() {
-    }
-
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
             val intent = Intent(context, WriteRetrospectiveActivity::class.java)
@@ -82,9 +79,37 @@ class PersonalDashboardFragment :
 
     private fun clickPuzzlePiece() {
         Log.d("personal", "review ID:::: ${viewModel.myReviewId.value}")
-        with(binding) {
-            // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
-            clPersonalMain1.setOnClickListener {
+        //        with(binding) {
+//            // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
+//            clPersonalMain1.setOnClickListener {
+// //                viewLifecycleOwner.lifecycleScope.launch {
+// //                    delay(6000)
+// //                }
+//                activity?.let {
+//                    val intent = Intent(context, DetailRetroActivity::class.java)
+//                    startActivity(intent)
+//                }
+//            }
+//        }
+        val teamLayouts = listOf(
+            binding.clPersonalMain1,
+            binding.clPersonalMain2,
+            binding.clPersonalMain3,
+            binding.clPersonalMain4,
+            binding.clPersonalMain5,
+            binding.clPersonalMain6,
+            binding.clPersonalMain7,
+            binding.clPersonalMain8,
+            binding.clPersonalMain9,
+            binding.clPersonalMain10,
+            binding.clPersonalMain11,
+            binding.clPersonalMain12,
+            binding.clPersonalMain13,
+            binding.clPersonalMain14,
+            binding.clPersonalMain15,
+        )
+        teamLayouts.forEach { layout ->
+            layout.setOnClickListener {
                 activity?.let {
                     val intent = Intent(context, DetailRetroActivity::class.java)
                     startActivity(intent)

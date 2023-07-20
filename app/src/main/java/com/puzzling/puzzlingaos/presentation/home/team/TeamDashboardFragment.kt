@@ -29,18 +29,36 @@ class TeamDashboardFragment :
     }
 
     private fun clickPuzzlePiece() {
-        binding.clTeamMain1.setOnClickListener {
-            activity?.let {
-                val intent = Intent(context, MjTestActivity::class.java)
-                intent.putExtra("Team", viewModel.myNickname.value)
-                startActivity(intent)
+        val teamLayouts = listOf(
+            binding.clTeamMain1,
+            binding.clTeamMain2,
+            binding.clTeamMain3,
+            binding.clTeamMain4,
+            binding.clTeamMain5,
+            binding.clTeamMain6,
+            binding.clTeamMain7,
+            binding.clTeamMain8,
+            binding.clTeamMain9,
+            binding.clTeamMain10,
+            binding.clTeamMain11,
+            binding.clTeamMain12,
+            binding.clTeamMain13,
+            binding.clTeamMain14,
+            binding.clTeamMain15,
+        )
+        teamLayouts.forEach { layout ->
+            layout.setOnClickListener {
+                activity?.let {
+                    val intent = Intent(context, MjTestActivity::class.java)
+                    intent.putExtra("Team", viewModel.myNickname.value)
+                    startActivity(intent)
+                }
             }
-            Log.d("haha", "viewModel.myNickname.value!!:: ${viewModel.myNickname.value}")
         }
     }
 
     private fun clickTeamPuzzleBoardBtn() {
-        // TODO 팀 보드
+        // 팀 퍼즐판 보러가기
         binding.clTeamTopBackground.setOnClickListener {
             binding.clTeamTopBackground.setOnClickListener {
                 Log.d(
