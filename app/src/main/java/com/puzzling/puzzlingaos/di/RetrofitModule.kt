@@ -3,6 +3,7 @@ package com.puzzling.puzzlingaos.di
 import android.util.Log
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.puzzling.puzzlingaos.BuildConfig
+import com.puzzling.puzzlingaos.BuildConfig.JWT_ACCESS_TOKEN
 import com.puzzling.puzzlingaos.util.isJsonArray
 import com.puzzling.puzzlingaos.util.isJsonObject
 import dagger.Module
@@ -67,8 +68,7 @@ object RetrofitModule {
             val builder = original.newBuilder()
             builder.addHeader(
                 "Authorization",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODk2OTA0NzgsImV4cCI6MTY5MDA1MDQ3OCwibWVtYmVySWQiOjJ9.ITlgXxy2Qq1CTSZLtAOtdJaV35TUujpEQt-4LJogpyE",
-                // "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODk3NTAxMTIsImV4cCI6MTY5MDExMDExMiwibWVtYmVySWQiOjJ9.cObREoCFGC8jgcBJjz0z7Bnb03KfP_Fzzup9Oge1tYA",
+                JWT_ACCESS_TOKEN,
             )
             chain.proceed(builder.build())
         }
