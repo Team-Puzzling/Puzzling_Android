@@ -133,7 +133,7 @@ class PersonalDashboardViewModel @Inject constructor(
         }
     }
 
-    fun truncateActionPlanList(actionPlanList: List<ActionPlan>): List<ActionPlan> {
+    private fun truncateActionPlanList(actionPlanList: List<ActionPlan>): List<ActionPlan> {
         val maxLength = 50
         val truncatedList = mutableListOf<ActionPlan>()
 
