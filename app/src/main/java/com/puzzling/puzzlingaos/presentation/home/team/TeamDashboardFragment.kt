@@ -11,6 +11,7 @@ import com.puzzling.puzzlingaos.databinding.FragmentTeamDashboardBinding
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.OneTeamBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.ThreeTeamBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.TwoTeamBoardActivity
+import com.puzzling.puzzlingaos.presentation.team.currentSituation.MjTestActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,23 +26,33 @@ class TeamDashboardFragment :
     }
 
     private fun clickTeamPuzzleBoardBtn() {
-        binding.clTeamTopBackground.setOnClickListener {
-            Log.d(
-                "team",
-                "viewModel.puzzleBoardCount.value::: ${viewModel.teamPuzzleBoardCount.value}",
-            )
-            when (viewModel.teamPuzzleBoardCount.value) {
-                1 -> activity?.let {
-                    val intent = Intent(context, OneTeamBoardActivity::class.java)
-                    startActivity(intent)
-                }
-                2 -> activity?.let {
-                    val intent = Intent(context, TwoTeamBoardActivity::class.java)
-                    startActivity(intent)
-                }
-                3 -> activity?.let {
-                    val intent = Intent(context, ThreeTeamBoardActivity::class.java)
-                    startActivity(intent)
+        // TODO 팀원 현황
+        binding.clTeamMain1.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, MjTestActivity::class.java)
+                startActivity(intent)
+            }
+            binding.clTeamTopBackground.setOnClickListener {
+                Log.d(
+                    "team",
+                    "viewModel.puzzleBoardCount.value::: ${viewModel.teamPuzzleBoardCount.value}",
+                )
+                when (viewModel.teamPuzzleBoardCount.value) {
+                    1 -> activity?.let {
+                        val intent = Intent(context, OneTeamBoardActivity::class.java)
+                        Log.d("team", "1")
+                        startActivity(intent)
+                    }
+                    2 -> activity?.let {
+                        val intent = Intent(context, TwoTeamBoardActivity::class.java)
+                        Log.d("team", "2")
+                        startActivity(intent)
+                    }
+                    3 -> activity?.let {
+                        val intent = Intent(context, ThreeTeamBoardActivity::class.java)
+                        Log.d("team", "3")
+                        startActivity(intent)
+                    }
                 }
             }
         }
