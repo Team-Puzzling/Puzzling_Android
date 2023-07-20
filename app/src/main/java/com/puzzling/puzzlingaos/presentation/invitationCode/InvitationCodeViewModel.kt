@@ -116,7 +116,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
             _codeResponse.value = response.data
             Log.d("초대코드", "$response")
         }.onFailure {
-            _isCodeSucces.value = true
+            _isCodeSucces.value = false
             Log.d("초대코드", "$it")
         }
     }
@@ -131,8 +131,8 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
             _isProfileSucces.value = true
             Log.d("프로젝트 참여하기", "프로젝트 참여하기 $response")
         }.onFailure {
-            _isProfileSucces.value = true
-            Log.d("프로젝트 참여하기", "$it")
+            _isProfileSucces.value = false
+            Log.d("프로젝트 참여하기", "프로젝트 참여 실패 $it")
         }
     }
 
