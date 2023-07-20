@@ -9,6 +9,8 @@ data class ResponseProjectRetroWeekDto(
     val status: Int,
     @SerialName("success")
     val success: Boolean,
+    @SerialName("message")
+    val message: String,
     @SerialName("data")
     val data: ProjectCycle?,
 ) {

@@ -73,6 +73,7 @@ class MyRetrospectViewModel @Inject constructor(
         }.onSuccess { response ->
             _retroWeek.value = response.data?.projectReviewCycle
             Log.d("회고 주기", "$response")
+            Log.d("회고 주기","${response.data?.projectReviewCycle}")
         }.onFailure {
             Log.d("회고 주기", "$it")
         }

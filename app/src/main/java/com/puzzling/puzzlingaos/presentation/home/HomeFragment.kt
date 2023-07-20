@@ -28,6 +28,15 @@ class HomeFragment :
         clickTabItem()
         showPopupMessage()
         handleSelectedProject()
+        getPopupContent()
+    }
+
+    private fun getPopupContent() {
+        viewModel.getProjectWeekCycle()
+
+        viewModel.retroWeek.observe(this) {
+            binding.tvHomePopupContent.text = "매주 $it \n 회고를 작성해주세요"
+        }
     }
 
     private fun initTabItem() {
