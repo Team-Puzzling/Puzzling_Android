@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
+import com.puzzling.puzzlingaos.util.UserInfo.MEMBER_ID
+import com.puzzling.puzzlingaos.util.UserInfo.PROJECT_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
@@ -37,7 +39,7 @@ class DetailRetroViewModel @Inject constructor(private val repository: MyPageRep
         kotlin.runCatching {
             Log.d("상세회고조회", "startOfWeek:: $startOfWeek")
             Log.d("상세회고조회", "endOfWeek:: $endOfWeek")
-            repository.getMyDetailReview(1, 11, "2023-07-18", "2023-07-23")
+            repository.getMyDetailReview(MEMBER_ID, PROJECT_ID, "2023-07-18", "2023-07-23")
         }.onSuccess { response ->
             _detailRetroList.value = response.data
             Log.d("상세회고조회", "response:: $response")
