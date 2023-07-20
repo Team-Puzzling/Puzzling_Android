@@ -22,7 +22,7 @@
             android:id="@+id/tb_myPage"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="21dp"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
