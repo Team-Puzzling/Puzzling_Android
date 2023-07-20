@@ -2,11 +2,15 @@ package com.puzzling.puzzlingaos.presentation.home.personal
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
+import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.OnePuzzleBoardActivity
+import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.ThreePuzzleBoardActivity
+import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.TwoPuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,10 +53,28 @@ class PersonalDashboardFragment :
 
     private fun clickMyPuzzleBoardBtn() {
         binding.clPersonalTopBackground.setOnClickListener {
-            activity?.let {
-                val intent = Intent(context, MyPuzzleBoardActivity::class.java)
-                startActivity(intent)
+            Log.d(
+                "personal",
+                "viewModel.puzzleBoardCount.value::: ${viewModel.puzzleBoardCount.value}",
+            )
+            when (viewModel.puzzleBoardCount.value) {
+                1 -> activity?.let {
+                    val intent = Intent(context, OnePuzzleBoardActivity::class.java)
+                    startActivity(intent)
+                }
+                2 -> activity?.let {
+                    val intent = Intent(context, TwoPuzzleBoardActivity::class.java)
+                    startActivity(intent)
+                }
+                3 -> activity?.let {
+                    val intent = Intent(context, ThreePuzzleBoardActivity::class.java)
+                    startActivity(intent)
+                }
             }
+//            activity?.let {
+//                val intent = Intent(context, MyPuzzleBoardActivity::class.java)
+//                startActivity(intent)
+//            }
         }
     }
 
