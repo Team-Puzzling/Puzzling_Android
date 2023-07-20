@@ -1,10 +1,11 @@
 package com.puzzling.puzzlingaos.presentation.team.currentSituation
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class RetrospectThisWeekAdapter(
-    fragment: Fragment,
+    fragment: FragmentActivity,
     private val num: MutableList<Int>,
 ) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {

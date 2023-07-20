@@ -1,35 +1,35 @@
 package com.puzzling.puzzlingaos.presentation.team.currentSituation
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
-import com.puzzling.puzzlingaos.base.BaseFragment
-import com.puzzling.puzzlingaos.databinding.FragmentTeamCurrentSituationBinding
+import com.puzzling.puzzlingaos.base.BaseActivity
+import com.puzzling.puzzlingaos.databinding.ActivityTeamRetroBinding
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
-class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBinding>(R.layout.fragment_team_current_situation) {
+class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activity_team_retro) {
 
-    // private val viewModel: TeamCurrentSituationViewModel by viewModels { ViewModelFactory(requireContext()) }
-    private val viewModel by viewModels<TeamCurrentSituationViewModel>()
+    private val viewModel by viewModels<TeamRetroViewModel>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val teamTabTitle = getWeekDates()
     var num = mutableListOf(0, 0, 0, 0, 0, 0, 0)
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
 
         binding.viewModel = viewModel
         binding.tvTeamCurrentYearmonth.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월"))
@@ -51,6 +51,7 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
                             num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
                         }
                     }
+                    // setBackGround()
                 }
                 setBackGround()
             }
@@ -60,6 +61,21 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
         TabLayoutMediator(binding.layoutTeamTabDate, binding.viewPagerTeamRetrospectList) { tab, position ->
             tab.text = teamTabTitle[position]
         }.attach()
+
+        clickBackBtn()
+    }
+
+    private fun clickBackBtn() {
+        binding.btnTeamCurrentBack.setOnClickListener {
+            setSupportActionBar(binding.tbTeamCurrent)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setBackGround() {
@@ -67,19 +83,19 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
             Log.d("오류", "$num")
             when (num[i]) {
                 BLUE_100 -> {
-                    val tapItem = LayoutInflater.from(requireContext())
+                    val tapItem = LayoutInflater.from(this)
                         .inflate(R.layout.tab_text_color_blue100, null) as ConstraintLayout
                     binding.layoutTeamTabDate.getTabAt(i)?.customView = tapItem
                 }
                 BLACK_TEXT -> {
                     val tapItem =
-                        LayoutInflater.from(requireContext())
+                        LayoutInflater.from(this)
                             .inflate(R.layout.tab_title_text_black, null) as ConstraintLayout
                     binding.layoutTeamTabDate.getTabAt(i)?.customView = tapItem
                 }
                 else -> {
                     val tapItem =
-                        LayoutInflater.from(requireContext())
+                        LayoutInflater.from(this)
                             .inflate(R.layout.tab_title, null) as ConstraintLayout
                     binding.layoutTeamTabDate.getTabAt(i)?.customView = tapItem
                 }

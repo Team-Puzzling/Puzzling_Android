@@ -74,11 +74,20 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.detailRetrospect.DetailRetroActivity"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.onboarding.LoginActivity"
+            android:name=".presentation.team.currentSituation.TeamRetroActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" >
+        </activity>
+        <activity android:name=".presentation.detailRetrospect.DetailRetroActivity"
+            android:exported="true"/>
+        <activity android:name=".presentation.onboarding.LoginActivity"
+            android:launchMode="singleTask"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.onboarding.ChooseJoinRegisterActivity"
