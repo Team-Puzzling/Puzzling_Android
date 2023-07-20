@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.domain.entity.ActionPlan
 import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
+import com.puzzling.puzzlingaos.domain.entity.PuzzleBoard
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
 import com.puzzling.puzzlingaos.util.UserInfo
@@ -54,6 +56,14 @@ class PersonalDashboardViewModel @Inject constructor(
     private val _isSuccess = MutableLiveData(false)
     val isSuccess: LiveData<Boolean> get() = _isSuccess
 
+    val puzzleBoardList = listOf(
+        PuzzleBoard("2023.07.03. ~ 2023.07.18.", R.drawable.img_myboard1),
+        PuzzleBoard("2023.06.14. ~ 2023.06.29.", R.drawable.img_myboard2),
+        PuzzleBoard("2023.05.04. ~ 2023.06.12.", R.drawable.img_myboard3),
+        PuzzleBoard("2023.05.04. ~ 2023.06.12.", R.drawable.img_myboard4),
+
+    )
+
     init {
         getMyPuzzleData()
         getMyPuzzleData()
@@ -63,7 +73,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleData() = viewModelScope.launch {
-        repository.getUserPuzzle(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getUserPuzzle(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("personal", "getMyPuzzleData() success:: $response")
@@ -82,7 +92,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleBoard() = viewModelScope.launch {
-        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _myPuzzleBoardList.value = response
                 Log.d("personal", "getMyPuzzleBoard() success:: $response")
@@ -113,7 +123,8 @@ class PersonalDashboardViewModel @Inject constructor(
     private fun getActionPlan() = viewModelScope.launch {
         repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
             Log.d("personal", "getActionPlan() success:: $response")
-            _actionPlanList.value = response
+            val truncatedList = truncateActionPlanList(response)
+            _actionPlanList.value = truncatedList
             Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
             Log.d(
                 "actionPlan",
@@ -134,5 +145,25 @@ class PersonalDashboardViewModel @Inject constructor(
                     Log.d("write", "getPreviousTemplate() Fail:: $it")
                 }
         }
+    }
+
+    private fun truncateActionPlanList(actionPlanList: List<ActionPlan>): List<ActionPlan> {
+        val maxLength = 50
+        val truncatedList = mutableListOf<ActionPlan>()
+
+        for (actionPlan in actionPlanList) {
+            val truncatedText = if (actionPlan.actionPlanContent!!.length <= maxLength) {
+                actionPlan.actionPlanContent
+            } else {
+                actionPlan.actionPlanContent.substring(0, maxLength - 2) + ".."
+            }
+            val truncatedActionPlan = ActionPlan(
+                truncatedText,
+                actionPlan.actionPlanDate,
+            )
+            truncatedList.add(truncatedActionPlan)
+        }
+
+        return truncatedList
     }
 }
