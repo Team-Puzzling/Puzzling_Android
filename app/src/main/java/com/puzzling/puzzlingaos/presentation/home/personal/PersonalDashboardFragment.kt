@@ -100,7 +100,7 @@ class PersonalDashboardFragment :
                 binding.tvPersonalBottomTitle.text = "회고 작성하기"
                 if (viewModel.hasTodayReview.value == true) {
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
-                    binding.clPersonalBottomBtn.isClickable = false
+                    binding.clPersonalBottomBtn.isClickable = true
                 } else {
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_blue400_fill_radius_16)
                     binding.clPersonalBottomBtn.isClickable = true
