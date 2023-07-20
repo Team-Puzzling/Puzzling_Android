@@ -25,15 +25,41 @@ class TeamDashboardFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
         clickTeamPuzzleBoardBtn()
+        clickPuzzlePiece()
+    }
+
+    private fun clickPuzzlePiece() {
+        val teamLayouts = listOf(
+            binding.clTeamMain1,
+            binding.clTeamMain2,
+            binding.clTeamMain3,
+            binding.clTeamMain4,
+            binding.clTeamMain5,
+            binding.clTeamMain6,
+            binding.clTeamMain7,
+            binding.clTeamMain8,
+            binding.clTeamMain9,
+            binding.clTeamMain10,
+            binding.clTeamMain11,
+            binding.clTeamMain12,
+            binding.clTeamMain13,
+            binding.clTeamMain14,
+            binding.clTeamMain15,
+        )
+        teamLayouts.forEach { layout ->
+            layout.setOnClickListener {
+                activity?.let {
+                    val intent = Intent(context, MjTestActivity::class.java)
+                    intent.putExtra("Team", viewModel.myNickname.value)
+                    startActivity(intent)
+                }
+            }
+        }
     }
 
     private fun clickTeamPuzzleBoardBtn() {
-        // TODO 팀원 현황
-        binding.clTeamMain1.setOnClickListener {
-            activity?.let {
-                val intent = Intent(context, MjTestActivity::class.java)
-                startActivity(intent)
-            }
+        // 팀 퍼즐판 보러가기
+        binding.clTeamTopBackground.setOnClickListener {
             binding.clTeamTopBackground.setOnClickListener {
                 Log.d(
                     "team",
@@ -42,7 +68,6 @@ class TeamDashboardFragment :
                 when (viewModel.teamPuzzleBoardCount.value) {
                     1 -> activity?.let {
                         val intent = Intent(context, OneTeamBoardActivity::class.java)
-                        Log.d("team", "1")
                         startActivity(intent)
                     }
                     2 -> activity?.let {
