@@ -85,6 +85,7 @@ class PersonalDashboardViewModel @Inject constructor(
                 Log.d("personal", "myNickname success:: ${_myNickname.value}")
                 Log.d("personal", "puzzleCount success:: ${_myPuzzleCount.value}")
                 Log.d("personal", "hasTodayReview success:: ${_hasTodayReview.value}")
+                Log.d("personal", "_isReviewDay success:: ${_isReviewDay.value}")
             }
             .onFailure {
                 Log.d("personal", "getMyPuzzleData() Fail:: $it")

@@ -31,6 +31,7 @@ class PersonalDashboardFragment :
         clickBottomBtn()
         clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
+        setBottomBtnBackgroundColor()
     }
 
     private fun setActionPlanAdapter() {
@@ -88,6 +89,26 @@ class PersonalDashboardFragment :
                     val intent = Intent(context, DetailRetroActivity::class.java)
                     startActivity(intent)
                 }
+            }
+        }
+    }
+
+    private fun setBottomBtnBackgroundColor() {
+        viewModel.isSuccess.observe(this) {
+            if (viewModel.isReviewDay.value == true) {
+                Log.d("personal", "회고 진행해야함")
+                binding.tvPersonalBottomTitle.text = "회고 작성하기"
+                if (viewModel.hasTodayReview.value == true) {
+                    binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
+                    binding.clPersonalBottomBtn.isClickable = false
+                } else {
+                    binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_blue400_fill_radius_16)
+                    binding.clPersonalBottomBtn.isClickable = true
+                }
+            } else {
+                binding.tvPersonalBottomTitle.text = "회고 작성일이 아니에요"
+                binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
+                binding.clPersonalBottomBtn.isClickable = false
             }
         }
     }
