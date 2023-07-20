@@ -77,9 +77,10 @@
     <string name="tv_team_second_name">김솝트</string>
     <string name="tv_team_first_name">박솝트</string>
     <string name="tv_team_third_name">김솝트</string>
-    <string name="tv_team_second_ranking_puzzle">5조각</string>
-    <string name="tv_team_first_ranking_puzzle">13조각</string>
-    <string name="tv_team_third_ranking_puzzle">7조각</string>
+    <string name="tv_team_second_ranking_puzzle">%d 조각</string>
+    <string name="tv_team_first_ranking_puzzle">%d 조각</string>
+    <string name="tv_team_third_ranking_puzzle">%d 조각</string>
+    <string name="tv_team_ranking_count">%d</string>
     <string name="tv_myPage_popup">매주 %s에\n 회고를 작성해주세요!</string>
 
 </resources>

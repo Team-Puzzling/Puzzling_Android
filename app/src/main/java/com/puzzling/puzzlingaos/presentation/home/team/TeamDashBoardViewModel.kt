@@ -116,9 +116,10 @@ class TeamDashBoardViewModel @Inject constructor(
             _memberRank.value = teamRanks.map { it.memberRank }
             _memberNickname.value = teamRanks.map { it.memberNickname }
             _memberRole.value = teamRanks.map { it.memberRole }
-            _memberPuzzleCount.value = teamRanks.map { it.memberPuzzleCount ?: -1 }
+            _memberPuzzleCount.value = teamRanks.map { it.memberPuzzleCount }
 
             _memberNickname.value = truncateMemberNicknameList(_memberNickname.value ?: emptyList())
+            _memberRole.value = truncateMemberRoleList(_memberRole.value ?: emptyList())
 
             Log.d("team", "getTeamRanking() success:: $response")
             Log.d("team", "_memberRank:: ${_memberRank.value}")
@@ -130,7 +131,7 @@ class TeamDashBoardViewModel @Inject constructor(
         }
     }
 
-    fun truncateMemberNicknameList(nicknameList: List<String>): List<String> {
+    private fun truncateMemberNicknameList(nicknameList: List<String>): List<String> {
         val maxLength = 4
         val truncatedList = mutableListOf<String>()
 
@@ -146,7 +147,23 @@ class TeamDashBoardViewModel @Inject constructor(
         return truncatedList
     }
 
-    fun String.substringOrNull(startIndex: Int): String? {
+    private fun truncateMemberRoleList(nicknameList: List<String>): List<String> {
+        val maxLength = 10
+        val truncatedList = mutableListOf<String>()
+
+        for (nickname in nicknameList) {
+            val truncatedNickname = if (nickname.length <= maxLength) {
+                nickname
+            } else {
+                nickname.substring(0, maxLength - 1) + "..."
+            }
+            truncatedList.add(truncatedNickname)
+        }
+
+        return truncatedList
+    }
+
+    private fun String.substringOrNull(startIndex: Int): String? {
         if (startIndex >= length) {
             return null
         }
