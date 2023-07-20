@@ -1,7 +1,11 @@
 package com.puzzling.puzzlingaos.presentation.mypage
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -41,8 +45,36 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         initAdapter()
         showPopupMessage()
 
+        getPopUpContent()
+    }
+
+    private fun getPopUpContent() {
         viewModel.retroWeek.observe(this) {
-            binding.tvMypagePopupContent.text = "매주 $it \n 회고를 작성해주세요"
+            val reviewCycleText = "매주 ${it?.projectReviewCycle} \n 회고를 작성해주세요"
+
+            // SpannableString 생성
+            val spannableString = SpannableString(reviewCycleText)
+
+            // "${it?.projectReviewCycle}" 부분의 텍스트 색상 변경
+            val startIndex = reviewCycleText.indexOf(it?.projectReviewCycle ?: "")
+            val endIndex = startIndex + (it?.projectReviewCycle?.length ?: 0)
+            if (startIndex in 0 until endIndex) {
+                spannableString.setSpan(
+                    ForegroundColorSpan(
+                        ContextCompat.getColor(
+                            requireActivity(),
+                            R.color.blue_400,
+                        ),
+                    ), // 원하는 색상으로 변경
+                    startIndex,
+                    endIndex,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+                )
+            }
+
+            // SpannableString을 TextView에 설정
+            binding.tvMypagePopupContent.text = spannableString
+            binding.tvMypagePopupTitle.text = it?.projectName
         }
     }
 
