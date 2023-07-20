@@ -50,7 +50,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
     private val _isCodeSucces = MutableStateFlow<Boolean?>(null)
     val isCodeSuccess = _isCodeSucces.asStateFlow()
 
-    private val _isProfileSucces = MutableStateFlow(true)
+    private val _isProfileSucces = MutableStateFlow<Boolean?>(null)
     val isProfileSuccess = _isProfileSucces.asStateFlow()
 
     val codeErrorMessage = MutableStateFlow("")
@@ -84,7 +84,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
                 isProfileSuccess == null -> true
                 isNickNameInEmoji && isProfileSuccess -> true
                 isProfileSuccess.not() -> {
-                    nickNameErrorMessage.value = INPUT_CODE_ERROR
+                    nickNameErrorMessage.value = NICKNAME_ALREADY_INUSE
                     return@combine false
                 }
                 else -> true
@@ -100,10 +100,6 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
                 }
                 isProfileSuccess == null -> true
                 isRoleInEmoji && isProfileSuccess -> true
-                isProfileSuccess.not() -> {
-                    roleErrorMessage.value = INPUT_CODE_ERROR
-                    return@combine false
-                }
                 else -> true
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
@@ -116,7 +112,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
             _codeResponse.value = response.data
             Log.d("초대코드", "$response")
         }.onFailure {
-            _isCodeSucces.value = true
+            _isCodeSucces.value = false
             Log.d("초대코드", "$it")
         }
     }
@@ -125,14 +121,14 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
         kotlin.runCatching {
             repository.joinProject(
                 MEMBER_ID,
-                RequestInvitationCode(PROJECT_ID, inputNickName.value, inputRole.value),
+                RequestInvitationCode(1, inputNickName.value, inputRole.value),
             )
         }.onSuccess { response ->
             _isProfileSucces.value = true
             Log.d("프로젝트 참여하기", "프로젝트 참여하기 $response")
         }.onFailure {
-            _isProfileSucces.value = true
-            Log.d("프로젝트 참여하기", "$it")
+            _isProfileSucces.value = false
+            Log.d("프로젝트 참여하기", "프로젝트 참여 실패 $it")
         }
     }
 
