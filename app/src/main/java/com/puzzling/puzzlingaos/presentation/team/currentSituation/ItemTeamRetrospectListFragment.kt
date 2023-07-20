@@ -12,9 +12,6 @@ import com.puzzling.puzzlingaos.databinding.FragmentItemTeamRetrospectListBindin
 import com.puzzling.puzzlingaos.domain.entity.TeamReviewMultiList
 import com.puzzling.puzzlingaos.util.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class ItemTeamRetrospectListFragment(
@@ -32,12 +29,6 @@ class ItemTeamRetrospectListFragment(
 
         val day = viewModel.week[dayPosition]
 
-        viewModel.getTeamRetrospectList(
-            1,
-            startOfWeek = LocalDate.now().with(DayOfWeek.MONDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-            endOfWeek = LocalDate.now().with(DayOfWeek.SUNDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-        )
-
         val retroItem = viewModel.teamRetrospectList.value
 
         binding.rcvTeamRetrospectList.addItemDecoration(
@@ -48,7 +39,13 @@ class ItemTeamRetrospectListFragment(
             for (item in retroItem) {
                 if (day == item.reviewDay) {
                     testItemList(viewModel.teamRetrospectList, day)
+                }
+            }
+        }
 
+        if (retroItem != null) {
+            for (item in retroItem) {
+                if (day == item.reviewDay) {
                     binding.rcvTeamRetrospectList.adapter = viewModel.teamRetrospectMultiList.value?.let {
                         RetrospectListAdapter(
                             it,
