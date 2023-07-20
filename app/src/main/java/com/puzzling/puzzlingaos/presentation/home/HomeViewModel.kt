@@ -51,8 +51,6 @@ class HomeViewModel @Inject constructor(
     val selectedProjectName: LiveData<String>
         get() = _selectedProjectName
 
-    private val _retroWeek = MutableLiveData<ResponseProjectRetroWeekDto.ProjectCycle?>()
-    val retroWeek: LiveData<ResponseProjectRetroWeekDto.ProjectCycle?> get() = _retroWeek
     private val _selectedProjectId = MutableLiveData<Int>()
     val selectedProjectId: LiveData<Int>
         get() = _selectedProjectId
@@ -65,8 +63,8 @@ class HomeViewModel @Inject constructor(
     val projectName: LiveData<List<String>>
         get() = _projectName
 
-    private val _retroWeek = MutableLiveData<String>()
-    val retroWeek: LiveData<String> get() = _retroWeek
+    private val _retroWeek = MutableLiveData<ResponseProjectRetroWeekDto.ProjectCycle?>()
+    val retroWeek: LiveData<ResponseProjectRetroWeekDto.ProjectCycle?> get() = _retroWeek
 
     init {
         _reviewCycleList.value = listOf("월", "수", "금")
