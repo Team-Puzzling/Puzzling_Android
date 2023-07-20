@@ -6,12 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
-import com.puzzling.puzzlingaos.util.UserInfo.MEMBER_ID
-import com.puzzling.puzzlingaos.util.UserInfo.PROJECT_ID
+import com.puzzling.puzzlingaos.util.UserInfo.GET_MEMBER_ID
+import com.puzzling.puzzlingaos.util.UserInfo.GET_PROJECT_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,8 +35,8 @@ class MyRetrospectViewModel @Inject constructor(
     private val _currentProject = MutableLiveData<String>("프로젝트 이름")
     val currentProject: LiveData<String> get() = _currentProject
 
-    private val _retroWeek = MutableLiveData<String>()
-    val retroWeek: LiveData<String> get() = _retroWeek
+    private val _retroWeek = MutableLiveData<ResponseProjectRetroWeekDto.ProjectCycle?>()
+    val retroWeek: LiveData<ResponseProjectRetroWeekDto.ProjectCycle?> get() = _retroWeek
 
     init {
         getMyProjectReview()
@@ -43,7 +44,7 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getMyProjectReview() = viewModelScope.launch {
         kotlin.runCatching {
-            myPageRepository.getMyProjectReview(MEMBER_ID, PROJECT_ID)
+            myPageRepository.getMyProjectReview(GET_MEMBER_ID, GET_PROJECT_ID)
         }.onSuccess { response ->
             _responseReview.value = response.data
             Log.d("MyProjectRetro", "$response")
@@ -59,7 +60,7 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getMyProjectList() = viewModelScope.launch {
         kotlin.runCatching {
-            myBoardRepository.getProceedingProject(MEMBER_ID).onSuccess { response ->
+            myBoardRepository.getProceedingProject(GET_MEMBER_ID).onSuccess { response ->
                 _responseProjectList.value = response
             }.onFailure {
                 Log.d("MyProjectRetro", "$it")
@@ -69,10 +70,11 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getProjectWeekCycle() = viewModelScope.launch {
         kotlin.runCatching {
-            projectRepository.getProjectWeekCycle(PROJECT_ID)
+            projectRepository.getProjectWeekCycle(GET_PROJECT_ID)
         }.onSuccess { response ->
-            _retroWeek.value = response.data?.projectReviewCycle
+            _retroWeek.value = response.data
             Log.d("회고 주기", "$response")
+            Log.d("회고 주기", "${response.data?.projectReviewCycle}")
         }.onFailure {
             Log.d("회고 주기", "$it")
         }

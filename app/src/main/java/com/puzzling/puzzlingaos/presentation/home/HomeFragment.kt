@@ -1,8 +1,12 @@
 package com.puzzling.puzzlingaos.presentation.home
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -28,6 +32,38 @@ class HomeFragment :
         clickTabItem()
         showPopupMessage()
         handleSelectedProject()
+        getPopupContent()
+    }
+
+    private fun getPopupContent() {
+        viewModel.getProjectWeekCycle()
+
+        viewModel.retroWeek.observe(this) {
+            val reviewCycleText = "매주 ${it?.projectReviewCycle} \n 회고를 작성해주세요"
+
+            // SpannableString 생성
+            val spannableString = SpannableString(reviewCycleText)
+
+            // "${it?.projectReviewCycle}" 부분의 텍스트 색상 변경
+            val startIndex = reviewCycleText.indexOf(it?.projectReviewCycle ?: "")
+            val endIndex = startIndex + (it?.projectReviewCycle?.length ?: 0)
+            if (startIndex in 0 until endIndex) {
+                spannableString.setSpan(
+                    ForegroundColorSpan(
+                        ContextCompat.getColor(
+                            requireActivity(),
+                            R.color.blue_400,
+                        ),
+                    ),
+                    startIndex,
+                    endIndex,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+                )
+            }
+
+            binding.tvHomePopupContent.text = spannableString
+            binding.tvHomePopupTitle.text = it?.projectName
+        }
     }
 
     private fun initTabItem() {
