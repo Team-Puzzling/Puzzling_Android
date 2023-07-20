@@ -29,6 +29,7 @@ android {
         buildConfigField "String", "NATIVE_APP_KEY", properties["native.app.key"]
         buildConfigField "String", "JWT_ACCESS_TOKEN", properties["jwt.access.token"]
 
+
         manifestPlaceholders["NATIVE_APP_KEY"] =
                 properties.getProperty("native.app.key.no.quotes")
     }
