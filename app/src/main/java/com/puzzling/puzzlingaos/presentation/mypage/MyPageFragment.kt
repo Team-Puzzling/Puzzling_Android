@@ -3,6 +3,7 @@ package com.puzzling.puzzlingaos.presentation.mypage
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
 import com.puzzling.puzzlingaos.domain.entity.Project
+import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectBottomAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectContentAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectTitleAdapter
@@ -20,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
     private lateinit var viewModel: MyRetrospectViewModel
+    private val personalViewModel by activityViewModels<PersonalDashboardViewModel>()
 
     private val dummyItemList = mutableListOf<ResponseMyPageProjectDto>(
         ResponseMyPageProjectDto("Piickle", "2023-07-03", 2),
@@ -45,9 +48,11 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun initAdapter() {
         val myProjectContentAdapter = MyProjectContentAdapter()
+        val myProjectTitleAdapter = MyProjectTitleAdapter()
+        myProjectTitleAdapter.submitList(listOf(personalViewModel.myNickname.value ?: "김민주"))
         val concatAdapter =
             ConcatAdapter(
-                MyProjectTitleAdapter("지니"),
+                myProjectTitleAdapter,
                 myProjectContentAdapter,
                 MyProjectBottomAdapter(),
             )
