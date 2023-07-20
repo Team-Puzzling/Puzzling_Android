@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamDashboardBinding
+import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.OneTeamBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.ThreeTeamBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.TwoTeamBoardActivity
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TeamDashboardFragment :
     BaseFragment<FragmentTeamDashboardBinding>(R.layout.fragment_team_dashboard) {
     private val viewModel by viewModels<TeamDashBoardViewModel>()
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

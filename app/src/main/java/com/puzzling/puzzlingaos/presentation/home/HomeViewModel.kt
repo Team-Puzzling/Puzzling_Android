@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: MyBoardRepository,
-    private val projectRepository: ProjectRepository
+    private val projectRepository: ProjectRepository,
 ) : ViewModel() {
 
     private var _projectList: MutableLiveData<List<Project>> = MutableLiveData()
@@ -50,6 +50,18 @@ class HomeViewModel @Inject constructor(
     val selectedProjectName: LiveData<String>
         get() = _selectedProjectName
 
+    private val _selectedProjectId = MutableLiveData<Int>()
+    val selectedProjectId: LiveData<Int>
+        get() = _selectedProjectId
+
+    private val _projectId = MutableLiveData<List<Int>>()
+    val projectId: LiveData<List<Int>>
+        get() = _projectId
+
+    private val _projectName = MutableLiveData<List<String>>()
+    val projectName: LiveData<List<String>>
+        get() = _projectName
+
     private val _retroWeek = MutableLiveData<String>()
     val retroWeek: LiveData<String> get() = _retroWeek
 
@@ -63,6 +75,15 @@ class HomeViewModel @Inject constructor(
         repository.getProceedingProject(UserInfo.MEMBER_ID).onSuccess { response ->
             Log.d("home", "getProjectList() success:: $response")
             _projectList.value = response
+            val projects: List<Project> = _projectList.value!!
+            _projectId.value = projects.map {
+                it.projectId
+            }
+            _projectName.value = projects.map {
+                it.projectName
+            }
+            Log.d("home", "_projectId:: ${_projectId.value}")
+            Log.d("home", "_projectName:: ${_projectName.value}")
         }.onFailure {
             Log.d("home", "getProjectList() Fail:: $it")
         }
@@ -72,6 +93,14 @@ class HomeViewModel @Inject constructor(
         _selectedProjectName.value = projectName
         Log.d("home", "_selectedProjectName.value :: ${_selectedProjectName.value}")
         _isProjectNameSelected.value = true
+        _selectedProjectId.value = findProjectIdByProjectName(projectName)
+        Log.d("home", "_selectedProjectId.value :: ${_selectedProjectId.value}")
+    }
+
+    private fun findProjectIdByProjectName(projectName: String): Int? {
+        val projects: List<Project> = _projectList.value ?: return null
+        val selectedProject = projects.find { it.projectName == projectName }
+        return selectedProject?.projectId
     }
 
     fun getProjectWeekCycle() = viewModelScope.launch {
