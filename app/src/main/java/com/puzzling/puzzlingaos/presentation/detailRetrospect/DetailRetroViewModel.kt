@@ -39,7 +39,7 @@ class DetailRetroViewModel @Inject constructor(private val repository: MyPageRep
         kotlin.runCatching {
             Log.d("상세회고조회", "startOfWeek:: $startOfWeek")
             Log.d("상세회고조회", "endOfWeek:: $endOfWeek")
-            repository.getMyDetailReview(MEMBER_ID, PROJECT_ID, "2023-07-18", "2023-07-23")
+            repository.getMyDetailReview(MEMBER_ID, PROJECT_ID, startOfWeek.toString(), endOfWeek.toString())
         }.onSuccess { response ->
             _detailRetroList.value = response.data
             Log.d("상세회고조회", "response:: $response")

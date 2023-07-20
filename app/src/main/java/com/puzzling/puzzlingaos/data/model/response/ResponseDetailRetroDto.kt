@@ -23,7 +23,7 @@ data class ResponseDetailRetroDto(
         @SerialName("reviewDate")
         val reviewDate: String,
         @SerialName("reviewTemplateId")
-        val reviewTemplateId: Int,
+        val reviewTemplateId: Int?,
         @SerialName("contents")
         val contents: List<Content>?,
     ) {
