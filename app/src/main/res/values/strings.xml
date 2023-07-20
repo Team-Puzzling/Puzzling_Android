@@ -68,12 +68,12 @@
     <string name="tv_personal_current_puzzle_board">%d 판</string>
     <string name="tv_personal_top_button">퍼즐판 보러가기</string>
     <string name="tv_team_date">08/01</string>
-    <string name="tv_team_title">%s 님이 모은 퍼즐</string>
+    <string name="tv_team_title">%s 팀이 모은 퍼즐</string>
     <string name="tv_team_puzzle_current">%d 조각</string>
     <string name="tv_team_puzzle_total">/15</string>
     <string name="tv_team_current_puzzle_board">%d 판</string>
     <string name="tv_team_top_button">팀 퍼즐판 보러가기</string>
-    <string name="tv_team_ranking_title">프로젝트 이름의 랭킹</string>
+    <string name="tv_team_ranking_title">%s 의 랭킹</string>
     <string name="tv_team_second_name">김솝트</string>
     <string name="tv_team_first_name">박솝트</string>
     <string name="tv_team_third_name">김솝트</string>
