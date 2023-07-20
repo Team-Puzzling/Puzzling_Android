@@ -83,7 +83,7 @@
                 android:id="@+id/cv_mypage_popup"
                 android:layout_width="170dp"
                 android:layout_height="120dp"
-                android:layout_marginStart="194dp"
+                android:layout_marginStart="174dp"
                 android:layout_marginTop="-10dp"
                 android:elevation="0dp"
                 android:visibility="invisible"
