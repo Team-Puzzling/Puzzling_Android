@@ -63,7 +63,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleData() = viewModelScope.launch {
-        repository.getUserPuzzle(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getUserPuzzle(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("personal", "getMyPuzzleData() success:: $response")
@@ -82,7 +82,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleBoard() = viewModelScope.launch {
-        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _myPuzzleBoardList.value = response
                 Log.d("personal", "getMyPuzzleBoard() success:: $response")
