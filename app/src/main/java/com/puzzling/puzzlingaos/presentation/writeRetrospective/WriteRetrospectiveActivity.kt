@@ -60,6 +60,9 @@ class WriteRetrospectiveActivity :
     }
 
     private fun handleSelectedReviewType() {
+        viewModel.selectedReviewNum.observe(this) {
+            Log.d("write", "selectedReviewNum :: ${viewModel.selectedReviewNum.value}")
+        }
         viewModel.selectedReviewType.observe(this) { type ->
             binding.tvWriteChip.text = type
             reviewType = type

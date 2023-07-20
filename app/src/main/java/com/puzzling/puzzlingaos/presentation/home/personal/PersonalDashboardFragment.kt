@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
+import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.OnePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.ThreePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.TwoPuzzleBoardActivity
@@ -30,6 +31,7 @@ class PersonalDashboardFragment :
         clickBottomBtn()
         clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
+        setBottomBtnBackgroundColor()
     }
 
     private fun setActionPlanAdapter() {
@@ -79,9 +81,34 @@ class PersonalDashboardFragment :
     }
 
     private fun clickPuzzlePiece() {
+        Log.d("personal", "review ID:::: ${viewModel.myReviewId.value}")
         with(binding) {
             // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
             clPersonalMain1.setOnClickListener {
+                activity?.let {
+                    val intent = Intent(context, DetailRetroActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
+    }
+
+    private fun setBottomBtnBackgroundColor() {
+        viewModel.isSuccess.observe(this) {
+            if (viewModel.isReviewDay.value == true) {
+                Log.d("personal", "회고 진행해야함")
+                binding.tvPersonalBottomTitle.text = "회고 작성하기"
+                if (viewModel.hasTodayReview.value == true) {
+                    binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
+                    binding.clPersonalBottomBtn.isClickable = true
+                } else {
+                    binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_blue400_fill_radius_16)
+                    binding.clPersonalBottomBtn.isClickable = true
+                }
+            } else {
+                binding.tvPersonalBottomTitle.text = "회고 작성일이 아니에요"
+                binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
+                binding.clPersonalBottomBtn.isClickable = false
             }
         }
     }

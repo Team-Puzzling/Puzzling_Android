@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.domain.entity.TeamPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.TeamRanking
 import com.puzzling.puzzlingaos.domain.repository.TeamReviewRepository
-import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamDashBoardViewModel @Inject constructor(
     private val repository: TeamReviewRepository,
-    private val writeReviewRepository: WriteReviewRepository,
 ) : ViewModel() {
     private val _myNickname = MutableLiveData<String>()
     val myNickname: LiveData<String> get() = _myNickname
@@ -70,7 +68,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamPuzzleData() = viewModelScope.launch {
-        repository.getTeamPuzzle(UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getTeamPuzzle(UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("team", "getTeamPuzzleData() success:: $response")
@@ -89,7 +87,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamPuzzleBoard() = viewModelScope.launch {
-        repository.getTeamPuzzleBoard(UserInfo.PROJECT_ID, "2023-07-05")
+        repository.getTeamPuzzleBoard(UserInfo.PROJECT_ID, UserInfo.TODAY)
             .onSuccess { response ->
                 _teamPuzzleBoardList.value = response
                 Log.d("team", "getTeamPuzzleBoard() success:: $response")
@@ -118,9 +116,10 @@ class TeamDashBoardViewModel @Inject constructor(
             _memberRank.value = teamRanks.map { it.memberRank }
             _memberNickname.value = teamRanks.map { it.memberNickname }
             _memberRole.value = teamRanks.map { it.memberRole }
-            _memberPuzzleCount.value = teamRanks.map { it.memberPuzzleCount ?: -1 }
+            _memberPuzzleCount.value = teamRanks.map { it.memberPuzzleCount }
 
             _memberNickname.value = truncateMemberNicknameList(_memberNickname.value ?: emptyList())
+            _memberRole.value = truncateMemberRoleList(_memberRole.value ?: emptyList())
 
             Log.d("team", "getTeamRanking() success:: $response")
             Log.d("team", "_memberRank:: ${_memberRank.value}")
@@ -132,7 +131,7 @@ class TeamDashBoardViewModel @Inject constructor(
         }
     }
 
-    fun truncateMemberNicknameList(nicknameList: List<String>): List<String> {
+    private fun truncateMemberNicknameList(nicknameList: List<String>): List<String> {
         val maxLength = 4
         val truncatedList = mutableListOf<String>()
 
@@ -148,7 +147,23 @@ class TeamDashBoardViewModel @Inject constructor(
         return truncatedList
     }
 
-    fun String.substringOrNull(startIndex: Int): String? {
+    private fun truncateMemberRoleList(nicknameList: List<String>): List<String> {
+        val maxLength = 10
+        val truncatedList = mutableListOf<String>()
+
+        for (nickname in nicknameList) {
+            val truncatedNickname = if (nickname.length <= maxLength) {
+                nickname
+            } else {
+                nickname.substring(0, maxLength - 1) + "..."
+            }
+            truncatedList.add(truncatedNickname)
+        }
+
+        return truncatedList
+    }
+
+    private fun String.substringOrNull(startIndex: Int): String? {
         if (startIndex >= length) {
             return null
         }

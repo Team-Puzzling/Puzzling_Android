@@ -79,15 +79,6 @@
         <activity
             android:name=".presentation.onboarding.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
-                <data
-                    android:host="oauth"
-                    android:scheme="kakao${NATIVE_APP_KEY}" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.onboarding.ChooseJoinRegisterActivity"
