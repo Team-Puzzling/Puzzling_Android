@@ -53,6 +53,7 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
                             num[viewModel.week.indexOf(day.reviewDay)] = BLACK_TEXT
                         }
                     }
+                    // setBackGround()
                 }
                 setBackGround()
             }
@@ -65,6 +66,7 @@ class TeamCurrentSituationFragment : BaseFragment<FragmentTeamCurrentSituationBi
 
         clickBackBtn()
     }
+
     private fun clickBackBtn() {
         binding.btnTeamCurrentBack.setOnClickListener {
             Intent(requireContext(), MainActivity::class.java).apply { startActivity(this) }

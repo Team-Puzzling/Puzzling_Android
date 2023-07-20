@@ -22,7 +22,6 @@ class ItemTeamRetrospectListFragment(
 ) : BaseFragment<FragmentItemTeamRetrospectListBinding>(R.layout.fragment_item_team_retrospect_list) {
 
     private lateinit var viewModel: TeamCurrentSituationViewModel
-    // private val viewModel by viewModels<TeamCurrentSituationViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,22 +57,10 @@ class ItemTeamRetrospectListFragment(
                 }
             }
         }
-//        if (retroItem != null) {
-//            for (item in retroItem) {
-//                if (day == item.reviewDay) {
-//                    binding.rcvTeamRetrospectList.adapter = viewModel.teamRetrospectMultiList.value?.let {
-//                        RetrospectListAdapter(
-//                            it,
-//                        )
-//                    }
-//                }
-//            }
-//        }
     }
 
     fun testItemList(itemList: LiveData<ArrayList<ResponseTeamReviewListDto.Data>>, day: String) {
         var intDay: Int = viewModel.itemRetroList.indexOfFirst { it.reviewDay == day }
-        // var intDay: Int = viewModel.teamRetrospectList.indexOfFirst { it.reviewDay == day }
 
         viewModel.teamRetrospectMultiList.value?.clear()
 
