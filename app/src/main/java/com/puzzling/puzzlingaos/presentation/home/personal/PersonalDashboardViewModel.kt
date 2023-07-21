@@ -123,6 +123,7 @@ class PersonalDashboardViewModel @Inject constructor(
 
     private fun getActionPlan() = viewModelScope.launch {
         repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
+            _isSuccess.value = true
             Log.d("personal", "getActionPlan() success:: $response")
             val truncatedList = truncateActionPlanList(response)
             _actionPlanList.value = truncatedList
