@@ -18,7 +18,7 @@
     <string name="register_projectStartDate">프로젝트 시작날짜</string>
     <string name="register_date_hint">0000/00/00</string>
     <string name="register_projectRole">내 역할</string>
-    <string name="register_projectRole_hint">역할을 입력해 주세요(ex. ios 개발자)</string>
+    <string name="register_projectRole_hint">역할을 입력해 주세요(ex. AOS 개발자)</string>
     <string name="register_nickname">닉네임 입력</string>
     <string name="register_nickname_hint">닉네임을 입력해 주세요</string>
     <string name="register_dateCycle">회고 주기</string>
