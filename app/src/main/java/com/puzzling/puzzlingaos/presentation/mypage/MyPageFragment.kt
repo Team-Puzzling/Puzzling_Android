@@ -16,6 +16,8 @@ import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
 import com.puzzling.puzzlingaos.domain.entity.Project
+import com.puzzling.puzzlingaos.presentation.home.HomeFragment
+import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectBottomAdapter
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.MyProjectContentAdapter
@@ -27,6 +29,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private lateinit var viewModel: MyRetrospectViewModel
     private val personalViewModel by activityViewModels<PersonalDashboardViewModel>()
+    private val homeViewModel by activityViewModels<HomeViewModel>()
 
     private val dummyItemList = mutableListOf<ResponseMyPageProjectDto>(
         ResponseMyPageProjectDto("Piickle", "2023-07-03", 2),
@@ -100,11 +103,20 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
         myProjectContentAdapter.setOnItemClickListener(object :
             MyProjectContentAdapter.OnItemClickListener {
-            override fun onItemClick(v: View, data: Project, pos: Int) {
+            override fun onItemClick(btn: Int, data: Project, pos: Int) {
                 viewModel.setCurrentProject(data.projectName)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fcv_main_container, MyRetrospectFragment()).addToBackStack(null)
-                    .commit()
+                if (btn == 0) {
+                    homeViewModel.projectNameSetter(data.projectName)
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fcv_main_container, HomeFragment())
+                        .addToBackStack(null)
+                        .commit()
+                } else {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fcv_main_container, MyRetrospectFragment())
+                        .addToBackStack(null)
+                        .commit()
+                }
             }
         })
     }

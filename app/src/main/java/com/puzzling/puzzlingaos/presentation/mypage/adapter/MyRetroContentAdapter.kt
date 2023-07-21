@@ -9,9 +9,10 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroRetroBinding
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
-class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto.ReviewData, MyRetroContentAdapter.MyRetroContenViewHolder>(
-    diffCallback,
-) {
+class MyRetroContentAdapter() :
+    ListAdapter<ResponseMyRetroListDto.ReviewData, MyRetroContentAdapter.MyRetroContenViewHolder>(
+        diffCallback,
+    ) {
 
     private var listener: OnItemClickListener? = null
 
@@ -29,6 +30,8 @@ class MyRetroContentAdapter() : ListAdapter<ResponseMyRetroListDto.ReviewData, M
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: ResponseMyRetroListDto.ReviewData) {
             binding.tvMyretroDate.text = item.reviewDate
+            binding.tvMyretroDesc.text = item.contents.substring(0, 17)
+                .replace("\\r\\n|\\r|\\n|\\n\\r".toRegex(), " ") + "..."
 
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 binding.clMyRetroContainer.setOnClickListener {
