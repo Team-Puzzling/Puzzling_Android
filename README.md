@@ -18,6 +18,7 @@
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|
 | <img width="200px" height="250px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/71082e80-2fc0-4829-9477-46673b449b43"/> | <img width="200px" height="250px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/f0fffec7-0d87-4da6-bdcf-8f886f740f57"/> | <img width="200px" height="250px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/2ae6abc2-4c87-425f-81e6-6e10f47421d7"/> |
 
+
 <br>
 
 ### Convention ✔️
@@ -28,12 +29,17 @@
 🧩[Coding Convention️](https://groovy-need-069.notion.site/Coding-Convention-66e624b4509648a28602a4c66c5469ba?pvs=4)
 
 ### Tech Stack 📌
-- [Android App Architecture](https://developer.android.com/topic/architecture)
-- [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
-- [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
-- [Flow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko)
-- [retrofit2](https://square.github.io/retrofit/)
-- [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=ko)
+📍 [Android App Architecture](https://developer.android.com/topic/architecture)
+<br>
+📍 [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+<br>
+📍 [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
+<br>
+📍 [Flow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko)
+<br>
+📍 [retrofit2](https://square.github.io/retrofit/)
+<br>
+📍 [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=ko)
   
 
 
