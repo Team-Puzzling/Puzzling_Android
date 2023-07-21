@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Puzzling AOS</string>
+    <string name="app_name">Puzzling</string>
 
     <string name="title_activity_register">RegisterActivity</string>
     <!-- Strings used for fragments for navigation -->
