@@ -37,7 +37,6 @@ class RegisterDialogFragment :
                 }
                 activity?.let {
                     val intent = Intent(context, DetailRetroActivity::class.java)
-//                    intent.putExtra("Title", viewModel)
                     startActivity(intent)
                 }
                 // TODO 프로젝트 넘기기

@@ -127,10 +127,13 @@ class PersonalDashboardViewModel @Inject constructor(
             val truncatedList = truncateActionPlanList(response)
             _actionPlanList.value = truncatedList
             Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
-            Log.d(
-                "actionPlan",
-                "actionPlanList length:: ${_actionPlanList.value.toString().length}",
-            )
+            _actionPlanList.value?.forEach { actionPlan ->
+                actionPlan.actionPlanDate = actionPlan.actionPlanDate?.let {
+                    convertActionPlanDate(
+                        it,
+                    )
+                }
+            }
         }.onFailure {
             Log.d("personal", "getActionPlan() Fail:: $it")
         }
@@ -166,5 +169,28 @@ class PersonalDashboardViewModel @Inject constructor(
         }
 
         return truncatedList
+    }
+
+    private fun convertActionPlanDate(actionPlanDate: String): String {
+        val monthMap = mapOf(
+            "01" to "1월",
+            "02" to "2월",
+            "03" to "3월",
+            "04" to "4월",
+            "05" to "5월",
+            "06" to "6월",
+            "07" to "7월",
+            "08" to "8월",
+            "09" to "9월",
+            "10" to "10월",
+            "11" to "11월",
+            "12" to "12월",
+        )
+
+        val parts = actionPlanDate.split("-")
+        val month = monthMap[parts[1]] ?: parts[1]
+        val day = parts[2]
+
+        return "$month ${day}일"
     }
 }

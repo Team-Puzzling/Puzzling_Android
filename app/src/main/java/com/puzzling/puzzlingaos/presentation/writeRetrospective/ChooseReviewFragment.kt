@@ -21,13 +21,13 @@ class ChooseReviewFragment :
 
     private fun clickItemButton() {
         with(binding) {
-            clChooseFirst.setOnClickListener {
+            clChooseReviewFirst.setOnClickListener {
                 clickReviewItem("TIL")
             }
-            clChooseSecond.setOnClickListener {
+            clChooseReviewSecond.setOnClickListener {
                 clickReviewItem("5F")
             }
-            clChooseThird.setOnClickListener {
+            clChooseReviewThird.setOnClickListener {
                 clickReviewItem("AAR")
             }
         }
