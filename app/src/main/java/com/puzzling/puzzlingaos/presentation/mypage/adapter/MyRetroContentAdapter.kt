@@ -30,8 +30,13 @@ class MyRetroContentAdapter() :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: ResponseMyRetroListDto.ReviewData) {
             binding.tvMyretroDate.text = item.reviewDate
-            binding.tvMyretroDesc.text = item.contents.substring(0, 17)
-                .replace("\\r\\n|\\r|\\n|\\n\\r".toRegex(), " ") + "..."
+
+            if (item.contents.length < 17) {
+                binding.tvMyretroDesc.text = item.contents + "..."
+            } else {
+                binding.tvMyretroDesc.text = item.contents.substring(0, 17)
+                    .replace("\\r\\n|\\r|\\n|\\n\\r".toRegex(), " ") + "..."
+            }
 
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 binding.clMyRetroContainer.setOnClickListener {
