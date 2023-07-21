@@ -14,8 +14,8 @@
             android:id="@+id/iv_onBoarding_puzzling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:src="@drawable/ic_puzzling"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,31 +28,32 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_new_puzzle"
+            app:layout_constraintBottom_toTopOf="@id/tv_onBoarding_new_desc"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_onBoarding_puzzling" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tv_onBoarding_new_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="프로젝트를 새로 등록할까요?"
             android:textAppearance="@style/Kor.Heading4"
             android:textColor="@color/black_000"
+            app:layout_constraintBottom_toTopOf="@id/linear_onBoarding_register"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_onBoarding_newPuzzle" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
             android:id="@+id/linear_onBoarding_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/linear_onBoarding"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_onBoarding_new_desc">
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/tv_onBoarding_register"
@@ -78,14 +79,14 @@
             android:id="@+id/linear_onBoarding"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.517"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_onBoarding_register"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
             android:background="@color/gray_300"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.517" />
 
         <ImageView
             android:id="@+id/iv_onBoarding_joinPuzzle"
@@ -138,8 +139,6 @@
                 app:layout_constraintStart_toEndOf="@id/tv_onBoarding_register" />
 
         </LinearLayout>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

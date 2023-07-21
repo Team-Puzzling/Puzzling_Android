@@ -146,6 +146,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
             showDialog("${viewModel.projectCode.value}")
             Log.d("projectCode: ", "${viewModel.projectCode.value}")
+            // Log.d("projectId: ", "${viewModel.projectId.value}")
         }
     }
 
