@@ -41,8 +41,14 @@
 📍 [retrofit2](https://square.github.io/retrofit/)
 <br>
 📍 [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=ko)
-  
-
+<br>
+📍 [KakaoLogin](https://developers.kakao.com/)
+<br>
+📍 [Recyclerview](https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=ko), [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter), [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil)
+<br>
+📍 [Timber](https://github.com/JakeWharton/timber)
+<br>
+📍 [ViewPager2](https://developer.android.com/jetpack/androidx/releases/viewpager2?hl=ko)
 
 ### Foldering 📁
 ```
