@@ -97,6 +97,10 @@ class WriteReviewViewModel @Inject constructor(
     val previousReviewType: LiveData<Int>
         get() = _previousReviewType
 
+    private val _isPostSuccess = MutableLiveData<Boolean>(false)
+    val isPostSuccess: LiveData<Boolean>
+        get() = _isPostSuccess
+
     fun setSelectedChipText(chipText: String) {
         _selectedChipText.value = chipText
     }
@@ -231,6 +235,7 @@ class WriteReviewViewModel @Inject constructor(
                 UserInfo.POST_PROJECT_ID,
                 requestReviewTIL,
             ).onSuccess {
+                _isPostSuccess.value = true
                 Log.d("write", "postReviewTIL() success!!")
             }.onFailure {
                 Log.d("write", "postReviewTIL() Fail:: $it")
@@ -253,6 +258,7 @@ class WriteReviewViewModel @Inject constructor(
                 UserInfo.POST_PROJECT_ID,
                 requestReview5F,
             ).onSuccess {
+                _isPostSuccess.value = true
                 Log.d("write", "postReview5F() success!!")
             }.onFailure {
                 Log.d("write", "postReview5F() Fail:: $it")
@@ -275,6 +281,7 @@ class WriteReviewViewModel @Inject constructor(
                 UserInfo.POST_PROJECT_ID,
                 requestReviewAAR,
             ).onSuccess {
+                _isPostSuccess.value = true
                 Log.d("write", "postReviewAAR() success!!")
             }.onFailure {
                 Log.d("write", "postReviewAAR() Fail:: $it")

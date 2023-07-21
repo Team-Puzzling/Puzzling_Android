@@ -11,6 +11,8 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
 import com.puzzling.puzzlingaos.presentation.main.MainActivity
+import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteReviewViewModel
+import com.puzzling.puzzlingaos.util.CustomSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -20,6 +22,7 @@ import java.time.format.DateTimeFormatter
 class DetailRetroActivity :
     BaseActivity<ActivityDetailRetroBinding>(R.layout.activity_detail_retro) {
     private val viewModel by viewModels<DetailRetroViewModel>()
+    private val writeViewModel by viewModels<WriteReviewViewModel>()
 
     private val tabTitle = getWeekDatesWithToday()
 
@@ -59,6 +62,7 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
+        observePostReviewResult()
     }
 
     private fun setItemBg() {
@@ -117,6 +121,15 @@ class DetailRetroActivity :
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun observePostReviewResult() {
+        writeViewModel.isPostSuccess.observe(this) { success ->
+            Log.d("post", success.toString())
+            if (success) {
+                CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
+            }
         }
     }
 }

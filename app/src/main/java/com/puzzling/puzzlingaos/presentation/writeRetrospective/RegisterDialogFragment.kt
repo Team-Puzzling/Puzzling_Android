@@ -11,7 +11,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentRegisterDialogBinding
 import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
-import com.puzzling.puzzlingaos.util.CustomSnackbar
+import com.puzzling.puzzlingaos.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class RegisterDialogFragment :
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 if (data?.getBooleanExtra(DetailRetroActivity.EXTRA_RESULT_SAVED, false) == true) {
-                    showSnackbar()
+                    binding.root.showToast("저장 완료!") // Show the Toast message
                 }
             }
         }
@@ -48,9 +48,10 @@ class RegisterDialogFragment :
                     "5F" -> viewModel.postReview5F()
                     "AAR" -> viewModel.postReviewAAR()
                 }
+                // TODO toast 성공하면 주석 제거하기
                 activity?.let {
                     val intent = Intent(context, DetailRetroActivity::class.java)
-                    startActivity(intent)
+                    launchDetailRetroActivity.launch(intent)
                 }
                 // TODO 프로젝트 넘기기
             }
@@ -60,7 +61,7 @@ class RegisterDialogFragment :
         }
     }
 
-    private fun showSnackbar() {
-        CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
-    }
+//    private fun showSnackbar() {
+//        CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
+//    }
 }
