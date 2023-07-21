@@ -12,7 +12,7 @@ import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.OneTeamBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.ThreeTeamBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.puzzleboard.TwoTeamBoardActivity
-import com.puzzling.puzzlingaos.presentation.team.currentSituation.MjTestActivity
+import com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamRetroActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +49,7 @@ class TeamDashboardFragment :
         teamLayouts.forEach { layout ->
             layout.setOnClickListener {
                 activity?.let {
-                    val intent = Intent(context, MjTestActivity::class.java)
+                    val intent = Intent(context, TeamRetroActivity::class.java)
                     intent.putExtra("Team", viewModel.myNickname.value)
                     startActivity(intent)
                 }

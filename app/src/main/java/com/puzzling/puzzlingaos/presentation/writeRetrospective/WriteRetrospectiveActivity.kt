@@ -29,8 +29,18 @@ class WriteRetrospectiveActivity :
     private fun initFragment() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_write_container)
         if (currentFragment == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fcv_write_container, Write5fFragment()).commit()
+            viewModel.reviewTypeText.observe(this) {
+                when (viewModel.reviewTypeText.value) {
+                    "TIL" -> supportFragmentManager.beginTransaction()
+                        .add(R.id.fcv_write_container, WriteTilFragment()).commit()
+                    "5F" -> supportFragmentManager.beginTransaction()
+                        .add(R.id.fcv_write_container, Write5fFragment()).commit()
+                    "AAR" -> supportFragmentManager.beginTransaction()
+                        .add(R.id.fcv_write_container, WriteAarFragment()).commit()
+                }
+            }
+//            supportFragmentManager.beginTransaction()
+//                .add(R.id.fcv_write_container, Write5fFragment()).commit()
         }
     }
 

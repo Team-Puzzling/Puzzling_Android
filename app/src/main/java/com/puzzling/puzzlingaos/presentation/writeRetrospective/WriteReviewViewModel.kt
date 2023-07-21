@@ -61,11 +61,11 @@ class WriteReviewViewModel @Inject constructor(
     val isReviewTypeSelected: LiveData<Boolean>
         get() = _isReviewTypeSelected
 
-    private val _selectedReviewType = MutableLiveData("TIL")
+    private val _selectedReviewType = MutableLiveData<String>()
     val selectedReviewType: LiveData<String>
         get() = _selectedReviewType
 
-    private val _selectedReviewNum = MutableLiveData(1)
+    private val _selectedReviewNum = MutableLiveData<Int>()
     val selectedReviewNum: LiveData<Int>
         get() = _selectedReviewNum
 
@@ -227,8 +227,8 @@ class WriteReviewViewModel @Inject constructor(
         )
         viewModelScope.launch {
             repository.uploadTIL(
-                UserInfo.MEMBER_ID,
-                UserInfo.PROJECT_ID,
+                UserInfo.POST_MEMBER_ID,
+                UserInfo.POST_PROJECT_ID,
                 requestReviewTIL,
             ).onSuccess {
                 Log.d("write", "postReviewTIL() success!!")
@@ -249,8 +249,8 @@ class WriteReviewViewModel @Inject constructor(
         )
         viewModelScope.launch {
             repository.upload5F(
-                UserInfo.MEMBER_ID,
-                UserInfo.PROJECT_ID,
+                UserInfo.POST_MEMBER_ID,
+                UserInfo.POST_PROJECT_ID,
                 requestReview5F,
             ).onSuccess {
                 Log.d("write", "postReview5F() success!!")
@@ -271,8 +271,8 @@ class WriteReviewViewModel @Inject constructor(
         )
         viewModelScope.launch {
             repository.uploadAAR(
-                UserInfo.MEMBER_ID,
-                UserInfo.PROJECT_ID,
+                UserInfo.POST_MEMBER_ID,
+                UserInfo.POST_PROJECT_ID,
                 requestReviewAAR,
             ).onSuccess {
                 Log.d("write", "postReviewAAR() success!!")
