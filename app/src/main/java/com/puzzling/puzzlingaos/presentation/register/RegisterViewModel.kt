@@ -34,12 +34,17 @@ class RegisterViewModel @Inject constructor(
     var dayArray = ArrayList<String>()
     var isDateCycleSelected = MutableLiveData<ArrayList<String>>()
     var projectCode = MutableLiveData<String>()
-    var projectId = MutableLiveData<Int>()
+//    var projectId = MutableLiveData<Int>()
+
+    private val _projectId = MutableLiveData<Int>()
+    val projectId: LiveData<Int>
+        get() = _projectId
 
     // editText 확인용
     fun validTextBox(textBox: String): Boolean {
         return textBox.matches(registerRegex)
     }
+
     var isValidProjectName: MutableLiveData<Boolean> = MutableLiveData(true)
     var isValidProjectExplanation: MutableLiveData<Boolean> = MutableLiveData(true)
     var isValidRole: MutableLiveData<Boolean> = MutableLiveData(true)
@@ -83,9 +88,19 @@ class RegisterViewModel @Inject constructor(
         dateCycle: ArrayList<String>,
     ) {
         viewModelScope.launch {
-            projectRepositoryImpl.projectRegister(id, RequestProjectRegisterDto(projectName, projectIntro, startDate, role, nickName, dateCycle)).onSuccess { response ->
+            projectRepositoryImpl.projectRegister(
+                id,
+                RequestProjectRegisterDto(
+                    projectName,
+                    projectIntro,
+                    startDate,
+                    role,
+                    nickName,
+                    dateCycle,
+                ),
+            ).onSuccess { response ->
                 projectCode.value = response.getProjectCode().projectCode
-                projectId.value = response.getProjectCode().projectId
+                _projectId.value = response.getProjectCode().projectId
                 Log.d("response: ", "${_registerResultBool.value}")
                 Log.d("register: ", "register 성공")
                 Log.d("response: ", "$response")
