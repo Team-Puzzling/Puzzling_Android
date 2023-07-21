@@ -11,7 +11,6 @@ import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
-import com.puzzling.puzzlingaos.util.UserInfo.GET_MEMBER_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,7 +38,7 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getMyProjectReview(selectedProjectId: Int) = viewModelScope.launch {
         kotlin.runCatching {
-            myPageRepository.getMyProjectReview(GET_MEMBER_ID, selectedProjectId)
+            myPageRepository.getMyProjectReview(2, selectedProjectId)
         }.onSuccess { response ->
             _responseReview.value = response.data
             Log.d("MyProjectRetro", "$response")
@@ -55,7 +54,7 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getMyProjectList() = viewModelScope.launch {
         kotlin.runCatching {
-            myBoardRepository.getProceedingProject(GET_MEMBER_ID).onSuccess { response ->
+            myBoardRepository.getProceedingProject(2).onSuccess { response ->
                 _responseProjectList.value = response
             }.onFailure {
                 Log.d("MyProjectRetro", "$it")
