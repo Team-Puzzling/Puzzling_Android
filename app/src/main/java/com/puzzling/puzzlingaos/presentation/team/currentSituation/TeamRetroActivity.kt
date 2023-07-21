@@ -30,8 +30,11 @@ class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+//        binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
+
 
         binding.viewModel = viewModel
+        binding.tvTeamProjectName.text = intent.getStringExtra("Team")
         binding.tvTeamCurrentYearmonth.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월"))
 
         viewModel.getTeamRetrospectList(
@@ -67,13 +70,13 @@ class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activi
 
     private fun clickBackBtn() {
         binding.btnTeamCurrentBack.setOnClickListener {
-            setSupportActionBar(binding.tbTeamCurrent)
-            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+//            setSupportActionBar(binding.tbTeamCurrent)
+//            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+//            supportActionBar?.setDisplayShowTitleEnabled(false)
+//
+//            val intent = Intent(this, MainActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//            startActivity(intent)
             finish()
         }
     }

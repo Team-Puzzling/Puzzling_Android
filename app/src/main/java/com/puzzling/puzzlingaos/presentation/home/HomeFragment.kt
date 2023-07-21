@@ -41,7 +41,7 @@ class HomeFragment :
         }
 
         viewModel.retroWeek.observe(this) {
-            val reviewCycleText = "매주 ${it?.projectReviewCycle} \n 회고를 작성해주세요"
+            val reviewCycleText = "매주 ${it?.projectReviewCycle} \n회고를 작성해주세요"
 
             // SpannableString 생성
             val spannableString = SpannableString(reviewCycleText)
