@@ -34,6 +34,7 @@ class RegisterViewModel @Inject constructor(
     var dayArray = ArrayList<String>()
     var isDateCycleSelected = MutableLiveData<ArrayList<String>>()
     var projectCode = MutableLiveData<String>()
+    var projectId = MutableLiveData<Int>()
 
     // editText 확인용
     fun validTextBox(textBox: String): Boolean {
@@ -84,11 +85,13 @@ class RegisterViewModel @Inject constructor(
         viewModelScope.launch {
             projectRepositoryImpl.projectRegister(id, RequestProjectRegisterDto(projectName, projectIntro, startDate, role, nickName, dateCycle)).onSuccess { response ->
                 projectCode.value = response.getProjectCode().projectCode
+                projectId.value = response.getProjectCode().projectId
                 Log.d("response: ", "${_registerResultBool.value}")
                 Log.d("register: ", "register 성공")
                 Log.d("response: ", "$response")
                 Log.d("response: ", "${response.getProjectCode().projectCode}")
                 Log.d("response: ", "${projectCode.value}")
+                Log.d("projectId: ", "${projectId.value}")
                 _registerResult.value = response
                 _registerResultBool.value = true
                 Log.d("response: ", "${_registerResultBool.value}")
