@@ -24,6 +24,8 @@ class WriteRetrospectiveActivity :
         initFragment()
         clickBtn()
         handleSelectedReviewType()
+        val getProjectId = intent.getIntExtra("homeProjectId", -1)
+        viewModel.projectId.value = getProjectId
     }
 
     private fun initFragment() {

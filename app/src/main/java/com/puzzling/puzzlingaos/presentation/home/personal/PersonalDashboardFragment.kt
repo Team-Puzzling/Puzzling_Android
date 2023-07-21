@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PersonalDashboardFragment :
     BaseFragment<FragmentPersonalDashboardBinding>(R.layout.fragment_personal_dashboard) {
-    private val viewModel by viewModels<PersonalDashboardViewModel>()
+    private val viewModel by activityViewModels<PersonalDashboardViewModel>()
     private val teamViewModel by viewModels<TeamDashBoardViewModel>()
 
     private var _actionPlanAdapter: ActionPlanListAdapter? = null
@@ -35,6 +36,23 @@ class PersonalDashboardFragment :
         clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
         setBottomBtnBackgroundColor()
+        intentToWriteActivity()
+        observeProjectId()
+    }
+
+    private fun observeProjectId() {
+        viewModel.firstProjectId.observe(this) {
+            Log.d("personal", "firstProjectId:: $it")
+            viewModel.getMyPuzzleData(it)
+            viewModel.getMyPuzzleBoard(it)
+            viewModel.getActionPlan(it)
+            viewModel.getPreviousTemplate(it)
+        }
+    }
+
+    private fun intentToWriteActivity() {
+        val intent = Intent(requireActivity(), WriteRetrospectiveActivity::class.java)
+        intent.putExtra("homeProjectId", viewModel.firstProjectId.value)
     }
 
     private fun putExtraProjectId() {

@@ -66,16 +66,16 @@ class PersonalDashboardViewModel @Inject constructor(
 
     )
 
-    init {
-        getMyPuzzleData()
-        getMyPuzzleData()
-        getActionPlan()
-        getMyPuzzleBoard()
-        getPreviousTemplate()
-    }
+//    init {
+//        getMyPuzzleData()
+//        getMyPuzzleData()
+//        getActionPlan()
+//        getMyPuzzleBoard()
+//        getPreviousTemplate()
+//    }
 
-    private fun getMyPuzzleData() = viewModelScope.launch {
-        repository.getUserPuzzle(UserInfo.MEMBER_ID, firstProjectId.value!!, UserInfo.TODAY)
+    fun getMyPuzzleData(projectId: Int) = viewModelScope.launch {
+        repository.getUserPuzzle(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("personal", "getMyPuzzleData() success:: $response")
@@ -94,8 +94,8 @@ class PersonalDashboardViewModel @Inject constructor(
             }
     }
 
-    private fun getMyPuzzleBoard() = viewModelScope.launch {
-        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, firstProjectId.value!!, UserInfo.TODAY)
+    fun getMyPuzzleBoard(projectId: Int) = viewModelScope.launch {
+        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
             .onSuccess { response ->
                 _myPuzzleBoardList.value = response
                 Log.d("personal", "getMyPuzzleBoard() success:: $response")
@@ -123,28 +123,32 @@ class PersonalDashboardViewModel @Inject constructor(
         return substring(startIndex)
     }
 
-    private fun getActionPlan() = viewModelScope.launch {
-        repository.getActionPlan(UserInfo.MEMBER_ID, firstProjectId.value!!).onSuccess { response ->
-            _isSuccess.value = true
-            Log.d("personal", "getActionPlan() success:: $response")
-            val truncatedList = truncateActionPlanList(response)
-            _actionPlanList.value = truncatedList
-            Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
-            _actionPlanList.value?.forEach { actionPlan ->
-                actionPlan.actionPlanDate = actionPlan.actionPlanDate?.let {
-                    convertActionPlanDate(
-                        it,
-                    )
+    fun getActionPlan(projectId: Int) = viewModelScope.launch {
+        repository.getActionPlan(UserInfo.MEMBER_ID, projectId)
+            .onSuccess { response ->
+                _isSuccess.value = true
+                Log.d("personal", "getActionPlan() success:: $response")
+                val truncatedList = truncateActionPlanList(response)
+                _actionPlanList.value = truncatedList
+                Log.d("actionPlan", "actionPlanList.value:: ${_actionPlanList.value}")
+                _actionPlanList.value?.forEach { actionPlan ->
+                    actionPlan.actionPlanDate = actionPlan.actionPlanDate?.let {
+                        convertActionPlanDate(
+                            it,
+                        )
+                    }
                 }
+            }.onFailure {
+                Log.d("personal", "getActionPlan() Fail:: $it")
             }
-        }.onFailure {
-            Log.d("personal", "getActionPlan() Fail:: $it")
-        }
     }
 
-    private fun getPreviousTemplate() {
+    fun getPreviousTemplate(projectId: Int) {
         viewModelScope.launch {
-            writeReviewRepository.getPreviousTemplate(UserInfo.MEMBER_ID, firstProjectId.value!!)
+            writeReviewRepository.getPreviousTemplate(
+                UserInfo.MEMBER_ID,
+                projectId,
+            )
                 .onSuccess { response ->
                     _previousReviewType.value = response.data.previousTemplateId
                     Log.d("write", "getPreviousTemplate() success:: ${_previousReviewType.value}")

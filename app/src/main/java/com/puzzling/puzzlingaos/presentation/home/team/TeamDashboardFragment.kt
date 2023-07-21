@@ -28,6 +28,15 @@ class TeamDashboardFragment :
         clickPuzzlePiece()
     }
 
+    private fun observeProjectId() {
+        viewModel.firstProjectId.observe(this) {
+            Log.d("team", "firstProjectId:: $it")
+            viewModel.getTeamPuzzleData(it)
+            viewModel.getTeamPuzzleBoard(it)
+            viewModel.getTeamRanking(it)
+        }
+    }
+
     private fun clickPuzzlePiece() {
         val teamLayouts = listOf(
             binding.clTeamMain1,

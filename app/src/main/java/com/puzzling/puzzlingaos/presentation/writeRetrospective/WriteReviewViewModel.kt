@@ -101,6 +101,8 @@ class WriteReviewViewModel @Inject constructor(
     val isPostSuccess: LiveData<Boolean>
         get() = _isPostSuccess
 
+    val projectId = MutableLiveData<Int>()
+
     fun setSelectedChipText(chipText: String) {
         _selectedChipText.value = chipText
     }
@@ -232,7 +234,7 @@ class WriteReviewViewModel @Inject constructor(
         viewModelScope.launch {
             repository.uploadTIL(
                 UserInfo.POST_MEMBER_ID,
-                UserInfo.POST_PROJECT_ID,
+                projectId.value ?: -1,
                 requestReviewTIL,
             ).onSuccess {
                 _isPostSuccess.value = true
@@ -255,7 +257,7 @@ class WriteReviewViewModel @Inject constructor(
         viewModelScope.launch {
             repository.upload5F(
                 UserInfo.POST_MEMBER_ID,
-                UserInfo.POST_PROJECT_ID,
+                projectId.value ?: -1,
                 requestReview5F,
             ).onSuccess {
                 _isPostSuccess.value = true
@@ -278,7 +280,7 @@ class WriteReviewViewModel @Inject constructor(
         viewModelScope.launch {
             repository.uploadAAR(
                 UserInfo.POST_MEMBER_ID,
-                UserInfo.POST_PROJECT_ID,
+                projectId.value ?: -1,
                 requestReviewAAR,
             ).onSuccess {
                 _isPostSuccess.value = true
@@ -315,7 +317,7 @@ class WriteReviewViewModel @Inject constructor(
 
     private fun getPreviousTemplate() {
         viewModelScope.launch {
-            repository.getPreviousTemplate(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID)
+            repository.getPreviousTemplate(UserInfo.MEMBER_ID, projectId.value ?: -1)
                 .onSuccess { response ->
                     _previousReviewType.value = response.data.previousTemplateId
                     when (_previousReviewType.value) {
