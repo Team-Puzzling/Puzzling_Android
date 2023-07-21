@@ -38,6 +38,7 @@ class InputProfileFragment :
                 viewModel.isProfileSuccess.collect {
                     if (it != null && it) {
                         val intent = Intent(activity, MainActivity::class.java)
+                        intent.putExtra("homeProjectId", viewModel.codeResponse.value?.projectId)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                     }
