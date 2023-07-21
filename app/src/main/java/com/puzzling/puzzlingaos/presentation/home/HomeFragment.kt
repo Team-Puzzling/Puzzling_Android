@@ -36,7 +36,9 @@ class HomeFragment :
     }
 
     private fun getPopupContent() {
-        viewModel.getProjectWeekCycle()
+        viewModel.selectedProjectId.observe(this) {
+            viewModel.getProjectWeekCycle(it)
+        }
 
         viewModel.retroWeek.observe(this) {
             val reviewCycleText = "매주 ${it?.projectReviewCycle} \n 회고를 작성해주세요"

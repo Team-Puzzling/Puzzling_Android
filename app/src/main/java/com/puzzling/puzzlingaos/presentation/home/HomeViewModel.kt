@@ -11,6 +11,7 @@ import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import com.puzzling.puzzlingaos.util.UserInfo
+import com.puzzling.puzzlingaos.util.UserInfo.GET_PROJECT_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -51,7 +52,7 @@ class HomeViewModel @Inject constructor(
     val selectedProjectName: LiveData<String>
         get() = _selectedProjectName
 
-    private val _selectedProjectId = MutableLiveData<Int>()
+    private val _selectedProjectId = MutableLiveData<Int>(GET_PROJECT_ID)
     val selectedProjectId: LiveData<Int>
         get() = _selectedProjectId
 
@@ -104,9 +105,9 @@ class HomeViewModel @Inject constructor(
         return selectedProject?.projectId
     }
 
-    fun getProjectWeekCycle() = viewModelScope.launch {
+    fun getProjectWeekCycle(projectId: Int) = viewModelScope.launch {
         kotlin.runCatching {
-            projectRepository.getProjectWeekCycle(UserInfo.GET_PROJECT_ID)
+            projectRepository.getProjectWeekCycle(projectId)
         }.onSuccess { response ->
             _retroWeek.value = response.data
             Log.d("회고 주기", "$response")
