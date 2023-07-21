@@ -68,10 +68,6 @@ class DetailRetroActivity :
         // showSnackbar()
     }
 
-    private fun showSnackbar() {
-        showCustomSnackBar("저장완료", binding.clDetailRetroMain)
-    }
-
     private fun setItemBg() {
         for (i in 0..6) {
             Log.d("오류", "$num")
