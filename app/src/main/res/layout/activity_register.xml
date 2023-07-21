@@ -121,7 +121,9 @@
                             android:includeFontPadding="false"
                             android:selectAllOnFocus="false"
                             android:text="@={viewModel.projectName}"
-                            android:textAppearance="@style/Kor.Body2.Regular" />
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:inputType="text"
+                            android:lines="1"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +175,9 @@
                             android:includeFontPadding="false"
                             android:selectAllOnFocus="false"
                             android:text="@={viewModel.projectExplanation}"
-                            android:textAppearance="@style/Kor.Body2.Regular" />
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:inputType="text"
+                            android:lines="1"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -288,7 +292,9 @@
                             android:includeFontPadding="false"
                             android:selectAllOnFocus="false"
                             android:text="@={viewModel.role}"
-                            android:textAppearance="@style/Kor.Body2.Regular" />
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:inputType="text"
+                            android:lines="1"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -340,7 +346,9 @@
                             android:includeFontPadding="false"
                             android:selectAllOnFocus="false"
                             android:text="@={viewModel.nickName}"
-                            android:textAppearance="@style/Kor.Body2.Regular" />
+                            android:textAppearance="@style/Kor.Body2.Regular"
+                            android:inputType="text"
+                            android:lines="1"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -370,15 +378,20 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcv_retrospectWeekCycle"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        tools:itemCount="7"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_dateCycleExplanation"
-                        tools:listitem="@layout/item_register_retrospect_week_cycle" />
+                        tools:listitem="@layout/item_register_retrospect_week_cycle"
+                        app:flow_horizontalBias="0"
+                        android:clipToPadding="false"
+                        android:paddingHorizontal="5dp"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -407,7 +420,9 @@
                 android:textAppearance="@style/Kor.Heading4"
                 android:textColor="@color/white_000"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

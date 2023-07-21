@@ -40,7 +40,8 @@ class DetailRetroActivity :
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
 
-        viewModel.getDetailRetro()
+        val projectId = intent.getIntExtra("projectId", 1)
+        viewModel.getDetailRetro(projectId)
 
         viewModel.detailRetroList.observe(this) { contents ->
 
@@ -63,6 +64,12 @@ class DetailRetroActivity :
             tab.text = tabTitle[position]
         }.attach()
         observePostReviewResult()
+        binding.viewPager.currentItem = LocalDate.now().dayOfWeek.value - 1
+        // showSnackbar()
+    }
+
+    private fun showSnackbar() {
+        showCustomSnackBar("저장완료", binding.clDetailRetroMain)
     }
 
     private fun setItemBg() {
