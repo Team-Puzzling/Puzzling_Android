@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
+import androidx.fragment.app.setFragmentResultListener
 import com.google.android.material.tabs.TabLayout
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -18,15 +19,19 @@ import com.puzzling.puzzlingaos.databinding.FragmentHomeBinding
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardFragment
 import com.puzzling.puzzlingaos.presentation.home.team.TeamDashboardFragment
 import com.puzzling.puzzlingaos.presentation.main.HomeChooseProjectFragment
+import com.puzzling.puzzlingaos.presentation.register.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel by activityViewModels<HomeViewModel>()
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
+        observeProjectId()
         initTabItem()
         showProjectBottomSheet()
         clickTabItem()
@@ -117,6 +122,26 @@ class HomeFragment :
             val projectName = viewModel.selectedProjectName.value
             binding.tvHomeProjectName.text = projectName.toString()
             Log.d("home", "tvHomeProjectName: ${binding.tvHomeProjectName.text}")
+
+            setFragmentResultListener("projectIdKey") { key, bundle ->
+                val projectId = bundle.getString("projectId")
+                Log.d("home", "Received projectId: $projectId")
+                // Now you can use the projectId value as needed
+            }
+        }
+//        setFragmentResultListener("projectIdKey") { key, bundle ->
+//            val projectId = bundle.getInt("projectId").toString()
+//            Log.d("Received", "Received projectId: $projectId")
+//        }
+    }
+
+    private fun observeProjectId() {
+        registerViewModel.projectId.observe(this) {
+            Log.d(
+                "home",
+                "registerViewModel.projectId::: ${registerViewModel.projectId.value}",
+            )
+            binding.tvHomeProjectName.text = registerViewModel.projectId.value.toString()
         }
     }
 }
