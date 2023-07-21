@@ -86,7 +86,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private fun initAdapter() {
         val myProjectContentAdapter = MyProjectContentAdapter()
         val myProjectTitleAdapter = MyProjectTitleAdapter()
-        myProjectTitleAdapter.submitList(listOf(personalViewModel.myNickname.value ?: "김민주"))
+        myProjectTitleAdapter.submitList(listOf(personalViewModel.myNickname.value ?: "이가은"))
         val concatAdapter =
             ConcatAdapter(
                 myProjectTitleAdapter,
