@@ -44,9 +44,21 @@ class RegisterDialogFragment :
             btnRegisterDialogTop.setOnClickListener {
                 Log.d("dialog", "register 버튼 누름")
                 when (viewModel.selectedReviewType.value) {
-                    "TIL" -> viewModel.postReviewTIL()
-                    "5F" -> viewModel.postReview5F()
-                    "AAR" -> viewModel.postReviewAAR()
+                    "TIL" -> {
+                        viewModel.projectId.observe(viewLifecycleOwner) {
+                            viewModel.postReviewTIL(it)
+                        }
+                    }
+                    "5F" -> {
+                        viewModel.projectId.observe(viewLifecycleOwner) {
+                            viewModel.postReview5F(it)
+                        }
+                    }
+                    "AAR" -> {
+                        viewModel.projectId.observe(viewLifecycleOwner) {
+                            viewModel.postReviewAAR(it)
+                        }
+                    }
                 }
                 // TODO toast 성공하면 주석 제거하기
                 activity?.let {

@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.presentation.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -12,6 +13,7 @@ import com.puzzling.puzzlingaos.presentation.home.HomeFragment
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
 import com.puzzling.puzzlingaos.presentation.home.team.TeamDashBoardViewModel
 import com.puzzling.puzzlingaos.presentation.mypage.MyPageFragment
+import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,12 +22,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<PersonalDashboardViewModel>()
     private val teamViewModel by viewModels<TeamDashBoardViewModel>()
 
+    var projectId: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        initTabLayout()
         clickBottomNavItem()
         if (intent != null) {
-            val projectId = intent.getIntExtra("homeProjectId", -1)
+            projectId = intent.getIntExtra("homeProjectId", -1)
             viewModel.firstProjectId.value = projectId
             teamViewModel.firstProjectId.value = projectId
             viewModel.firstProjectId.observe(this) {

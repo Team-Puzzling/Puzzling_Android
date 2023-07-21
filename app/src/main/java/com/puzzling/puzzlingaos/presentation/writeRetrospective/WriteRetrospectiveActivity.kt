@@ -26,6 +26,7 @@ class WriteRetrospectiveActivity :
         handleSelectedReviewType()
         val getProjectId = intent.getIntExtra("homeProjectId", -1)
         viewModel.projectId.value = getProjectId
+        Log.d("write", "WriteRetrospectiveActivity로 전달받는 값  :: $getProjectId")
     }
 
     private fun initFragment() {

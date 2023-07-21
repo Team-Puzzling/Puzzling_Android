@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -19,13 +20,19 @@ import dagger.hilt.android.AndroidEntryPoint
 class TeamDashboardFragment :
     BaseFragment<FragmentTeamDashboardBinding>(R.layout.fragment_team_dashboard) {
     private val viewModel by viewModels<TeamDashBoardViewModel>()
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel by activityViewModels<HomeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
         clickTeamPuzzleBoardBtn()
         clickPuzzlePiece()
+        observeProjectId()
+        homeViewModel.selectedProjectId.observe(this) {
+            viewModel.getTeamPuzzleData(it)
+            viewModel.getTeamPuzzleBoard(it)
+            viewModel.getTeamRanking(it)
+        }
     }
 
     private fun observeProjectId() {

@@ -53,8 +53,8 @@ class PersonalDashboardViewModel @Inject constructor(
     val previousReviewType: LiveData<Int>
         get() = _previousReviewType
 
-    private val _isSuccess = MutableLiveData(false)
-    val isSuccess: LiveData<Boolean> get() = _isSuccess
+    private val _isSuccess = MutableLiveData<Boolean?>(null)
+    val isSuccess: LiveData<Boolean?> get() = _isSuccess
 
     val firstProjectId = MutableLiveData<Int>()
 
@@ -77,7 +77,6 @@ class PersonalDashboardViewModel @Inject constructor(
     fun getMyPuzzleData(projectId: Int) = viewModelScope.launch {
         repository.getUserPuzzle(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
             .onSuccess { response ->
-                _isSuccess.value = true
                 Log.d("personal", "getMyPuzzleData() success:: $response")
                 _myNickname.value = response.data.myPuzzle.nickname
                 _myPuzzleCount.value = response.data.myPuzzle.puzzleCount
