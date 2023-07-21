@@ -1,9 +1,11 @@
 package com.puzzling.puzzlingaos.presentation.writeRetrospective
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseDialogFragment
@@ -22,6 +24,16 @@ class RegisterDialogFragment :
         initDialogCancelable()
         clickBtn()
     }
+
+    private val launchDetailRetroActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                if (data?.getBooleanExtra(DetailRetroActivity.EXTRA_RESULT_SAVED, false) == true) {
+                    showSnackbar()
+                }
+            }
+        }
 
     private fun initDialogCancelable() {
         dialog?.setCancelable(false)

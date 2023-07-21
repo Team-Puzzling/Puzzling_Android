@@ -11,7 +11,6 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
 import com.puzzling.puzzlingaos.presentation.main.MainActivity
-import com.puzzling.puzzlingaos.util.CustomSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -29,6 +28,7 @@ class DetailRetroActivity :
     companion object {
         const val BLACK_TEXT = 1
         const val BG_BLUE_100 = 2
+        const val EXTRA_RESULT_SAVED = "extra_result_saved"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,10 +59,6 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
-    }
-
-    private fun showSnackbar() {
-        CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
     }
 
     private fun setItemBg() {
