@@ -10,22 +10,29 @@ import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityMainBinding
 import com.puzzling.puzzlingaos.presentation.home.HomeFragment
 import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
+import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
+import com.puzzling.puzzlingaos.presentation.home.team.TeamDashBoardViewModel
 import com.puzzling.puzzlingaos.presentation.mypage.MyPageFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private val viewModel by viewModels<HomeViewModel>()
+//    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<PersonalDashboardViewModel>()
+    private val teamViewModel by viewModels<TeamDashBoardViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        initTabLayout()
         clickBottomNavItem()
         if (intent != null) {
-            // Get the projectId from the new intent
             val projectId = intent.getIntExtra("homeProjectId", -1)
-            Log.d("main", "projectId:: $projectId")
             viewModel.firstProjectId.value = projectId
+            teamViewModel.firstProjectId.value = projectId
+            Log.d("main", "viewModel.firstProjectId  :: ${viewModel.firstProjectId.value}")
+            Log.d("main", "teamViewModel.firstProjectId  :: ${teamViewModel.firstProjectId.value}")
+
         }
     }
 

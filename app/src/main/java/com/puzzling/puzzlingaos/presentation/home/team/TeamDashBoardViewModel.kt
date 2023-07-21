@@ -61,6 +61,9 @@ class TeamDashBoardViewModel @Inject constructor(
     private val _memberPuzzleCount = MutableLiveData<List<Int>>()
     val memberPuzzleCount: LiveData<List<Int>> get() = _memberPuzzleCount
 
+    val firstProjectId = MutableLiveData<Int>()
+
+
     init {
         getTeamPuzzleData()
         getTeamPuzzleBoard()
@@ -68,7 +71,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamPuzzleData() = viewModelScope.launch {
-        repository.getTeamPuzzle(UserInfo.PROJECT_ID, UserInfo.TODAY)
+        repository.getTeamPuzzle(firstProjectId.value!!, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("team", "getTeamPuzzleData() success:: $response")
@@ -87,7 +90,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamPuzzleBoard() = viewModelScope.launch {
-        repository.getTeamPuzzleBoard(UserInfo.PROJECT_ID, UserInfo.TODAY)
+        repository.getTeamPuzzleBoard(firstProjectId.value!!, UserInfo.TODAY)
             .onSuccess { response ->
                 _teamPuzzleBoardList.value = response
                 Log.d("team", "getTeamPuzzleBoard() success:: $response")
@@ -109,7 +112,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     private fun getTeamRanking() = viewModelScope.launch {
-        repository.getTeamRanking(UserInfo.PROJECT_ID).onSuccess { response ->
+        repository.getTeamRanking(firstProjectId.value!!).onSuccess { response ->
             _teamRankingList.value = response
             val teamRanks: List<TeamRanking> =
                 _teamRankingList.value!!
