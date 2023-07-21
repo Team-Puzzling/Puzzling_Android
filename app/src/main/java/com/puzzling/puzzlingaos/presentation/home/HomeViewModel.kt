@@ -115,4 +115,8 @@ class HomeViewModel @Inject constructor(
             Log.d("회고 주기", "$it")
         }
     }
+
+    fun projectNameSetter(currentProject: String) {
+        _selectedProjectName.value = currentProject
+    }
 }

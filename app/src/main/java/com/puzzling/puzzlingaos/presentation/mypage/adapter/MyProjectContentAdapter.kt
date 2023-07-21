@@ -1,11 +1,9 @@
 package com.puzzling.puzzlingaos.presentation.mypage.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.ItemMyProjectBinding
 import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
@@ -49,14 +47,17 @@ class MyProjectContentAdapter() :
 
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 binding.btnMyPageAllRetrospect.setOnClickListener {
-                    listener?.onItemClick(itemView, item, bindingAdapterPosition)
+                    listener?.onItemClick(RETRO_LIST, item, bindingAdapterPosition)
+                }
+                binding.btnMyPageDashboard.setOnClickListener {
+                    listener?.onItemClick(DASH_BOARD, item, bindingAdapterPosition)
                 }
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(v: View, data: Project, pos: Int)
+        fun onItemClick(btn: Int, data: Project, pos: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -69,5 +70,8 @@ class MyProjectContentAdapter() :
                 onContentsTheSame = { old, new -> old == new },
                 onItemsTheSame = { old, new -> old == new },
             )
+
+        const val DASH_BOARD = 0
+        const val RETRO_LIST = 1
     }
 }
