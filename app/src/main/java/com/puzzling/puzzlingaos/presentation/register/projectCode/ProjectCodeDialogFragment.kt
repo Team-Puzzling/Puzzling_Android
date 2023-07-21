@@ -1,11 +1,13 @@
 package com.puzzling.puzzlingaos.presentation.register.projectCode
 
 import android.content.ClipData
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentProjectcodeDialogBinding
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import com.puzzling.puzzlingaos.util.getClipboardManager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +35,9 @@ class ProjectCodeDialogFragment(private val code: String) : BaseDialogFragment<F
             }
             btnRegisterDialogMiddle.setOnClickListener { }
             btnRegisterDialogBottom.setOnClickListener {
-                dialog?.dismiss()
+                val intent = Intent(requireActivity(), MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
         }
     }
