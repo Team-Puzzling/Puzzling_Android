@@ -63,6 +63,7 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
+        binding.viewPager.currentItem = LocalDate.now().dayOfWeek.value - 1
         // showSnackbar()
     }
 
