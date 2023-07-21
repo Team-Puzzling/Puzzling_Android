@@ -15,7 +15,7 @@
             android:id="@+id/tv_mypuzzle_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="54dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="40dp"
             android:includeFontPadding="false"
             android:text="2023.07.03. ~ 2023.07.18."

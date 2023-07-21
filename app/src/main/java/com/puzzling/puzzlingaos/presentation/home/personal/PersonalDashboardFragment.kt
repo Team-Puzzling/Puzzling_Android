@@ -9,6 +9,10 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
 import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
+import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.OnePuzzleBoardActivity
+import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.ThreePuzzleBoardActivity
+import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.TwoPuzzleBoardActivity
+import com.puzzling.puzzlingaos.presentation.home.team.TeamDashBoardViewModel
 import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class PersonalDashboardFragment :
     BaseFragment<FragmentPersonalDashboardBinding>(R.layout.fragment_personal_dashboard) {
     private val viewModel by viewModels<PersonalDashboardViewModel>()
+    private val teamViewModel by viewModels<TeamDashBoardViewModel>()
 
     private var _actionPlanAdapter: ActionPlanListAdapter? = null
     private val actionPlanAdapter
@@ -26,7 +31,7 @@ class PersonalDashboardFragment :
         binding.vm = viewModel
         setActionPlanAdapter()
         clickBottomBtn()
-//        clickMyPuzzleBoardBtn()
+        clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
         setBottomBtnBackgroundColor()
     }
@@ -42,39 +47,41 @@ class PersonalDashboardFragment :
 
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
-            val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-            startActivity(intent)
+            teamViewModel.myNickname.observe(this) {
+                val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+                intent.putExtra("Title", teamViewModel.myNickname.value)
+                startActivity(intent)
+            }
         }
     }
 
-    /*
-        private fun clickMyPuzzleBoardBtn() {
-            binding.clPersonalTopBackground.setOnClickListener {
-                Log.d(
-                    "personal",
-                    "viewModel.puzzleBoardCount.value::: ${viewModel.puzzleBoardCount.value}",
-                )
-                when (viewModel.puzzleBoardCount.value) {
-                    1 -> activity?.let {
-                        val intent = Intent(context, OnePuzzleBoardActivity::class.java)
-                        startActivity(intent)
-                    }
-                    2 -> activity?.let {
-                        val intent = Intent(context, TwoPuzzleBoardActivity::class.java)
-                        startActivity(intent)
-                    }
-                    3 -> activity?.let {
-                        val intent = Intent(context, ThreePuzzleBoardActivity::class.java)
-                        startActivity(intent)
-                    }
+    private fun clickMyPuzzleBoardBtn() {
+        binding.clPersonalTopBackground.setOnClickListener {
+            Log.d(
+                "personal",
+                "viewModel.puzzleBoardCount.value::: ${viewModel.puzzleBoardCount.value}",
+            )
+            when (viewModel.puzzleBoardCount.value) {
+                1 -> activity?.let {
+                    val intent = Intent(context, OnePuzzleBoardActivity::class.java)
+                    startActivity(intent)
                 }
-    //            activity?.let {
-    //                val intent = Intent(context, MyPuzzleBoardActivity::class.java)
-    //                startActivity(intent)
-    //            }
+                2 -> activity?.let {
+                    val intent = Intent(context, TwoPuzzleBoardActivity::class.java)
+                    startActivity(intent)
+                }
+                3 -> activity?.let {
+                    val intent = Intent(context, ThreePuzzleBoardActivity::class.java)
+                    startActivity(intent)
+                }
             }
+            //            activity?.let {
+            //                val intent = Intent(context, MyPuzzleBoardActivity::class.java)
+            //                startActivity(intent)
+            //            }
         }
-    */
+    }
+
     private fun clickPuzzlePiece() {
         Log.d("personal", "review ID:::: ${viewModel.myReviewId.value}")
         //        with(binding) {
@@ -108,8 +115,9 @@ class PersonalDashboardFragment :
         )
         teamLayouts.forEach { layout ->
             layout.setOnClickListener {
-                activity?.let {
+                teamViewModel.myNickname.observe(this) {
                     val intent = Intent(context, DetailRetroActivity::class.java)
+                    intent.putExtra("Title", teamViewModel.myNickname.value)
                     startActivity(intent)
                 }
             }
@@ -123,7 +131,7 @@ class PersonalDashboardFragment :
                 binding.tvPersonalBottomTitle.text = "회고 작성하기"
                 if (viewModel.hasTodayReview.value == true) {
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
-                    binding.clPersonalBottomBtn.isClickable = true
+                    binding.clPersonalBottomBtn.isClickable = false
                 } else {
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_blue400_fill_radius_16)
                     binding.clPersonalBottomBtn.isClickable = true
