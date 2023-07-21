@@ -40,7 +40,9 @@ class MyRetrospectFragment :
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity())[MyRetrospectViewModel::class.java]
-        viewModel.getMyProjectReview()
+        viewModel.currentProject.observe(this) {
+            viewModel.getMyProjectReview(it.projectId)
+        }
         initToolbar()
         initAdapter()
     }
@@ -62,7 +64,7 @@ class MyRetrospectFragment :
         val myRetroTitleAdapter = MyRetroTitleAdapter()
 
         viewModel.currentProject.observe(viewLifecycleOwner) {
-            myRetroTitleAdapter.projectName = it
+            myRetroTitleAdapter.projectName = it.projectName
             myRetroContentAdapter.notifyDataSetChanged()
         }
 
@@ -82,7 +84,8 @@ class MyRetrospectFragment :
             MyRetroContentAdapter.OnItemClickListener {
             override fun onItemClick(v: View, pos: Int) {
                 val intent = Intent(activity, DetailRetroActivity::class.java)
-                intent.putExtra("Title", viewModel.currentProject.value)
+                intent.putExtra("Title", viewModel.currentProject.value?.projectName)
+                intent.putExtra("projectId", viewModel.currentProject.value?.projectId)
                 startActivity(intent)
             }
         })
