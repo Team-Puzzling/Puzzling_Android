@@ -68,9 +68,9 @@ class MyRetrospectViewModel @Inject constructor(
         }
     }
 
-    fun getProjectWeekCycle() = viewModelScope.launch {
+    fun getProjectWeekCycle(projectId: Int) = viewModelScope.launch {
         kotlin.runCatching {
-            projectRepository.getProjectWeekCycle(GET_PROJECT_ID)
+            projectRepository.getProjectWeekCycle(projectId)
         }.onSuccess { response ->
             _retroWeek.value = response.data
             Log.d("회고 주기", "$response")
