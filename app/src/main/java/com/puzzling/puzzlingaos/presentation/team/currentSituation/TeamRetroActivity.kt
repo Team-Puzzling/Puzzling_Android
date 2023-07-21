@@ -65,6 +65,8 @@ class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activi
             tab.text = teamTabTitle[position]
         }.attach()
 
+        binding.viewPagerTeamRetrospectList.currentItem = LocalDate.now().dayOfWeek.value - 1
+
         clickBackBtn()
     }
 
