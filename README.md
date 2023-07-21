@@ -27,6 +27,14 @@
 <br>
 🧩[Coding Convention️](https://groovy-need-069.notion.site/Coding-Convention-66e624b4509648a28602a4c66c5469ba?pvs=4)
 
+### Tech Stack 📌
+- [Android App Architecture](https://developer.android.com/topic/architecture)
+- [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
+- [Flow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko)
+- [retrofit2](https://square.github.io/retrofit/)
+- [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=ko)
+  
 
 
 ### Foldering 📁
