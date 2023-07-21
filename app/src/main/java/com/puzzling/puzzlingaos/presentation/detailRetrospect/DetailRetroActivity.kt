@@ -40,7 +40,8 @@ class DetailRetroActivity :
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
 
-        viewModel.getDetailRetro()
+        val projectId = intent.getIntExtra("projectId", 1)
+        viewModel.getDetailRetro(projectId)
 
         viewModel.detailRetroList.observe(this) { contents ->
 
@@ -62,6 +63,7 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
+        binding.viewPager.currentItem = LocalDate.now().dayOfWeek.value - 1
         // showSnackbar()
     }
 

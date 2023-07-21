@@ -106,9 +106,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         myProjectContentAdapter.setOnItemClickListener(object :
             MyProjectContentAdapter.OnItemClickListener {
             override fun onItemClick(btn: Int, data: Project, pos: Int) {
-                viewModel.setCurrentProject(data.projectName)
+                viewModel.setCurrentProject(data)
                 if (btn == 0) {
                     homeViewModel.projectNameSetter(data.projectName)
+                    viewModel.setCurrentProject(data)
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.fcv_main_container, HomeFragment())
                         .addToBackStack(null)

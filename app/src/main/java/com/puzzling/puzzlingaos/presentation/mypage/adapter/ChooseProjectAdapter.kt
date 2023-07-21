@@ -9,7 +9,7 @@ import com.puzzling.puzzlingaos.databinding.ItemMyretroAllProjectsBinding
 import com.puzzling.puzzlingaos.databinding.ItemMyretroCurrentProjectBinding
 import com.puzzling.puzzlingaos.domain.entity.Project
 
-class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
+class ChooseProjectAdapter(private val selectedItem: (Project) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList = listOf<Project>()
@@ -66,7 +66,7 @@ class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
             binding.tvMyRetroProjectName.text = item.projectName
 
             binding.clMyRetroContainer.setOnClickListener {
-                selectedItem(item.projectName)
+                selectedItem(item)
                 currentProject = item.projectName
             }
         }
@@ -78,7 +78,7 @@ class ChooseProjectAdapter(private val selectedItem: (String) -> Unit) :
             binding.tvMyRetroProjectName.text = item.projectName
 
             binding.clMyRetroContainer.setOnClickListener {
-                selectedItem(item.projectName)
+                selectedItem(item)
                 currentProject = item.projectName
             }
         }

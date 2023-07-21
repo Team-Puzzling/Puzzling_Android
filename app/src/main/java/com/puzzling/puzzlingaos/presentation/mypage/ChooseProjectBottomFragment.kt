@@ -9,6 +9,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BottomSheetDialogFragment
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentBottomChooseProjectBinding
+import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.presentation.mypage.adapter.ChooseProjectAdapter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -49,7 +50,7 @@ class ChooseProjectBottomFragment :
         val chooseProjectAdapter = ChooseProjectAdapter(::clickProjectItem)
 
         viewModel.currentProject.observe(this) {
-            chooseProjectAdapter.currentProject = it
+            chooseProjectAdapter.currentProject = it.projectName
         }
 
         binding.rcvMyRetroChooseProject.adapter = chooseProjectAdapter
@@ -58,9 +59,8 @@ class ChooseProjectBottomFragment :
         }
     }
 
-    private fun clickProjectItem(projectName: String) {
-        Log.d("클릭 아이템", "$projectName")
-        viewModel.setCurrentProject(projectName)
+    private fun clickProjectItem(currentProject: Project) {
+        viewModel.setCurrentProject(currentProject)
         viewLifecycleOwner.lifecycleScope.launch {
             delay(100)
             dismiss()

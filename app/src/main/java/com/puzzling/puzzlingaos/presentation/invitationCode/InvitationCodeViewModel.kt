@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
+import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import com.puzzling.puzzlingaos.util.UserInfo.POST_MEMBER_ID
 import com.puzzling.puzzlingaos.util.UserInfo.POST_PROJECT_ID
