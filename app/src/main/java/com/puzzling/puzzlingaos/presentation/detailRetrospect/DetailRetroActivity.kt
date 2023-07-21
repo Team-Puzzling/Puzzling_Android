@@ -35,7 +35,7 @@ class DetailRetroActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_retro)
-        showSnackbar()
+        // showSnackbar()
         clickToolbarBtnBack()
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
@@ -62,7 +62,7 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
-        showSnackbar()
+        // showSnackbar()
     }
 
     private fun showSnackbar() {
