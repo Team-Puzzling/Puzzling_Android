@@ -13,6 +13,7 @@ import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.OnePuzzle
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.ThreePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.TwoPuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.team.TeamDashBoardViewModel
+import com.puzzling.puzzlingaos.presentation.team.currentSituation.TeamRetroActivity
 import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,6 +35,14 @@ class PersonalDashboardFragment :
         clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
         setBottomBtnBackgroundColor()
+    }
+
+    private fun putExtraProjectId() {
+        activity?.let {
+            val intent = Intent(context, TeamRetroActivity::class.java)
+            intent.putExtra("Team", viewModel.myNickname.value)
+            startActivity(intent)
+        }
     }
 
     private fun setActionPlanAdapter() {
@@ -84,18 +93,7 @@ class PersonalDashboardFragment :
 
     private fun clickPuzzlePiece() {
         Log.d("personal", "review ID:::: ${viewModel.myReviewId.value}")
-        //        with(binding) {
-//            // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
-//            clPersonalMain1.setOnClickListener {
-// //                viewLifecycleOwner.lifecycleScope.launch {
-// //                    delay(6000)
-// //                }
-//                activity?.let {
-//                    val intent = Intent(context, DetailRetroActivity::class.java)
-//                    startActivity(intent)
-//                }
-//            }
-//        }
+        // TODO 각 퍼즐 조각 클릭 -> 각 날짜의 회고 상세조회로 넘어가는 로직 추가
         val teamLayouts = listOf(
             binding.clPersonalMain1,
             binding.clPersonalMain2,
@@ -117,6 +115,7 @@ class PersonalDashboardFragment :
             layout.setOnClickListener {
                 teamViewModel.myNickname.observe(this) {
                     val intent = Intent(context, DetailRetroActivity::class.java)
+//                    intent.putExtra("projectId", )
                     intent.putExtra("Title", teamViewModel.myNickname.value)
                     startActivity(intent)
                 }

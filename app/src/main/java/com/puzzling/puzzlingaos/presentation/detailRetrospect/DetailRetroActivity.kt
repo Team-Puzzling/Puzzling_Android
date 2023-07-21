@@ -6,13 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
 import com.puzzling.puzzlingaos.presentation.main.MainActivity
-import com.puzzling.puzzlingaos.util.showCustomSnackBar
+import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteReviewViewModel
+import com.puzzling.puzzlingaos.util.CustomSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -22,6 +22,7 @@ import java.time.format.DateTimeFormatter
 class DetailRetroActivity :
     BaseActivity<ActivityDetailRetroBinding>(R.layout.activity_detail_retro) {
     private val viewModel by viewModels<DetailRetroViewModel>()
+    private val writeViewModel by viewModels<WriteReviewViewModel>()
 
     private val tabTitle = getWeekDatesWithToday()
 
@@ -30,12 +31,11 @@ class DetailRetroActivity :
     companion object {
         const val BLACK_TEXT = 1
         const val BG_BLUE_100 = 2
+        const val EXTRA_RESULT_SAVED = "extra_result_saved"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_retro)
-        // showSnackbar()
         clickToolbarBtnBack()
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
@@ -63,12 +63,9 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
+        observePostReviewResult()
         binding.viewPager.currentItem = LocalDate.now().dayOfWeek.value - 1
         // showSnackbar()
-    }
-
-    private fun showSnackbar() {
-        showCustomSnackBar("저장완료", binding.clDetailRetroMain)
     }
 
     private fun setItemBg() {
@@ -127,6 +124,15 @@ class DetailRetroActivity :
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun observePostReviewResult() {
+        writeViewModel.isPostSuccess.observe(this) { success ->
+            Log.d("post", success.toString())
+            if (success) {
+                CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
+            }
         }
     }
 }

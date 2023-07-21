@@ -56,6 +56,8 @@ class PersonalDashboardViewModel @Inject constructor(
     private val _isSuccess = MutableLiveData(false)
     val isSuccess: LiveData<Boolean> get() = _isSuccess
 
+    val firstProjectId = MutableLiveData<Int>()
+
     val puzzleBoardList = listOf(
         PuzzleBoard("2023.07.03. ~ 2023.07.18.", R.drawable.img_myboard1),
         PuzzleBoard("2023.06.14. ~ 2023.06.29.", R.drawable.img_myboard2),
@@ -73,7 +75,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleData() = viewModelScope.launch {
-        repository.getUserPuzzle(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, UserInfo.TODAY)
+        repository.getUserPuzzle(UserInfo.MEMBER_ID, firstProjectId.value!!, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("personal", "getMyPuzzleData() success:: $response")
@@ -93,7 +95,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getMyPuzzleBoard() = viewModelScope.launch {
-        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID, UserInfo.TODAY)
+        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, firstProjectId.value!!, UserInfo.TODAY)
             .onSuccess { response ->
                 _myPuzzleBoardList.value = response
                 Log.d("personal", "getMyPuzzleBoard() success:: $response")
@@ -122,7 +124,8 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     private fun getActionPlan() = viewModelScope.launch {
-        repository.getActionPlan(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID).onSuccess { response ->
+        repository.getActionPlan(UserInfo.MEMBER_ID, firstProjectId.value!!).onSuccess { response ->
+            _isSuccess.value = true
             Log.d("personal", "getActionPlan() success:: $response")
             val truncatedList = truncateActionPlanList(response)
             _actionPlanList.value = truncatedList
@@ -141,7 +144,7 @@ class PersonalDashboardViewModel @Inject constructor(
 
     private fun getPreviousTemplate() {
         viewModelScope.launch {
-            writeReviewRepository.getPreviousTemplate(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID)
+            writeReviewRepository.getPreviousTemplate(UserInfo.MEMBER_ID, firstProjectId.value!!)
                 .onSuccess { response ->
                     _previousReviewType.value = response.data.previousTemplateId
                     Log.d("write", "getPreviousTemplate() success:: ${_previousReviewType.value}")
