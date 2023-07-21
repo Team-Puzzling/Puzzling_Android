@@ -67,6 +67,8 @@ class HomeViewModel @Inject constructor(
     private val _retroWeek = MutableLiveData<ResponseProjectRetroWeekDto.ProjectCycle?>()
     val retroWeek: LiveData<ResponseProjectRetroWeekDto.ProjectCycle?> get() = _retroWeek
 
+    val firstProjectId = MutableLiveData<Int>()
+
     init {
         _reviewCycleList.value = listOf("월", "수", "금")
         _reviewCycleText.value = _reviewCycleList.value?.joinToString(separator = ",")

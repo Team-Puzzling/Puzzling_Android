@@ -7,7 +7,7 @@ object UserInfo {
     const val POST_MEMBER_ID = 7
     const val POST_PROJECT_ID = 2
 
-    const val MEMBER_ID = 1
+    const val MEMBER_ID = 2
     const val PROJECT_ID = 1
     const val TODAY = "2023-07-21"
 }
