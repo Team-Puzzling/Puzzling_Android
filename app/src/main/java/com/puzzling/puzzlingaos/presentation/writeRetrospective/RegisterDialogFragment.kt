@@ -9,6 +9,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentRegisterDialogBinding
 import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
+import com.puzzling.puzzlingaos.util.CustomSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,5 +46,9 @@ class RegisterDialogFragment :
                 dialog?.dismiss()
             }
         }
+    }
+
+    private fun showSnackbar() {
+        CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
     }
 }

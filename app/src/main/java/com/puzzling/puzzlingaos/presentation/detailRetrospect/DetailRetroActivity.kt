@@ -6,13 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityDetailRetroBinding
 import com.puzzling.puzzlingaos.presentation.main.MainActivity
-import com.puzzling.puzzlingaos.util.showCustomSnackBar
+import com.puzzling.puzzlingaos.util.CustomSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -34,8 +33,6 @@ class DetailRetroActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_retro)
-        showSnackbar()
         clickToolbarBtnBack()
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
@@ -62,11 +59,10 @@ class DetailRetroActivity :
         TabLayoutMediator(binding.tlDetailRetroDate, binding.viewPager) { tab, position ->
             tab.text = tabTitle[position]
         }.attach()
-        showSnackbar()
     }
 
     private fun showSnackbar() {
-        showCustomSnackBar("저장완료", binding.clDetailRetroMain)
+        CustomSnackbar.makeSnackbar(binding.root, "저장 완료!")
     }
 
     private fun setItemBg() {
