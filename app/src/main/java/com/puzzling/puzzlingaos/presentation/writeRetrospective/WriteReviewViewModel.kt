@@ -61,11 +61,11 @@ class WriteReviewViewModel @Inject constructor(
     val isReviewTypeSelected: LiveData<Boolean>
         get() = _isReviewTypeSelected
 
-    private val _selectedReviewType = MutableLiveData("TIL")
+    private val _selectedReviewType = MutableLiveData<String>()
     val selectedReviewType: LiveData<String>
         get() = _selectedReviewType
 
-    private val _selectedReviewNum = MutableLiveData(1)
+    private val _selectedReviewNum = MutableLiveData<Int>()
     val selectedReviewNum: LiveData<Int>
         get() = _selectedReviewNum
 
