@@ -46,16 +46,19 @@ class RegisterDialogFragment :
                 when (viewModel.selectedReviewType.value) {
                     "TIL" -> {
                         viewModel.projectId.observe(viewLifecycleOwner) {
+                            Log.d("til", "${it}")
                             viewModel.postReviewTIL(it)
                         }
                     }
                     "5F" -> {
                         viewModel.projectId.observe(viewLifecycleOwner) {
+                            Log.d("5f", "${it}")
                             viewModel.postReview5F(it)
                         }
                     }
                     "AAR" -> {
                         viewModel.projectId.observe(viewLifecycleOwner) {
+                            Log.d("aar", "${it}")
                             viewModel.postReviewAAR(it)
                         }
                     }

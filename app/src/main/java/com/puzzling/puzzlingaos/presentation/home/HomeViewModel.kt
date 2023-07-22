@@ -47,7 +47,7 @@ class HomeViewModel @Inject constructor(
     val isProjectNameSelected: LiveData<Boolean>
         get() = _isProjectNameSelected
 
-    private val _selectedProjectName = MutableLiveData("찌릿")
+    private val _selectedProjectName = MutableLiveData("우유")
     val selectedProjectName: LiveData<String>
         get() = _selectedProjectName
 

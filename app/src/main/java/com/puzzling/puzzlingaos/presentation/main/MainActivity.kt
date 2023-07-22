@@ -1,6 +1,5 @@
 package com.puzzling.puzzlingaos.presentation.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -13,7 +12,6 @@ import com.puzzling.puzzlingaos.presentation.home.HomeFragment
 import com.puzzling.puzzlingaos.presentation.home.personal.PersonalDashboardViewModel
 import com.puzzling.puzzlingaos.presentation.home.team.TeamDashBoardViewModel
 import com.puzzling.puzzlingaos.presentation.mypage.MyPageFragment
-import com.puzzling.puzzlingaos.presentation.writeRetrospective.WriteRetrospectiveActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

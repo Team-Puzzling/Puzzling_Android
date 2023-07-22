@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamDashboardBinding
@@ -19,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TeamDashboardFragment :
     BaseFragment<FragmentTeamDashboardBinding>(R.layout.fragment_team_dashboard) {
-    private val viewModel by viewModels<TeamDashBoardViewModel>()
+    private val viewModel by activityViewModels<TeamDashBoardViewModel>()
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,7 +65,7 @@ class TeamDashboardFragment :
             layout.setOnClickListener {
                 activity?.let {
                     val intent = Intent(context, TeamRetroActivity::class.java)
-                    intent.putExtra("Team", viewModel.myNickname.value)
+                    intent.putExtra("Title", viewModel.myNickname.value)
                     startActivity(intent)
                 }
             }

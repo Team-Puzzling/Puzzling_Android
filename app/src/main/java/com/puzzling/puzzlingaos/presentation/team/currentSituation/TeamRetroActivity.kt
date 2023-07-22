@@ -1,6 +1,5 @@
 package com.puzzling.puzzlingaos.presentation.team.currentSituation
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityTeamRetroBinding
-import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -32,15 +30,17 @@ class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activi
 
 //        binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
 
-
         binding.viewModel = viewModel
-        binding.tvTeamProjectName.text = intent.getStringExtra("Team")
-        binding.tvTeamCurrentYearmonth.text = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월"))
+        binding.tvTeamProjectName.text = intent.getStringExtra("Title")
+        binding.tvTeamCurrentYearmonth.text =
+            LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월"))
 
         viewModel.getTeamRetrospectList(
             1,
-            startOfWeek = LocalDate.now().with(DayOfWeek.MONDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-            endOfWeek = LocalDate.now().with(DayOfWeek.SUNDAY).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            startOfWeek = LocalDate.now().with(DayOfWeek.MONDAY)
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            endOfWeek = LocalDate.now().with(DayOfWeek.SUNDAY)
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
         )
 
         viewModel.teamRetrospectList.observe(this) { contents ->
@@ -61,7 +61,10 @@ class TeamRetroActivity : BaseActivity<ActivityTeamRetroBinding>(R.layout.activi
         }
 
         binding.viewPagerTeamRetrospectList.adapter = RetrospectThisWeekAdapter(this, num)
-        TabLayoutMediator(binding.layoutTeamTabDate, binding.viewPagerTeamRetrospectList) { tab, position ->
+        TabLayoutMediator(
+            binding.layoutTeamTabDate,
+            binding.viewPagerTeamRetrospectList,
+        ) { tab, position ->
             tab.text = teamTabTitle[position]
         }.attach()
 

@@ -40,7 +40,7 @@ class DetailRetroActivity :
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
 
-        val projectId = intent.getIntExtra("projectId", 1)
+        val projectId = intent.getIntExtra("homeProjectId", 1)
         viewModel.getDetailRetro(projectId)
 
         viewModel.detailRetroList.observe(this) { contents ->
@@ -121,6 +121,7 @@ class DetailRetroActivity :
 
         binding.ibDetailRetroClose.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("homeProjectId", 0)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()

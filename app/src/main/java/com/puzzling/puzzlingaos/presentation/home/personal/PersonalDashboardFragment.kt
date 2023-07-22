@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
@@ -23,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class PersonalDashboardFragment :
     BaseFragment<FragmentPersonalDashboardBinding>(R.layout.fragment_personal_dashboard) {
     private val viewModel by activityViewModels<PersonalDashboardViewModel>()
-    private val teamViewModel by viewModels<TeamDashBoardViewModel>()
+    private val teamViewModel by activityViewModels<TeamDashBoardViewModel>()
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
     private var _actionPlanAdapter: ActionPlanListAdapter? = null
@@ -38,7 +37,6 @@ class PersonalDashboardFragment :
         clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
         setBottomBtnBackgroundColor()
-        intentToWriteActivity()
         observeProjectId()
         homeViewModel.selectedProjectId.observe(this) {
             viewModel.getMyPuzzleData(it)
@@ -57,10 +55,14 @@ class PersonalDashboardFragment :
         }
     }
 
-    private fun intentToWriteActivity() {
-        val intent = Intent(requireActivity(), WriteRetrospectiveActivity::class.java)
-        intent.putExtra("homeProjectId", viewModel.firstProjectId.value)
-    }
+//    private fun intentToWriteActivity() {
+//        val intent = Intent(requireActivity(), WriteRetrospectiveActivity::class.java)
+//        viewModel.firstProjectId.observe(this) {
+//            Log.d("개인", "$it")
+//            intent.putExtra("homeProjectId", it)
+////            startActivity(intent)
+//        }
+//    }
 
     private fun putExtraProjectId() {
         activity?.let {
@@ -81,11 +83,15 @@ class PersonalDashboardFragment :
 
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
-            teamViewModel.myNickname.observe(this) {
-                val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-                intent.putExtra("Title", teamViewModel.myNickname.value)
+            viewModel.firstProjectId.observe(this) {
+                val intent = Intent(activity, WriteRetrospectiveActivity::class.java)
+                intent.putExtra("homeProjectId", it)
+                Log.d("homeProjectId", "$it")
                 startActivity(intent)
             }
+//            val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+//            intent.putExtra("Title", teamViewModel.myNickname.value)
+//            startActivity(intent)
         }
     }
 
@@ -154,7 +160,7 @@ class PersonalDashboardFragment :
                 if (viewModel.hasTodayReview.value == true) {
                     binding.tvPersonalBottomTitle.text = "회고 작성하기"
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
-                    binding.clPersonalBottomBtn.isClickable = false
+                    binding.clPersonalBottomBtn.isClickable = true
                 } else {
                     binding.tvPersonalBottomTitle.text = "회고 작성하기"
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_blue400_fill_radius_16)
@@ -163,7 +169,7 @@ class PersonalDashboardFragment :
             } else {
                 binding.tvPersonalBottomTitle.text = "회고 작성일이 아니에요"
                 binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
-                binding.clPersonalBottomBtn.isClickable = false
+                binding.clPersonalBottomBtn.isClickable = true
             }
         }
     }
