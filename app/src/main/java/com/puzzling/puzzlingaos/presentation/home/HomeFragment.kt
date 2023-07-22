@@ -27,6 +27,7 @@ class HomeFragment :
     private val viewModel by activityViewModels<HomeViewModel>()
     private val registerViewModel by activityViewModels<RegisterViewModel>()
 
+    var projectName: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
@@ -37,22 +38,29 @@ class HomeFragment :
         showPopupMessage()
         handleSelectedProject()
         getPopupContent()
+        observeProjectName()
+    }
+
+    private fun observeProjectName() {
+        viewModel.firstProjectName.observe(viewLifecycleOwner) {
+            binding.tvHomeProjectName.text = it
+            Log.d("home", "firstProjectName::: $it")
+        }
     }
 
     private fun getPopupContent() {
-        viewModel.selectedProjectId.observe(this) {
+        viewModel.selectedProjectId.observe(viewLifecycleOwner) {
             viewModel.getProjectWeekCycle(it)
         }
 
-        viewModel.retroWeek.observe(this) {
-            val reviewCycleText = "매주 ${it?.projectReviewCycle} \n회고를 작성해주세요"
-
+        viewModel.projectCycle.observe(viewLifecycleOwner) {
+            val reviewCycleText = "매주 $it \n회고를 작성해주세요"
             // SpannableString 생성
             val spannableString = SpannableString(reviewCycleText)
 
             // "${it?.projectReviewCycle}" 부분의 텍스트 색상 변경
-            val startIndex = reviewCycleText.indexOf(it?.projectReviewCycle ?: "")
-            val endIndex = startIndex + (it?.projectReviewCycle?.length ?: 0)
+            val startIndex = reviewCycleText.indexOf(it ?: "")
+            val endIndex = startIndex + (it.length ?: 0)
             if (startIndex in 0 until endIndex) {
                 spannableString.setSpan(
                     ForegroundColorSpan(
@@ -68,7 +76,6 @@ class HomeFragment :
             }
 
             binding.tvHomePopupContent.text = spannableString
-            binding.tvHomePopupTitle.text = it?.projectName
         }
     }
 

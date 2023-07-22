@@ -149,7 +149,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
                         android:includeFontPadding="false"
-                        android:text="프로젝트 이름"
+                        android:text="@{vm.firstProjectName}"
                         android:textAppearance="@style/Kor.Heading4"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -158,7 +158,7 @@
                         android:id="@+id/tv_home_popup_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="매주 월화수에 \\n 회고를 작성해주세요"
+                        tools:text="매주 월화수에 \\n 회고를 작성해주세요"
                         android:textAppearance="@style/Kor.Body3.Regular"
                         app:layout_constraintStart_toStartOf="@+id/tv_home_popup_title"
                         app:layout_constraintTop_toBottomOf="@+id/tv_home_popup_title" />

@@ -54,7 +54,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun getPopUpContent() {
-        viewModel.retroWeek.observe(this) {
+        viewModel.retroWeek.observe(viewLifecycleOwner) {
             val reviewCycleText = "매주 ${it?.projectReviewCycle} \n회고를 작성해주세요"
 
             // SpannableString 생성
@@ -99,7 +99,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             rcvMyPageMain.layoutManager = LinearLayoutManager(activity)
         }
 
-        viewModel.responseProjectList.observe(this) {
+        viewModel.responseProjectList.observe(viewLifecycleOwner) {
             myProjectContentAdapter.submitList(it)
         }
 
