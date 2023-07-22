@@ -46,19 +46,19 @@ class RegisterDialogFragment :
                 when (viewModel.selectedReviewType.value) {
                     "TIL" -> {
                         viewModel.projectId.observe(viewLifecycleOwner) {
-                            Log.d("til", "${it}")
+                            Log.d("til", "$it")
                             viewModel.postReviewTIL(it)
                         }
                     }
                     "5F" -> {
                         viewModel.projectId.observe(viewLifecycleOwner) {
-                            Log.d("5f", "${it}")
+                            Log.d("5f", "$it")
                             viewModel.postReview5F(it)
                         }
                     }
                     "AAR" -> {
                         viewModel.projectId.observe(viewLifecycleOwner) {
-                            Log.d("aar", "${it}")
+                            Log.d("aar", "$it")
                             viewModel.postReviewAAR(it)
                         }
                     }
@@ -66,6 +66,9 @@ class RegisterDialogFragment :
                 // TODO toast 성공하면 주석 제거하기
                 activity?.let {
                     val intent = Intent(context, DetailRetroActivity::class.java)
+                    intent.putExtra("homeProjectId", viewModel.projectId.value)
+                    intent.putExtra("Title", viewModel.projectName.value)
+                    Log.d("register", "viewModel.projectId.value::: ${viewModel.projectId.value}")
                     launchDetailRetroActivity.launch(intent)
                 }
                 // TODO 프로젝트 넘기기

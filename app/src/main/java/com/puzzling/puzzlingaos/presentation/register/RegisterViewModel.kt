@@ -34,7 +34,9 @@ class RegisterViewModel @Inject constructor(
     var dayArray = ArrayList<String>()
     var isDateCycleSelected = MutableLiveData<ArrayList<String>>()
     var projectCode = MutableLiveData<String>()
-//    var projectId = MutableLiveData<Int>()
+
+    //    var projectId = MutableLiveData<Int>()
+    var projectCycle = MutableLiveData<String>()
 
     private val _projectId = MutableLiveData<Int>()
     val projectId: LiveData<Int>

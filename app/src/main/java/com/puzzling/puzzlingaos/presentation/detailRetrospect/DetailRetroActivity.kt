@@ -34,13 +34,18 @@ class DetailRetroActivity :
         const val EXTRA_RESULT_SAVED = "extra_result_saved"
     }
 
+    private var projectId = -1
+    private var projectName = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         clickToolbarBtnBack()
 
         binding.tvDetailRetroTitle.text = intent.getStringExtra("Title")
+        Log.d("detail", "${intent.getStringExtra("Title")}")
 
-        val projectId = intent.getIntExtra("homeProjectId", 1)
+        projectId = intent.getIntExtra("homeProjectId", 1)
+        projectName = intent.getStringExtra("Title").toString()
         viewModel.getDetailRetro(projectId)
 
         viewModel.detailRetroList.observe(this) { contents ->
@@ -121,8 +126,12 @@ class DetailRetroActivity :
 
         binding.ibDetailRetroClose.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("homeProjectId", 0)
-            intent.putExtra("Title",binding.tvDetailRetroTitle.text)
+            intent.putExtra("homeProjectId", projectId)
+            intent.putExtra("Title", binding.tvDetailRetroTitle.text.toString())
+            Log.d(
+                "detail",
+                "binding.tvDetailRetroTitle.text.toString():: ${binding.tvDetailRetroTitle.text}",
+            )
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()

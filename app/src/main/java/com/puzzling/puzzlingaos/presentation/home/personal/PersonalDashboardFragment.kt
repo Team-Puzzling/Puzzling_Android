@@ -60,7 +60,7 @@ class PersonalDashboardFragment :
 //        viewModel.firstProjectId.observe(this) {
 //            Log.d("개인", "$it")
 //            intent.putExtra("homeProjectId", it)
-////            startActivity(intent)
+// //            startActivity(intent)
 //        }
 //    }
 
@@ -75,7 +75,7 @@ class PersonalDashboardFragment :
     private fun setActionPlanAdapter() {
         _actionPlanAdapter = ActionPlanListAdapter()
 //        _actionPlanAdapter?.submitList(viewModel.actionPlanList.value)
-        viewModel.actionPlanList.observe(this) {
+        viewModel.actionPlanList.observe(viewLifecycleOwner) {
             binding.rcvPersonalView.adapter = _actionPlanAdapter
             _actionPlanAdapter!!.submitList(it)
         }
@@ -83,7 +83,7 @@ class PersonalDashboardFragment :
 
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
-            viewModel.firstProjectId.observe(this) {
+            viewModel.firstProjectId.observe(viewLifecycleOwner) {
                 val intent = Intent(activity, WriteRetrospectiveActivity::class.java)
                 intent.putExtra("homeProjectId", it)
                 Log.d("homeProjectId", "$it")
@@ -144,7 +144,7 @@ class PersonalDashboardFragment :
         )
         teamLayouts.forEach { layout ->
             layout.setOnClickListener {
-                teamViewModel.myNickname.observe(this) {
+                teamViewModel.myNickname.observe(viewLifecycleOwner) {
                     val intent = Intent(context, DetailRetroActivity::class.java)
 //                    intent.putExtra("projectId", )
                     intent.putExtra("Title", teamViewModel.myNickname.value)
@@ -155,7 +155,7 @@ class PersonalDashboardFragment :
     }
 
     private fun setBottomBtnBackgroundColor() {
-        viewModel.isReviewDay.observe(this) {
+        viewModel.isReviewDay.observe(viewLifecycleOwner) {
             if (it == true) { // 회고하는날
                 if (viewModel.hasTodayReview.value == true) {
                     binding.tvPersonalBottomTitle.text = "회고 작성하기"
@@ -175,7 +175,7 @@ class PersonalDashboardFragment :
     }
 
     private fun setVisibleAdapter() {
-        viewModel.actionPlanList.observe(this) {
+        viewModel.actionPlanList.observe(viewLifecycleOwner) {
             if (it != null && it.isEmpty()) {
                 binding.clActionplanNone.visibility = View.VISIBLE
                 binding.rcvPersonalView.visibility = View.INVISIBLE

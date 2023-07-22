@@ -42,6 +42,8 @@ class ProjectCodeDialogFragment(private val code: String) :
             btnRegisterDialogBottom.setOnClickListener {
                 val intent = Intent(requireActivity(), MainActivity::class.java)
                 intent.putExtra("homeProjectId", viewModel.projectId.value)
+                intent.putExtra("Title", viewModel.projectName.value)
+                intent.putExtra("cycle",viewModel.projectCycle.value)
                 Log.d("main", "RegisterViewModel.projectId ::: ${viewModel.projectId.value}") // 잘뜸
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)

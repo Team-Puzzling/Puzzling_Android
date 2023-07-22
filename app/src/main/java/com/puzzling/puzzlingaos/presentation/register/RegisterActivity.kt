@@ -10,7 +10,6 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.databinding.ActivityRegisterBinding
 import com.puzzling.puzzlingaos.presentation.main.MainActivity
-import com.puzzling.puzzlingaos.presentation.onboarding.ChooseJoinRegisterActivity
 import com.puzzling.puzzlingaos.presentation.register.projectCode.ProjectCodeDialogFragment
 import com.puzzling.puzzlingaos.util.UserInfo.POST_MEMBER_ID
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,8 +49,14 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                 override fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(year, month, dayOfMonth)
-                    val formattedDateTextBox = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
-                    var formattedDateRegister = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.time)
+                    val formattedDateTextBox = SimpleDateFormat(
+                        "yyyy/MM/dd",
+                        Locale.getDefault(),
+                    ).format(selectedDate.time)
+                    var formattedDateRegister = SimpleDateFormat(
+                        "yyyy-MM-dd",
+                        Locale.getDefault(),
+                    ).format(selectedDate.time)
                     binding.tvDateDropDown.text = formattedDateTextBox
                     binding.tvDateDropDown.setTextAppearance(R.style.Kor_Body2_Bold)
                     viewModel.projectStartDate.value = formattedDateRegister
@@ -64,7 +69,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
 
     private fun clickDayCyclePicker() {
         binding.rcvRetrospectWeekCycle.adapter = RetrospectWeekCycleAdapter(viewModel)
-        binding.rcvRetrospectWeekCycle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rcvRetrospectWeekCycle.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         dayCycleAdapter.setOnDayClickListener { response ->
             viewModel.dayArray = dayCycleAdapter.selectedRetrospectDayArray
@@ -79,16 +85,20 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
                     when (textBox) {
                         viewModel.projectName -> {
                             binding.layoutProjectName.error = ERROR_MESSAGE
-                            viewModel.isValidProjectName.value = false }
+                            viewModel.isValidProjectName.value = false
+                        }
                         viewModel.projectExplanation -> {
                             binding.layoutExplanation.error = ERROR_MESSAGE
-                            viewModel.isValidProjectExplanation.value = false }
+                            viewModel.isValidProjectExplanation.value = false
+                        }
                         viewModel.role -> {
                             binding.layoutRole.error = ERROR_MESSAGE
-                            viewModel.isValidRole.value = false }
+                            viewModel.isValidRole.value = false
+                        }
                         viewModel.nickName -> {
                             binding.layoutNickName.error = ERROR_MESSAGE
-                            viewModel.isValidNickName.value = false }
+                            viewModel.isValidNickName.value = false
+                        }
                     }
                 } else {
                     when (textBox) {
@@ -144,6 +154,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             Log.d("role: ", "${viewModel.role.value}")
             Log.d("nickName: ", "${viewModel.nickName.value}")
             Log.d("DateCycle: ", "${viewModel.isDateCycleSelected.value}")
+            viewModel.projectCycle.value = viewModel.isDateCycleSelected.value?.joinToString(separator = ",")
+            Log.d("register", "viewModel.projectCycle.value::: ${viewModel.projectCycle.value}")
             showDialog("${viewModel.projectCode.value}")
             Log.d("projectCode: ", "${viewModel.projectCode.value}")
             // Log.d("projectId: ", "${viewModel.projectId.value}")
