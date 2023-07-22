@@ -38,7 +38,7 @@ class DetailRetroViewModel @Inject constructor(private val repository: MyPageRep
             Log.d("상세회고조회", "startOfWeek:: $startOfWeek")
             Log.d("상세회고조회", "endOfWeek:: $endOfWeek")
             repository.getMyDetailReview(
-                2,
+                1,
                 projectId,
                 startOfWeek.toString(),
                 endOfWeek.toString(),

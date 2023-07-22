@@ -38,7 +38,7 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getMyProjectReview(selectedProjectId: Int) = viewModelScope.launch {
         kotlin.runCatching {
-            myPageRepository.getMyProjectReview(2, selectedProjectId)
+            myPageRepository.getMyProjectReview(1, selectedProjectId)
         }.onSuccess { response ->
             _responseReview.value = response.data
             Log.d("MyProjectRetro", "$response")
@@ -54,7 +54,7 @@ class MyRetrospectViewModel @Inject constructor(
 
     fun getMyProjectList() = viewModelScope.launch {
         kotlin.runCatching {
-            myBoardRepository.getProceedingProject(2).onSuccess { response ->
+            myBoardRepository.getProceedingProject(1).onSuccess { response ->
                 _responseProjectList.value = response
             }.onFailure {
                 Log.d("MyProjectRetro", "$it")

@@ -40,14 +40,14 @@ class MyRetroContentAdapter() :
 
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 binding.clMyRetroContainer.setOnClickListener {
-                    listener?.onItemClick(itemView, bindingAdapterPosition)
+                    listener?.onItemClick(itemView,item, bindingAdapterPosition)
                 }
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(v: View, pos: Int)
+        fun onItemClick(v: View, item:ResponseMyRetroListDto.ReviewData, pos: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
