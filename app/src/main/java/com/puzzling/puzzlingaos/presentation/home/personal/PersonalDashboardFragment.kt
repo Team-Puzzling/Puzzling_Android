@@ -4,11 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentPersonalDashboardBinding
 import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
+import com.puzzling.puzzlingaos.presentation.home.HomeViewModel
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.OnePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.ThreePuzzleBoardActivity
 import com.puzzling.puzzlingaos.presentation.home.personal.puzzleboard.TwoPuzzleBoardActivity
@@ -20,8 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PersonalDashboardFragment :
     BaseFragment<FragmentPersonalDashboardBinding>(R.layout.fragment_personal_dashboard) {
-    private val viewModel by viewModels<PersonalDashboardViewModel>()
-    private val teamViewModel by viewModels<TeamDashBoardViewModel>()
+    private val viewModel by activityViewModels<PersonalDashboardViewModel>()
+    private val teamViewModel by activityViewModels<TeamDashBoardViewModel>()
+    private val homeViewModel by activityViewModels<HomeViewModel>()
 
     private var _actionPlanAdapter: ActionPlanListAdapter? = null
     private val actionPlanAdapter
@@ -35,7 +37,32 @@ class PersonalDashboardFragment :
         clickMyPuzzleBoardBtn()
         clickPuzzlePiece()
         setBottomBtnBackgroundColor()
+        observeProjectId()
+        homeViewModel.selectedProjectId.observe(this) {
+            viewModel.getMyPuzzleData(it)
+            viewModel.getMyPuzzleBoard(it)
+        }
+        setVisibleAdapter()
     }
+
+    private fun observeProjectId() {
+        viewModel.firstProjectId.observe(this) {
+            Log.d("personal", "firstProjectId:: $it")
+            viewModel.getMyPuzzleData(it)
+            viewModel.getMyPuzzleBoard(it)
+            viewModel.getActionPlan(it)
+            viewModel.getPreviousTemplate(it)
+        }
+    }
+
+//    private fun intentToWriteActivity() {
+//        val intent = Intent(requireActivity(), WriteRetrospectiveActivity::class.java)
+//        viewModel.firstProjectId.observe(this) {
+//            Log.d("개인", "$it")
+//            intent.putExtra("homeProjectId", it)
+////            startActivity(intent)
+//        }
+//    }
 
     private fun putExtraProjectId() {
         activity?.let {
@@ -56,11 +83,15 @@ class PersonalDashboardFragment :
 
     private fun clickBottomBtn() {
         binding.clPersonalBottomBtn.setOnClickListener {
-            teamViewModel.myNickname.observe(this) {
-                val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-                intent.putExtra("Title", teamViewModel.myNickname.value)
+            viewModel.firstProjectId.observe(this) {
+                val intent = Intent(activity, WriteRetrospectiveActivity::class.java)
+                intent.putExtra("homeProjectId", it)
+                Log.d("homeProjectId", "$it")
                 startActivity(intent)
             }
+//            val intent = Intent(context, WriteRetrospectiveActivity::class.java)
+//            intent.putExtra("Title", teamViewModel.myNickname.value)
+//            startActivity(intent)
         }
     }
 
@@ -124,21 +155,33 @@ class PersonalDashboardFragment :
     }
 
     private fun setBottomBtnBackgroundColor() {
-        viewModel.isSuccess.observe(this) {
-            if (viewModel.isReviewDay.value == true) {
-                Log.d("personal", "회고 진행해야함")
-                binding.tvPersonalBottomTitle.text = "회고 작성하기"
+        viewModel.isReviewDay.observe(this) {
+            if (it == true) { // 회고하는날
                 if (viewModel.hasTodayReview.value == true) {
+                    binding.tvPersonalBottomTitle.text = "회고 작성하기"
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
-                    binding.clPersonalBottomBtn.isClickable = false
+                    binding.clPersonalBottomBtn.isClickable = true
                 } else {
+                    binding.tvPersonalBottomTitle.text = "회고 작성하기"
                     binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_blue400_fill_radius_16)
                     binding.clPersonalBottomBtn.isClickable = true
                 }
             } else {
                 binding.tvPersonalBottomTitle.text = "회고 작성일이 아니에요"
                 binding.clPersonalBottomBtn.setBackgroundResource(R.drawable.rect_gray400_fill_16)
-                binding.clPersonalBottomBtn.isClickable = false
+                binding.clPersonalBottomBtn.isClickable = true
+            }
+        }
+    }
+
+    private fun setVisibleAdapter() {
+        viewModel.actionPlanList.observe(this) {
+            if (it != null && it.isEmpty()) {
+                binding.clActionplanNone.visibility = View.VISIBLE
+                binding.rcvPersonalView.visibility = View.INVISIBLE
+            } else {
+                binding.rcvPersonalView.visibility = View.VISIBLE
+                binding.clActionplanNone.visibility = View.INVISIBLE
             }
         }
     }

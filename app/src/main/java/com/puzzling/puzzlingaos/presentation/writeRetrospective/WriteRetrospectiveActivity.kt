@@ -24,6 +24,9 @@ class WriteRetrospectiveActivity :
         initFragment()
         clickBtn()
         handleSelectedReviewType()
+        val getProjectId = intent.getIntExtra("homeProjectId", -1)
+        viewModel.projectId.value = getProjectId
+        Log.d("write", "WriteRetrospectiveActivity로 전달받는 값  :: $getProjectId")
     }
 
     private fun initFragment() {
@@ -37,6 +40,8 @@ class WriteRetrospectiveActivity :
                         .add(R.id.fcv_write_container, Write5fFragment()).commit()
                     "AAR" -> supportFragmentManager.beginTransaction()
                         .add(R.id.fcv_write_container, WriteAarFragment()).commit()
+                    else -> supportFragmentManager.beginTransaction()
+                        .add(R.id.fcv_write_container, WriteTilFragment()).commit()
                 }
             }
 //            supportFragmentManager.beginTransaction()
@@ -57,6 +62,7 @@ class WriteRetrospectiveActivity :
             }
             btnWriteBack.setOnClickListener {
                 val intent = Intent(this@WriteRetrospectiveActivity, MainActivity::class.java)
+                intent.putExtra("homeProjectId", 0)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()

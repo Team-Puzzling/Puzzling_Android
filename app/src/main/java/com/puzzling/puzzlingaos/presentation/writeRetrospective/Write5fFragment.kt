@@ -26,6 +26,12 @@ class Write5fFragment :
         validBtnEnabled()
     }
 
+//    private fun observeReviewType(){
+//        viewModel.projectId.observe(this){
+//
+//        }
+//    }
+
     private fun textInputListener(textBox: MutableLiveData<String>) {
         textBox.observe(this) { textBoxString ->
             viewModel.let { viewModel ->

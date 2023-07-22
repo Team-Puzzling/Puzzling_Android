@@ -11,7 +11,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.fragment.app.setFragmentResultListener
 import com.google.android.material.tabs.TabLayout
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
@@ -118,16 +117,10 @@ class HomeFragment :
 
     private fun handleSelectedProject() {
         viewModel.isProjectNameSelected.observe(viewLifecycleOwner) {
-            Log.d("home", "isProjectSelected: ${viewModel.isProjectNameSelected.value}")
+            Log.d("home", "isProjectSelected: $it")
             val projectName = viewModel.selectedProjectName.value
             binding.tvHomeProjectName.text = projectName.toString()
             Log.d("home", "tvHomeProjectName: ${binding.tvHomeProjectName.text}")
-
-            setFragmentResultListener("projectIdKey") { key, bundle ->
-                val projectId = bundle.getString("projectId")
-                Log.d("home", "Received projectId: $projectId")
-                // Now you can use the projectId value as needed
-            }
         }
 //        setFragmentResultListener("projectIdKey") { key, bundle ->
 //            val projectId = bundle.getInt("projectId").toString()

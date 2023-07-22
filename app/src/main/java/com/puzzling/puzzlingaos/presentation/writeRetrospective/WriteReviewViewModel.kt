@@ -69,7 +69,7 @@ class WriteReviewViewModel @Inject constructor(
     val selectedReviewNum: LiveData<Int>
         get() = _selectedReviewNum
 
-    private val _reviewTypeText = MutableLiveData<String>()
+    private val _reviewTypeText = MutableLiveData<String>("TIL")
     val reviewTypeText: LiveData<String>
         get() = _reviewTypeText
 
@@ -100,6 +100,8 @@ class WriteReviewViewModel @Inject constructor(
     private val _isPostSuccess = MutableLiveData<Boolean>(false)
     val isPostSuccess: LiveData<Boolean>
         get() = _isPostSuccess
+
+    val projectId = MutableLiveData<Int>()
 
     fun setSelectedChipText(chipText: String) {
         _selectedChipText.value = chipText
@@ -170,7 +172,6 @@ class WriteReviewViewModel @Inject constructor(
 
     init {
         getReviewType()
-        getPreviousTemplate()
     }
 
     fun setSelectedReviewTypeText(reviewType: String) {
@@ -185,44 +186,7 @@ class WriteReviewViewModel @Inject constructor(
         _isReviewTypeSelected.value = true
     }
 
-    fun getTIL(): TIL {
-        return TIL(
-            reviewTemplateId = 1,
-            liked = tilQuestion1.value.toString(),
-            lacked = tilQuestion2.value.toString(),
-            actionPlan = tilQuestion3.value.toString(),
-        ).also {
-            til = it
-        }
-    }
-
-    fun get5F(): F5 {
-        return F5(
-            reviewTemplateId = 2,
-            fact = question5f1.value.toString(),
-            feeling = question5f2.value.toString(),
-            finding = question5f3.value.toString(),
-            feedback = question5f4.value.toString(),
-            actionPlan = question5f5.value.toString(),
-        ).also {
-            f5 = it
-        }
-    }
-
-    fun getAAR(): AAR {
-        return AAR(
-            reviewTemplateId = 3,
-            initialGoal = aarQuestion1.value.toString(),
-            result = aarQuestion2.value.toString(),
-            difference = aarQuestion3.value.toString(),
-            persistence = aarQuestion4.value.toString(),
-            actionPlan = aarQuestion5.value.toString(),
-        ).also {
-            aar = it
-        }
-    }
-
-    fun postReviewTIL() {
+    fun postReviewTIL(projectId: Int) {
         val requestReviewTIL = RequestReviewTILDto(
             _selectedReviewNum.value!!,
             tilQuestion1.value.toString(),
@@ -232,7 +196,7 @@ class WriteReviewViewModel @Inject constructor(
         viewModelScope.launch {
             repository.uploadTIL(
                 UserInfo.POST_MEMBER_ID,
-                UserInfo.POST_PROJECT_ID,
+                projectId,
                 requestReviewTIL,
             ).onSuccess {
                 _isPostSuccess.value = true
@@ -243,7 +207,7 @@ class WriteReviewViewModel @Inject constructor(
         }
     }
 
-    fun postReview5F() {
+    fun postReview5F(projectId: Int) {
         val requestReview5F = RequestReview5FDto(
             _selectedReviewNum.value!!,
             question5f1.value.toString(),
@@ -255,7 +219,7 @@ class WriteReviewViewModel @Inject constructor(
         viewModelScope.launch {
             repository.upload5F(
                 UserInfo.POST_MEMBER_ID,
-                UserInfo.POST_PROJECT_ID,
+                projectId,
                 requestReview5F,
             ).onSuccess {
                 _isPostSuccess.value = true
@@ -266,7 +230,7 @@ class WriteReviewViewModel @Inject constructor(
         }
     }
 
-    fun postReviewAAR() {
+    fun postReviewAAR(projectId: Int) {
         val requestReviewAAR = RequestReviewAARDto(
             _selectedReviewNum.value!!,
             aarQuestion1.value.toString(),
@@ -278,7 +242,7 @@ class WriteReviewViewModel @Inject constructor(
         viewModelScope.launch {
             repository.uploadAAR(
                 UserInfo.POST_MEMBER_ID,
-                UserInfo.POST_PROJECT_ID,
+                projectId,
                 requestReviewAAR,
             ).onSuccess {
                 _isPostSuccess.value = true
@@ -289,7 +253,7 @@ class WriteReviewViewModel @Inject constructor(
         }
     }
 
-    private fun getReviewType() {
+    fun getReviewType() {
         viewModelScope.launch {
             repository.getReviewType().onSuccess { response ->
                 _reviewTypeList.value = response
@@ -313,9 +277,9 @@ class WriteReviewViewModel @Inject constructor(
         }
     }
 
-    private fun getPreviousTemplate() {
+    fun getPreviousTemplate(projectId: Int) {
         viewModelScope.launch {
-            repository.getPreviousTemplate(UserInfo.MEMBER_ID, UserInfo.PROJECT_ID)
+            repository.getPreviousTemplate(UserInfo.MEMBER_ID, projectId)
                 .onSuccess { response ->
                     _previousReviewType.value = response.data.previousTemplateId
                     when (_previousReviewType.value) {

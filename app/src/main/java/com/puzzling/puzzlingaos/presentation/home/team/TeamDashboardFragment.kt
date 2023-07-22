@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
 import com.puzzling.puzzlingaos.databinding.FragmentTeamDashboardBinding
@@ -18,14 +18,29 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TeamDashboardFragment :
     BaseFragment<FragmentTeamDashboardBinding>(R.layout.fragment_team_dashboard) {
-    private val viewModel by viewModels<TeamDashBoardViewModel>()
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val viewModel by activityViewModels<TeamDashBoardViewModel>()
+    private val homeViewModel by activityViewModels<HomeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
         clickTeamPuzzleBoardBtn()
         clickPuzzlePiece()
+        observeProjectId()
+        homeViewModel.selectedProjectId.observe(this) {
+            viewModel.getTeamPuzzleData(it)
+            viewModel.getTeamPuzzleBoard(it)
+            viewModel.getTeamRanking(it)
+        }
+    }
+
+    private fun observeProjectId() {
+        viewModel.firstProjectId.observe(this) {
+            Log.d("team", "firstProjectId:: $it")
+            viewModel.getTeamPuzzleData(it)
+            viewModel.getTeamPuzzleBoard(it)
+            viewModel.getTeamRanking(it)
+        }
     }
 
     private fun clickPuzzlePiece() {
@@ -50,7 +65,7 @@ class TeamDashboardFragment :
             layout.setOnClickListener {
                 activity?.let {
                     val intent = Intent(context, TeamRetroActivity::class.java)
-                    intent.putExtra("Team", viewModel.myNickname.value)
+                    intent.putExtra("Title", viewModel.myNickname.value)
                     startActivity(intent)
                 }
             }
