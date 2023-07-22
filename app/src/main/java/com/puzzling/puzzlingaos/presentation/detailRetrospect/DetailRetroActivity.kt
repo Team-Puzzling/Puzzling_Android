@@ -122,6 +122,7 @@ class DetailRetroActivity :
         binding.ibDetailRetroClose.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("homeProjectId", 0)
+            intent.putExtra("Title",binding.tvDetailRetroTitle.text)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()

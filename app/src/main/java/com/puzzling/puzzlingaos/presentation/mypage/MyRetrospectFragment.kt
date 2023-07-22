@@ -2,6 +2,7 @@ package com.puzzling.puzzlingaos.presentation.mypage
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +42,7 @@ class MyRetrospectFragment :
 
         viewModel = ViewModelProvider(requireActivity())[MyRetrospectViewModel::class.java]
         viewModel.currentProject.observe(this) {
+            Log.d("myPage 회고 뷰", "${it}")
             viewModel.getMyProjectReview(it.projectId)
         }
         initToolbar()
@@ -82,10 +84,10 @@ class MyRetrospectFragment :
 
         myRetroContentAdapter.setOnItemClickListener(object :
             MyRetroContentAdapter.OnItemClickListener {
-            override fun onItemClick(v: View, pos: Int) {
+            override fun onItemClick(v: View, item: ResponseMyRetroListDto.ReviewData, pos: Int) {
                 val intent = Intent(activity, DetailRetroActivity::class.java)
                 intent.putExtra("Title", viewModel.currentProject.value?.projectName)
-                intent.putExtra("projectId", viewModel.currentProject.value?.projectId)
+                intent.putExtra("homeProjectId", viewModel.currentProject.value?.projectId)
                 startActivity(intent)
             }
         })
