@@ -947,7 +947,7 @@
                                 android:layout_marginHorizontal="15dp"
                                 android:layout_marginTop="10dp"
                                 android:includeFontPadding="false"
-                                android:text="최솝트"
+                                android:text="하입보이"
                                 android:textAppearance="@style/Kor.Body3.Bold"
                                 android:textColor="@color/white_000"
                                 app:layout_constraintEnd_toEndOf="parent"
