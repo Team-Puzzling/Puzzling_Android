@@ -11,6 +11,7 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseDialogFragment
 import com.puzzling.puzzlingaos.databinding.FragmentRegisterDialogBinding
 import com.puzzling.puzzlingaos.presentation.detailRetrospect.DetailRetroActivity
+import com.puzzling.puzzlingaos.presentation.main.MainActivity
 import com.puzzling.puzzlingaos.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,7 +66,7 @@ class RegisterDialogFragment :
                 }
                 // TODO toast 성공하면 주석 제거하기
                 activity?.let {
-                    val intent = Intent(context, DetailRetroActivity::class.java)
+                    val intent = Intent(context, MainActivity::class.java)
                     intent.putExtra("homeProjectId", viewModel.projectId.value)
                     intent.putExtra("Title", viewModel.projectName.value)
                     Log.d("register", "viewModel.projectId.value::: ${viewModel.projectId.value}")

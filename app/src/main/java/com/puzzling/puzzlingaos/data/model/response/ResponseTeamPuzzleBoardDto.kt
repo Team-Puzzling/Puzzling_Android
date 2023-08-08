@@ -17,6 +17,8 @@ data class ResponseTeamPuzzleBoardDto(
 ) {
     @Serializable
     data class TeamPuzzleBoardData(
+        @SerialName("projectName")
+        val projectName: String,
         @SerialName("myPuzzle")
         val myPuzzle: MyPuzzle,
         @SerialName("teamPuzzleBoard")

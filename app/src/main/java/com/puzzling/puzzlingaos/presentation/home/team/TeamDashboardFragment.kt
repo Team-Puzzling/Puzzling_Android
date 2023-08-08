@@ -32,6 +32,19 @@ class TeamDashboardFragment :
             viewModel.getTeamPuzzleBoard(it)
             viewModel.getTeamRanking(it)
         }
+        setRankingText()
+    }
+
+    private fun setRankingText() {
+        viewModel.memberPuzzleCount.observe(viewLifecycleOwner) {
+            Log.d("memberPuzzleCount", "viewModel.memberPuzzleCount.value?.size:: ${viewModel.memberPuzzleCount.value?.size}")
+
+            if (viewModel.memberPuzzleCount.value?.size == 1) {
+                // tv_team_third_ranking_puzzle
+                binding.tvTeamThirdRankingPuzzle.text = "?"
+                binding.tvTeamSecondRankingPuzzle.text = "?"
+            }
+        }
     }
 
     private fun observeProjectId() {
