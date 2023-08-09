@@ -9,7 +9,7 @@ import com.puzzling.puzzlingaos.databinding.ItemDetailRetroBinding
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
 class DetailRetroAdapter() :
-    ListAdapter<ResponseDetailRetroDto.DetailReviewData.Content, DetailRetroAdapter.DetailRetroViewHolder>(
+    ListAdapter<ResponseDetailRetroDto.Data.DetailReviewData.Content, DetailRetroAdapter.DetailRetroViewHolder>(
         diffCallback,
     ) {
 
@@ -25,7 +25,7 @@ class DetailRetroAdapter() :
 
     inner class DetailRetroViewHolder(private val binding: ItemDetailRetroBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseDetailRetroDto.DetailReviewData.Content) {
+        fun onBind(item: ResponseDetailRetroDto.Data.DetailReviewData.Content) {
             binding.tvDetailRetroTitle.text = item.title
             binding.tvDetailRetroBody.text = item.content
         }
@@ -33,7 +33,7 @@ class DetailRetroAdapter() :
 
     companion object {
         private val diffCallback =
-            ItemDiffCallback<ResponseDetailRetroDto.DetailReviewData.Content>(
+            ItemDiffCallback<ResponseDetailRetroDto.Data.DetailReviewData.Content>(
                 onContentsTheSame = { old, new -> old == new },
                 onItemsTheSame = { old, new -> old == new },
             )
