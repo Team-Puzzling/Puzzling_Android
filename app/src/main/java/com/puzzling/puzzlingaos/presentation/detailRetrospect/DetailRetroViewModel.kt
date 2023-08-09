@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailRetroViewModel @Inject constructor(private val repository: MyPageRepository) :
     ViewModel() {
-    private val _detailRetroList = MutableLiveData<List<ResponseDetailRetroDto.DetailReviewData>?>()
-    val detailRetroList: LiveData<List<ResponseDetailRetroDto.DetailReviewData>?> get() = _detailRetroList
+    private val _detailRetroList = MutableLiveData<List<ResponseDetailRetroDto.Data.DetailReviewData>?>()
+    val detailRetroList: LiveData<List<ResponseDetailRetroDto.Data.DetailReviewData>?> get() = _detailRetroList
 
     val week = listOf(
         "월",
@@ -48,7 +48,7 @@ class DetailRetroViewModel @Inject constructor(private val repository: MyPageRep
                 endOfWeek.toString(),
             )
         }.onSuccess { response ->
-            _detailRetroList.value = response.data
+            _detailRetroList.value = response.data?.reviews
             Log.d("상세회고조회", "response:: $response")
         }.onFailure {
             Log.d("상세회고조회", "fail:: $it")
