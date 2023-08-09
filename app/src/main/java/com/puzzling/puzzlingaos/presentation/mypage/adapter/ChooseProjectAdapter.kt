@@ -2,20 +2,21 @@ package com.puzzling.puzzlingaos.presentation.mypage.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.puzzling.puzzlingaos.databinding.ItemMyretroAllProjectsBinding
 import com.puzzling.puzzlingaos.databinding.ItemMyretroCurrentProjectBinding
 import com.puzzling.puzzlingaos.domain.entity.Project
+import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
 class ChooseProjectAdapter(private val selectedItem: (Project) -> Unit) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    ListAdapter<Project, RecyclerView.ViewHolder>(diffCallback) {
 
-    private var itemList = listOf<Project>()
 
     var currentProject = "프로젝트 이름"
 
     override fun getItemViewType(position: Int): Int {
-        return when (itemList[position].projectName) {
+        return when (currentList[position].projectName) {
             currentProject -> CURRENT_PROJECT
             else -> CHOOSE_PROJECT
         }
@@ -43,15 +44,15 @@ class ChooseProjectAdapter(private val selectedItem: (Project) -> Unit) :
         }
     }
 
-    override fun getItemCount() = itemList.size
+    override fun getItemCount() = currentList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is CurrentProjectViewHolder -> {
-                holder.onBind(itemList[position])
+                holder.onBind(currentList[position])
             }
             is ChooseProjectViewHolder -> {
-                holder.onBind(itemList[position])
+                holder.onBind(currentList[position])
             }
         }
     }
@@ -80,12 +81,14 @@ class ChooseProjectAdapter(private val selectedItem: (Project) -> Unit) :
         }
     }
 
-    fun setItemList(newItemList: List<Project>) {
-        itemList = newItemList
-    }
 
     companion object {
         const val CURRENT_PROJECT = 0
         const val CHOOSE_PROJECT = 1
+        private val diffCallback =
+            ItemDiffCallback<Project>(
+                onContentsTheSame = { old, new -> old == new },
+                onItemsTheSame = { old, new -> old == new },
+            )
     }
 }
