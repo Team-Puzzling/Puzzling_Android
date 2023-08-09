@@ -14,7 +14,6 @@ class ChooseProjectAdapter(private val selectedItem: (Project) -> Unit) :
 
     private var itemList = listOf<Project>()
 
-    private var listener: OnItemClickListener? = null
 
     var currentProject = "프로젝트 이름"
 
@@ -88,13 +87,6 @@ class ChooseProjectAdapter(private val selectedItem: (Project) -> Unit) :
         itemList = newItemList
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(v: View, data: ResponseMyPageProjectDto, pos: Int)
-    }
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
 
     companion object {
         const val CURRENT_PROJECT = 0
