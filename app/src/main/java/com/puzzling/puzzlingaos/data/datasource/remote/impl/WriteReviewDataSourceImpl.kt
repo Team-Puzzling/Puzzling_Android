@@ -1,5 +1,6 @@
-package com.puzzling.puzzlingaos.data.source.remote.impl
+package com.puzzling.puzzlingaos.data.datasource.remote.impl
 
+import com.puzzling.puzzlingaos.data.datasource.remote.WriteReviewDataSource
 import com.puzzling.puzzlingaos.data.model.request.RequestReview5FDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewAARDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewTILDto
@@ -7,7 +8,6 @@ import com.puzzling.puzzlingaos.data.model.response.ResponsePreviousTemplateDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseReviewTypeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseSaveReviewDto
 import com.puzzling.puzzlingaos.data.service.WriteReviewService
-import com.puzzling.puzzlingaos.data.source.remote.WriteReviewDataSource
 import javax.inject.Inject
 
 class WriteReviewDataSourceImpl @Inject constructor(

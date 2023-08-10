@@ -1,10 +1,10 @@
-package com.puzzling.puzzlingaos.data.source.remote.impl
+package com.puzzling.puzzlingaos.data.datasource.remote.impl
 
+import com.puzzling.puzzlingaos.data.datasource.remote.TeamReviewDataSource
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRankingDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
 import com.puzzling.puzzlingaos.data.service.TeamReviewService
-import com.puzzling.puzzlingaos.data.source.remote.TeamReviewDataSource
 import javax.inject.Inject
 
 class TeamReviewDataSourceImpl @Inject constructor(

@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.data.source.remote
+package com.puzzling.puzzlingaos.data.datasource.remote
 
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRankingDto

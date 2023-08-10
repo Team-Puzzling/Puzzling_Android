@@ -1,10 +1,10 @@
-package com.puzzling.puzzlingaos.data.source.remote.impl
+package com.puzzling.puzzlingaos.data.datasource.remote.impl
 
+import com.puzzling.puzzlingaos.data.datasource.remote.MyDashBoardDataSource
 import com.puzzling.puzzlingaos.data.model.response.ResponseActionPlanDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProceedingProjectDto
 import com.puzzling.puzzlingaos.data.service.PersonalReviewService
-import com.puzzling.puzzlingaos.data.source.remote.MyDashBoardDataSource
 import javax.inject.Inject
 
 class MyDashBoardDataSourceImpl @Inject constructor(

@@ -1,4 +1,4 @@
-package com.puzzling.puzzlingaos.data.source.local
+package com.puzzling.puzzlingaos.data.datasource.local
 
 import android.content.Context
 import android.content.SharedPreferences
