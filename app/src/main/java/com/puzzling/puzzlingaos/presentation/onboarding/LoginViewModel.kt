@@ -3,8 +3,8 @@ package com.puzzling.puzzlingaos.presentation.onboarding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.auth.model.OAuthToken
+import com.puzzling.puzzlingaos.data.datasource.local.LocalDataSource
 import com.puzzling.puzzlingaos.data.service.KakaoLoginService
-import com.puzzling.puzzlingaos.data.source.local.LocalDataSource
 import com.puzzling.puzzlingaos.util.KakaoLoginCallback
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

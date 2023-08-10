@@ -2,7 +2,6 @@ package com.puzzling.puzzlingaos.domain.repository
 
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyPuzzleBoardDto
 import com.puzzling.puzzlingaos.domain.entity.ActionPlan
-import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.Project
 
 interface MyBoardRepository {
@@ -11,12 +10,6 @@ interface MyBoardRepository {
         projectId: Int,
         today: String,
     ): Result<ResponseMyPuzzleBoardDto>
-
-    suspend fun getUserPuzzleBoard(
-        memberId: Int,
-        projectId: Int,
-        today: String,
-    ): Result<List<MyPuzzleBoard>>
 
     suspend fun getActionPlan(
         memberId: Int,
