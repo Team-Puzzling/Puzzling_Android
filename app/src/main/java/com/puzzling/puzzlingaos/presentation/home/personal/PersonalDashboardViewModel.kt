@@ -66,39 +66,17 @@ class PersonalDashboardViewModel @Inject constructor(
 
     )
 
-//    init {
-//        getMyPuzzleData()
-//        getMyPuzzleData()
-//        getActionPlan()
-//        getMyPuzzleBoard()
-//        getPreviousTemplate()
-//    }
-
     fun getMyPuzzleData(projectId: Int) = viewModelScope.launch {
         repository.getUserPuzzle(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
             .onSuccess { response ->
                 Log.d("personal", "getMyPuzzleData() success:: $response")
+
                 _myNickname.value = response.data.myPuzzle.nickname
                 _myPuzzleCount.value = response.data.myPuzzle.puzzleCount
                 _isReviewDay.value = response.data.isReviewDay
                 _hasTodayReview.value = response.data.hasTodayReview
                 _puzzleBoardCount.value = response.data.puzzleBoardCount
-                Log.d("personal", "myNickname success:: ${_myNickname.value}")
-                Log.d("personal", "puzzleCount success:: ${_myPuzzleCount.value}")
-                Log.d("personal", "hasTodayReview success:: ${_hasTodayReview.value}")
-                Log.d("personal", "_isReviewDay success:: ${_isReviewDay.value}")
-            }
-            .onFailure {
-                Log.d("personal", "getMyPuzzleData() Fail:: $it")
-            }
-    }
-
-    fun getMyPuzzleBoard(projectId: Int) = viewModelScope.launch {
-        repository.getUserPuzzleBoard(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
-            .onSuccess { response ->
-                _myPuzzleBoardList.value = response
-                Log.d("personal", "getMyPuzzleBoard() success:: $response")
-
+                _myPuzzleBoardList.value = response.data.toPuzzleBoard()
                 val myPuzzles: List<MyPuzzleBoard> =
                     _myPuzzleBoardList.value!!
                 _myReviewDate.value = myPuzzles.map {
@@ -106,12 +84,9 @@ class PersonalDashboardViewModel @Inject constructor(
                 }
                 _myReviewId.value = myPuzzles.map { it.reviewId ?: -1 }
                 _myPuzzleImage.value = myPuzzles.map { it.puzzleAssetName }
-                Log.d("personal", "_myReviewDate:: ${_myReviewDate.value}")
-                Log.d("personal", "_myReviewId:: ${_myReviewId.value}")
-                Log.d("personal", "_myPuzzleImage:: ${_myPuzzleImage.value}")
             }
             .onFailure {
-                Log.d("personal", "getMyPuzzleBoard() Fail:: $it")
+                Log.d("personal", "getMyPuzzleData() Fail:: $it")
             }
     }
 
