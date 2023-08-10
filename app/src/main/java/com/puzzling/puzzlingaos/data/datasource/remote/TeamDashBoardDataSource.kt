@@ -4,7 +4,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseTeamPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamRankingDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
 
-interface TeamReviewDataSource {
+interface TeamDashBoardDataSource {
 
     suspend fun getTeamRetroList(
         projectId: Int,

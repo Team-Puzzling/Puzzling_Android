@@ -5,7 +5,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
 import com.puzzling.puzzlingaos.domain.entity.TeamPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.TeamRanking
 
-interface TeamReviewRepository {
+interface TeamDashBoardRepository {
 
     suspend fun getTeamRetroList(
         projectId: Int,

@@ -3,7 +3,7 @@ package com.puzzling.puzzlingaos.di
 import com.puzzling.puzzlingaos.data.datasource.remote.MyDashBoardDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.MyPageDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.ProjectDataSource
-import com.puzzling.puzzlingaos.data.datasource.remote.TeamReviewDataSource
+import com.puzzling.puzzlingaos.data.datasource.remote.TeamDashBoardDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.WriteReviewDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.impl.MyDashBoardDataSourceImpl
 import com.puzzling.puzzlingaos.data.datasource.remote.impl.MyPageDataSourceImpl
@@ -33,7 +33,7 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun providesTeamRetroDataSource(DataSourceImpl: TeamReviewDataSourceImpl): TeamReviewDataSource
+    abstract fun providesTeamRetroDataSource(DataSourceImpl: TeamReviewDataSourceImpl): TeamDashBoardDataSource
 
     @Singleton
     @Binds

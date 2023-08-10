@@ -1,23 +1,23 @@
 package com.puzzling.puzzlingaos.data.repository
 
 import android.util.Log
-import com.puzzling.puzzlingaos.data.datasource.remote.TeamReviewDataSource
+import com.puzzling.puzzlingaos.data.datasource.remote.TeamDashBoardDataSource
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamPuzzleBoardDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseTeamReviewListDto
 import com.puzzling.puzzlingaos.domain.entity.TeamPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.TeamRanking
-import com.puzzling.puzzlingaos.domain.repository.TeamReviewRepository
+import com.puzzling.puzzlingaos.domain.repository.TeamDashBoardRepository
 import javax.inject.Inject
 
-class TeamReviewRepositoryImpl @Inject constructor(
-    private val teamReviewDataSource: TeamReviewDataSource,
-) : TeamReviewRepository {
+class TeamDashBoardRepositoryImpl @Inject constructor(
+    private val teamDashBoardDataSource: TeamDashBoardDataSource,
+) : TeamDashBoardRepository {
     override suspend fun getTeamRetroList(
         projectId: Int,
         startDate: String,
         endDate: String,
     ): Result<ResponseTeamReviewListDto> = runCatching {
-        teamReviewDataSource.getTeamRetroList(projectId, startDate, endDate)
+        teamDashBoardDataSource.getTeamRetroList(projectId, startDate, endDate)
     }.onSuccess {
         Log.d("teamRetro: ", "팀원 회고 현황 조회 성공")
     }.onFailure {
@@ -28,18 +28,18 @@ class TeamReviewRepositoryImpl @Inject constructor(
         projectId: Int,
         today: String,
     ): Result<ResponseTeamPuzzleBoardDto> = runCatching {
-        teamReviewDataSource.getTeamPuzzle(projectId, today)
+        teamDashBoardDataSource.getTeamPuzzle(projectId, today)
     }
 
     override suspend fun getTeamPuzzleBoard(
         projectId: Int,
         today: String,
     ): Result<List<TeamPuzzleBoard>> = runCatching {
-        teamReviewDataSource.getTeamPuzzle(projectId, today).data.toPuzzleBoard()
+        teamDashBoardDataSource.getTeamPuzzle(projectId, today).data.toPuzzleBoard()
     }
 
     override suspend fun getTeamRanking(projectId: Int): Result<List<TeamRanking>> =
         runCatching {
-            teamReviewDataSource.getTeamRanking(projectId).toTeamRanking()
+            teamDashBoardDataSource.getTeamRanking(projectId).toTeamRanking()
         }
 }
