@@ -9,8 +9,9 @@ import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.domain.entity.ActionPlan
 import com.puzzling.puzzlingaos.domain.entity.MyPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.PuzzleBoard
-import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
-import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
+import com.puzzling.puzzlingaos.domain.usecase.personaldashboard.GetActionPlanUseCase
+import com.puzzling.puzzlingaos.domain.usecase.personaldashboard.GetUserPuzzleUseCase
+import com.puzzling.puzzlingaos.domain.usecase.review.GetPreviosReviewUseCase
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,8 +19,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PersonalDashboardViewModel @Inject constructor(
-    private val repository: MyBoardRepository,
-    private val writeReviewRepository: WriteReviewRepository,
+    private val getUserPuzzleUseCase: GetUserPuzzleUseCase,
+    private val getActionPlanUseCase: GetActionPlanUseCase,
+    private val getPreviosReviewUseCase: GetPreviosReviewUseCase,
 ) : ViewModel() {
     private val _myNickname = MutableLiveData<String>()
     val myNickname: LiveData<String> get() = _myNickname
@@ -67,7 +69,7 @@ class PersonalDashboardViewModel @Inject constructor(
     )
 
     fun getMyPuzzleData(projectId: Int) = viewModelScope.launch {
-        repository.getUserPuzzle(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
+        getUserPuzzleUseCase(UserInfo.MEMBER_ID, projectId, UserInfo.TODAY)
             .onSuccess { response ->
                 Log.d("personal", "getMyPuzzleData() success:: $response")
 
@@ -98,7 +100,7 @@ class PersonalDashboardViewModel @Inject constructor(
     }
 
     fun getActionPlan(projectId: Int) = viewModelScope.launch {
-        repository.getActionPlan(UserInfo.MEMBER_ID, projectId)
+        getActionPlanUseCase(UserInfo.MEMBER_ID, projectId)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("personal", "getActionPlan() success:: $response")
@@ -119,7 +121,7 @@ class PersonalDashboardViewModel @Inject constructor(
 
     fun getPreviousTemplate(projectId: Int) {
         viewModelScope.launch {
-            writeReviewRepository.getPreviousTemplate(
+            getPreviosReviewUseCase(
                 UserInfo.MEMBER_ID,
                 projectId,
             )
