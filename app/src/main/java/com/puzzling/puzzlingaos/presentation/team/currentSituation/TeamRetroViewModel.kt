@@ -19,8 +19,8 @@ class TeamRetroViewModel @Inject constructor(
 
     var isWeekRetrospectColor: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    private val _teamRetrospectList = MutableLiveData<ArrayList<ResponseTeamReviewListDto.Data>>().apply { value = arrayListOf() }
-    val teamRetrospectList: LiveData<ArrayList<ResponseTeamReviewListDto.Data>> get() = _teamRetrospectList
+    private val _teamRetrospectList = MutableLiveData<ArrayList<ResponseTeamReviewListDto.Data.MemberReviews>>().apply { value = arrayListOf() }
+    val teamRetrospectList: LiveData<ArrayList<ResponseTeamReviewListDto.Data.MemberReviews>> get() = _teamRetrospectList
 
     private val _teamRetrospectMultiList = MutableLiveData<ArrayList<TeamReviewMultiList>>()
     val teamRetrospectMultiList: LiveData<ArrayList<TeamReviewMultiList>> get() = _teamRetrospectMultiList
@@ -29,7 +29,7 @@ class TeamRetroViewModel @Inject constructor(
 
     val week = listOf("월", "화", "수", "목", "금", "토", "일")
 
-    var itemRetroList = arrayListOf<ResponseTeamReviewListDto.Data>()
+    var itemRetroList = arrayListOf<ResponseTeamReviewListDto.Data.MemberReviews>()
 
     fun getTeamRetrospectList(
         id: Int,
@@ -38,7 +38,12 @@ class TeamRetroViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             repositoryImpl.getTeamRetroList(id, startOfWeek, endOfWeek).onSuccess { response ->
-                itemRetroList = response.toTeamRetroArray()!!
+                //
+                // itemRetroList = response.toTeamRetroArray()!!
+                for (i in 0 until response.data.size) {
+                    itemRetroList = response.data[0].toTeamRetroArray()!!
+                }
+
                 _teamRetrospectList.value = itemRetroList
                 // _teamRetrospectList.apply { value = ArrayList(response.toTeamRetro()) }
                 Log.d("viewModel._teamRetrospectList: ", "${_teamRetrospectList.value}")
@@ -50,8 +55,7 @@ class TeamRetroViewModel @Inject constructor(
         }
     }
 
-
-    fun testItemList(itemList: LiveData<ArrayList<ResponseTeamReviewListDto.Data>>, day: String) {
+    fun testItemList(itemList: LiveData<ArrayList<ResponseTeamReviewListDto.Data.MemberReviews>>, day: String) {
         var intDay: Int = itemRetroList.indexOfFirst { it.reviewDay == day }
 
         teamRetrospectMultiList.value?.clear()
