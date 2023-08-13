@@ -55,7 +55,7 @@ class ChooseProjectBottomFragment :
 
         binding.rcvMyRetroChooseProject.adapter = chooseProjectAdapter
         viewModel.responseProjectList.observe(this) {
-            chooseProjectAdapter.setItemList(it)
+            chooseProjectAdapter.submitList(it)
         }
     }
 

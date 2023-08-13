@@ -12,27 +12,35 @@ data class ResponseDetailRetroDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: List<DetailReviewData>?,
+    val data: Data?,
 ) {
     @Serializable
-    data class DetailReviewData(
-        @SerialName("reviewId")
-        val reviewId: Int?,
-        @SerialName("reviewDay")
-        val reviewDay: String,
-        @SerialName("reviewDate")
-        val reviewDate: String,
-        @SerialName("reviewTemplateId")
-        val reviewTemplateId: Int?,
-        @SerialName("contents")
-        val contents: List<Content>?,
+    data class Data(
+        @SerialName("projectName")
+        val projectName: String,
+        @SerialName("reviews")
+        val reviews: List<DetailReviewData>,
     ) {
         @Serializable
-        data class Content(
-            @SerialName("title")
-            val title: String,
-            @SerialName("content")
-            val content: String,
-        )
+        data class DetailReviewData(
+            @SerialName("reviewId")
+            val reviewId: Int?,
+            @SerialName("reviewDay")
+            val reviewDay: String,
+            @SerialName("reviewDate")
+            val reviewDate: String,
+            @SerialName("reviewTemplateId")
+            val reviewTemplateId: Int?,
+            @SerialName("contents")
+            val contents: List<Content>?,
+        ) {
+            @Serializable
+            data class Content(
+                @SerialName("title")
+                val title: String,
+                @SerialName("content")
+                val content: String,
+            )
+        }
     }
 }
