@@ -1,8 +1,8 @@
 package com.puzzling.puzzlingaos.data.repository
 
+import com.puzzling.puzzlingaos.data.datasource.remote.MyPageDataSource
 import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
-import com.puzzling.puzzlingaos.data.source.remote.MyPageDataSource
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
 import javax.inject.Inject
 

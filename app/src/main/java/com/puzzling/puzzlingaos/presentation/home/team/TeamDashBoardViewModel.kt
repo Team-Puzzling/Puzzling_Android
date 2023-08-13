@@ -4,19 +4,23 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.puzzling.puzzlingaos.domain.entity.TeamPuzzleBoard
 import com.puzzling.puzzlingaos.domain.entity.TeamRanking
-import com.puzzling.puzzlingaos.domain.repository.TeamReviewRepository
+import com.puzzling.puzzlingaos.domain.repository.TeamDashBoardRepository
+import com.puzzling.puzzlingaos.domain.usecase.teamdashboard.GetTeamPuzzleUseCase
+import com.puzzling.puzzlingaos.domain.usecase.teamdashboard.GetTeamRankingUseCase
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// TODO Team puzzle data get 조회 로직 수정
 @HiltViewModel
 class TeamDashBoardViewModel @Inject constructor(
-    private val repository: TeamReviewRepository,
+    private val repository: TeamDashBoardRepository,
+    private val getTeamPuzzleUseCase: GetTeamPuzzleUseCase,
+    private val getTeamRankingUseCase: GetTeamRankingUseCase,
 ) : ViewModel() {
     private val _myNickname = MutableLiveData<String>()
     val myNickname: LiveData<String> get() = _myNickname
@@ -70,7 +74,7 @@ class TeamDashBoardViewModel @Inject constructor(
 //    }
 
     fun getTeamPuzzleData(projectId: Int) = viewModelScope.launch {
-        repository.getTeamPuzzle(projectId, UserInfo.TODAY)
+        getTeamPuzzleUseCase(projectId, UserInfo.TODAY)
             .onSuccess { response ->
                 _isSuccess.value = true
                 Log.d("team", "getTeamPuzzleData() success:: $response")
@@ -92,7 +96,6 @@ class TeamDashBoardViewModel @Inject constructor(
         repository.getTeamPuzzleBoard(projectId, UserInfo.TODAY)
             .onSuccess { response ->
                 _teamPuzzleBoardList.value = response
-                Log.d("team", "getTeamPuzzleBoard() success:: $response")
 
                 val teamPuzzles: List<TeamPuzzleBoard> =
                     _teamPuzzleBoardList.value!!
@@ -101,9 +104,6 @@ class TeamDashBoardViewModel @Inject constructor(
                 }
                 _reviewMemberPercent.value = teamPuzzles.map { it.reviewMemberPercent ?: "" }
                 _teamPuzzleImage.value = teamPuzzles.map { it.puzzleAssetName }
-                Log.d("team", "_teamReviewDate:: ${_teamReviewDate.value}")
-                Log.d("team", "_reviewMemberPercent:: ${_reviewMemberPercent.value}")
-                Log.d("team", "_teamPuzzleImage:: ${_teamPuzzleImage.value}")
             }
             .onFailure {
                 Log.d("team", "getTeamPuzzleBoard() Fail:: $it")
@@ -111,7 +111,7 @@ class TeamDashBoardViewModel @Inject constructor(
     }
 
     fun getTeamRanking(projectId: Int) = viewModelScope.launch {
-        repository.getTeamRanking(projectId).onSuccess { response ->
+        getTeamRankingUseCase(projectId).onSuccess { response ->
             _teamRankingList.value = response
             val teamRanks: List<TeamRanking> =
                 _teamRankingList.value!!
