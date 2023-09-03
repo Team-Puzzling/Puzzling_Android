@@ -1,7 +1,7 @@
 package com.puzzling.puzzlingaos.domain.repository
 
-import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
+import com.puzzling.puzzlingaos.domain.entity.DetailRetro
 
 interface MyPageRepository {
 
@@ -15,5 +15,5 @@ interface MyPageRepository {
         projectId: Int,
         startDate: String,
         endDate: String,
-    ): ResponseDetailRetroDto
+    ): Result<List<DetailRetro>>
 }

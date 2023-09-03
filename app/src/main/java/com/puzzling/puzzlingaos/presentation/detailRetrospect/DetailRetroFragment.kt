@@ -37,7 +37,7 @@ class DetailRetroFragment(
             for (data in dataList) {
                 if (day == data.reviewDay) {
                     binding.rcvDetailRetroMain.adapter = detailRetroAdapter
-                    detailRetroAdapter.submitList(data.conte)
+                    detailRetroAdapter.submitList(data.content)
                 }
             }
         }
