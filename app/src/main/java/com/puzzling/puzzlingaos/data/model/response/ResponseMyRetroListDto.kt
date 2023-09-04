@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.response
 
+import com.puzzling.puzzlingaos.domain.entity.ProjectReview
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,7 +13,7 @@ data class ResponseMyRetroListDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: List<ReviewData>?,
+    val data: List<ReviewData>,
 ) {
     @Serializable
     data class ReviewData(
@@ -23,5 +24,12 @@ data class ResponseMyRetroListDto(
         @SerialName("contents")
         val contents: String,
     )
-}
 
+    fun toProjectReview() = data.map { reviewData ->
+        ProjectReview(
+            reviewData.reviewId,
+            reviewData.reviewDate,
+            reviewData.contents,
+        )
+    }
+}

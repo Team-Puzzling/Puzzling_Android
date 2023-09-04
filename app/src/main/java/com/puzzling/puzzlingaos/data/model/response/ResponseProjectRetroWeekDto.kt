@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.response
 
+import com.puzzling.puzzlingaos.domain.entity.ReviewCycle
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,7 +13,7 @@ data class ResponseProjectRetroWeekDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: ProjectCycle?,
+    val data: ProjectCycle,
 ) {
     @Serializable
     data class ProjectCycle(
@@ -20,5 +21,7 @@ data class ResponseProjectRetroWeekDto(
         val projectName: String,
         @SerialName("projectReviewCycle")
         val projectReviewCycle: String,
-    )
+    ) {
+        fun toReviewCycle() = ReviewCycle(projectName, projectReviewCycle)
+    }
 }
