@@ -27,13 +27,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
-    private lateinit var viewModel: MyRetrospectViewModel
+    private val viewModel by activityViewModels<MyRetrospectViewModel>()
     private val personalViewModel by activityViewModels<PersonalDashboardViewModel>()
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[MyRetrospectViewModel::class.java]
         viewModel.getMyProjectList()
         homeViewModel.selectedProjectId.observe(this) {
             viewModel.getProjectWeekCycle(it)
