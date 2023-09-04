@@ -5,10 +5,10 @@ import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.request.toRequestJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
-import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
 import com.puzzling.puzzlingaos.domain.entity.InvitationCode
 import com.puzzling.puzzlingaos.domain.entity.JoinProjectInfo
+import com.puzzling.puzzlingaos.domain.entity.ReviewCycle
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import javax.inject.Inject
 
@@ -34,11 +34,12 @@ class ProjectRepositoryImpl @Inject constructor(
         projectDataSource.joinProject(memberId, request.toRequestJoinProjectDto())
     }
 
-    override suspend fun isValidInvitationCode(invitationCode: String): Result<InvitationCode> = runCatching {
-        projectDataSource.isValidInvitationCode(invitationCode).data.toInvitationCode()
-    }
+    override suspend fun isValidInvitationCode(invitationCode: String): Result<InvitationCode> =
+        runCatching {
+            projectDataSource.isValidInvitationCode(invitationCode).data.toInvitationCode()
+        }
 
-    override suspend fun getProjectWeekCycle(projectId: Int): ResponseProjectRetroWeekDto {
-        return projectDataSource.getProjectWeekCycle(projectId)
+    override suspend fun getProjectWeekCycle(projectId: Int): Result<ReviewCycle> = runCatching {
+        projectDataSource.getProjectWeekCycle(projectId).data.toReviewCycle()
     }
 }

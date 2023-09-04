@@ -3,9 +3,9 @@ package com.puzzling.puzzlingaos.domain.repository
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
-import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.domain.entity.InvitationCode
 import com.puzzling.puzzlingaos.domain.entity.JoinProjectInfo
+import com.puzzling.puzzlingaos.domain.entity.ReviewCycle
 
 interface ProjectRepository {
 
@@ -27,5 +27,5 @@ interface ProjectRepository {
 
     suspend fun getProjectWeekCycle(
         projectId: Int,
-    ): ResponseProjectRetroWeekDto
+    ): Result<ReviewCycle>
 }

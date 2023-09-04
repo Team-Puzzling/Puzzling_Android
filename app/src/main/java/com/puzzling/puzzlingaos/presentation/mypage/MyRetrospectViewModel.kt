@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.entity.ProjectReview
+import com.puzzling.puzzlingaos.domain.entity.ReviewCycle
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
@@ -33,8 +33,8 @@ class MyRetrospectViewModel @Inject constructor(
     private val _currentProject = MutableLiveData<Project>()
     val currentProject: LiveData<Project> get() = _currentProject
 
-    private val _retroWeek = MutableLiveData<ResponseProjectRetroWeekDto.ProjectCycle?>()
-    val retroWeek: LiveData<ResponseProjectRetroWeekDto.ProjectCycle?> get() = _retroWeek
+    private val _retroWeek = MutableLiveData<ReviewCycle?>()
+    val retroWeek: LiveData<ReviewCycle?> get() = _retroWeek
 
     fun getMyProjectReview(selectedProjectId: Int) = viewModelScope.launch {
         myPageRepository.getMyProjectReview(1, selectedProjectId).onSuccess { response ->
@@ -62,12 +62,10 @@ class MyRetrospectViewModel @Inject constructor(
     // 2425350570
 
     fun getProjectWeekCycle(projectId: Int) = viewModelScope.launch {
-        kotlin.runCatching {
-            projectRepository.getProjectWeekCycle(projectId)
-        }.onSuccess { response ->
-            _retroWeek.value = response.data
+        projectRepository.getProjectWeekCycle(projectId).onSuccess { response ->
+            _retroWeek.value = response
             Log.d("회고 주기", "$response")
-            Log.d("회고 주기", "${response.data?.projectReviewCycle}")
+            Log.d("회고 주기", "${response.projectReviewCycle}")
         }.onFailure {
             Log.d("회고 주기", "$it")
         }
