@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.puzzling.puzzlingaos.data.model.response.ResponseMyRetroListDto
 import com.puzzling.puzzlingaos.databinding.ItemMyretroRetroBinding
+import com.puzzling.puzzlingaos.domain.entity.ProjectReview
 import com.puzzling.puzzlingaos.util.ItemDiffCallback
 
 class MyRetroContentAdapter() :
-    ListAdapter<ResponseMyRetroListDto.ReviewData, MyRetroContentAdapter.MyRetroContenViewHolder>(
+    ListAdapter<ProjectReview, MyRetroContentAdapter.MyRetroContenViewHolder>(
         diffCallback,
     ) {
 
@@ -28,7 +28,7 @@ class MyRetroContentAdapter() :
 
     inner class MyRetroContenViewHolder(private val binding: ItemMyretroRetroBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: ResponseMyRetroListDto.ReviewData) {
+        fun onBind(item: ProjectReview) {
             binding.tvMyretroDate.text = item.reviewDate
 
             if (item.contents.length < 17) {
@@ -40,14 +40,14 @@ class MyRetroContentAdapter() :
 
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 binding.clMyRetroContainer.setOnClickListener {
-                    listener?.onItemClick(itemView,item, bindingAdapterPosition)
+                    listener?.onItemClick(itemView, item, bindingAdapterPosition)
                 }
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(v: View, item:ResponseMyRetroListDto.ReviewData, pos: Int)
+        fun onItemClick(v: View, item: ProjectReview, pos: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
@@ -56,7 +56,7 @@ class MyRetroContentAdapter() :
 
     companion object {
         private val diffCallback =
-            ItemDiffCallback<ResponseMyRetroListDto.ReviewData>(
+            ItemDiffCallback<ProjectReview>(
                 onContentsTheSame = { old, new -> old == new },
                 onItemsTheSame = { old, new -> old == new },
             )
