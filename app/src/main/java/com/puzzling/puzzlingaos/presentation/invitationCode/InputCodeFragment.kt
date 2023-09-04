@@ -2,8 +2,8 @@ package com.puzzling.puzzlingaos.presentation.invitationCode
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.puzzling.puzzlingaos.R
@@ -16,15 +16,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class InputCodeFragment : BaseFragment<FragmentInputCodeBinding>(R.layout.fragment_input_code) {
 
-    lateinit var viewModel: InvitationCodeViewModel
+    private val viewModel by activityViewModels<InvitationCodeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(
-            requireActivity(),
-        )[InvitationCodeViewModel::class.java]
-
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         isCodeSuccess()

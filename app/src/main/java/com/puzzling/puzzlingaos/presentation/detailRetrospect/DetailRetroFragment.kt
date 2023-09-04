@@ -2,6 +2,7 @@ package com.puzzling.puzzlingaos.presentation.detailRetrospect
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 // import androidx.recyclerview.widget.DividerItemDecoration
 import com.puzzling.puzzlingaos.R
@@ -15,15 +16,10 @@ class DetailRetroFragment(
 ) :
     BaseFragment<FragmentDetailRetroBinding>(R.layout.fragment_detail_retro) {
 
-    private lateinit var viewModel: DetailRetroViewModel
+    private val viewModel by activityViewModels<DetailRetroViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelFactory(requireContext()),
-        )[DetailRetroViewModel::class.java]
 
         val day = viewModel.week[position]
         val dataList = viewModel.detailRetroList.value
@@ -41,7 +37,7 @@ class DetailRetroFragment(
             for (data in dataList) {
                 if (day == data.reviewDay) {
                     binding.rcvDetailRetroMain.adapter = detailRetroAdapter
-                    detailRetroAdapter.submitList(data.contents)
+                    detailRetroAdapter.submitList(data.content)
                 }
             }
         }

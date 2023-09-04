@@ -40,7 +40,6 @@ class PersonalDashboardFragment :
         observeProjectId()
         homeViewModel.selectedProjectId.observe(this) {
             viewModel.getMyPuzzleData(it)
-            viewModel.getMyPuzzleBoard(it)
         }
         setVisibleAdapter()
     }
@@ -49,7 +48,6 @@ class PersonalDashboardFragment :
         viewModel.firstProjectId.observe(this) {
             Log.d("personal", "firstProjectId:: $it")
             viewModel.getMyPuzzleData(it)
-            viewModel.getMyPuzzleBoard(it)
             viewModel.getActionPlan(it)
             viewModel.getPreviousTemplate(it)
         }
@@ -89,9 +87,6 @@ class PersonalDashboardFragment :
                 Log.d("homeProjectId", "$it")
                 startActivity(intent)
             }
-//            val intent = Intent(context, WriteRetrospectiveActivity::class.java)
-//            intent.putExtra("Title", teamViewModel.myNickname.value)
-//            startActivity(intent)
         }
     }
 

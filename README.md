@@ -21,11 +21,13 @@
 <br>
 
 ### ScreenShot 📸
-<img src="https://github.com/Team-Puzzling/Puzzling_Android/assets/92314556/cf11b8c7-b9e4-4e8d-abd6-fc1acf2a4412" width=130/>
-<img src="https://github.com/Team-Puzzling/Puzzling_Android/assets/92314556/e7924962-8884-4c10-9ac9-2a95a6742832" width=130/>
-<img src="https://github.com/Team-Puzzling/Puzzling_Android/assets/92314556/d8025baf-59ad-488d-9669-d005fa3f2951" width=130/>
-<img src="https://github.com/Team-Puzzling/Puzzling_Android/assets/92314556/860b7f41-b439-4b01-a0ce-d12d54091bfc" width=130/>
-<img src="https://github.com/Team-Puzzling/Puzzling_Android/assets/92314556/b5762fe8-2719-4a97-a7df-5d59064ab2ca" width=130/>
+|                                                                    프로젝트 등록                                                                     |                                                                     개인 대시보드                                                                     |                                                           팀 대시보드                                                            |                                                            회고 작성                                                            |
+|:----------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------:|
+|       <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/c74d5af1-e2ea-4c33-8a97-2bff9bc3fa32"/>        |        <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/b15885d9-f12e-4398-8d61-084ac6c14729"/>        | <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/72908884-c906-446b-aea8-c06e45f4e28b"/> | <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/1628c8a8-eecd-48ef-92df-b941a01ab6ed"/> |
+
+|                                                             팀원 현황 조회                                                              |                                                             회고 상세 조회                                                              |                                                               마이페이지                                                               |                                                            마이페이지 상세조회                                                             |
+|:---------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|
+| <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/b5f31500-d9e2-42c4-b807-4ac021a46108"/> | <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/4b771b62-bbb4-4df9-ae1b-d5b3cb6e6792"/> | <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/9df70508-7f65-456a-9e97-6324b5e54c91"/> | <img width="200px" src="https://github.com/Team-Puzzling/Puzzling_Android/assets/62274335/fbafafcb-483d-495a-805e-d3bf602cc508"/> |
 
 
 <br>
@@ -70,17 +72,12 @@
 ┃ ┣ 📂 model
 ┃ ┣ 📂 repository
 ┃ ┣ 📂 service
-┃ ┣ 📂 source
+┃ ┣ 📂 datasource
 ┣ 📂 di
 ┣ 📂 domain
 ┃ ┣ 📂 entity
 ┃ ┣ 📂 repository
+┃ ┣ 📂 usecase
 ┣ 📂 presentation
 ┣ 📂 util
 ```
-
-### Gallery 🖼️
-
-<img src="https://github.com/Team-Puzzling/Puzzling_Android/assets/92314556/072e6970-8315-48ef-b570-affe0fc84ca4" height=400/>
-
-
