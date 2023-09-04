@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.kakao.sdk.common.KakaoSdk
 import com.puzzling.puzzlingaos.BuildConfig.NATIVE_APP_KEY
-import com.puzzling.puzzlingaos.data.source.local.LocalDataSource
+import com.puzzling.puzzlingaos.data.datasource.local.LocalDataSource
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

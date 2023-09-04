@@ -1,11 +1,11 @@
 package com.puzzling.puzzlingaos.data.repository
 
+import com.puzzling.puzzlingaos.data.datasource.remote.WriteReviewDataSource
 import com.puzzling.puzzlingaos.data.model.request.RequestReview5FDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewAARDto
 import com.puzzling.puzzlingaos.data.model.request.RequestReviewTILDto
 import com.puzzling.puzzlingaos.data.model.response.ResponsePreviousTemplateDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseSaveReviewDto
-import com.puzzling.puzzlingaos.data.source.remote.WriteReviewDataSource
 import com.puzzling.puzzlingaos.domain.entity.ReviewType
 import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
 import javax.inject.Inject

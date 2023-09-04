@@ -10,13 +10,16 @@ import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.domain.entity.ReviewCycle
 import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
+import com.puzzling.puzzlingaos.domain.usecase.personaldashboard.GetProceedingProjectUseCase
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// TODO getProjectWeekCycle usecase 추가 및 적용
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val proceedingProjectUseCase: GetProceedingProjectUseCase,
     private val repository: MyBoardRepository,
     private val projectRepository: ProjectRepository,
 ) : ViewModel() {
@@ -77,7 +80,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getProjectList() = viewModelScope.launch {
-        repository.getProceedingProject(UserInfo.MEMBER_ID).onSuccess { response ->
+        proceedingProjectUseCase(UserInfo.MEMBER_ID).onSuccess { response ->
             Log.d("home", "getProjectList() success:: $response")
             _projectList.value = response
             val projects: List<Project> = _projectList.value!!
