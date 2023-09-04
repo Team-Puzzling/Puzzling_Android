@@ -3,12 +3,14 @@ package com.puzzling.puzzlingaos.data.repository
 import android.util.Log
 import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
+import com.puzzling.puzzlingaos.data.model.request.toRequestJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
 import com.puzzling.puzzlingaos.domain.entity.InvitationCode
+import com.puzzling.puzzlingaos.domain.entity.JoinProjectInfo
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import javax.inject.Inject
 
@@ -29,12 +31,12 @@ class ProjectRepositoryImpl @Inject constructor(
 
     override suspend fun joinProject(
         memberId: Int,
-        request: RequestInvitationCode,
-    ): ResponseJoinProjectDto {
-        return projectDataSource.joinProject(memberId, request)
+        request: JoinProjectInfo,
+    ): Result<ResponseJoinProjectDto> = runCatching {
+        projectDataSource.joinProject(memberId, request.toRequestJoinProjectDto())
     }
 
-    override suspend fun isValidInvitationCode(invitationCode: String): Result<InvitationCode> = kotlin.runCatching {
+    override suspend fun isValidInvitationCode(invitationCode: String): Result<InvitationCode> = runCatching {
         projectDataSource.isValidInvitationCode(invitationCode).data.toInvitationCode()
     }
 

@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.request
 
+import com.puzzling.puzzlingaos.domain.entity.JoinProjectInfo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,4 +12,10 @@ data class RequestInvitationCode(
     val memberProjectNickname: String,
     @SerialName("memberProjectRole")
     val memberProjectRole: String,
+)
+
+fun JoinProjectInfo.toRequestJoinProjectDto() = RequestInvitationCode(
+    projectId,
+    memberProjectNickname,
+    memberProjectRole,
 )

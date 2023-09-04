@@ -6,6 +6,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.domain.entity.InvitationCode
+import com.puzzling.puzzlingaos.domain.entity.JoinProjectInfo
 
 interface ProjectRepository {
 
@@ -18,8 +19,8 @@ interface ProjectRepository {
 
     suspend fun joinProject(
         memberId: Int,
-        request: RequestInvitationCode,
-    ): ResponseJoinProjectDto
+        request: JoinProjectInfo,
+    ): Result<ResponseJoinProjectDto>
 
     suspend fun isValidInvitationCode(
         invitationCode: String,
