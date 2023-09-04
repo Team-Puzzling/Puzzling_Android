@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.response
 
+import com.puzzling.puzzlingaos.domain.entity.InvitationCode
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,7 +13,7 @@ data class ResponseInvitationCodeDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: InvitationCodeData?,
+    val data: InvitationCodeData,
 ) {
     @Serializable
     data class InvitationCodeData(
@@ -20,5 +21,7 @@ data class ResponseInvitationCodeDto(
         val projectId: Int,
         @SerialName("projectName")
         val projectName: String,
-    )
+    ) {
+        fun toInvitationCode() = InvitationCode(projectId, projectName)
+    }
 }

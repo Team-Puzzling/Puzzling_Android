@@ -3,7 +3,7 @@ package com.puzzling.puzzlingaos.presentation.invitationCode
 import android.util.Log
 import androidx.lifecycle.*
 import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
-import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
+import com.puzzling.puzzlingaos.domain.entity.InvitationCode
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,7 +43,7 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
 
     private val _codeResponse =
-        MutableStateFlow<ResponseInvitationCodeDto.InvitationCodeData?>(null)
+        MutableStateFlow<InvitationCode?>(null)
     val codeResponse = _codeResponse.asStateFlow()
 
     private val _isCodeSucces = MutableStateFlow<Boolean?>(null)
@@ -104,11 +104,9 @@ class InvitationCodeViewModel @Inject constructor(private val repository: Projec
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
 
     fun isCodeValid() = viewModelScope.launch {
-        kotlin.runCatching {
-            repository.isValidInvitationCode(inputCode.value)
-        }.onSuccess { response ->
+        repository.isValidInvitationCode(inputCode.value).onSuccess { response ->
             _isCodeSucces.value = true
-            _codeResponse.value = response.data
+            _codeResponse.value = response
             Log.d("초대코드", "$response")
         }.onFailure {
             _isCodeSucces.value = false

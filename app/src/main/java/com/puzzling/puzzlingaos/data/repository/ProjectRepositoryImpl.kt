@@ -8,6 +8,7 @@ import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseProjectRetroWeekDto
 import com.puzzling.puzzlingaos.data.source.remote.ProjectDataSource
+import com.puzzling.puzzlingaos.domain.entity.InvitationCode
 import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
 import javax.inject.Inject
 
@@ -33,8 +34,8 @@ class ProjectRepositoryImpl @Inject constructor(
         return projectDataSource.joinProject(memberId, request)
     }
 
-    override suspend fun isValidInvitationCode(invitationCode: String): ResponseInvitationCodeDto {
-        return projectDataSource.isValidInvitationCode(invitationCode)
+    override suspend fun isValidInvitationCode(invitationCode: String): Result<InvitationCode> = kotlin.runCatching {
+        projectDataSource.isValidInvitationCode(invitationCode).data.toInvitationCode()
     }
 
     override suspend fun getProjectWeekCycle(projectId: Int): ResponseProjectRetroWeekDto {
