@@ -1,6 +1,6 @@
 package com.puzzling.puzzlingaos.data.repository
 
-import com.puzzling.puzzlingaos.data.source.remote.MyPageDataSource
+import com.puzzling.puzzlingaos.data.datasource.remote.MyPageDataSource
 import com.puzzling.puzzlingaos.domain.entity.DetailRetro
 import com.puzzling.puzzlingaos.domain.entity.ProjectReview
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
