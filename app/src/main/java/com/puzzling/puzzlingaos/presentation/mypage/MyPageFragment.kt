@@ -8,12 +8,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.puzzling.puzzlingaos.R
 import com.puzzling.puzzlingaos.base.BaseFragment
-import com.puzzling.puzzlingaos.data.model.response.ResponseMyPageProjectDto
 import com.puzzling.puzzlingaos.databinding.FragmentMyPageBinding
 import com.puzzling.puzzlingaos.domain.entity.Project
 import com.puzzling.puzzlingaos.presentation.home.HomeFragment
