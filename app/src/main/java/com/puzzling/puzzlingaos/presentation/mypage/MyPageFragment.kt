@@ -31,15 +31,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     private val personalViewModel by activityViewModels<PersonalDashboardViewModel>()
     private val homeViewModel by activityViewModels<HomeViewModel>()
 
-    private val dummyItemList = mutableListOf<ResponseMyPageProjectDto>(
-        ResponseMyPageProjectDto("Piickle", "2023-07-03", 2),
-        ResponseMyPageProjectDto("HARA", "2023-07-28", 3),
-        ResponseMyPageProjectDto("낫투두", "2023-07-12", 4),
-        ResponseMyPageProjectDto("PEEKABOOK", "2023-07-20", 5),
-        ResponseMyPageProjectDto("킵고잇", "2023-06-25", 8),
-        ResponseMyPageProjectDto("킵고잇", "2023-06-25", 8),
-    )
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[MyRetrospectViewModel::class.java]
