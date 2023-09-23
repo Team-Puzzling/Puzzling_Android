@@ -1,15 +1,7 @@
 package com.puzzling.puzzlingaos.di
 
-import com.puzzling.puzzlingaos.data.repository.MyBoardRepositoryImpl
-import com.puzzling.puzzlingaos.data.repository.MyPageRepositoryImpl
-import com.puzzling.puzzlingaos.data.repository.ProjectRepositoryImpl
-import com.puzzling.puzzlingaos.data.repository.TeamDashBoardRepositoryImpl
-import com.puzzling.puzzlingaos.data.repository.WriteReviewRepositoryImpl
-import com.puzzling.puzzlingaos.domain.repository.MyBoardRepository
-import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
-import com.puzzling.puzzlingaos.domain.repository.ProjectRepository
-import com.puzzling.puzzlingaos.domain.repository.TeamDashBoardRepository
-import com.puzzling.puzzlingaos.domain.repository.WriteReviewRepository
+import com.puzzling.puzzlingaos.data.repository.*
+import com.puzzling.puzzlingaos.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -38,4 +30,8 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesWriteReviewRepository(repoImpl: WriteReviewRepositoryImpl): WriteReviewRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesTokenRepository(repoImpl: TokenRepositoryImpl): TokenRepository
 }

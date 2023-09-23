@@ -11,9 +11,10 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
+import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.M)
-class CryptoService {
+class CryptoService @Inject constructor() {
 
     private val keyStore = KeyStore.getInstance("AndroidKeyStore").apply {
         load(null)

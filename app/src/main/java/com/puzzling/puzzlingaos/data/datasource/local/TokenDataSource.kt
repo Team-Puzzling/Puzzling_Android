@@ -9,9 +9,10 @@ import kotlinx.serialization.json.Json
 import org.apache.commons.lang3.SerializationException
 import java.io.InputStream
 import java.io.OutputStream
+import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.M)
-class TokenDataSource(private val cryptoService: CryptoService) : Serializer<Token> {
+class TokenDataSource @Inject constructor(private val cryptoService: CryptoService) : Serializer<Token> {
     override val defaultValue: Token
         get() = Token()
 
