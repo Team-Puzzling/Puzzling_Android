@@ -3,8 +3,10 @@ package com.puzzling.puzzlingaos.data.service
 import android.content.Context
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.qualifiers.ActivityContext
+import javax.inject.Inject
 
-class KakaoLoginService(private val context: Context) {
+class KakaoAuthService @Inject constructor(@ActivityContext private val context: Context) {
     fun startKakaoLogin(kakaoLoginCallBack: (OAuthToken?, Throwable?) -> Unit) {
         val kakaoLoginState =
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
@@ -20,6 +22,7 @@ class KakaoLoginService(private val context: Context) {
                     callback = kakaoLoginCallBack,
                 )
             }
+
             KAKAO_ACCOUNT_LOGIN -> {
                 UserApiClient.instance.loginWithKakaoAccount(
                     context,
