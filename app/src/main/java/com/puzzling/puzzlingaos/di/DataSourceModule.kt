@@ -5,6 +5,7 @@ import com.puzzling.puzzlingaos.data.datasource.remote.MyPageDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.ProjectDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.TeamDashBoardDataSource
 import com.puzzling.puzzlingaos.data.datasource.remote.WriteReviewDataSource
+import com.puzzling.puzzlingaos.data.datasource.remote.impl.AuthDataSourceImpl
 import com.puzzling.puzzlingaos.data.datasource.remote.impl.MyDashBoardDataSourceImpl
 import com.puzzling.puzzlingaos.data.datasource.remote.impl.MyPageDataSourceImpl
 import com.puzzling.puzzlingaos.data.datasource.remote.impl.ProjectDataSourceImpl
@@ -38,4 +39,8 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun providesWriteReviewDataSource(DataSourceImpl: WriteReviewDataSourceImpl): WriteReviewDataSource
+
+    @Singleton
+    @Binds
+    abstract fun providesAuthDataSource(DataSourceImpl: AuthDataSourceImpl): AuthDataSourceImpl
 }

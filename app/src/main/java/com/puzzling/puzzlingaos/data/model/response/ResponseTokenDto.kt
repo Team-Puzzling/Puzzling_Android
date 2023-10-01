@@ -1,5 +1,6 @@
 package com.puzzling.puzzlingaos.data.model.response
 
+import com.puzzling.puzzlingaos.data.entity.Token
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,4 +21,6 @@ data class ResponseTokenDto(
         val accessToken: String,
 
     )
+
+    fun getToken() = Token(data?.accessToken)
 }

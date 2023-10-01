@@ -34,4 +34,8 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun providesTokenRepository(repoImpl: TokenRepositoryImpl): TokenRepository
+
+    @Singleton
+    @Binds
+    abstract fun providesAuthRepository(repoImpl: AuthRepositoryImpl): AuthRepository
 }
