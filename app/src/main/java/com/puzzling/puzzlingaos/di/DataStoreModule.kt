@@ -21,7 +21,7 @@ object DataStoreModule {
 
     @Provides
     @Singleton
-    fun providePreferencesDataStore(
+    fun provideTokenDataStore(
         @ApplicationContext appContext: Context,
         tokenDataSource: TokenDataSource,
     ): DataStore<Token> {
