@@ -3,13 +3,14 @@ package com.puzzling.puzzlingaos.di
 import android.util.Log
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.puzzling.puzzlingaos.BuildConfig
-import com.puzzling.puzzlingaos.BuildConfig.JWT_ACCESS_TOKEN
+import com.puzzling.puzzlingaos.domain.repository.TokenRepository
 import com.puzzling.puzzlingaos.util.isJsonArray
 import com.puzzling.puzzlingaos.util.isJsonObject
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
@@ -27,10 +28,13 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        tokenInterceptor: Interceptor,
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(tokenInterceptor())
+            .addInterceptor(tokenInterceptor)
             .build()
 
     @Provides
@@ -62,13 +66,18 @@ object RetrofitModule {
         .client(okHttpClient)
         .build()
 
-    private fun tokenInterceptor(): Interceptor {
+    @Singleton
+    @Provides
+    fun tokenInterceptor(tokenRepository: TokenRepository): Interceptor {
         val requestInterceptor = Interceptor { chain ->
             val original = chain.request()
             val builder = original.newBuilder()
+            val accessToken = runBlocking {
+                tokenRepository.getToken().accessToken
+            }
             builder.addHeader(
                 "Authorization",
-                JWT_ACCESS_TOKEN,
+                "Bearer $accessToken",
             )
             chain.proceed(builder.build())
         }
