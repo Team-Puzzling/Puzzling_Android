@@ -7,13 +7,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ResponseLoginDto(
     @SerialName("status")
-    val status: String,
+    val status: Int,
     @SerialName("success")
     val success: Boolean,
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: LoginData?,
+    val data: LoginData,
 
 ) {
     @Serializable
@@ -23,7 +23,9 @@ data class ResponseLoginDto(
         @SerialName("memberId")
         val memberId: Int,
         @SerialName("projectId")
-        val projectId: Int,
+        val projectId: Int?,
+        @SerialName("projectName")
+        val projectName: String?,
         @SerialName("accessToken")
         val accessToken: String,
         @SerialName("refreshToken")
