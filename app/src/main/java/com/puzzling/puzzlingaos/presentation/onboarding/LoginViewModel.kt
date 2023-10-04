@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.auth.model.OAuthToken
 import com.puzzling.puzzlingaos.data.datasource.local.LocalDataSource
+import com.puzzling.puzzlingaos.domain.repository.AuthRepository
 import com.puzzling.puzzlingaos.domain.usecase.onboarding.GetTokenUseCase
 import com.puzzling.puzzlingaos.domain.usecase.onboarding.PostTokenUseCase
 import com.puzzling.puzzlingaos.util.KakaoLoginCallback
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val postTokenUseCase: PostTokenUseCase,
     private val getTokenUseCase: GetTokenUseCase,
+    private val authRepository: AuthRepository,
 ) :
     ViewModel() {
     private val _isKakaoLogin = MutableStateFlow(false)
@@ -26,12 +28,17 @@ class LoginViewModel @Inject constructor(
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         KakaoLoginCallback {
             _isKakaoLogin.value = true
-            Log.d("LoginViewModel", "토큰!! $token")
+            Log.d("LoginViewModel", "카카오 로그인 set 토큰 $token")
             LocalDataSource.setAccessToken("$token")
             viewModelScope.launch {
                 postTokenUseCase.invoke(it)
-                Log.d("LoginViewModel", "토큰!! usecase ${getTokenUseCase.invoke()}")
+                Log.d("LoginViewModel", "카카오 로그인 get 토큰 ${getTokenUseCase.invoke()}")
             }
         }.handleResult(token, error)
+    }
+
+    fun login(socialPlatform: String) = viewModelScope.launch {
+        Log.d("LoginActivity", "로그인 함수 호출")
+        authRepository.login("KAKAO")
     }
 }
