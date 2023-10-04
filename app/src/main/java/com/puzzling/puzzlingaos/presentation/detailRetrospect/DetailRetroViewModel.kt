@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puzzling.puzzlingaos.data.model.response.ResponseDetailRetroDto
+import com.puzzling.puzzlingaos.domain.entity.DetailRetro
 import com.puzzling.puzzlingaos.domain.repository.MyPageRepository
 import com.puzzling.puzzlingaos.util.UserInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailRetroViewModel @Inject constructor(private val repository: MyPageRepository) :
     ViewModel() {
-    private val _detailRetroList = MutableLiveData<List<ResponseDetailRetroDto.Data.DetailReviewData>?>()
-    val detailRetroList: LiveData<List<ResponseDetailRetroDto.Data.DetailReviewData>?> get() = _detailRetroList
+    private val _detailRetroList = MutableLiveData<List<DetailRetro>?>()
+    val detailRetroList: LiveData<List<DetailRetro>?> get() = _detailRetroList
 
     val week = listOf(
         "월",
@@ -38,17 +38,13 @@ class DetailRetroViewModel @Inject constructor(private val repository: MyPageRep
     val projectName = MutableLiveData<String>()
 
     fun getDetailRetro(projectId: Int) = viewModelScope.launch {
-        kotlin.runCatching {
-            Log.d("상세회고조회", "startOfWeek:: $startOfWeek")
-            Log.d("상세회고조회", "endOfWeek:: $endOfWeek")
-            repository.getMyDetailReview(
-                UserInfo.GET_MEMBER_ID,
-                projectId,
-                startOfWeek.toString(),
-                endOfWeek.toString(),
-            )
-        }.onSuccess { response ->
-            _detailRetroList.value = response.data?.reviews
+        repository.getMyDetailReview(
+            UserInfo.GET_MEMBER_ID,
+            projectId,
+            startOfWeek.toString(),
+            endOfWeek.toString(),
+        ).onSuccess { response ->
+            _detailRetroList.value = response
             Log.d("상세회고조회", "response:: $response")
         }.onFailure {
             Log.d("상세회고조회", "fail:: $it")

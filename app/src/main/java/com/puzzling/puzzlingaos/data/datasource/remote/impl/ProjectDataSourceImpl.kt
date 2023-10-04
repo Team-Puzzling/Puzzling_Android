@@ -1,7 +1,7 @@
 package com.puzzling.puzzlingaos.data.datasource.remote.impl
 
 import com.puzzling.puzzlingaos.data.datasource.remote.ProjectDataSource
-import com.puzzling.puzzlingaos.data.model.request.RequestInvitationCode
+import com.puzzling.puzzlingaos.data.model.request.RequestJoinProject
 import com.puzzling.puzzlingaos.data.model.request.RequestProjectRegisterDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseInvitationCodeDto
 import com.puzzling.puzzlingaos.data.model.response.ResponseJoinProjectDto
@@ -22,7 +22,7 @@ class ProjectDataSourceImpl @Inject constructor(
 
     override suspend fun joinProject(
         memberId: Int,
-        request: RequestInvitationCode,
+        request: RequestJoinProject,
     ): ResponseJoinProjectDto = apiService.joinProject(memberId, request)
 
     override suspend fun isValidInvitationCode(invitationCode: String): ResponseInvitationCodeDto =
