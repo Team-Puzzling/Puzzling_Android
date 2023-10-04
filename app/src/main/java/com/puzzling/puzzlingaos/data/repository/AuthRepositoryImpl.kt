@@ -16,7 +16,7 @@ class AuthRepositoryImpl @Inject constructor(
         authDataSource.login(socialPlatform).getToken()
     }.onSuccess { token ->
         tokenDataStore.updateData { Token(token.accessToken, token.refreshToken) }
-        Log.d("AuthRepoImpl", "${tokenDataStore.data.first()}")
+        Log.d("AuthRepoImpl", "AuthRepoImpl get 토큰 ${tokenDataStore.data.first()}")
     }.onFailure {
         Log.d("AuthRepoImpl", "$it 에러")
     }
