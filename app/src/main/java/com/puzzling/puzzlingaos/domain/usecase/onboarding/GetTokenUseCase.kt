@@ -6,8 +6,8 @@ import javax.inject.Singleton
 
 @Singleton
 class GetTokenUseCase @Inject constructor(
-    private val tokenRepository: TokenRepository,
+    private val repository: TokenRepository,
 ) {
 
-    suspend operator fun invoke() = tokenRepository.getToken()
+    suspend operator fun invoke() = repository.getToken()
 }
