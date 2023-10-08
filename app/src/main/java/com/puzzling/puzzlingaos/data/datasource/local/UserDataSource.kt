@@ -8,8 +8,9 @@ import kotlinx.serialization.json.Json
 import org.apache.commons.lang3.SerializationException
 import java.io.InputStream
 import java.io.OutputStream
+import javax.inject.Inject
 
-object UserDataSource : Serializer<User> {
+class UserDataSource @Inject constructor() : Serializer<User> {
     override val defaultValue: User
         get() = User()
 
