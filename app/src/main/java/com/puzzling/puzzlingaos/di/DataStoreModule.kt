@@ -18,8 +18,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
-    private const val USER_PREFERENCES_NAME = "user_preferences"
-    private const val DATA_STORE_FILE_NAME = "user_prefs.pb"
+    private const val USER_DATA_STORE_FILE_NAME = "user_prefs.pb"
+    private const val TOKEN_DATA_STORE_FILE_NAME = "token_prefs.pb"
 
     @Provides
     @Singleton
@@ -30,7 +30,7 @@ object DataStoreModule {
         return DataStoreFactory.create(
             serializer = tokenDataSource,
             produceFile = {
-                appContext.dataStoreFile(DATA_STORE_FILE_NAME)
+                appContext.dataStoreFile(TOKEN_DATA_STORE_FILE_NAME)
             },
         )
     }
@@ -44,7 +44,7 @@ object DataStoreModule {
         return DataStoreFactory.create(
             serializer = userDataSource,
             produceFile = {
-                appContext.dataStoreFile(DATA_STORE_FILE_NAME)
+                appContext.dataStoreFile(USER_DATA_STORE_FILE_NAME)
             },
         )
     }
