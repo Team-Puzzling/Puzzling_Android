@@ -25,8 +25,22 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        isAlreadyLogin()
         startKakaoLogin()
         isKakaoLoginSuccess()
+    }
+
+    private fun isAlreadyLogin() {
+        viewModel.checkIsAlreadyLogin()
+        viewModel.isAlreadyLogin.observe(this) { isAlreadyLogin ->
+            if (isAlreadyLogin) {
+                val intent =
+                    Intent(this@LoginActivity, ChooseJoinRegisterActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 
     private fun startKakaoLogin() {

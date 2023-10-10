@@ -1,12 +1,15 @@
 package com.puzzling.puzzlingaos.presentation.onboarding
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.auth.model.OAuthToken
 import com.puzzling.puzzlingaos.data.datasource.local.LocalDataSource
 import com.puzzling.puzzlingaos.domain.repository.AuthRepository
 import com.puzzling.puzzlingaos.domain.usecase.onboarding.GetTokenUseCase
+import com.puzzling.puzzlingaos.domain.usecase.onboarding.GetUserUseCase
 import com.puzzling.puzzlingaos.domain.usecase.onboarding.PostTokenUseCase
 import com.puzzling.puzzlingaos.util.KakaoLoginCallback
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,11 +22,15 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val postTokenUseCase: PostTokenUseCase,
     private val getTokenUseCase: GetTokenUseCase,
+    private val getUserUseCase: GetUserUseCase,
     private val authRepository: AuthRepository,
 ) :
     ViewModel() {
     private val _isKakaoLogin = MutableStateFlow(false)
     val isKakaoLogin = _isKakaoLogin.asStateFlow()
+
+    private val _isAlreadyLogin = MutableLiveData<Boolean>()
+    val isAlreadyLogin: LiveData<Boolean> get() = _isAlreadyLogin
 
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         KakaoLoginCallback {
@@ -40,5 +47,11 @@ class LoginViewModel @Inject constructor(
     fun login(socialPlatform: String) = viewModelScope.launch {
         Log.d("LoginActivity", "로그인 함수 호출")
         authRepository.login("KAKAO")
+    }
+
+    fun checkIsAlreadyLogin() = viewModelScope.launch {
+        var userInfo = getUserUseCase.invoke()
+        _isAlreadyLogin.value = !userInfo.name.isNullOrBlank()
+        Log.d("userInfo", "$userInfo")
     }
 }
