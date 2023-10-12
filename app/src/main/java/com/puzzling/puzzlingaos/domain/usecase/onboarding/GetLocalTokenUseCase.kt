@@ -5,6 +5,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PostTokenUseCase @Inject constructor(private val repository: TokenRepository) {
-    suspend operator fun invoke(token: String) = repository.setToken(token)
+class GetLocalTokenUseCase @Inject constructor(
+    private val repository: TokenRepository,
+) {
+
+    suspend operator fun invoke() = repository.getToken()
 }
