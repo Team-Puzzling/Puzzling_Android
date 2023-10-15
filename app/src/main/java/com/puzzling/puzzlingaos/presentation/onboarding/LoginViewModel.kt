@@ -46,10 +46,6 @@ class LoginViewModel @Inject constructor(
         }.handleResult(token, error)
     }
 
-    init {
-        getToken()
-    }
-
     fun login(socialPlatform: String) = viewModelScope.launch {
         Log.d("LoginActivity", "로그인 함수 호출")
         authRepository.login("KAKAO")
