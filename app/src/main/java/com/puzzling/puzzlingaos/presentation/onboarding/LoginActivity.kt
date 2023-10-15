@@ -12,6 +12,7 @@ import com.puzzling.puzzlingaos.base.BaseActivity
 import com.puzzling.puzzlingaos.data.service.KakaoAuthService
 import com.puzzling.puzzlingaos.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,11 +24,25 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private val viewModel: LoginViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        isAlreadyLogin()
         startKakaoLogin()
         isKakaoLoginSuccess()
+    }
+
+    private fun isAlreadyLogin() {
+        viewModel.checkIsAlreadyLogin()
+        viewModel.isAlreadyLogin.observe(this) { isAlreadyLogin ->
+            if (isAlreadyLogin) {
+                val intent =
+                    Intent(this@LoginActivity, ChooseJoinRegisterActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+                viewModel.getToken()
+            }
+        }
     }
 
     private fun startKakaoLogin() {
@@ -46,6 +61,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         finish()
+                        delay(100)
+                        viewModel.login("KAKAO")
                     }
                 }
             }

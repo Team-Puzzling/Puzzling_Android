@@ -1,8 +1,10 @@
 package com.puzzling.puzzlingaos.di
 
+import com.puzzling.puzzlingaos.data.service.AuthService
 import com.puzzling.puzzlingaos.data.service.MyPageService
 import com.puzzling.puzzlingaos.data.service.PersonalReviewService
 import com.puzzling.puzzlingaos.data.service.ProjectService
+import com.puzzling.puzzlingaos.data.service.ReIssueTokenService
 import com.puzzling.puzzlingaos.data.service.TeamReviewService
 import com.puzzling.puzzlingaos.data.service.WriteReviewService
 import dagger.Module
@@ -39,4 +41,14 @@ object ApiModule {
     @Singleton
     fun provideWriteReviewService(@PuzzlingRetrofit retrofit: Retrofit): WriteReviewService =
         retrofit.create(WriteReviewService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAuthService(@PuzzlingRetrofit retrofit: Retrofit): AuthService =
+        retrofit.create(AuthService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideReIssueTokenService(@ReIssueRetrofit retrofit: Retrofit): ReIssueTokenService =
+        retrofit.create(ReIssueTokenService::class.java)
 }
