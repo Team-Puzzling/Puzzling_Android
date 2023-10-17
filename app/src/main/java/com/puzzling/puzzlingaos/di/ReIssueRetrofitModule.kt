@@ -4,8 +4,6 @@ import android.util.Log
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.puzzling.puzzlingaos.BuildConfig
 import com.puzzling.puzzlingaos.domain.repository.TokenRepository
-import com.puzzling.puzzlingaos.util.isJsonArray
-import com.puzzling.puzzlingaos.util.isJsonObject
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,52 +14,30 @@ import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONArray
-import org.json.JSONObject
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object ReIssueRetrofitModule {
     private const val PUZZLING_BASE_URL = BuildConfig.PUZZLING_BASE_URL
 
     @Provides
     @Singleton
-    @PuzzlingRetrofit
-    fun provideOkHttpClient(
+    @ReIssueRetrofit
+    fun provideReIssueOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        @PuzzlingRetrofit tokenInterceptor: Interceptor,
+        @ReIssueRetrofit tokenInterceptor: Interceptor,
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(tokenInterceptor)
             .build()
 
-    @Provides
-    @Singleton
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        val loggingInterceptor = HttpLoggingInterceptor { message ->
-            when {
-                message.isJsonObject() ->
-                    Log.d("retrofit", JSONObject(message).toString(4))
-
-                message.isJsonArray() ->
-                    Log.d("retrofit", JSONArray(message).toString(4))
-
-                else -> {
-                    Log.d("retrofit", "CONNECTION INFO -> $message")
-                }
-            }
-        }
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        return loggingInterceptor
-    }
-
     @Singleton
     @Provides
-    @PuzzlingRetrofit
-    fun providePuzzlingRetrofit(@PuzzlingRetrofit okHttpClient: OkHttpClient): Retrofit =
+    @ReIssueRetrofit
+    fun provideReIssueTokenRetrofit(@ReIssueRetrofit okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .baseUrl(PUZZLING_BASE_URL)
@@ -70,18 +46,21 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    @PuzzlingRetrofit
-    fun tokenInterceptor(tokenRepository: TokenRepository): Interceptor {
+    @ReIssueRetrofit
+    fun reIssueTokenInterceptor(tokenRepository: TokenRepository): Interceptor {
         val requestInterceptor = Interceptor { chain ->
             val original = chain.request()
             val builder = original.newBuilder()
-            val accessToken = runBlocking {
-                tokenRepository.getToken().accessToken
+            val token = runBlocking {
+                tokenRepository.getToken()
             }
-            Log.d("RetrofitModule", "토큰 $accessToken")
+            Log.d("ReIssueRetrofitModule", "토큰 $token")
             builder.addHeader(
                 "Authorization",
-                "Bearer $accessToken",
+                "Bearer ${token.accessToken}",
+            ).addHeader(
+                "Refresh",
+                "Bearer ${token.refreshToken}",
             )
             chain.proceed(builder.build())
         }
